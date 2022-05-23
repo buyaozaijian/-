@@ -311,27 +311,22 @@
   <div style="display: inline-block; background: whitesmoke;position: relative;top: 30px;left: 190px;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
     <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
       <el-form-item label="视频标题">
-        <el-input v-model="form.name"></el-input>
+        <el-input v-model="form.videoTitle"></el-input>
       </el-form-item>
       <el-form-item label="视频简介">
-        <el-input type="textarea" v-model="form.desc"></el-input>
-      </el-form-item>
-      <el-form-item label="视频分区">
-        <el-select v-model="value1" multiple placeholder="请选择视频的标签">
-          <el-option
-              v-for="item in options"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-          </el-option>
-        </el-select>
+        <el-input type="textarea" v-model="form.videoIntroduction"></el-input>
       </el-form-item>
       <el-form-item label="封面">
         <el-upload
             action="https://jsonplaceholder.typicode.com/posts/"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove">
+            :on-remove="handleRemove"
+            show-file-list
+            :auto-upload="false"
+            :on-change="change"
+            :before-upload="beforeAvatarUpload"
+            multiple>
           <i class="el-icon-plus"></i>
         </el-upload>
         <el-dialog :visible.sync="dialogVisible">
@@ -344,6 +339,12 @@
             class="upload-demo"
             drag
             action="https://jsonplaceholder.typicode.com/posts/"
+            :on-preview="handlePictureCardPreview"
+            :on-remove="handleRemove"
+            show-file-list
+            :auto-upload="false"
+            :on-change="change"
+            :before-upload="beforeUploadVideo"
             multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -351,7 +352,7 @@
         </el-upload>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit" style="width: 80px;height: 40px">立即上传</el-button>
+        <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
         <el-button style="width: 80px;height: 40px">取消</el-button>
       </el-form-item>
     </el-form>
@@ -370,12 +371,14 @@
 
 <script>
 import qs from "qs";
+import axios from "axios";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "User_center",
   data(){
     return {
       dialogImageUrl: '',
+      dataList:'',
       dialogVisible: false,
       disabled: false,
       islogin: true,
@@ -392,15 +395,8 @@ export default {
       dialogFormVisible: false,
       needFixed: false,
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: '',
-        code: ''
+        videoTitle:'',
+        videoIntroduction:''
       },
       formLabelWidth: '120px',
       options:{
@@ -497,6 +493,62 @@ export default {
     },
     handleDownload(file) {
       console.log(file);
+    },
+    beforeAvatarUpload(file) {
+      let videoCover = new FormData();
+      videoCover.append('file',file);//传文件
+      axios.post('/api/video/uploadvideo',videoCover).then(function(res){
+        console.log(res);
+      })
+      return false
+    },
+
+    beforeUploadVideo(file) {
+      let videoFile = new FormData();
+      videoFile.append('file',file);//传文件
+      axios.post('/api/video/uploadvideo',videoFile).then(function(res){
+        console.log(res);
+      })
+      return false
+    },
+    submit() {
+      alert("上传");
+      let config = {
+        timeout: 30000,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      axios.post(
+          "/api/video/uploadvideo",
+          this.form.videoTitle,
+          this.form.videoIntroduction,
+          config
+      )
+      .then((res) => {
+        console.log(res)
+        if (res.data.status == 'ok') {
+          console.log("上传成功");
+          this.$router.push({
+            path:'./'
+          })
+        } else {
+          alert('上传失败')
+        }
+      })
+      .catch((error) => {
+        console.log("请求失败");
+        console.log(error);
+      });
+    },
+
+    change(file, fileList) {
+      var arr = [];
+      fileList.forEach((item) => {
+        arr.push(item.raw);
+      });
+      this.dataList = arr;
+      console.log(arr);
     }
   },
   mounted() {
