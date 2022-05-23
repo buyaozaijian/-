@@ -328,7 +328,7 @@
       </el-form-item>
       <el-form-item label="封面">
         <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="http://127.0.0.1:8000/"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove">
