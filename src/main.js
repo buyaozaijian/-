@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.use(ElementUI);
 
-axios.defaults.baseURL = 'http://123.12.123.12:8000\'';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/';
 
 new Vue({
   router,

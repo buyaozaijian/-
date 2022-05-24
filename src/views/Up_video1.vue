@@ -318,7 +318,7 @@
       </el-form-item>
       <el-form-item label="封面">
         <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="http://127.0.0.1:8000/"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
@@ -326,7 +326,6 @@
             :auto-upload="false"
             :on-change="change"
             :before-upload="beforeAvatarUpload"
-            :on-success="handleAvatarSuccess"
             multiple>
           <i class="el-icon-plus"></i>
         </el-upload>
@@ -346,7 +345,6 @@
             :auto-upload="false"
             :on-change="change"
             :before-upload="beforeUploadVideo"
-            :on-success="handleAvatarSuccess1"
             multiple>
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
@@ -358,8 +356,6 @@
         <el-button style="width: 80px;height: 40px">取消</el-button>
       </el-form-item>
     </el-form>
-    <img v-if="form.imageUrl1" :src="form.imageUrl1" >
-    <img v-if="form.imageUrl2" :src="form.imageUrl2" >
   </div>
   </body>
   <!--<div class="login">
@@ -398,11 +394,7 @@ export default {
       dialogTableVisible: false,
       dialogFormVisible: false,
       needFixed: false,
-
-      video: new FormData(),
       form: {
-        imageUrl1:'',
-        imageUrl2:'',
         videoTitle:'',
         videoIntroduction:''
       },
@@ -502,21 +494,21 @@ export default {
     handleDownload(file) {
       console.log(file);
     },
-    handleAvatarSuccess(res, file) {
-      let _this = this;
-      _this.form.imageUrl1 = URL.createObjectURL(file.raw);
-    },
-    handleAvatarSuccess1(res, file) {
-      let _this = this;
-      _this.form.imageUrl2 = URL.createObjectURL(file.raw);
-    },
     beforeAvatarUpload(file) {
-      this.video.append('videoCover',file);
+      let videoCover = new FormData();
+      videoCover.append('file',file);//传文件
+      axios.post('/api/video/uploadvideo',videoCover).then(function(res){
+        console.log(res);
+      })
       return false
     },
 
     beforeUploadVideo(file) {
-      this.video.append('videoFile',file);
+      let videoFile = new FormData();
+      videoFile.append('file',file);//传文件
+      axios.post('/api/video/uploadvideo',videoFile).then(function(res){
+        console.log(res);
+      })
       return false
     },
     submit() {
@@ -527,23 +519,24 @@ export default {
           "Content-Type": "multipart/form-data",
         },
       };
-      axios.post(
-          "/api/video/uploadvideo",
-          this.video.get('videoCover'),
-          this.video.get('videoFile'),
-          this.form.videoTitle,
-          this.form.videoIntroduction,
-          config
-      )
+      axios.post("/api/video/uploadvideo",
+      {
+            title: this.form.videoTitle,
+            description: this.form.videoIntroduction,
+            config: config
+      })
       .then((res) => {
         console.log(res)
-        if (res.data.status == 'ok') {
-          console.log("上传成功");
-          this.$router.push({
-            path:'./'
-          })
-        } else {
-          alert('上传失败')
+        switch (res.data.status_code) {
+          case 0:
+            console.log("上传成功");
+            this.$router.push({
+              path:'./'
+            })
+            break;
+          case 2:
+            alert('上传失败')
+            break;
         }
       })
       .catch((error) => {
