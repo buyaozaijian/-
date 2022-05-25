@@ -311,10 +311,10 @@
   <div style="display: inline-block; background: whitesmoke;position: relative;top: 30px;left: 190px;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
     <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
       <el-form-item label="视频标题">
-        <el-input v-model="form.videoTitle"></el-input>
+        <el-input v-model="willAddQuestion.videoTitle"></el-input>
       </el-form-item>
       <el-form-item label="视频简介">
-        <el-input type="textarea" v-model="form.videoIntroduction"></el-input>
+        <el-input type="textarea" v-model="willAddQuestion.videoIntroduction"></el-input>
       </el-form-item>
       <el-form-item label="封面">
         <el-upload
