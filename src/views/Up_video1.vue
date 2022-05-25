@@ -318,16 +318,13 @@
       </el-form-item>
       <el-form-item label="封面">
         <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
             list-type="picture-card"
-            :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove"
-            show-file-list
-            :auto-upload="false"
-            :on-change="change"
-            :before-upload="beforeAvatarUpload"
-            :on-success="handleAvatarSuccess"
-            multiple>
+            :action=uploadImgUrl
+            multiple
+            :http-request="upLoadImage"
+            :before-upload="beforeImageUpload"
+            :file-list="willAddQuestion.imgList"
+            :limit="6">
           <i class="el-icon-plus"></i>
         </el-upload>
         <el-dialog :visible.sync="dialogVisible">
@@ -338,16 +335,11 @@
       <el-form-item label="视频">
         <el-upload
             class="upload-demo"
-            drag
-            action="https://jsonplaceholder.typicode.com/posts/"
-            :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove"
-            show-file-list
-            :auto-upload="false"
-            :on-change="change"
-            :before-upload="beforeUploadVideo"
-            :on-success="handleAvatarSuccess1"
-            multiple>
+            :action=uploadVideoUrl
+            :http-request="upLoadVideo"
+            :before-upload="beforeVideoUpload"
+            :file-list="willAddQuestion.videoList"
+            :limit="1">
           <i class="el-icon-upload"></i>
           <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
           <div class="el-upload__tip" slot="tip">只能上传视频文件，且大小不超过10mb</div>
@@ -355,11 +347,9 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
-        <el-button style="width: 80px;height: 40px">取消</el-button>
+        <el-button style="width: 80px;height: 40px" @click="cancel_pre">取消</el-button>
       </el-form-item>
     </el-form>
-    <img v-if="form.imageUrl1" :src="form.imageUrl1" >
-    <img v-if="form.imageUrl2" :src="form.imageUrl2" >
   </div>
   </body>
   <!--<div class="login">
@@ -381,6 +371,7 @@ export default {
   name: "User_center",
   data(){
     return {
+
       dialogImageUrl: '',
       dataList:'',
       dialogVisible: false,
@@ -400,9 +391,15 @@ export default {
       needFixed: false,
 
       video: new FormData(),
+      uploadImgUrl:'/video/uploadphoto',
+      uploadVideoUrl:'video/uploadvideo',
+      willAddQuestion:{
+        videoTitle: '',
+        videoIntroduction: '',
+        imgList:[],
+        videoList:[],
+      },
       form: {
-        imageUrl1:'',
-        imageUrl2:'',
         videoTitle:'',
         videoIntroduction:''
       },
@@ -514,7 +511,6 @@ export default {
       this.video.append('videoCover',file);
       return false
     },
-
     beforeUploadVideo(file) {
       this.video.append('videoFile',file);
       return false
@@ -529,8 +525,8 @@ export default {
       };
       axios.post(
           "/api/video/uploadvideo",
-          this.video.get('videoCover'),
-          this.video.get('videoFile'),
+          this.uploadImgUrl,
+          this.uploadVideoUrl,
           this.form.videoTitle,
           this.form.videoIntroduction,
           config
@@ -551,7 +547,6 @@ export default {
         console.log(error);
       });
     },
-
     change(file, fileList) {
       var arr = [];
       fileList.forEach((item) => {
@@ -559,7 +554,130 @@ export default {
       });
       this.dataList = arr;
       console.log(arr);
-    }
+    },
+    upLoadImage(file) {
+      const formData = new FormData();
+      formData.append('image', file.file);
+      this.$axios({
+        method: 'post',
+        url: this.uploadImgUrl,
+        data: formData,
+      })
+          .then(res => {
+            switch (res.data.status_code) {
+              case 1:
+                var name = res.data.name;
+                var url = res.data.url;
+                this.willAddQuestion.imgList.push({
+                  name: name,
+                  url: url
+                });
+                console.log(this.willAddQuestion.imgList);
+                break;
+              case 2:
+                // this.$message.error("上传文件格式错误！");
+                break;
+              default:
+                this.$message.error("操作失败！");
+                break;
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+    },
+    beforeImageUpload(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isPNG = file.type === 'image/png';
+      const isLt5M = file.size / 1024 / 1024 < 10;
+      if (!isJPG && !isPNG) {
+        this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
+      } else if (!isLt5M) {
+        this.$message.error('上传头像图片大小不能超过 5MB!');
+      }
+      return (isJPG || isPNG) && isLt5M;
+    },
+    upLoadVideo(file) {
+      const formData = new FormData();
+      formData.append('video', file.file);
+      const instance = this.$axios.create({
+        withCredentials: true,
+      })
+      instance({
+        method: 'post',
+        url: this.uploadVideoUrl,
+        data: formData,
+      })
+          .then(res => {
+            switch (res.data.status_code) {
+              case 1:
+                var name = res.data.name;
+                var url = res.data.url;
+                this.willAddQuestion.videoList.push({
+                  name: name,
+                  url: url
+                });
+                console.log(this.willAddQuestion.videoList);
+                break;
+              case 2:
+                // this.$message.error("上传文件格式错误！");
+                break;
+              default:
+                this.$message.error("操作失败！");
+                break;
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+    },
+    beforeVideoUpload(file) {
+      const filename = file.name;
+      var suffix = '';
+      var isVideo = false;
+      const isLt2M = file.size / 1024 / 1024 < 10;
+      try {
+        var flieArr = filename.split('.');
+        suffix = flieArr[flieArr.length - 1];
+      } catch (err) {
+        suffix = '';
+      }
+      var videoList = ['mp4', 'mkv'];
+      var judge = videoList.some(function (item) {
+        return item === suffix;
+      });
+      if (judge) {
+        isVideo = true;
+      }
+      if (!isVideo) {
+        this.$message.error('上传视频文件只能是 MP4/MKV 格式!');
+      } else if (!isLt2M) {
+        this.$message.error('上传视频文件大小不能超过 10MB!');
+      }
+      return isLt2M && isVideo;
+    },
+    resetWillAdd(){
+      this.willAddQuestion={
+        videoTitle: '',
+        videoIntroduction: '',
+        imgList:[],
+        videoList:[]
+      }
+    },
+    dialogCancel: function() {
+      this.resetWillAdd();
+    },
+    cancel_pre: function () {
+      this.$confirm('已编辑的题目信息将不会保存,确认关闭？', '提示', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.dialogCancel();
+      }).catch(() => {
+      });
+    },
+
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
