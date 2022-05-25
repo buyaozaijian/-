@@ -365,7 +365,6 @@
 
 <script>
 import qs from "qs";
-import axios from "axios";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "User_center",
@@ -492,41 +491,18 @@ export default {
       this.dialogImageUrl = file.url;
       this.dialogVisible = true;
     },
-    handleDownload(file) {
-      console.log(file);
-    },
-    beforeAvatarUpload(file) {
-      let videoCover = new FormData();
-      videoCover.append('file',file);//传文件
-      axios.post('/api/video/uploadvideo',videoCover).then(function(res){
-        console.log(res);
-      })
-      return false
-    },
-    beforeUploadVideo(file) {
-      let videoFile = new FormData();
-      videoFile.append('file',file);//传文件
-      axios.post('/api/video/uploadvideo',videoFile).then(function(res){
-        console.log(res);
-      })
-      return false
-    },
     submit() {
       alert("上传");
-      let config = {
-        timeout: 30000,
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      };
-      axios.post(
-          "/api/video/uploadvideo",
-          this.uploadImgUrl,
-          this.uploadVideoUrl,
-          this.willAddQuestion.videoTitle,
-          this.willAddQuestion.videoIntroduction,
-          config
-      )
+      this.$axios({
+        method: 'post',
+        url: "/api/video/uploadvideo",
+        data: qs.stringify({
+          videoTitle: this.videoTitle,
+          videoIntroduction: this.videoIntroduction,
+          videoCover: this.willAddQuestion.imgList[0].url,
+          videoFile: this.willAddQuestion.videoList[0].url
+        })
+      })
       .then((res) => {
         console.log(res)
         switch (res.data.status_code) {
@@ -545,14 +521,6 @@ export default {
         console.log("请求失败");
         console.log(error);
       });
-    },
-    change(file, fileList) {
-      var arr = [];
-      fileList.forEach((item) => {
-        arr.push(item.raw);
-      });
-      this.dataList = arr;
-      console.log(arr);
     },
     upLoadImage(file) {
       const formData = new FormData();
