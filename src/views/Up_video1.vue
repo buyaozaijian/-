@@ -506,7 +506,7 @@ export default {
       .then((res) => {
         console.log(res)
         switch (res.data.status_code) {
-          case 0:
+          case 1:
             console.log("上传成功");
             this.$router.push({
               path:'./'
