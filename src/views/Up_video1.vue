@@ -81,9 +81,11 @@
           高进进进进
         </a>
       </div>
-      <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
+      <div
+          style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
         <router-link :to="'UserPage'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
+          <el-button type="primary"
+                     style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right">
               上传&ensp;
             </i></el-button>
@@ -155,15 +157,16 @@
   </div>
   <header class="banner">
     <div style="position: relative">
-      <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
+      <div
+          style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-              <router-link :to="'/'">
-                <i class="fa fa-bank" style="color: black"></i>
-                <span style="color: black;">
+            <router-link :to="'/'">
+              <i class="fa fa-bank" style="color: black"></i>
+              <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-              </router-link>
+            </router-link>
           </li>
           <li style="display: inline">
             <router-link :to="'/User_center'">
@@ -195,7 +198,7 @@
             <input type="text" class="search">
             <input type="button" name=""  class="btn" style="z-index:1" >
           </form>-->
-          <div class="nav-search-box" >
+          <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0;">
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
@@ -230,13 +233,16 @@
               </div>
             </div>
             <router-link :to="'/User_center'" slot="reference">
-              <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img src="../img/touxiang1.jpg"
+                   style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
         </div>
-        <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
+        <div
+            style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
           <router-link :to="'UserPage'">
-            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
+            <el-button type="primary"
+                       style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
               <i class="el-icon-upload el-icon--right">
                 上传&ensp;
               </i></el-button>
@@ -251,8 +257,10 @@
             &ensp;站内通知
           </el-button>
         </div>
-        <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+        <div v-if="islogin==false"
+             style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+          <button @click="dialogFormVisible = true"
+                  style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
               <span style="color: #0b95f1">
                 登录
               </span>
@@ -278,10 +286,10 @@
       </div>
     </div>
   </header>
-  <div class = "user_main">
+  <div class="user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" src="../img/touxiang1.jpg">
+        <img class="big-head" style="  height: 70px;width: 70px;border-radius: 50%;" src="../img/touxiang1.jpg">
       </a>
     </div>
     <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">高进进进进</div>
@@ -298,17 +306,20 @@
     <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
     <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下</div>
+    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下
+    </div>
     <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
+      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"
+               background-color="whitesmoke"
                text-color="black"
-               active-text-color="black" >
+               active-text-color="black">
         <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
         <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
       </el-menu>
     </div>
   </div>
-  <div style="display: inline-block; background: whitesmoke;position: relative;top: 30px;left: 190px;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
+  <div
+      style="display: inline-block; background: whitesmoke;position: relative;top: 30px;left: 190px;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
     <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
       <el-form-item label="视频标题">
         <el-input v-model="willAddQuestion.videoTitle"></el-input>
@@ -365,14 +376,15 @@
 
 <script>
 import qs from "qs";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "User_center",
-  data(){
+  data() {
     return {
 
       dialogImageUrl: '',
-      dataList:'',
+      dataList: '',
       dialogVisible: false,
       disabled: false,
       islogin: true,
@@ -390,23 +402,23 @@ export default {
       needFixed: false,
 
       video: new FormData(),
-      uploadImgUrl:'/video/uploadphoto',
-      uploadVideoUrl:'video/uploadvideo',
-      willAddQuestion:{
+      uploadImgUrl: '/video/uploadphoto',
+      uploadVideoUrl: 'video/uploadvideo',
+      willAddQuestion: {
         videoTitle: '',
         videoIntroduction: '',
-        imgList:[],
-        videoList:[],
+        imgList: [],
+        videoList: [],
       },
       formLabelWidth: '120px',
-      options:{
+      options: {
         value: '1',
         label: '游戏'
       }
     }
   },
 
-  methods:{
+  methods: {
     handleClick() {
       alert('button click');
     },
@@ -423,7 +435,7 @@ export default {
 
       this.$notify({
         title: '标题名称',
-        message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
+        message: h('i', {style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
       });
     },
 
@@ -444,10 +456,10 @@ export default {
         self.needFixed = false;
       }
     },
-    destroyed () {
+    destroyed() {
       window.removeEventListener('scroll', this.handleScroll)
     },
-    click_login(){
+    click_login() {
       this.$axios({
         method: 'post',           /* 指明请求方式，可以是 get 或 post */
         url: '/user/login',       /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */
@@ -462,11 +474,7 @@ export default {
                 window.alert("登录成功！");
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                 this.$store.dispatch('saveUserInfo', {
-                  user: {
-                    'username': res.data.username,
-                    'token': res.data.token,
-                    'userId': res.data.user_id
-                  }
+                  user: res.data.data
                 });
                 break;
               case 401:
@@ -505,24 +513,24 @@ export default {
           videoCoverKey: this.willAddQuestion.imgList["key_img"]
         })
       })
-      .then((res) => {
-        console.log(res)
-        switch (res.data.status_code) {
-          case 1:
-            console.log("上传成功");
-            this.$router.push({
-              path:'./'
-            })
-            break;
-          case 2:
-            alert('上传失败')
-            break;
-        }
-      })
-      .catch((error) => {
-        console.log("请求失败");
-        console.log(error);
-      });
+          .then((res) => {
+            console.log(res)
+            switch (res.data.status_code) {
+              case 1:
+                console.log("上传成功");
+                this.$router.push({
+                  path: './'
+                })
+                break;
+              case 2:
+                alert('上传失败')
+                break;
+            }
+          })
+          .catch((error) => {
+            console.log("请求失败");
+            console.log(error);
+          });
     },
     upLoadImage(file) {
       const formData = new FormData();
@@ -627,15 +635,15 @@ export default {
       }
       return isLt2M && isVideo;
     },
-    resetWillAdd(){
-      this.willAddQuestion={
+    resetWillAdd() {
+      this.willAddQuestion = {
         videoTitle: '',
         videoIntroduction: '',
-        imgList:[],
-        videoList:[]
+        imgList: [],
+        videoList: []
       }
     },
-    dialogCancel: function() {
+    dialogCancel: function () {
       this.resetWillAdd();
     },
     cancel_pre: function () {
@@ -660,114 +668,142 @@ export default {
 .el-dropdown {
   vertical-align: top;
 }
+
 .el-dropdown + .el-dropdown {
   margin-left: 15px;
 }
+
 .el-icon-arrow-down {
   font-size: 15px;
 }
-.a1:hover .c1{
+
+.a1:hover .c1 {
 
   display: block;
 
 }
-.user_main{
+
+.user_main {
   position: absolute;
-  display:inline-block;
+  display: inline-block;
   background: whitesmoke;
-  left:60px;
-  top:70px;
-  width:330px;
-  height:430px;
+  left: 60px;
+  top: 70px;
+  width: 330px;
+  height: 430px;
   border-radius: 8px;
   border-color: #DCDFE6;
-  display: -moz-box;/*兼容Firefox*/
-  display: -webkit-box;/*兼容FSafari、Chrome*/
+  display: -moz-box; /*兼容Firefox*/
+  display: -webkit-box; /*兼容FSafari、Chrome*/
 }
-.收藏夹{
+
+.收藏夹 {
   position: absolute;
-  display:inline-block;
+  display: inline-block;
   background: whitesmoke;
-  left:420px;
-  top:70px;
-  width:1000px;
-  height:2000px;
-  border-radius: 8px;
-  border-color: #DCDFE6;
-  display: -moz-box;/*兼容Firefox*/
-  display: -webkit-box;/*兼容FSafari、Chrome*/
-}
-.input-picture{
-  position:absolute;
-  display:inline-block;
-  background: #545c64;
-  left:520px;
-  top:70px;
-  width:1000px;
-  height:350px;
-  border-radius: 8px;
-  border-color: #DCDFE6;
-}
-.视频上传{
-  position:absolute;
-  display:inline-block;
-  background: #545c64;
-  left:520px;
-  top:430px;
+  left: 420px;
+  top: 70px;
   width: 1000px;
-  height:350px;
+  height: 2000px;
+  border-radius: 8px;
+  border-color: #DCDFE6;
+  display: -moz-box; /*兼容Firefox*/
+  display: -webkit-box; /*兼容FSafari、Chrome*/
+}
+
+.input-picture {
+  position: absolute;
+  display: inline-block;
+  background: #545c64;
+  left: 520px;
+  top: 70px;
+  width: 1000px;
+  height: 350px;
+  border-radius: 8px;
+  border-color: #DCDFE6;
+}
+
+.视频上传 {
+  position: absolute;
+  display: inline-block;
+  background: #545c64;
+  left: 520px;
+  top: 430px;
+  width: 1000px;
+  height: 350px;
   border-radius: 8px;
   border-color: #DCDFE6;
 
 }
-.head{
-  position:absolute;
-  left:210px;
-  top:50px;
+
+.head {
+  position: absolute;
+  left: 210px;
+  top: 50px;
 
 }
+
 html {
   width: 100%;
   height: 100%;
 }
+
 a {
   color: black;
 }
+
 a:link {
   text-decoration: none;
-} /* 未被访问的链接 */
+}
+
+/* 未被访问的链接 */
 a:visited {
   text-decoration: none;
-} /* 已被访问的链接 */
+}
+
+/* 已被访问的链接 */
 a:hover {
   color: #4e6ef2;
   text-decoration: none;
-} /* 鼠标指针移动到链接上 */
+}
+
+/* 鼠标指针移动到链接上 */
 a:active {
   text-decoration: none;
 }
+
 #main {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
   width: 70%;
 }
-/* banner图片等比例缩小 */
-.banner{padding-bottom:34px;}
 
-.banner,.banner a,.banner img{width: 100%;height: 100%;}
+/* banner图片等比例缩小 */
+.banner {
+  padding-bottom: 34px;
+}
+
+.banner, .banner a, .banner img {
+  width: 100%;
+  height: 100%;
+}
+
 .pic {
   height: 228px;
   width: 280px;
 }
+
 .picture {
   height: 150px;
   width: 250px;
 }
+
 #mian div {
   width: 100px;
   height: 100px;
 }
+
 .all {
   /* display: flex;
   flex-direction: column; */
@@ -777,13 +813,15 @@ a:active {
   margin-left: auto;
   padding-bottom: 600px;
 }
-.zouma{
+
+.zouma {
   padding-right: 95px;
   padding-left: 105px;
   margin-right: auto;
   margin-left: auto;
   padding-bottom: 100px;
 }
+
 .live-card {
   /* color: #505050;
   font-size: 12px;
@@ -792,10 +830,12 @@ a:active {
   padding: 0;
   width: 206px; */
 }
+
 .row {
   padding-left: 15px;
   padding-right: 15px;
 }
+
 .top-content * {
   /* 文字在图片后面居中对齐 */
   display: inline-block;
@@ -804,10 +844,12 @@ a:active {
   padding-bottom: 5px;
   /* left: 120px; */
 }
+
 .video-title {
   font-size: 24px;
   color: #000000;
 }
+
 .text-info {
   text-align: center;
   font-size: 12px;
@@ -817,9 +859,11 @@ a:active {
   color: #505050;
   line-height: 28px;
 }
+
 .swap {
   padding-left: 417px;
 }
+
 .btn {
   font-size: 12px;
   height: 28px;
@@ -831,10 +875,12 @@ a:active {
   display: inline-block;
   margin: 4px 2px;
 }
+
 .other {
   padding-left: 15px;
 
 }
+
 .tab-switch {
   color: #505050;
   font-size: 12px;
@@ -847,6 +893,7 @@ a:active {
   margin-right: 20px;
   border-bottom: 2px solid;
 }
+
 .container {
   width: 1160px;
   height: 520px;
@@ -855,6 +902,7 @@ a:active {
   border: 4px solid #ededed;
   border-radius: 4px;
 }
+
 .icon {
   height: 36px;
   width: 36px;
@@ -865,6 +913,7 @@ a:active {
 .live {
   padding-left: 30px;
 }
+
 .right {
   float: right;
   width: 320px;
@@ -872,14 +921,17 @@ a:active {
   box-sizing: border-box;
 
 }
+
 .slide-pic {
   padding-top: 10px;
   width: 315px;
   height: 367px;
 }
+
 table {
   position: absolute;
 }
+
 .up {
   font-size: 12px;
   cursor: pointer;
@@ -891,6 +943,7 @@ table {
   justify-content: space-between;
   line-height: 16px;
 }
+
 .up-cover {
   font-size: 12px;
   cursor: pointer;
@@ -901,6 +954,7 @@ table {
   padding: 0;
   position: relative;
 }
+
 .face {
   position: absolute;
   font-size: 12px;
@@ -918,51 +972,59 @@ table {
   background: #f7f7f7;
   margin-top: 20px;
 }
+
 .txt {
   padding-left: 50px;
 }
+
 .name {
   font-size: 14px;
   font-weight: bold;
   /* padding-left: 50px; */
 }
+
 .tag {
   font-size: 12px;
   line-height: 16px;
   color: #999;
   margin-top: 8px;
 }
+
 .form-box {
   width: 300px;
-  padding: 40px;  /* 内边界宽度  */
-  position: absolute;  /* 设置为绝对定位，使下方的top和left生效  */
+  padding: 40px; /* 内边界宽度  */
+  position: absolute; /* 设置为绝对定位，使下方的top和left生效  */
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);  /* 作用见后方描述  */
-  background: #90b9e5;  /* 设置背景颜色  */
-  text-align: center;  /* 表单中内容居中  */
+  transform: translate(-50%, -50%); /* 作用见后方描述  */
+  background: #90b9e5; /* 设置背景颜色  */
+  text-align: center; /* 表单中内容居中  */
   border-radius: 10px;
 }
+
 .form-box h1 {
-  text-transform: uppercase;  /* 将字体全部设置成大写字母  */
+  text-transform: uppercase; /* 将字体全部设置成大写字母  */
 }
+
 .form-box .username, .form-box .password {
-  border-radius: 24px;  /* 边框四个角的弧度  */
-  border: 2px solid #3498db;  /* 边框厚度和颜色  */
+  border-radius: 24px; /* 边框四个角的弧度  */
+  border: 2px solid #3498db; /* 边框厚度和颜色  */
   background: none;
   display: block;
-  margin: 20px auto;  /* 外边界  */
+  margin: 20px auto; /* 外边界  */
   text-align: center;
-  padding: 14px 10px;  /* 内边界  */
+  padding: 14px 10px; /* 内边界  */
   width: 200px;
   outline: none;
-  color: white;     /* 设置输入框中竖线的颜色 */
-  transition: 0.25s;   /* 设置元素过渡效果 */
+  color: white; /* 设置输入框中竖线的颜色 */
+  transition: 0.25s; /* 设置元素过渡效果 */
 }
-.form-box .username:focus,.form-box .password:focus{
-  border-color: #2ecc71;  /* 边框颜色  */
+
+.form-box .username:focus, .form-box .password:focus {
+  border-color: #2ecc71; /* 边框颜色  */
 }
-.form-box .login{
+
+.form-box .login {
   border-radius: 24px;
   border: 2px solid #0b95f1;
   background: none;
@@ -971,15 +1033,18 @@ table {
   padding: 14px 40px;
   outline: none;
   transition: 0.25s;
-  cursor: pointer;    /* 设置光标的样式 */
+  cursor: pointer; /* 设置光标的样式 */
 }
+
 * {
   margin: 0;
   padding: 0;
 }
+
 .parent {
   position: relative;
 }
+
 .search {
   width: 300px;
   height: 40px;
@@ -989,6 +1054,7 @@ table {
   padding-left: 20px;
   position: absolute;
 }
+
 .btn {
   height: 35px;
   width: 35px;
@@ -1000,6 +1066,7 @@ table {
   outline: none;
   cursor: pointer;
 }
+
 .el-carousel__item h3 {
   color: #475669;
   font-size: 18px;
@@ -1015,14 +1082,17 @@ table {
 .el-carousel__item:nth-child(2n+1) {
   background-color: #d3dce6;
 }
+
 .nav-search-box {
   margin: 0 10px;
   width: 500px;
   transition: width 0.3s;
 }
+
 .nav-search {
   position: relative;
 }
+
 .nav-search #nav-searchform {
   display: block;
   padding: 0 38px 0 16px;
@@ -1030,6 +1100,7 @@ table {
   border-radius: 2px;
   background-color: #fff;
 }
+
 .nav-search #nav-searchform1 {
   display: block;
   padding: 0 38px 0 16px;
@@ -1037,10 +1108,12 @@ table {
   border-radius: 2px;
   background-color: #fff;
 }
+
 .search-input {
   width: 431px;
   height: 32px;
 }
+
 .nav-search .nav-search-keyword {
   overflow: hidden;
   width: 100%;
@@ -1053,6 +1126,7 @@ table {
   line-height: 34px;
   transition: all 0.2s;
 }
+
 .nav-search .nav-search-btn {
   position: absolute;
   top: 0;

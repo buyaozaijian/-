@@ -1,7 +1,9 @@
 const key = 'user'
 const user = {
-    state(){
-        user
+    state() {
+        return {
+            user: null
+        }
     },
     getters: {
         getUser: function (state) {
