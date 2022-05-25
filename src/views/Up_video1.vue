@@ -500,7 +500,9 @@ export default {
           videoTitle: this.videoTitle,
           videoIntroduction: this.videoIntroduction,
           videoCover: this.willAddQuestion.imgList["url_img"],
-          videoFile: this.willAddQuestion.videoList["url_video"]
+          videoFile: this.willAddQuestion.videoList["url_video"],
+          videoKey: this.willAddQuestion.videoList["key_video"],
+          videoCoverKey: this.willAddQuestion.imgList["key_img"]
         })
       })
       .then((res) => {
@@ -534,8 +536,10 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 var url_img = res.data.url_img;
+                var key_img = res.data.key_img;
                 this.willAddQuestion.imgList.push({
-                  url: url_img
+                  url: url_img,
+                  key: key_img
                 });
                 // alert(url_img);
                 console.log(this.willAddQuestion.imgList);
@@ -578,8 +582,10 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 var url_video = res.data.url_video;
+                var key_video = res.data.key_video;
                 this.willAddQuestion.videoList.push({
-                  url: url_video
+                  url: url_video,
+                  key: key_video
                 });
                 alert(url_video);
                 console.log(this.willAddQuestion.videoList);
