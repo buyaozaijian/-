@@ -499,8 +499,8 @@ export default {
         data: qs.stringify({
           videoTitle: this.videoTitle,
           videoIntroduction: this.videoIntroduction,
-          videoCover: this.willAddQuestion.imgList[0].url,
-          videoFile: this.willAddQuestion.videoList[0].url
+          videoCover: this.willAddQuestion.imgList["url"],
+          videoFile: this.willAddQuestion.videoList["url"]
         })
       })
       .then((res) => {
@@ -534,10 +534,10 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 var name = res.data.name;
-                var url = res.data.url;
+                var url_img = res.data.url_img;
                 this.willAddQuestion.imgList.push({
                   name: name,
-                  url: url
+                  url: url_img
                 });
                 console.log(this.willAddQuestion.imgList);
                 break;
@@ -579,10 +579,10 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 var name = res.data.name;
-                var url = res.data.url;
+                var url_video = res.data.url_video;
                 this.willAddQuestion.videoList.push({
                   name: name,
-                  url: url
+                  url: url_video
                 });
                 console.log(this.willAddQuestion.videoList);
                 break;
