@@ -875,7 +875,6 @@ a:active {
   height: 22px;
   margin-right: 20px;
   border-bottom: 2px solid;
-  padding: 0px;
 }
 .container {
   width: 1160px;
