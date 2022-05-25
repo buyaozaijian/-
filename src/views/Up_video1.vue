@@ -537,6 +537,7 @@ export default {
                 this.willAddQuestion.imgList.push({
                   url: url_img
                 });
+                // alert(url_img);
                 console.log(this.willAddQuestion.imgList);
                 break;
               case 2:
@@ -580,6 +581,7 @@ export default {
                 this.willAddQuestion.videoList.push({
                   url: url_video
                 });
+                alert(url_video);
                 console.log(this.willAddQuestion.videoList);
                 break;
               case 2:
