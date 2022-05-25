@@ -399,10 +399,6 @@ export default {
         imgList:[],
         videoList:[],
       },
-      form: {
-        videoTitle:'',
-        videoIntroduction:''
-      },
       formLabelWidth: '120px',
       options:{
         value: '1',
@@ -499,20 +495,20 @@ export default {
     handleDownload(file) {
       console.log(file);
     },
-    handleAvatarSuccess(res, file) {
-      let _this = this;
-      _this.form.imageUrl1 = URL.createObjectURL(file.raw);
-    },
-    handleAvatarSuccess1(res, file) {
-      let _this = this;
-      _this.form.imageUrl2 = URL.createObjectURL(file.raw);
-    },
     beforeAvatarUpload(file) {
-      this.video.append('videoCover',file);
+      let videoCover = new FormData();
+      videoCover.append('file',file);//传文件
+      axios.post('/api/video/uploadvideo',videoCover).then(function(res){
+        console.log(res);
+      })
       return false
     },
     beforeUploadVideo(file) {
-      this.video.append('videoFile',file);
+      let videoFile = new FormData();
+      videoFile.append('file',file);//传文件
+      axios.post('/api/video/uploadvideo',videoFile).then(function(res){
+        console.log(res);
+      })
       return false
     },
     submit() {
@@ -527,19 +523,22 @@ export default {
           "/api/video/uploadvideo",
           this.uploadImgUrl,
           this.uploadVideoUrl,
-          this.form.videoTitle,
-          this.form.videoIntroduction,
+          this.willAddQuestion.videoTitle,
+          this.willAddQuestion.videoIntroduction,
           config
       )
       .then((res) => {
         console.log(res)
-        if (res.data.status == 'ok') {
-          console.log("上传成功");
-          this.$router.push({
-            path:'./'
-          })
-        } else {
-          alert('上传失败')
+        switch (res.data.status_code) {
+          case 0:
+            console.log("上传成功");
+            this.$router.push({
+              path:'./'
+            })
+            break;
+          case 2:
+            alert('上传失败')
+            break;
         }
       })
       .catch((error) => {
