@@ -218,6 +218,8 @@
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button>
               <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+              <span>&ensp;</span>
+              <router-link to="/register_page"><el-button type="primary" @click="dialogFormVisible = false">没有账号？点击注册</el-button></router-link>
             </div>
           </el-dialog>
         </div>
@@ -1783,7 +1785,7 @@ export default {
   name: "Homepage",
   data(){
     return {
-      islogin: true,
+      islogin: false,
       username: '',
       password: '',
       dialogOfUpload: false,

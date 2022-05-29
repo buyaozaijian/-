@@ -49,6 +49,11 @@ const routes = [
     name:'videaPage',
     component:() => import('../views/videoPage')
   },
+  {
+    path:'/register_page',
+    name:'register_page',
+    component:() => import('../views/Register_page')
+  }
 ]
 
 const router = new VueRouter({
