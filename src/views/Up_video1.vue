@@ -403,7 +403,7 @@ export default {
 
       video: new FormData(),
       uploadImgUrl: '/video/uploadphoto',
-      uploadVideoUrl: 'video/uploadvideo',
+      uploadVideoUrl: '/video/uploadvideo',
       willAddQuestion: {
         videoTitle: '',
         videoIntroduction: '',
@@ -503,7 +503,7 @@ export default {
       alert("上传");
       this.$axios({
         method: 'post',
-        url: "/api/video/uploadvideo",
+        url: "/video/create/upload",
         data: qs.stringify({
           videoTitle: this.videoTitle,
           videoIntroduction: this.videoIntroduction,
