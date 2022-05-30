@@ -352,7 +352,7 @@
   <div style="width: 800px">
     <div>
       <video controls class="video">
-        <source src="../img/shipin7.mp4">
+        <source src="this.$store.state.videourl"> <!--视频播放内容的位置-->
       </video>
     </div>
     <div class="operation">
@@ -635,7 +635,7 @@ export default {
     return {
       username: '',
       password: '',
-      title: '这可是帅气的jgg的桌面壁纸',
+      title: this.$store.state.videoname,
       needFixed: false,
       textarea2: '',
     }

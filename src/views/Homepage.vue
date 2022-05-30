@@ -217,7 +217,7 @@
             </el-form>
             <div slot="footer" class="dialog-footer">
               <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+              <el-button type="primary" @click="click_login, dialogFormVisible = false">确 定</el-button>
               <span>&ensp;</span>
               <router-link to="/register_page"><el-button type="primary" @click="dialogFormVisible = false">没有账号？点击注册</el-button></router-link>
             </div>
@@ -284,8 +284,8 @@
             <div class="up">
               <div class="up-cover">
                 <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">【爆肝特效】三 国 第 一 战 神</p></a>
+                  <a target="blank">
+                    <router-link to="/videoPage"><p class="name" @click="click1">视频连接尝试</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -1857,7 +1857,14 @@ export default {
       window.removeEventListener('scroll', this.handleScroll)
     },
 
-
+    click1(){
+      this.$axios.get('detail/1').then(
+          res => {
+              this.$store.state.videourl = res.data.video.VideoUrl;
+              this.$store.state.videoname = res.data.video.VideoTitle;
+          }
+      )
+    },
     click_login(){
       this.$axios({
         method: 'post',           /* 指明请求方式，可以是 get 或 post */
