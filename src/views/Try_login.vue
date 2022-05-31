@@ -51,21 +51,16 @@ export default {
       this.$axios({
         method: 'post',           /* 指明请求方式，可以是 get 或 post */
         url: '/user/login',       /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */
-        data: qs.stringify({      /* 需要向后端传输的数据，此处使用 qs.stringify 将 json 数据序列化以发送后端 */
-          username: this.form.username,
-          password: this.form.password
-        })
+        data: qs.stringify(this.form)
       })
           .then(res => {              /* res 是 response 的缩写 */
-            switch (res.data.status_code) {
-              case 200:
+            switch (res.data.errno) {
+              case 0:
                 this.$message.success("登录成功！");
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                 this.$store.dispatch('saveUserInfo', {
                   user: {
-                    'username': res.data.username,
-                    'token': res.data.token,
-                    'userId': res.data.user_id
+                    user: res.data.data
                   }
                 });
 
@@ -81,10 +76,10 @@ export default {
                   }
                 }, 1000);
                 break;
-              case 401:
+              case 100004:
                 this.$message.error("用户名不存在！");
                 break;
-              case 402:
+              case 100003:
                 this.$message.error("密码错误！");
                 break;
             }
