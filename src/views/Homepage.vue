@@ -199,11 +199,11 @@
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-              <span style="color: #0b95f1">
+              <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
-              </span>
+              </span></router-link>
           </button>
-          <el-dialog title="登录" :visible.sync="dialogFormVisible" style="z-index: 9999">
+          <!--<el-dialog title="登录" :visible.sync="dialogFormVisible" style="z-index: 9999">
             <el-form :model="form">
               <el-form-item label="用户名" :label-width="formLabelWidth">
                 <el-input v-model="form.name" autocomplete="off"></el-input>
@@ -216,12 +216,12 @@
               </el-form-item>
             </el-form>
             <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <router-link to="/try_login"><el-button @click="dialogFormVisible = false">取 消</el-button></router-link>
               <el-button type="primary" @click="click_login, dialogFormVisible = false">确 定</el-button>
               <span>&ensp;</span>
               <router-link to="/register_page"><el-button type="primary" @click="dialogFormVisible = false">没有账号？点击注册</el-button></router-link>
             </div>
-          </el-dialog>
+          </el-dialog>-->
         </div>
       </div>
     </div>

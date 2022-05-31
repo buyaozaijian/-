@@ -53,6 +53,11 @@ const routes = [
     path:'/register_page',
     name:'register_page',
     component:() => import('../views/Register_page')
+  },
+  {
+    path:'/try_login',
+    name:'try_login',
+    component:() => import('../views/Try_login')
   }
 ]
 

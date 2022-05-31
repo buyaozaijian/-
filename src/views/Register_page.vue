@@ -1,80 +1,7 @@
-<!--<template>
-  <div style="position: absolute; left:270px;top:100px;width: 900px;height: 900px">
-  <el-form ref="form" :model="form" label-width="200px">
-    <el-form-item label="邮箱">
-      <el-input v-model="regist.mail" placeholder="请输入注册的邮箱" clearable></el-input>
-    </el-form-item>
-    <el-form-item label="用户名/昵称">
-      <el-input v-model="regist.name" placeholder="请输入用户名" clearable></el-input>
-    </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="regist.password" placeholder="请输入密码" clearable show-password></el-input>
-    </el-form-item>
-    <el-form-item label="确认密码">
-      <el-input v-model="regist.password1" placeholder="请再次输入密码确认" clearable show-password></el-input>
-    </el-form-item>
-    <el-form-item>
-      <el-button type="primary" @click="submit">立即创建</el-button>
-      <span>&ensp;</span><span>&ensp;</span><span>&ensp;</span>
-      <router-link to="/"><el-button>取消</el-button></router-link>
-    </el-form-item>
-  </el-form>
-  </div>
-</template>
 
-<script>
-import qs from "qs";
-
-export default {
-  name: "Register_page",
-  data() {
-    return {
-      regist: {
-        mail: '',
-        name: '',
-        password: '',
-        password1: ''
-      }
-    }
-  },
-  methods: {
-    submit() {
-      alert("上传");
-      this.$axios({
-        method: 'post',
-        url: "/api/video/uploadvideo",
-        data: qs.stringify({
-
-        })
-      })
-          .then((res) => {
-            console.log(res)
-            switch (res.data.status_code) {
-              case 1:
-                console.log("上传成功");
-                this.$router.push({
-                  path: './'
-                })
-                break;
-              case 2:
-                alert('上传失败')
-                break;
-            }
-          })
-          .catch((error) => {
-            console.log("请求失败");
-            console.log(error);
-          });
-    },
-    }
-}
-</script>
-
-<style scoped>
-
-</style>-->
 <template>
   <div id="register" class="register">
+    <img class="bgbox" id="bgbox" alt="" src="../../src/img/星空.jpg">
     <div class="wrap">
       <h1>注 册</h1>
       <el-form :model="form" ref="form" class="form">
@@ -98,9 +25,12 @@ export default {
         <el-form-item class="btn_register">
           <el-button type="primary" @click="register">注&nbsp;&nbsp;册</el-button>
         </el-form-item>
-        <router-link to="/"><el-form-item class="btn_register">
+        <!--<router-link to="/"><el-form-item class="btn_register">
           <el-button type="danger" >取&nbsp;&nbsp;消</el-button>
-        </el-form-item></router-link>
+        </el-form-item></router-link>-->
+        <div class="suffix">
+           <p @click="toRegister">取消</p>
+        </div>
       </el-form>
     </div>
   </div>
@@ -135,6 +65,10 @@ export default {
           .catch(err => {
             console.log(err);
           })
+    },
+    toRegister: function () {
+      // 跳转注册的路由
+      this.$router.push('/');
     }
   },
 }
@@ -143,7 +77,7 @@ export default {
 <style scoped>
 #register {
   font-family: 'Noto Serif SC', serif;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 #register >>> .el-input__inner {
   font-family: 'Noto Serif SC', serif;
@@ -158,7 +92,7 @@ export default {
   line-height: 50px;
   position: relative;
   display: inline-block;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.85);;
   border-radius: 15px;
   color: #303133;
   border: 2px solid #ebeef5;
@@ -174,6 +108,26 @@ export default {
   font-family: 'Noto Serif SC', serif;
   width: 100%;
   height: 38px;
+}
+#register .suffix {
+  font-size:14px;
+  line-height:10px;
+  color:#999;
+  cursor: pointer;
+  float:right;
+}
+#register .bgbox {
+  display: block;
+  opacity: 1;
+  z-index: -3;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1s,transform .25s,filter .25s;
+  backface-visibility: hidden;
 }
 #register .suffix {
   font-size:14px;
