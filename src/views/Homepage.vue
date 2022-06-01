@@ -1858,11 +1858,11 @@ export default {
     },
 
     click1(){
-      this.$axios.get('detail/1').then(
+      this.$axios.get('/video/detail/1').then(
           res => {
-              this.$store.state.videourl = res.data.video.VideoUrl;
-              this.$store.state.videoname = res.data.video.VideoTitle;
-          }
+              this.$store.state.videourl = res.data.VideoUrl;
+              this.$store.state.videoname = res.data.VideoTitle;
+          },
       )
     },
     click_login(){
