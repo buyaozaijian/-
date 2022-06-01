@@ -5,12 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    videourl : null,
-    videoname: null,
+    videourl : "未知",
+    videoname: "未知",
   },
   getters: {
   },
   mutations: {
+    getvideo: (state,[param1,param2]) => {
+      state.videourl = param1;
+      state.videoname = param2;
+    }
   },
   actions: {
     clear({ commit }) {

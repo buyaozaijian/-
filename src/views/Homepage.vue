@@ -1858,10 +1858,13 @@ export default {
     },
 
     click1(){
-      this.$axios.get('detail/1').then(
+      this.$axios.get('/video/detail/1').then(
           res => {
-              this.$store.state.videourl = res.data.video.VideoUrl;
-              this.$store.state.videoname = res.data.video.VideoTitle;
+              //this.$store.commit('getvideo',"123","456");
+            // this.$store.state.videourl = res.data.VideoTitle;
+              //alert(this.$store.state.videourl);
+             // this.$store.state.videoname = "我草你妈";
+            this.$store.commit('getvideo',[ res.data.VideoUrl, res.data.VideoTitle]);
           }
       )
     },

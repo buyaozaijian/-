@@ -1,6 +1,8 @@
 <template>
   <html>
+  <head>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  </head>
   <div  style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
         :default-active="activeIndex2"
@@ -352,7 +354,7 @@
   <div style="width: 800px">
     <div>
       <video controls class="video">
-        <source src="this.$store.state.videourl"> <!--视频播放内容的位置-->
+        <source  :src = "this.$store.state.videourl" id = "视频内容"> 视频播放内容的位置
       </video>
     </div>
     <div class="operation">
@@ -644,7 +646,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: '请您先充钱再观看视频\n没钱还想白嫖？',
+        message: this.$store.state.videourl ,
         offset: 100
       });
     },
