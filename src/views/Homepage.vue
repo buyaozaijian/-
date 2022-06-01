@@ -1860,15 +1860,13 @@ export default {
     click1(){
       this.$axios.get('/video/detail/1').then(
           res => {
-              //this.$store.commit('getvideo',"123","456");
-            // this.$store.state.videourl = res.data.VideoTitle;
-              //alert(this.$store.state.videourl);
-             // this.$store.state.videoname = "我草你妈";
-            this.$store.commit('getvideo',[ res.data.VideoUrl, res.data.VideoTitle]);
-          }
+            this.$store.state.videourl = res.data.VideoUrl;
+            this.$store.state.videoname = res.data.VideoTitle;
+          },
       )
     },
     click_login(){
+      window.alert("here");
       this.$axios({
         method: 'post',           /* 指明请求方式，可以是 get 或 post */
         url: '/user/login',       /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */

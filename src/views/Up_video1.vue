@@ -327,6 +327,9 @@
       <el-form-item label="视频简介">
         <el-input type="textarea" v-model="willAddQuestion.videoIntroduction"></el-input>
       </el-form-item>
+      <el-form-item label="视频标签">
+        <el-input type="textarea" v-model="willAddQuestion.videoTags"></el-input>
+      </el-form-item>
       <el-form-item label="封面">
         <el-upload
             list-type="picture-card"
@@ -407,6 +410,7 @@ export default {
       willAddQuestion: {
         videoTitle: '',
         videoIntroduction: '',
+        videoTags: '',
         imgList: [],
         videoList: [],
       },
@@ -500,17 +504,18 @@ export default {
       this.dialogVisible = true;
     },
     submit() {
-      alert("上传");
+      alert(this.willAddQuestion.videoTags);
       this.$axios({
         method: 'post',
         url: "/video/create/upload",
         data: qs.stringify({
           videoTitle: this.videoTitle,
           videoIntroduction: this.videoIntroduction,
-          videoCover: this.willAddQuestion.imgList["url_img"],
-          videoFile: this.willAddQuestion.videoList["url_video"],
+          videoCoverUrl: this.willAddQuestion.imgList["url_img"],
+          videoUrl: this.willAddQuestion.videoList["url_video"],
           videoKey: this.willAddQuestion.videoList["key_video"],
-          videoCoverKey: this.willAddQuestion.imgList["key_img"]
+          videoCoverKey: this.willAddQuestion.imgList["key_img"],
+          videoTags: this.videoTags
         })
       })
           .then((res) => {
@@ -542,6 +547,9 @@ export default {
       })
           .then(res => {
             switch (res.data.status_code) {
+              case 0:
+                window.alert("error");
+                break;
               case 1:
                 var url_img = res.data.url_img;
                 var key_img = res.data.key_img;
@@ -549,7 +557,7 @@ export default {
                   url: url_img,
                   key: key_img
                 });
-                // alert(url_img);
+                alert("封面上传成功");
                 console.log(this.willAddQuestion.imgList);
                 break;
               case 2:
@@ -587,6 +595,7 @@ export default {
         data: formData,
       })
           .then(res => {
+            window.alert(res.data.status_code);
             switch (res.data.status_code) {
               case 1:
                 var url_video = res.data.url_video;
@@ -595,7 +604,7 @@ export default {
                   url: url_video,
                   key: key_video
                 });
-                alert(url_video);
+                window.alert("视频上传成功");
                 console.log(this.willAddQuestion.videoList);
                 break;
               case 2:

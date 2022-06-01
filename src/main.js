@@ -5,7 +5,7 @@ import store from './store'
 import axios from 'axios'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import user from "@/store/user";
+//import user from "@/store/user";
 
 
 Vue.config.productionTip = false
@@ -15,6 +15,7 @@ Vue.use(ElementUI);
 axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 
 // add token into headers
+/*
 axios.interceptors.request.use(
     config => {
         const userInfo = user.getters.getUser(user.state());
@@ -27,7 +28,7 @@ axios.interceptors.request.use(
         return Promise.reject(error);
     }
 );
-
+*/
 new Vue({
     router,
     store,
