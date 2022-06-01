@@ -240,7 +240,7 @@
           <td>
             <img
                 class="picture"
-                src="../img/fengmian1.webp"
+                :src="this.$store.state.video1"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -1824,6 +1824,17 @@ export default {
       ]
     }
   },
+  created() {
+    this.$axios.get('/video/detail/1').then(
+        res => {
+          this.$store.state.video1=res.data.id;
+          this.$store.commit('getvideo',{id:this.$store.state.videoindex,
+            videoCoverurl:res.data.VideoCoverUrl,
+            videoname:res.data.VideoTitle})
+        },
+    );
+
+  },
 
   methods:{
     open() {
@@ -1858,13 +1869,14 @@ export default {
     },
 
     click1(){
-      this.$axios.get('/video/detail/1').then(
+      this.$axios.get('/video/detail/'+this.$store.state.video1).then(
           res => {
             this.$store.state.videourl = res.data.VideoUrl;
             this.$store.state.videoname = res.data.VideoTitle;
           },
       )
     },
+
     click_login(){
       window.alert("here");
       this.$axios({
@@ -1899,8 +1911,7 @@ export default {
           .catch(err => {
             console.log(err);         /* 若出现异常则在终端输出相关信息 */
           })
-    }
-
+    },
 
   },
 
@@ -2135,17 +2146,6 @@ table {
   padding-left: 20px;
   position: absolute;
 }
-.btn {
-  height: 35px;
-  width: 35px;
-  position: absolute;
-  background: url("../img/sousuokuang.png") no-repeat 150px 60px;
-  top: 6px;
-  left: 285px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
 .el-carousel__item h3 {
   color: #475669;
   font-size: 18px;
@@ -2153,13 +2153,4 @@ table {
   line-height: 300px;
   margin: 0;
 }
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
-}
-
 </style>

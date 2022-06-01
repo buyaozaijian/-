@@ -5,15 +5,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    videourl : "未知",
-    videoname: "未知",
+    videoindex:0,
+    video: [
+      {id:0,videCoverourl:"未知",videoname:"未知"}
+    ],
+    video1: 0,
+    video2: 0,
+    video3: 0,
+    video4: 0,
+    video5: 0,
   },
   getters: {
   },
   mutations: {
     getvideo: (state,[param1,param2]) => {
-      state.videourl = param1;
-      state.videoname = param2;
+      state.videoindex=state.videoindex+1;
+      state.video.push({id:state.videoindex,videourl: param1,videoname: param2});
     }
   },
   actions: {
