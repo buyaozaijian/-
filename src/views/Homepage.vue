@@ -249,7 +249,7 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
-                  <p class="title">高进进进</p>
+                  <p class="title">{{this.videoList[0].videoAuthor}}</p>
                 </div>
               </div>
             </div>
@@ -266,7 +266,7 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p class="name" @click="click2">{{this.videoList[1].videoName}}</p></router-link></a>
-                  <p class="title">高进进进</p>
+                  <p class="title">{{this.videoList[1].videoAuthor}}</p>
                 </div>
               </div>
             </div>
@@ -283,7 +283,7 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p class="name" @click="click3">{{this.videoList[2].videoName}}</p></router-link></a>
-                  <p class="title">高进进进</p>
+                  <p class="title">{{this.videoList[2].videoAuthor}}</p>
                 </div>
               </div>
             </div>
@@ -302,7 +302,7 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p class="name" @click="click4">{{this.videoList[3].videoName}}</p></router-link></a>
-                  <p class="title">高进进进</p>
+                  <p class="title">{{this.videoList[3].videoAuthor}}</p>
                 </div>
               </div>
             </div>
@@ -319,7 +319,7 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p class="name" @click="click5">{{this.videoList[4].videoName}}</p></router-link></a>
-                  <p class="title">高进进进</p>
+                  <p class="title">{{this.videoList[4].videoAuthor}}</p>
                 </div>
               </div>
             </div>
@@ -336,7 +336,7 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p class="name" @click="click6">{{this.videoList[5].videoName}}</p></router-link></a>
-                  <p class="title">高进进进</p>
+                  <p class="title">{{this.videoList[5].videoAuthor}}</p>
                 </div>
               </div>
             </div>
@@ -1816,7 +1816,7 @@ export default {
           for(i=1;i<=6;i++)
           {
             this.videoList.push({
-              //videoAuthor: res.data.videoList[i - 1].
+              videoAuthor: res.data.videoList[i - 1].VideoAuthorName,
               videoId: res.data.videoList[i - 1].id,
               videoUrl: res.data.videoList[i-1].VideoUrl,
               videoCoverUrl: res.data.videoList[i-1].VideoCoverUrl,
