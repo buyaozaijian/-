@@ -1830,7 +1830,9 @@ export default {
           {
             this.$store.state.video1[i].id=res.data.videoList[i-1].id;
             this.$store.state.video1[i].videourl=res.data.videoList[i-1].VideoUrl;
-            this.$store.state.video1[i].videoCoverurl=res.data.videoList[i-1].VideoCoverUrl;
+            this.$store.state.video1[i].videoCoverurl="" + res.data.videoList[i-1].VideoCoverUrl;
+            //window.alert(res.data.videoList[i-1].VideoCoverUrl);
+            window.alert("here" + this.$store.state.video1[1].videoCoverurl)
             this.$store.state.video1[i].videoname=res.data.videoList[i-1].VideoTitle;
           }
         },
