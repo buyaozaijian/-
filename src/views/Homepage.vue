@@ -240,7 +240,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[1].videCoverurl"
+                :src="this.videoList[0].videoCoverUrl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -248,7 +248,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click1">{{this.$store.state.video1[1].videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -257,7 +257,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[2].videCoverurl"
+                :src="this.videoList[1].videoCoverUrl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -265,7 +265,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click2">{{this.$store.state.video1[2].videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click2">{{this.videoList[1].videoName}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -274,7 +274,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[3].videCoverurl"
+                :src="this.videoList[2].videoCoverUrl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -282,7 +282,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click3">{{this.$store.state.video1[3].videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click3">{{this.videoList[2].videoName}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -293,7 +293,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[4].videCoverurl"
+                :src="this.videoList[3].videoCoverUrl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -301,7 +301,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click4">{{this.$store.state.video1[4].videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click4">{{this.videoList[3].videoName}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -310,7 +310,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[5].videCoverurl"
+                :src="this.videoList[4].videoCoverUrl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -318,7 +318,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click5">{{this.$store.state.video1[5].videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click5">{{this.videoList[4].videoName}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -327,7 +327,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[6].videCoverurl"
+                :src="this.videoList[5].videoCoverUrl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -335,7 +335,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click6">{{this.$store.state.video1[6].videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click6">{{this.videoList[5].videoName}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -1806,20 +1806,7 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      imgList:[
-        {
-          url:require('../img/fengmian1.webp')
-        },
-        {
-          url:require('../img/fengmian2.webp')
-        },
-        {
-          url:require('../img/fengmian3.webp')
-        },
-        {
-          url:require('../img/fengmian4.webp')
-        }
-      ]
+      videoList: [],
     }
   },
   created() {
@@ -1828,12 +1815,13 @@ export default {
         res => {
           for(i=1;i<=6;i++)
           {
-            this.$store.state.video1[i].id=res.data.videoList[i-1].id;
-            this.$store.state.video1[i].videourl=res.data.videoList[i-1].VideoUrl;
-            this.$store.state.video1[i].videoCoverurl="" + res.data.videoList[i-1].VideoCoverUrl;
-            //window.alert(res.data.videoList[i-1].VideoCoverUrl);
-            window.alert("here" + this.$store.state.video1[1].videoCoverurl)
-            this.$store.state.video1[i].videoname=res.data.videoList[i-1].VideoTitle;
+            this.videoList.push({
+              //videoAuthor: res.data.videoList[i - 1].
+              videoId: res.data.videoList[i - 1].id,
+              videoUrl: res.data.videoList[i-1].VideoUrl,
+              videoCoverUrl: res.data.videoList[i-1].VideoCoverUrl,
+              videoName: res.data.videoList[i-1].VideoTitle
+            });
           }
         },
     );
