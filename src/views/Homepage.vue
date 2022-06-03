@@ -240,19 +240,16 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1"
+                :src="this.$store.state.video1.videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
                 <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'">
-                    <p class="name">【LOL】20G2MSI宣传片——上单教父</p>
-                    <span class="title">
-                      g2电子经济俱乐部
-                    </span>
-                  </router-link>
+                  <a target="blank">
+                    <router-link to="/videoPage"><p class="name" @click="click1">{{this.$store.state.video1.videoname}}</p></router-link></a>
+                  <p class="title">高进进进</p>
                 </div>
               </div>
             </div>
@@ -1785,6 +1782,7 @@ export default {
   name: "Homepage",
   data(){
     return {
+      Title:"视频连接中",
       islogin: false,
       username: '',
       password: '',
@@ -1827,13 +1825,11 @@ export default {
   created() {
     this.$axios.get('/video/detail/1').then(
         res => {
-          this.$store.state.video1=res.data.id;
-          this.$store.commit('getvideo',{id:this.$store.state.videoindex,
-            videoCoverurl:res.data.VideoCoverUrl,
-            videoname:res.data.VideoTitle})
+          this.$store.state.video1.id=res.data.id;
+          this.$store.state.video1.videoCoverurl=res.data.VideoCoverUrl;
+          this.$store.state.video1.videoname=res.data.VideoTitle;
         },
     );
-
   },
 
   methods:{
@@ -1869,7 +1865,7 @@ export default {
     },
 
     click1(){
-      this.$axios.get('/video/detail/'+this.$store.state.video1).then(
+      this.$axios.get('/video/detail/'+this.$store.state.video1.id).then(
           res => {
             this.$store.state.videourl = res.data.VideoUrl;
             this.$store.state.videoname = res.data.VideoTitle;
