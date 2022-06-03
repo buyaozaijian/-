@@ -327,9 +327,9 @@
       <el-form-item label="视频简介">
         <el-input type="textarea" v-model="willAddQuestion.videoIntroduction"></el-input>
       </el-form-item>
-      <el-form-item label="视频标签">
+      <!--<el-form-item label="视频标签">
         <el-input type="textarea" v-model="willAddQuestion.videoTags"></el-input>
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="封面">
         <el-upload
             list-type="picture-card"
@@ -504,18 +504,18 @@ export default {
       this.dialogVisible = true;
     },
     submit() {
-      alert(this.willAddQuestion.videoTags);
+      alert(this.willAddQuestion.videoList["url"]);
       this.$axios({
         method: 'post',
         url: "/video/create/upload",
         data: qs.stringify({
-          videoTitle: this.videoTitle,
-          videoIntroduction: this.videoIntroduction,
-          videoCoverUrl: this.willAddQuestion.imgList["url_img"],
-          videoUrl: this.willAddQuestion.videoList["url_video"],
-          videoKey: this.willAddQuestion.videoList["key_video"],
-          videoCoverKey: this.willAddQuestion.imgList["key_img"],
-          videoTags: this.videoTags
+          VideoTitle: this.videoTitle,
+          VideoDescription: this.videoIntroduction,
+          VideoCoverUrl: this.willAddQuestion.imgList["url"],
+          VideoUrl: this.willAddQuestion.videoList["url"],
+          VideoKey: this.willAddQuestion.videoList["key"],
+          VideoCoverKey: this.willAddQuestion.imgList["key"],
+          //videoTags: this.videoTags
         })
       })
           .then((res) => {
@@ -595,15 +595,16 @@ export default {
         data: formData,
       })
           .then(res => {
-            window.alert(res.data.status_code);
             switch (res.data.status_code) {
               case 1:
                 var url_video = res.data.url_video;
                 var key_video = res.data.key_video;
+                window.alert(url_video);
                 this.willAddQuestion.videoList.push({
                   url: url_video,
                   key: key_video
                 });
+                window.alert(this.willAddQuestion.videoList['url']);
                 window.alert("视频上传成功");
                 console.log(this.willAddQuestion.videoList);
                 break;
