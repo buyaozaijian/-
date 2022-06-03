@@ -29,6 +29,7 @@ const user = {
     actions: {
         /* 调用 _setStorage 方法存储数据 */
         saveUserInfo({ commit }, data) {
+            window.alert(data.user.Authorization);
             commit('$_setStorage', data)
         },
         /* 调用 _removeStorage 方法清空数据 */

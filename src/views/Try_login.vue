@@ -47,7 +47,6 @@ export default {
         this.$message.warning("请输入用户名和密码！");
         return;
       }
-
       this.$axios({
         method: 'post',           /* 指明请求方式，可以是 get 或 post */
         url: '/user/login',       /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */
@@ -58,10 +57,9 @@ export default {
               case 0:
                 this.$message.success("登录成功！");
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
+                  //console.log(res.data.data);
                 this.$store.dispatch('saveUserInfo', {
-                  user: {
                     user: res.data.data
-                  }
                 });
 
                 /* 从 localStorage 中读取 preRoute 键对应的值 */

@@ -504,17 +504,22 @@ export default {
       this.dialogVisible = true;
     },
     submit() {
-      alert(this.willAddQuestion.videoList["url"]);
+      alert(this.willAddQuestion.videoTitle);
+      alert(this.willAddQuestion.videoIntroduction);
+      alert(this.willAddQuestion.imgList[0].url);
+      alert(this.willAddQuestion.videoList[0].url);
+      alert(this.willAddQuestion.videoList[0].key);
+      alert(this.willAddQuestion.imgList[0].key);
       this.$axios({
         method: 'post',
         url: "/video/create/upload",
         data: qs.stringify({
-          VideoTitle: this.videoTitle,
-          VideoDescription: this.videoIntroduction,
-          VideoCoverUrl: this.willAddQuestion.imgList["url"],
-          VideoUrl: this.willAddQuestion.videoList["url"],
-          VideoKey: this.willAddQuestion.videoList["key"],
-          VideoCoverKey: this.willAddQuestion.imgList["key"],
+          VideoTitle: this.willAddQuestion.videoTitle,
+          VideoDescription: this.willAddQuestion.videoIntroduction,
+          VideoCoverUrl: this.willAddQuestion.imgList[0].url,
+          VideoUrl: this.willAddQuestion.videoList[0].url,
+          VideoKey: this.willAddQuestion.videoList[0].key,
+          VideoCoverKey: this.willAddQuestion.imgList[0].key,
           //videoTags: this.videoTags
         })
       })
@@ -559,6 +564,7 @@ export default {
                 });
                 alert("封面上传成功");
                 console.log(this.willAddQuestion.imgList);
+                alert(this.willAddQuestion.imgList[0].url);
                 break;
               case 2:
                 // this.$message.error("上传文件格式错误！");
@@ -604,7 +610,6 @@ export default {
                   url: url_video,
                   key: key_video
                 });
-                window.alert(this.willAddQuestion.videoList['url']);
                 window.alert("视频上传成功");
                 console.log(this.willAddQuestion.videoList);
                 break;

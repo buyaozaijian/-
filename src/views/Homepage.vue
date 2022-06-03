@@ -240,7 +240,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[1].videCoverourl"
+                :src="this.$store.state.video1[1].videCoverurl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -257,7 +257,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[2].videCoverourl"
+                :src="this.$store.state.video1[2].videCoverurl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -274,7 +274,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[3].videCoverourl"
+                :src="this.$store.state.video1[3].videCoverurl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -293,7 +293,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[4].videCoverourl"
+                :src="this.$store.state.video1[4].videCoverurl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -310,7 +310,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[5].videCoverourl"
+                :src="this.$store.state.video1[5].videCoverurl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -327,7 +327,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1[6].videCoverourl"
+                :src="this.$store.state.video1[6].videCoverurl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -1829,7 +1829,7 @@ export default {
           for(i=1;i<=6;i++)
           {
             this.$store.state.video1[i].id=res.data.videoList[i-1].id;
-            this.$store.state.video1[i].id=res.data.videoList[i-1].VideoUrl;
+            this.$store.state.video1[i].videourl=res.data.videoList[i-1].VideoUrl;
             this.$store.state.video1[i].videoCoverurl=res.data.videoList[i-1].VideoCoverUrl;
             this.$store.state.video1[i].videoname=res.data.videoList[i-1].VideoTitle;
           }
