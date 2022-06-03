@@ -240,7 +240,7 @@
           <td>
             <img
                 class="picture"
-                :src="this.$store.state.video1.videCoverourl"
+                :src="this.$store.state.video1[1].videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
@@ -248,7 +248,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click1">{{this.$store.state.video1.videoname}}</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click1">{{this.$store.state.video1[1].videoname}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -257,16 +257,16 @@
           <td>
             <img
                 class="picture"
-                src="../img/fengmian2.webp"
+                :src="this.$store.state.video1[2].videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">【ADC玄学技巧】职业选手的对线压制力为什么这么强</p></a>
-                  <p class="title">不知名up主</p>
+                <div style="float: left" class="txt">
+                  <a target="blank">
+                    <router-link to="/videoPage"><p class="name" @click="click2">{{this.$store.state.video1[2].videoname}}</p></router-link></a>
+                  <p class="title">高进进进</p>
                 </div>
               </div>
             </div>
@@ -274,15 +274,15 @@
           <td>
             <img
                 class="picture"
-                src="../img/fengmian3.webp"
+                :src="this.$store.state.video1[3].videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
-                <div style="display: inline-block" class="txt">
+                <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click1">视频连接尝试</p></router-link></a>
+                    <router-link to="/videoPage"><p class="name" @click="click3">{{this.$store.state.video1[3].videoname}}</p></router-link></a>
                   <p class="title">高进进进</p>
                 </div>
               </div>
@@ -293,16 +293,16 @@
           <td>
             <img
                 class="picture"
-                src="../img/fengmian4.webp"
+                :src="this.$store.state.video1[4].videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">反 向 面 试 PUA</p></a>
-                  <p class="title">不说再见</p>
+                <div style="float: left" class="txt">
+                  <a target="blank">
+                    <router-link to="/videoPage"><p class="name" @click="click4">{{this.$store.state.video1[4].videoname}}</p></router-link></a>
+                  <p class="title">高进进进</p>
                 </div>
               </div>
             </div>
@@ -310,16 +310,16 @@
           <td>
             <img
                 class="picture"
-                src="../img/fengmian5.webp"
+                :src="this.$store.state.video1[5].videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">&ensp;这首歌能否治愈你</p></a>
-                  <p class="title">&ensp;错过他很遗憾吧</p>
+                <div style="float: left" class="txt">
+                  <a target="blank">
+                    <router-link to="/videoPage"><p class="name" @click="click5">{{this.$store.state.video1[5].videoname}}</p></router-link></a>
+                  <p class="title">高进进进</p>
                 </div>
               </div>
             </div>
@@ -327,16 +327,16 @@
           <td>
             <img
                 class="picture"
-                src="../img/fengmian6.webp"
+                :src="this.$store.state.video1[6].videCoverourl"
                 alt=""
                 style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">这一吹，吹出了整个盛夏</p></a>
-                  <p class="title">ZB龙哥</p>
+                <div style="float: left" class="txt">
+                  <a target="blank">
+                    <router-link to="/videoPage"><p class="name" @click="click6">{{this.$store.state.video1[6].videoname}}</p></router-link></a>
+                  <p class="title">高进进进</p>
                 </div>
               </div>
             </div>
@@ -1823,11 +1823,16 @@ export default {
     }
   },
   created() {
-    this.$axios.get('/video/detail/1').then(
+    var i = 0;
+    this.$axios.get('/index/main').then(
         res => {
-          this.$store.state.video1.id=res.data.id;
-          this.$store.state.video1.videoCoverurl=res.data.VideoCoverUrl;
-          this.$store.state.video1.videoname=res.data.VideoTitle;
+          for(i=1;i<=6;i++)
+          {
+            this.$store.state.video1[i].id=res.data.videoList[i-1].id;
+            this.$store.state.video1[i].id=res.data.videoList[i-1].VideoUrl;
+            this.$store.state.video1[i].videoCoverurl=res.data.videoList[i-1].VideoCoverUrl;
+            this.$store.state.video1[i].videoname=res.data.videoList[i-1].VideoTitle;
+          }
         },
     );
   },
@@ -1865,12 +1870,28 @@ export default {
     },
 
     click1(){
-      this.$axios.get('/video/detail/'+this.$store.state.video1.id).then(
-          res => {
-            this.$store.state.videourl = res.data.VideoUrl;
-            this.$store.state.videoname = res.data.VideoTitle;
-          },
-      )
+      this.$store.state.videourl = this.$store.state.video1[1].videourl;
+      this.$store.state.videoname = this.$store.state.video1[1].videoname;
+    },
+    click2(){
+      this.$store.state.videourl = this.$store.state.video1[2].videourl;
+      this.$store.state.videoname = this.$store.state.video1[2].videoname;
+    },
+    click3(){
+      this.$store.state.videourl = this.$store.state.video1[3].videourl;
+      this.$store.state.videoname = this.$store.state.video1[3].videoname;
+    },
+    click4(){
+      this.$store.state.videourl = this.$store.state.video1[4].videourl;
+      this.$store.state.videoname = this.$store.state.video1[4].videoname;
+    },
+    click5(){
+      this.$store.state.videourl = this.$store.state.video1[5].videourl;
+      this.$store.state.videoname = this.$store.state.video1[5].videoname;
+    },
+    click6(){
+      this.$store.state.videourl = this.$store.state.video1[6].videourl;
+      this.$store.state.videoname = this.$store.state.video1[6].videoname;
     },
 
     click_login(){
