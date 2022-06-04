@@ -670,7 +670,7 @@ export default {
       this.$axios(
           {
             method: 'post',
-            url: "",//url待定
+            url: '/comment/postComment/'+this.$store.state.videoid,//url待定
             data: qs.stringify(
                 {
                   comment: this.textarea2,
