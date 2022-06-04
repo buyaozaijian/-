@@ -1883,8 +1883,9 @@ export default {
     },
 
     click1(){
-      this.$store.state.videourl = this.$store.state.videoList[event.srcElement.id].videourl;
-      this.$store.state.videoname = this.$store.state.video1[event.srcElement.id].videoname;
+      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
+      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      window.alert(this.$store.state.videourl);
     },
 
     click_login(){
