@@ -228,7 +228,7 @@
   </header>
   <div class="zouma">
     <div>
-      <el-carousel indicator-position="outside" style="width: 40%; display: inline-block; left: -370px; border-radius: 4px" >
+      <el-carousel indicator-position="outside" style="width: 40%; display: inline-block; left: -370px; border-radius: 4px;top: 50px" >
         <el-carousel-item v-for="(img,index) in imgList" :key="index">
           <img :src="img.url" width="100%" height="100%">
         </el-carousel-item>
@@ -355,227 +355,142 @@
             <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
           </span>
     </div>
-    <!--<div class="top-comntent">
-      <img
-          style="padding-right: 15px; width: 36px; height: 36px"
-          src="../img/zhibo.jpg"
-          alt=""
-      />
-      <span class="video-title">
-        <a
-            style="font-size: 20px"
-            href="https://live.bilibili.com/?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.1"
-            target="blank"
-        >正在直播</a
-        >
-        <div style="display: inline-block" class="text-info">
-          <span>当前共有26409个在线直播</span>
-        </div>
-      </span>
-      <span class="swap">
-          <button class="btn">换一换</button>
-          <button class="btn">更多</button>
-      </span>
-      <span class="other">
-          <div style="display: inline-block" class="tab-switch">直播排行</div>
-          <div style="display: inline-block" class="tab-switch">关注的主播</div>
-          <div style="display: inline-block" class="tab-switch">为你推荐</div>
-      </span>
-    </div>-->
-    <table class="tab" cellspacing="20">
+    <table class="tab" cellspacing="35">
       <tr>
-        <td>
-          <router-link :to="'/videoPage'">
-            <img
-                class="picture"
-                src="../img/zhibo1.jpg"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <img class="face" src="../img/zhibo2.jpg" alt="">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                  <p class="title">武汉eStarPro vs RW侠</p>
-                  <p class="tag">王者荣耀</p>
-                </div>
-              </div>
-            </div>
-          </router-link>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo3.png"
+              class="picture1"
+              :src="this.videoList[6].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">幻境光影</p></a>
-                <p class="title">走进比利时法兰得斯，全息...</p>
-                <p class="tag">户外</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="6" class="name" @click="click1">{{this.videoList[6].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[6].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
-          <video class="picture" width="320" height="240" controls autoplay style="border-radius: 6px">		<!-- 设置边框 -->
-            <!--<source src="../img/WeChat_20220420153702.mp4" type="video/mp4" />		引用视频文件-->
-          </video>
-          <!--<img
-              class="picture"
-              src="../img/zhibo5.jpg"
-              alt=""
-          />-->
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/03e7f3f6d88563038e275298c2cd942d2ac99d6a.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">白神遥Haruka</p></a>
-                <p class="title">PUBG的苏帕海豹！</p>
-                <p class="tag">虚拟主播</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[7].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="7" class="name" @click="click1">{{this.videoList[7].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[7].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[8].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="8" class="name" @click="click1">{{this.videoList[8].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[8].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[9].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="9" class="name" @click="click1">{{this.videoList[9].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[9].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/2867490b8b069c35a158be5ba58abd7b7e6ca121.jpg"
+              class="picture1"
+              :src="this.videoList[10].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/f3828cb7eb627cfdb334a10009d2b6171afb1535.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">打滚的白面包</p></a>
-                <p class="title">造女儿</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="10" class="name" @click="click1">{{this.videoList[10].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[10].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/b64f38e5c5a9d8cff50c6a9ffda932ced2fe3ed3.jpg"
+              class="picture1"
+              :src="this.videoList[11].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/386c8dfa4f00a87b30ce2959c118a189785ceb71.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">❀Sakulaˇ小舞</p></a>
-                <p class="title">四叶草剧场：梦醒！~♪</p>
-                <p class="tag">虚拟主播</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="11" class="name" @click="click1">{{this.videoList[11].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[11].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/36f9e0c9f600f406292936c1b1f791b62242af5c.jpg"
+              class="picture1"
+              :src="this.videoList[12].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/039020a19ae660d80f007dfc6fa2848cd06af3f1.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">绘伴-绘画教学课堂</p></a>
-                <p class="title">【板绘教学课堂】</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="12" class="name" @click="click1">{{this.videoList[12].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[12].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/cf7523853dd80dd0b9e49d21479d26f3acf02a61.jpg@309w_174h_1c_100q.webp"
+              class="picture1"
+              :src="this.videoList[13].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/c482f464081bb49f65c7dc3edbd029c62f95fc85.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">努力学习丨朝六晚一</p>
-                <p class="tag">陪伴学习</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="13" class="name" @click="click1">{{this.videoList[13].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[13].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -593,225 +508,142 @@
             <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
           </span>
     </div>
-    <!--<div class="top-comntent">
-      <img
-          style="padding-right: 15px; width: 36px; height: 36px"
-          src="../img/zhibo.jpg"
-          alt=""
-      />
-      <span class="video-title">
-        <a
-            style="font-size: 20px"
-            href="https://live.bilibili.com/?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.1"
-            target="blank"
-        >正在直播</a
-        >
-        <div style="display: inline-block" class="text-info">
-          <span>当前共有26409个在线直播</span>
-        </div>
-      </span>
-      <span class="swap">
-          <button class="btn">换一换</button>
-          <button class="btn">更多</button>
-      </span>
-      <span class="other">
-          <div style="display: inline-block" class="tab-switch">直播排行</div>
-          <div style="display: inline-block" class="tab-switch">关注的主播</div>
-          <div style="display: inline-block" class="tab-switch">为你推荐</div>
-      </span>
-    </div>-->
-    <table class="tab" cellspacing="20">
+    <table class="tab" cellspacing="35">
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo1.jpg"
+              class="picture1"
+              :src="this.videoList[14].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo2.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">武汉eStarPro vs RW侠</p>
-                <p class="tag">王者荣耀</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="14" class="name" @click="click1">{{this.videoList[14].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[14].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo3.png"
+              class="picture1"
+              :src="this.videoList[15].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">幻境光影</p></a>
-                <p class="title">走进比利时法兰得斯，全息...</p>
-                <p class="tag">户外</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="15" class="name" @click="click1">{{this.videoList[15].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[15].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
-          <video class="picture" width="320" height="240" controls autoplay style="border-radius: 6px">		<!-- 设置边框 -->
-            <!--<source src="../img/WeChat_20220420153702.mp4" type="video/mp4" />		引用视频文件-->
-          </video>
-          <!--<img
-              class="picture"
-              src="../img/zhibo5.jpg"
-              alt=""
-          />-->
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/03e7f3f6d88563038e275298c2cd942d2ac99d6a.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">白神遥Haruka</p></a>
-                <p class="title">PUBG的苏帕海豹！</p>
-                <p class="tag">虚拟主播</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[16].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="16" class="name" @click="click1">{{this.videoList[16].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[16].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[17].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="17" class="name" @click="click1">{{this.videoList[17].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[17].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/2867490b8b069c35a158be5ba58abd7b7e6ca121.jpg"
+              class="picture1"
+              :src="this.videoList[18].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/f3828cb7eb627cfdb334a10009d2b6171afb1535.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">打滚的白面包</p></a>
-                <p class="title">造女儿</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="18" class="name" @click="click1">{{this.videoList[18].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[18].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/b64f38e5c5a9d8cff50c6a9ffda932ced2fe3ed3.jpg"
+              class="picture1"
+              :src="this.videoList[19].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/386c8dfa4f00a87b30ce2959c118a189785ceb71.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">❀Sakulaˇ小舞</p></a>
-                <p class="title">四叶草剧场：梦醒！~♪</p>
-                <p class="tag">虚拟主播</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="19" class="name" @click="click1">{{this.videoList[19].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[19].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/36f9e0c9f600f406292936c1b1f791b62242af5c.jpg"
+              class="picture1"
+              :src="this.videoList[20].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/039020a19ae660d80f007dfc6fa2848cd06af3f1.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">绘伴-绘画教学课堂</p></a>
-                <p class="title">【板绘教学课堂】</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="20" class="name" @click="click1">{{this.videoList[20].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[20].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/cf7523853dd80dd0b9e49d21479d26f3acf02a61.jpg@309w_174h_1c_100q.webp"
+              class="picture1"
+              :src="this.videoList[21].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/c482f464081bb49f65c7dc3edbd029c62f95fc85.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">努力学习丨朝六晚一</p>
-                <p class="tag">陪伴学习</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="21" class="name" @click="click1">{{this.videoList[21].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[21].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -829,225 +661,142 @@
             <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
           </span>
     </div>
-    <!--<div class="top-comntent">
-      <img
-          style="padding-right: 15px; width: 36px; height: 36px"
-          src="../img/zhibo.jpg"
-          alt=""
-      />
-      <span class="video-title">
-        <a
-            style="font-size: 20px"
-            href="https://live.bilibili.com/?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.1"
-            target="blank"
-        >正在直播</a
-        >
-        <div style="display: inline-block" class="text-info">
-          <span>当前共有26409个在线直播</span>
-        </div>
-      </span>
-      <span class="swap">
-          <button class="btn">换一换</button>
-          <button class="btn">更多</button>
-      </span>
-      <span class="other">
-          <div style="display: inline-block" class="tab-switch">直播排行</div>
-          <div style="display: inline-block" class="tab-switch">关注的主播</div>
-          <div style="display: inline-block" class="tab-switch">为你推荐</div>
-      </span>
-    </div>-->
-    <table class="tab" cellspacing="20">
+    <table class="tab" cellspacing="35">
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo1.jpg"
+              class="picture1"
+              :src="this.videoList[22].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo2.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">武汉eStarPro vs RW侠</p>
-                <p class="tag">王者荣耀</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="22" class="name" @click="click1">{{this.videoList[22].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[22].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo3.png"
+              class="picture1"
+              :src="this.videoList[23].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">幻境光影</p></a>
-                <p class="title">走进比利时法兰得斯，全息...</p>
-                <p class="tag">户外</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="23" class="name" @click="click1">{{this.videoList[23].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[23].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
-          <video class="picture" width="320" height="240" controls autoplay style="border-radius: 6px">		<!-- 设置边框 -->
-            <!--<source src="../img/WeChat_20220420153702.mp4" type="video/mp4" />		引用视频文件-->
-          </video>
-          <!--<img
-              class="picture"
-              src="../img/zhibo5.jpg"
-              alt=""
-          />-->
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/03e7f3f6d88563038e275298c2cd942d2ac99d6a.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">白神遥Haruka</p></a>
-                <p class="title">PUBG的苏帕海豹！</p>
-                <p class="tag">虚拟主播</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[24].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="24" class="name" @click="click1">{{this.videoList[24].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[24].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[25].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="25" class="name" @click="click1">{{this.videoList[25].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[25].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/2867490b8b069c35a158be5ba58abd7b7e6ca121.jpg"
+              class="picture1"
+              :src="this.videoList[26].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/f3828cb7eb627cfdb334a10009d2b6171afb1535.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">打滚的白面包</p></a>
-                <p class="title">造女儿</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="26" class="name" @click="click1">{{this.videoList[26].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[26].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/b64f38e5c5a9d8cff50c6a9ffda932ced2fe3ed3.jpg"
+              class="picture1"
+              :src="this.videoList[27].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/386c8dfa4f00a87b30ce2959c118a189785ceb71.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">❀Sakulaˇ小舞</p></a>
-                <p class="title">四叶草剧场：梦醒！~♪</p>
-                <p class="tag">虚拟主播</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="27" class="name" @click="click1">{{this.videoList[27].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[27].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/36f9e0c9f600f406292936c1b1f791b62242af5c.jpg"
+              class="picture1"
+              :src="this.videoList[28].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/039020a19ae660d80f007dfc6fa2848cd06af3f1.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">绘伴-绘画教学课堂</p></a>
-                <p class="title">【板绘教学课堂】</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="28" class="name" @click="click1">{{this.videoList[28].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[28].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/cf7523853dd80dd0b9e49d21479d26f3acf02a61.jpg@309w_174h_1c_100q.webp"
+              class="picture1"
+              :src="this.videoList[29].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/c482f464081bb49f65c7dc3edbd029c62f95fc85.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">努力学习丨朝六晚一</p>
-                <p class="tag">陪伴学习</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="29" class="name" @click="click1">{{this.videoList[29].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[29].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -1065,225 +814,142 @@
             <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
           </span>
     </div>
-    <!--<div class="top-comntent">
-      <img
-          style="padding-right: 15px; width: 36px; height: 36px"
-          src="../img/zhibo.jpg"
-          alt=""
-      />
-      <span class="video-title">
-        <a
-            style="font-size: 20px"
-            href="https://live.bilibili.com/?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.1"
-            target="blank"
-        >正在直播</a
-        >
-        <div style="display: inline-block" class="text-info">
-          <span>当前共有26409个在线直播</span>
-        </div>
-      </span>
-      <span class="swap">
-          <button class="btn">换一换</button>
-          <button class="btn">更多</button>
-      </span>
-      <span class="other">
-          <div style="display: inline-block" class="tab-switch">直播排行</div>
-          <div style="display: inline-block" class="tab-switch">关注的主播</div>
-          <div style="display: inline-block" class="tab-switch">为你推荐</div>
-      </span>
-    </div>-->
-    <table class="tab" cellspacing="20">
+    <table class="tab" cellspacing="35">
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo1.jpg"
+              class="picture1"
+              :src="this.videoList[30].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo2.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">武汉eStarPro vs RW侠</p>
-                <p class="tag">王者荣耀</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="30" class="name" @click="click1">{{this.videoList[30].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[30].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo3.png"
+              class="picture1"
+              :src="this.videoList[31].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">幻境光影</p></a>
-                <p class="title">走进比利时法兰得斯，全息...</p>
-                <p class="tag">户外</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="31" class="name" @click="click1">{{this.videoList[31].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[31].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
-          <video class="picture" width="320" height="240" controls autoplay style="border-radius: 6px">		<!-- 设置边框 -->
-            <!--<source src="../img/WeChat_20220420153702.mp4" type="video/mp4" />		引用视频文件-->
-          </video>
-          <!--<img
-              class="picture"
-              src="../img/zhibo5.jpg"
-              alt=""
-          />-->
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/03e7f3f6d88563038e275298c2cd942d2ac99d6a.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">白神遥Haruka</p></a>
-                <p class="title">PUBG的苏帕海豹！</p>
-                <p class="tag">虚拟主播</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[32].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="32" class="name" @click="click1">{{this.videoList[32].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[32].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[33].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="33" class="name" @click="click1">{{this.videoList[33].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[33].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/2867490b8b069c35a158be5ba58abd7b7e6ca121.jpg"
+              class="picture1"
+              :src="this.videoList[34].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/f3828cb7eb627cfdb334a10009d2b6171afb1535.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">打滚的白面包</p></a>
-                <p class="title">造女儿</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="34" class="name" @click="click1">{{this.videoList[34].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[34].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/b64f38e5c5a9d8cff50c6a9ffda932ced2fe3ed3.jpg"
+              class="picture1"
+              :src="this.videoList[35].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/386c8dfa4f00a87b30ce2959c118a189785ceb71.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">❀Sakulaˇ小舞</p></a>
-                <p class="title">四叶草剧场：梦醒！~♪</p>
-                <p class="tag">虚拟主播</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="35" class="name" @click="click1">{{this.videoList[35].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[35].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/36f9e0c9f600f406292936c1b1f791b62242af5c.jpg"
+              class="picture1"
+              :src="this.videoList[36].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/039020a19ae660d80f007dfc6fa2848cd06af3f1.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">绘伴-绘画教学课堂</p></a>
-                <p class="title">【板绘教学课堂】</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="36" class="name" @click="click1">{{this.videoList[36].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[36].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/cf7523853dd80dd0b9e49d21479d26f3acf02a61.jpg@309w_174h_1c_100q.webp"
+              class="picture1"
+              :src="this.videoList[37].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/c482f464081bb49f65c7dc3edbd029c62f95fc85.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">努力学习丨朝六晚一</p>
-                <p class="tag">陪伴学习</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="37" class="name" @click="click1">{{this.videoList[37].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[37].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -1301,225 +967,142 @@
             <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
           </span>
     </div>
-    <!--<div class="top-comntent">
-      <img
-          style="padding-right: 15px; width: 36px; height: 36px"
-          src="../img/zhibo.jpg"
-          alt=""
-      />
-      <span class="video-title">
-        <a
-            style="font-size: 20px"
-            href="https://live.bilibili.com/?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.1"
-            target="blank"
-        >正在直播</a
-        >
-        <div style="display: inline-block" class="text-info">
-          <span>当前共有26409个在线直播</span>
-        </div>
-      </span>
-      <span class="swap">
-          <button class="btn">换一换</button>
-          <button class="btn">更多</button>
-      </span>
-      <span class="other">
-          <div style="display: inline-block" class="tab-switch">直播排行</div>
-          <div style="display: inline-block" class="tab-switch">关注的主播</div>
-          <div style="display: inline-block" class="tab-switch">为你推荐</div>
-      </span>
-    </div>-->
-    <table class="tab" cellspacing="20">
+    <table class="tab" cellspacing="35">
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo1.jpg"
+              class="picture1"
+              :src="this.videoList[38].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo2.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">武汉eStarPro vs RW侠</p>
-                <p class="tag">王者荣耀</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="38" class="name" @click="click1">{{this.videoList[38].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[38].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo3.png"
+              class="picture1"
+              :src="this.videoList[39].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">幻境光影</p></a>
-                <p class="title">走进比利时法兰得斯，全息...</p>
-                <p class="tag">户外</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="39" class="name" @click="click1">{{this.videoList[39].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[39].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
-          <video class="picture" width="320" height="240" controls autoplay style="border-radius: 6px">		<!-- 设置边框 -->
-            <!--<source src="../img/WeChat_20220420153702.mp4" type="video/mp4" />		引用视频文件-->
-          </video>
-          <!--<img
-              class="picture"
-              src="../img/zhibo5.jpg"
-              alt=""
-          />-->
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/03e7f3f6d88563038e275298c2cd942d2ac99d6a.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">白神遥Haruka</p></a>
-                <p class="title">PUBG的苏帕海豹！</p>
-                <p class="tag">虚拟主播</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[38].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="40" class="name" @click="click1">{{this.videoList[40].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[40].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[41].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="41" class="name" @click="click1">{{this.videoList[41].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[41].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/2867490b8b069c35a158be5ba58abd7b7e6ca121.jpg"
+              class="picture1"
+              :src="this.videoList[42].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/f3828cb7eb627cfdb334a10009d2b6171afb1535.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">打滚的白面包</p></a>
-                <p class="title">造女儿</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="42" class="name" @click="click1">{{this.videoList[42].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[42].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/b64f38e5c5a9d8cff50c6a9ffda932ced2fe3ed3.jpg"
+              class="picture1"
+              :src="this.videoList[43].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/386c8dfa4f00a87b30ce2959c118a189785ceb71.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">❀Sakulaˇ小舞</p></a>
-                <p class="title">四叶草剧场：梦醒！~♪</p>
-                <p class="tag">虚拟主播</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="43" class="name" @click="click1">{{this.videoList[43].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[43].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/36f9e0c9f600f406292936c1b1f791b62242af5c.jpg"
+              class="picture1"
+              :src="this.videoList[44].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/039020a19ae660d80f007dfc6fa2848cd06af3f1.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">绘伴-绘画教学课堂</p></a>
-                <p class="title">【板绘教学课堂】</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="44" class="name" @click="click1">{{this.videoList[44].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[44].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/cf7523853dd80dd0b9e49d21479d26f3acf02a61.jpg@309w_174h_1c_100q.webp"
+              class="picture1"
+              :src="this.videoList[45].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/c482f464081bb49f65c7dc3edbd029c62f95fc85.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">努力学习丨朝六晚一</p>
-                <p class="tag">陪伴学习</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="45" class="name" @click="click1">{{this.videoList[45].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[45].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -1537,225 +1120,142 @@
             <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
           </span>
     </div>
-    <!--<div class="top-comntent">
-      <img
-          style="padding-right: 15px; width: 36px; height: 36px"
-          src="../img/zhibo.jpg"
-          alt=""
-      />
-      <span class="video-title">
-        <a
-            style="font-size: 20px"
-            href="https://live.bilibili.com/?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.1"
-            target="blank"
-        >正在直播</a
-        >
-        <div style="display: inline-block" class="text-info">
-          <span>当前共有26409个在线直播</span>
-        </div>
-      </span>
-      <span class="swap">
-          <button class="btn">换一换</button>
-          <button class="btn">更多</button>
-      </span>
-      <span class="other">
-          <div style="display: inline-block" class="tab-switch">直播排行</div>
-          <div style="display: inline-block" class="tab-switch">关注的主播</div>
-          <div style="display: inline-block" class="tab-switch">为你推荐</div>
-      </span>
-    </div>-->
-    <table class="tab" cellspacing="20">
+    <table class="tab" cellspacing="35">
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo1.jpg"
+              class="picture1"
+              :src="this.videoList[46].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo2.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">武汉eStarPro vs RW侠</p>
-                <p class="tag">王者荣耀</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="46" class="name" @click="click1">{{this.videoList[46].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[46].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="../img/zhibo3.png"
+              class="picture1"
+              :src="this.videoList[47].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="../img/zhibo4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">幻境光影</p></a>
-                <p class="title">走进比利时法兰得斯，全息...</p>
-                <p class="tag">户外</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="47" class="name" @click="click1">{{this.videoList[47].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[47].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
-          <video class="picture" width="320" height="240" controls autoplay style="border-radius: 6px">		<!-- 设置边框 -->
-            <!--<source src="../img/WeChat_20220420153702.mp4" type="video/mp4" />		引用视频文件-->
-          </video>
-          <!--<img
-              class="picture"
-              src="../img/zhibo5.jpg"
-              alt=""
-          />-->
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/03e7f3f6d88563038e275298c2cd942d2ac99d6a.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">白神遥Haruka</p></a>
-                <p class="title">PUBG的苏帕海豹！</p>
-                <p class="tag">虚拟主播</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[48].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="48" class="name" @click="click1">{{this.videoList[48].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[48].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
+              class="picture1"
+              :src="this.videoList[49].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="49" class="name" @click="click1">{{this.videoList[49].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[49].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
       </tr>
       <tr>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/2867490b8b069c35a158be5ba58abd7b7e6ca121.jpg"
+              class="picture1"
+              :src="this.videoList[50].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/f3828cb7eb627cfdb334a10009d2b6171afb1535.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">打滚的白面包</p></a>
-                <p class="title">造女儿</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="50" class="name" @click="click1">{{this.videoList[50].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[50].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/b64f38e5c5a9d8cff50c6a9ffda932ced2fe3ed3.jpg"
+              class="picture1"
+              :src="this.videoList[51].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/386c8dfa4f00a87b30ce2959c118a189785ceb71.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">❀Sakulaˇ小舞</p></a>
-                <p class="title">四叶草剧场：梦醒！~♪</p>
-                <p class="tag">虚拟主播</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="51" class="name" @click="click1">{{this.videoList[51].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[51].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/new_room_cover/36f9e0c9f600f406292936c1b1f791b62242af5c.jpg"
+              class="picture1"
+              :src="this.videoList[52].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/039020a19ae660d80f007dfc6fa2848cd06af3f1.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">绘伴-绘画教学课堂</p></a>
-                <p class="title">【板绘教学课堂】</p>
-                <p class="tag">绘画</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="52" class="name" @click="click1">{{this.videoList[52].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[52].videoAuthor}}</p>
               </div>
             </div>
           </div>
         </td>
-        <td>
+        <td class="fenqu">
           <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/cf7523853dd80dd0b9e49d21479d26f3acf02a61.jpg@309w_174h_1c_100q.webp"
+              class="picture1"
+              :src="this.videoList[53].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
           <div class="up">
             <div class="up-cover">
-              <img class="face" src="https://i2.hdslb.com/bfs/face/c482f464081bb49f65c7dc3edbd029c62f95fc85.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">哔哩哔哩王者荣耀赛事</p></a>
-                <p class="title">努力学习丨朝六晚一</p>
-                <p class="tag">陪伴学习</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td>
-          <img
-              class="picture"
-              src="https://i0.hdslb.com/bfs/live/user_cover/c4feb13f58f01a5646869d64bc2c8ee5730b010c.jpg"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <img class="face" src="https://i0.hdslb.com/bfs/face/d6ce0a652840166789873ea3b623e828af59b2e4.jpg" alt="">
-              <div style="display: inline-block" class="txt">
-                <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                  <p class="name">小菜刀夫斯基</p></a>
-                <p class="title">什么标题都无法让你点进来</p>
-                <p class="tag">视频聊天</p>
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="53" class="name" @click="click1">{{this.videoList[53].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[53].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -1764,14 +1264,6 @@
     </table>
   </div>
   </body>
-  <!--<div class="login">
-    <div class="form-box">
-      <h1>Login</h1>
-      <label><input v-model="username" type="text" placeholder="Username" class="username"></label>
-      <label><input v-model="password" type="password" placeholder="Password" class="password"></label>
-      <button type="submit" @click="click_login" class="login">Login</button>
-    </div>
-  </div>-->
   </html>
 </template>
 
@@ -1821,12 +1313,11 @@ export default {
         }
       ],
       videoList: [],
-      video:[],
     }
   },
   created() {
     var i = 0;
-    for(i=0;i<6;i++)
+    for(i=0;i<54;i++)
     {
       this.videoList.push({
         videoAuthor: '未知',
@@ -1845,6 +1336,78 @@ export default {
               this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
               this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
               this.videoList[i].videoName= res.data.videoList[i].VideoTitle
+          }
+        },
+    );
+    this.$axios.get('index/main/area/1').then(//动画分区
+        res => {
+          for(i=6;i<14;i++)
+          {
+            this.videoList[i].videoAuthor= res.data.videoList[i-6].VideoAuthorName,
+            this.videoList[i].videoId= res.data.videoList[i-6].id,
+            this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
+            this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
+            this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle
+          }
+        },
+    );
+    this.$axios.get('index/main/area/2').then(//电影分区
+        res => {
+          for(i=14;i<22;i++)
+          {
+            this.videoList[i].videoAuthor= res.data.videoList[i-14].VideoAuthorName,
+                this.videoList[i].videoId= res.data.videoList[i-14].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle
+          }
+        },
+    );
+    this.$axios.get('index/main/area/3').then(//游戏分区
+        res => {
+          for(i=22;i<30;i++)
+          {
+            this.videoList[i].videoAuthor= res.data.videoList[i-22].VideoAuthorName,
+                this.videoList[i].videoId= res.data.videoList[i-22].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle
+          }
+        },
+    );
+    this.$axios.get('index/main/area/4').then(//音乐分区
+        res => {
+          for(i=30;i<38;i++)
+          {
+            this.videoList[i].videoAuthor= res.data.videoList[i-30].VideoAuthorName,
+                this.videoList[i].videoId= res.data.videoList[i-30].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle
+          }
+        },
+    );
+    this.$axios.get('index/main/area/5').then(//学习分区
+        res => {
+          for(i=38;i<46;i++)
+          {
+            this.videoList[i].videoAuthor= res.data.videoList[i-38].VideoAuthorName,
+                this.videoList[i].videoId= res.data.videoList[i-38].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle
+          }
+        },
+    );
+    this.$axios.get('index/main/area/6').then(//鬼畜分区
+        res => {
+          for(i=46;i<54;i++)
+          {
+            this.videoList[i].videoAuthor= res.data.videoList[i-46].VideoAuthorName,
+                this.videoList[i].videoId= res.data.videoList[i-46].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle
           }
         },
     );
@@ -1885,7 +1448,6 @@ export default {
     click1(){
       this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
       this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
-      window.alert(this.$store.state.videourl);
     },
 
     click_login(){
@@ -2027,14 +1589,14 @@ a:active {
   padding-left: 105px;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 600px;
+  padding-bottom: 700px;
 }
 .zouma{
   padding-right: 95px;
   padding-left: 105px;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 100px;
+  padding-bottom: 200px;
 }
 .top-content * {
   /* 文字在图片后面居中对齐 */
@@ -2163,5 +1725,12 @@ table {
   opacity: 0.75;
   line-height: 300px;
   margin: 0;
+}
+.fenqu {
+  width: 250px;
+}
+.picture1 {
+  height: 200px;
+  width: 300px;
 }
 </style>
