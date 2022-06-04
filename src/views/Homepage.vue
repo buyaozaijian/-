@@ -1448,6 +1448,7 @@ export default {
     click1(){
       this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
       this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
     },
 
     click_login(){

@@ -405,7 +405,7 @@
             style="width: 650px;float: left;">
       </el-input>
       </span>
-      <el-button style="width: 70px;height: 50px" type="primary" plain >发布</el-button>
+      <el-button style="width: 70px;height: 50px" type="primary" @click="submit_comment"  plain >发布</el-button>
     </div>
     <div class="comment">
       <div class="lon">
@@ -630,6 +630,8 @@
 </template>
 
 <script>
+import qs from "qs";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Homepage",
@@ -663,6 +665,39 @@ export default {
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll)
     },
+    submit_comment(){ //发布评论的函数，尝试阶段
+      alert(this.textarea2);
+      this.$axios(
+          {
+            method: 'post',
+            url: "",//url待定
+            data: qs.stringify(
+                {
+                  comment: this.textarea2,
+                  videoid: this.$store.state.videoid
+                }
+            )
+          }
+      )
+          .then((res) => {
+            console.log(res)
+            switch (res.data.status_code) {
+              case 1:
+                console.log("发送成功");
+                this.$router.push({
+                  path: './'
+                })
+                break;
+              case 2:
+                alert('发送失败')
+                break;
+            }
+          })
+          .catch((error) => {
+            console.log("请求失败");
+            console.log(error);
+          });
+    }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
