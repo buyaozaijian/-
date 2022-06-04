@@ -248,7 +248,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
+                    <router-link to="/videoPage"><p id="0" class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
                   <p class="title">{{this.videoList[0].videoAuthor}}</p>
                 </div>
               </div>
@@ -265,7 +265,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click2">{{this.videoList[1].videoName}}</p></router-link></a>
+                    <router-link to="/videoPage"><p id="1" class="name" @click="click1">{{this.videoList[1].videoName}}</p></router-link></a>
                   <p class="title">{{this.videoList[1].videoAuthor}}</p>
                 </div>
               </div>
@@ -282,7 +282,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click3">{{this.videoList[2].videoName}}</p></router-link></a>
+                    <router-link to="/videoPage"><p id="2" class="name" @click="click1">{{this.videoList[2].videoName}}</p></router-link></a>
                   <p class="title">{{this.videoList[2].videoAuthor}}</p>
                 </div>
               </div>
@@ -301,7 +301,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click4">{{this.videoList[3].videoName}}</p></router-link></a>
+                    <router-link to="/videoPage"><p id="3" class="name" @click="click1">{{this.videoList[3].videoName}}</p></router-link></a>
                   <p class="title">{{this.videoList[3].videoAuthor}}</p>
                 </div>
               </div>
@@ -318,7 +318,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click5">{{this.videoList[4].videoName}}</p></router-link></a>
+                    <router-link to="/videoPage"><p id="4" class="name" @click="click1">{{this.videoList[4].videoName}}</p></router-link></a>
                   <p class="title">{{this.videoList[4].videoAuthor}}</p>
                 </div>
               </div>
@@ -335,7 +335,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <a target="blank">
-                    <router-link to="/videoPage"><p class="name" @click="click6">{{this.videoList[5].videoName}}</p></router-link></a>
+                    <router-link to="/videoPage"><p id="5" class="name" @click="click1">{{this.videoList[5].videoName}}</p></router-link></a>
                   <p class="title">{{this.videoList[5].videoAuthor}}</p>
                 </div>
               </div>
@@ -1806,22 +1806,45 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
+      imgList:[
+        {
+          url:require('../img/fengmian1.webp')
+        },
+        {
+          url:require('../img/fengmian2.webp')
+        },
+        {
+          url:require('../img/fengmian3.webp')
+        },
+        {
+          url:require('../img/fengmian4.webp')
+        }
+      ],
       videoList: [],
+      video:[],
     }
   },
   created() {
     var i = 0;
+    for(i=0;i<6;i++)
+    {
+      this.videoList.push({
+        videoAuthor: '未知',
+        videoId: '',
+        videoUrl: '',
+        videoCoverUrl: '',
+        videoName: '视频连接中'
+      });
+    }
     this.$axios.get('/index/main').then(
         res => {
-          for(i=1;i<=6;i++)
+          for(i=0;i<6;i++)
           {
-            this.videoList.push({
-              videoAuthor: res.data.videoList[i - 1].VideoAuthorName,
-              videoId: res.data.videoList[i - 1].id,
-              videoUrl: res.data.videoList[i-1].VideoUrl,
-              videoCoverUrl: res.data.videoList[i-1].VideoCoverUrl,
-              videoName: res.data.videoList[i-1].VideoTitle
-            });
+              this.videoList[i].videoAuthor= res.data.videoList[i].VideoAuthorName,
+              this.videoList[i].videoId= res.data.videoList[i].id,
+              this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
+              this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
+              this.videoList[i].videoName= res.data.videoList[i].VideoTitle
           }
         },
     );
@@ -1860,28 +1883,8 @@ export default {
     },
 
     click1(){
-      this.$store.state.videourl = this.$store.state.video1[1].videourl;
-      this.$store.state.videoname = this.$store.state.video1[1].videoname;
-    },
-    click2(){
-      this.$store.state.videourl = this.$store.state.video1[2].videourl;
-      this.$store.state.videoname = this.$store.state.video1[2].videoname;
-    },
-    click3(){
-      this.$store.state.videourl = this.$store.state.video1[3].videourl;
-      this.$store.state.videoname = this.$store.state.video1[3].videoname;
-    },
-    click4(){
-      this.$store.state.videourl = this.$store.state.video1[4].videourl;
-      this.$store.state.videoname = this.$store.state.video1[4].videoname;
-    },
-    click5(){
-      this.$store.state.videourl = this.$store.state.video1[5].videourl;
-      this.$store.state.videoname = this.$store.state.video1[5].videoname;
-    },
-    click6(){
-      this.$store.state.videourl = this.$store.state.video1[6].videourl;
-      this.$store.state.videoname = this.$store.state.video1[6].videoname;
+      this.$store.state.videourl = this.$store.state.videoList[event.srcElement.id].videourl;
+      this.$store.state.videoname = this.$store.state.video1[event.srcElement.id].videoname;
     },
 
     click_login(){

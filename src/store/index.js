@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    videourl:'',
+    videoname:'',
     videoindex:0,
     video1:[
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
@@ -14,12 +16,7 @@ export default new Vuex.Store({
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
-    ]
-    ,
-    video2: 0,
-    video3: 0,
-    video4: 0,
-    video5: 0,
+  ],
   },
   getters: {
   },
