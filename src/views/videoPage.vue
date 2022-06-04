@@ -360,16 +360,17 @@
     <div class="operation">
       <el-divider></el-divider>
       <div style="float: left; width: 100px">
-        <button class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-if="this.iflike===0" @click="like" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
-        1234
+        {{likes}}
       </div>
       <div style="float: left; width: 100px">
         <button class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
-        123
+        {{collections}}
       </div>
       <div style="float: right; width: 100px">
         <el-button type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
@@ -387,7 +388,7 @@
       <el-divider></el-divider>
       评论
       <span style="font-size: 15px">
-        12
+        {{comments}}
       </span>
     </div>
     <div class="comment-tijiao">
@@ -640,6 +641,14 @@ export default {
       title: this.$store.state.videoname,
       needFixed: false,
       textarea2: '',
+      likes: '1234',
+      iflike: '',
+      comments: '12',
+      collections: '',
+      ifcollection: '',
+      concerns: '',
+      ifconcerns: '',
+      videotime: '',
     }
   },
   methods:{
@@ -662,6 +671,12 @@ export default {
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll)
+    },
+    like() {
+      this.iflike=1;
+    },
+    likecancall() {
+      this.iflike=0;
     },
   },
   mounted() {
