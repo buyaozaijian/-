@@ -704,19 +704,56 @@ export default {
     like() {
       this.iflike=1;
       this.$store.state.videolike++;
-      
+      this.$axios({
+        method: 'post',
+        url: '',
+        //data: this.iflike,
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.iflike
+        })
+      })
     },
     likecancall() {
       this.iflike=0;
       this.$store.state.videolike--;
+      this.$axios({
+        method: 'post',
+        url: '',
+        //data: this.iflike,
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.iflike
+        })
+      })
     },
     collect() {
       this.ifcollection=1;
       this.$store.state.videofavourite++;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.ifcollection
+        })
+      })
     },
     collectcall() {
       this.ifcollection=0;
       this.$store.state.videofavourite--;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.ifcollection
+        })
+      })
     },
     concern() {
       this.ifconcerns=1;
