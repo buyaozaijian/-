@@ -407,7 +407,16 @@
       </span>
       <el-button style="width: 70px;height: 50px" type="primary" @click="submit_comment"  plain >发布</el-button>
     </div>
-    <div class="comment">
+    <div v-for="comment in comment_list" :key="comment.comment_id">
+      <div class="comment">
+        <el-divider></el-divider>
+        <img class="small-head" :src = "comment.comment_head_url">
+        <div style="display: inline-block; color:black"><b>{{comment.comment_name}}</b></div>
+        <div>&nbsp;</div>
+        <div>{{comment.comment_in}}</div>
+      </div>
+    </div>
+    <!--<div class="comment">
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
           <img class="big-head" src="../img/picture1.webp">
@@ -470,8 +479,8 @@
           回复
         </div>
       </div>
-    </div>
-    <div class="comment">
+    </div>-->
+    <!--<div class="comment">
       <el-divider></el-divider>
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
@@ -521,8 +530,8 @@
           回复
         </div>
       </div>
-    </div>
-    <div class="comment">
+    </div>-->
+    <!--<div class="comment">
       <el-divider></el-divider>
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
@@ -572,8 +581,8 @@
           回复
         </div>
       </div>
-    </div>
-    <div class="comment">
+    </div>-->
+    <!--<div class="comment">
       <el-divider></el-divider>
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
@@ -623,7 +632,7 @@
           回复
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   </body>
   </html>
@@ -642,7 +651,24 @@ export default {
       title: this.$store.state.videoname,
       needFixed: false,
       textarea2: '',
+      comment_list: [],
+      comment_num: 5,
+      commentid: 0
     }
+  },
+  created() {
+      var i = 0;
+      for(i=0;i<this.comment_num-1;i++){
+          this.comment_list.push(
+              {
+                comment_head_url: '',
+                comment_name:'高进',
+                comment_in: '啦啦啦啦啦',
+                comment_id: this.commentid
+              }
+          );
+          this.commentid++;
+      }
   },
   methods:{
     open() {
@@ -723,7 +749,7 @@ export default {
   width: 800px;
 }
 .comment{
-  height: 450px;
+  height: 150px;
   width: 800px;
   text-align: left;
   margin: 0 auto;
