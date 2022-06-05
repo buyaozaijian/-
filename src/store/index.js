@@ -18,6 +18,11 @@ export default new Vuex.Store({
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
   ],
+    islogin: JSON.parse(sessionStorage.getItem('IFLOGIN')),
+    username: JSON.parse(sessionStorage.getItem('IFLOGIN')),
+    userid: JSON.parse(sessionStorage.getItem('USERID')),
+    userhead: JSON.parse(sessionStorage.getItem('USERHEAD')),
+    //username: 'yyz'
   },
   getters: {
   },

@@ -14,12 +14,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'User_center'">
-          <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          高进进进进
+          {{this.$store.state.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -112,23 +112,23 @@
     <span style="margin-right: 20px;">
       <el-popover
           placement="top-start"
-          title="高进进进进"
+          :title="this.$store.state.username"
           width="300"
           trigger="hover"
           left="">
         <div>
           <div>
-            id:20373518
+            id:{{this.$store.state.userid}}
           </div>
         </div>
         <router-link :to="'User_center'" slot="reference">
-          <img src="../img/touxiang1.jpg" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
+          <img :src="this.$store.state.userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
       </el-popover>
     </span>
     <div style="display: inline-block">
       <div style="text-align: left;color: #fb7299;width: 250px">
-        高进进进进
+        {{this.$store.state.username}}
       </div>
       <div style="text-align: left;font-size: 13px;width: 250px">
         一旦接受了自己的软弱，那我就是无敌的

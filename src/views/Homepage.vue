@@ -14,12 +14,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'/User_center'">
-          <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          高进进进进
+          {{this.$store.state.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -163,22 +163,29 @@
             </div>
           </div>
         </div>
-        <div v-if="islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              title="高进进进进"
+              :title= this.$store.state.username
               width="300"
               trigger="hover"
               left="">
             <div>
               <div>
-                id:20373518
+                id:{{this.$store.state.userid}}
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
-              <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
+        </div>
+        <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+          </button>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
           <router-link :to="'Up_video1'">
@@ -197,32 +204,13 @@
             &ensp;站内通知
           </el-button>
         </div>
-        <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+       <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
               <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
               </span></router-link>
           </button>
-          <!--<el-dialog title="登录" :visible.sync="dialogFormVisible" style="z-index: 9999">
-            <el-form :model="form">
-              <el-form-item label="用户名" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
-              </el-form-item>
-              <div>
-                <br>
-              </div>
-              <el-form-item label="密码" :label-width="formLabelWidth">
-                <el-input v-model="form.code" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <router-link to="/try_login"><el-button @click="dialogFormVisible = false">取 消</el-button></router-link>
-              <el-button type="primary" @click="click_login, dialogFormVisible = false">确 定</el-button>
-              <span>&ensp;</span>
-              <router-link to="/register_page"><el-button type="primary" @click="dialogFormVisible = false">没有账号？点击注册</el-button></router-link>
-            </div>
-          </el-dialog>-->
-        </div>
+        </div>-->
       </div>
     </div>
   </header>
@@ -1275,8 +1263,10 @@ export default {
   data(){
     return {
       Title:"视频连接中",
-      islogin: false,
-      username: '',
+      //islogin: JSON.parse(sessionStorage.getItem('IFLOGIN')),
+      //username: JSON.parse(sessionStorage.getItem('IFLOGIN')),
+     // userid: JSON.parse(sessionStorage.getItem('USERID')),
+      //userhead: JSON.parse(sessionStorage.getItem('USERHEAD')),
       password: '',
       dialogOfUpload: false,
       fileList: [],

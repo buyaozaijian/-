@@ -2,66 +2,6 @@
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   <body>
-  <!--<div style="position: fixed;z-index: 9999;width: 100%;">
-    <el-menu
-        :default-active="this.$router.path"
-        router
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b">
-      <div style="position: absolute;left:1000px; top:10px;z-index: 9999; display: inline-block">
-        <el-avatar icon="el-icon-user-solid">
-        </el-avatar>
-      </div>
-      <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: whitesmoke">
-        <a style="color: whitesmoke">
-          高进进进进
-        </a>
-      </div>
-      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block">
-        <i class="fa fa-paper-plane-o" style="color: whitesmoke"></i>
-        <el-button
-            plain
-            @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: whitesmoke;font-size: 15px">
-          &ensp;站内通知
-        </el-button>
-      </div>
-      <el-menu-item index="/" style="width: 100px;"><a>
-        <i class="fa fa-bank" style="color: whitesmoke"></i>
-        <span style="color: whitesmoke;">
-                  首页&nbsp;&nbsp;&nbsp;
-                </span>
-      </a></el-menu-item>
-      <el-menu-item index="/user_center" style="width: 100px;"><a>
-        <i class="fa fa-user-o" style="color:whitesmoke"></i>
-        <span style="color: whitesmoke">
-                  个人中心
-                </span>
-      </a></el-menu-item>
-      <el-menu-item index="/saving_box" style="width: 100px;"><a>
-        <i class="fa fa-file-video-o" style="color: whitesmoke"></i>
-        <span style="color: whitesmoke">
-                  收藏夹
-                </span>
-      </a></el-menu-item>
-      <el-menu-item index="friend_list" style="width: 100px;"><a>
-        <i class="fa fa-heart" style="color: whitesmoke"></i>
-        <span style="color: whitesmoke">
-                  关注
-                </span>
-      </a></el-menu-item>
-      <div style="position:absolute; left:600px; top:10px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
-        <form action="" class="parent">
-          <input type="text" class="search">
-          <input type="button" name=""  class="btn" style="z-index:1" >
-        </form>
-      </div>
-    </el-menu>
-  </div>-->
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
         :default-active="activeIndex2"
@@ -73,12 +13,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <a href="https://www.bilibili.com">
-          <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </a>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          高进进进进
+          {{this.$store.state.username}}
         </a>
       </div>
       <div
@@ -220,20 +160,20 @@
             </div>
           </div>
         </div>
-        <div v-if="islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              title="高进进进进"
+              :title="this.$store.state.username"
               width="300"
               trigger="hover"
               left="">
             <div>
               <div>
-                id:20373518
+                id:{{this.$store.state.userid}}
               </div>
             </div>
             <router-link :to="'/User_center'" slot="reference">
-              <img src="../img/touxiang1.jpg"
+              <img :src="this.$store.state.userhead"
                    style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
@@ -289,10 +229,10 @@
   <div class="user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head" style="  height: 70px;width: 70px;border-radius: 50%;" src="../img/touxiang1.jpg">
+        <img class="big-head" style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.$store.state.userhead">
       </a>
     </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">高进进进进</div>
+    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.$store.state.username}}</div>
     <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
     <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
     <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
