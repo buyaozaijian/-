@@ -512,6 +512,15 @@ export default {
           }
       )
           .then((res) => {
+            this.comment_list.push(
+                {
+                  comment_head_url: res.data.commentList.CommentUserPhotoUrl,
+                  comment_name: res.data.commentList.CommentUserName,
+                  comment_in: res.data.commentList.CommentContent,
+                  comment_id: res.data.commentList.id,
+                  comment_time: res.data.commentList.CommentDate
+                }
+            )
             console.log(res)
             switch (res.data.status_code) {
               case 1:
@@ -529,7 +538,7 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
-      this.$axios.get('comment/commentDetail/'+this.vid).then(
+      /*this.$axios.get('comment/commentDetail/'+this.vid).then(
           res => {
             this.comment_num = res.data.commentNumber;
             alert(this.comment_num);
@@ -543,7 +552,7 @@ export default {
                   }
               )
           },
-      );
+      );*/
     }
   },
   mounted() {
