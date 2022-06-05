@@ -412,6 +412,7 @@
         <el-divider></el-divider>
         <img class="small-head" :src = "comment.comment_head_url">
         <div style="display: inline-block; color:black"><b>{{comment.comment_name}}</b></div>
+        <div>评论时间:{{comment.comment_time}}</div>
         <div>&nbsp;</div>
         <div>{{comment.comment_in}}</div>
       </div>
@@ -652,23 +653,42 @@ export default {
       needFixed: false,
       textarea2: '',
       comment_list: [],
-      comment_num: 5,
+      comment_num: 1,
       commentid: 0
     }
   },
   created() {
+    //加载时接收评论，处于尝试阶段
       var i = 0;
-      for(i=0;i<this.comment_num-1;i++){
+      this.$axios.get('comment/commentDetail/'+this.$store.state.videoid).then(
+          res => {
+            this.comment_num = res.data.commentNumber;
+            alert(this.comment_num);
+            for(i=0;i<this.comment_num;i++){
+              this.comment_list.push(
+                  {
+                    comment_head_url: res.data.commentList[i].CommentUserPhotoUrl,
+                    comment_name: res.data.commentList[i].CommentUserName,
+                    comment_in: res.data.commentList[i].CommentContent,
+                    comment_id: res.data.commentList[i].id,
+                    comment_time: res.data.commentList[i].CommentDate
+                  }
+              )
+            }
+          },
+      );
+      /*for(i=0;i<this.comment_num;i++){
           this.comment_list.push(
               {
                 comment_head_url: '',
                 comment_name:'高进',
                 comment_in: '啦啦啦啦啦',
-                comment_id: this.commentid
-              }
-          );
+                comment_id: this.commentid,
+                comment_time: '2022-06-05T11:50:11.757535'
+             }
+         );
           this.commentid++;
-      }
+      }*/
   },
   methods:{
     open() {
@@ -723,6 +743,23 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
+      var i = 0;//发布评论之后也要重新获取一次！！！
+      this.$axios.get('comment/commentDetail/'+this.$store.state.videoid).then(
+          res => {
+            this.comment_num = res.data.commentNumber;
+            alert(this.comment_num);
+            for(i=0;i<this.comment_num;i++){
+              this.comment_list.push(
+                  {
+                    comment_head_url: res.data.commentList[i].CommentUserPhotoUrl,
+                    comment_name: res.data.commentList[i].CommentUserName,
+                    comment_in: res.data.commentList[i].CommentContent,
+                    comment_id: res.data.commentList[i].id
+                  }
+              )
+            }
+          },
+      );
     }
   },
   mounted() {
