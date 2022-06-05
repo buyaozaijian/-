@@ -1448,10 +1448,12 @@ export default {
     click1(){
       this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
       this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
+      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
+      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
     },
 
     click_login(){
-      window.alert("here");
       this.$axios({
         method: 'post',           /* 指明请求方式，可以是 get 或 post */
         url: '/user/login',       /* 指明后端 api 路径，由于在 main.js 已指定根路径，因此在此处只需写相对路由 */

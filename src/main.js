@@ -24,6 +24,7 @@ axios.interceptors.request.use(
         if (userInfo) {
             config.headers.Authorization = userInfo.user.Authorization;
         }
+        console.log(config.headers);
         return config;
     },
     error => {

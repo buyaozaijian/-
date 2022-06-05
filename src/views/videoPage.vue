@@ -364,16 +364,18 @@
         <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
-        {{likes}}
+        {{this.$store.state.videolike}}
       </div>
       <div style="float: left; width: 100px">
-        <button class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-else  @click="collectcall" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
-        {{collections}}
+        {{this.$store.state.videofavourite}}
       </div>
       <div style="float: right; width: 100px">
-        <el-button type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
+        <el-button v-if="ifconcerns===0" @click="concern" type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
+        <el-button v-else @click="concerncancall" type="danger" style="position: relative; background: gray; position: relative; top: -5px">已关注</el-button>
       </div>
     </div>
     <div class="introduction">
@@ -406,9 +408,18 @@
             style="width: 650px;float: left;">
       </el-input>
       </span>
-      <el-button style="width: 70px;height: 50px" type="primary" plain >发布</el-button>
+      <el-button style="width: 70px;height: 50px" type="primary" @click="submit_comment"  plain >发布</el-button>
     </div>
-    <div class="comment">
+    <div v-for="comment in comment_list" :key="comment.comment_id">
+      <div class="comment">
+        <el-divider></el-divider>
+        <img class="small-head" :src = "comment.comment_head_url">
+        <div style="display: inline-block; color:black"><b>{{comment.comment_name}}</b></div>
+        <div>&nbsp;</div>
+        <div>{{comment.comment_in}}</div>
+      </div>
+    </div>
+    <!--<div class="comment">
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
           <img class="big-head" src="../img/picture1.webp">
@@ -471,8 +482,8 @@
           回复
         </div>
       </div>
-    </div>
-    <div class="comment">
+    </div>-->
+    <!--<div class="comment">
       <el-divider></el-divider>
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
@@ -522,8 +533,8 @@
           回复
         </div>
       </div>
-    </div>
-    <div class="comment">
+    </div>-->
+    <!--<div class="comment">
       <el-divider></el-divider>
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
@@ -573,8 +584,8 @@
           回复
         </div>
       </div>
-    </div>
-    <div class="comment">
+    </div>-->
+    <!--<div class="comment">
       <el-divider></el-divider>
       <div class="lon">
         <a href="https://element.eleme.cn/#/zh-CN/component/button">
@@ -624,13 +635,15 @@
           回复
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
   </body>
   </html>
 </template>
 
 <script>
+import qs from "qs";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Homepage",
@@ -641,15 +654,31 @@ export default {
       title: this.$store.state.videoname,
       needFixed: false,
       textarea2: '',
-      likes: '1234',
-      iflike: '',
-      comments: '12',
-      collections: '',
-      ifcollection: '',
-      concerns: '',
-      ifconcerns: '',
+      likes: 12,
+      iflike: 0,
+      collections: 20,
+      ifcollection: 0,
+      concerns: 100,
+      ifconcerns: 0,
       videotime: '',
+      comment_list: [],
+      comment_num: 5,
+      commentid: 0
     }
+  },
+  created() {
+      var i = 0;
+      for(i=0;i<this.comment_num-1;i++){
+          this.comment_list.push(
+              {
+                comment_head_url: '',
+                comment_name:'高进',
+                comment_in: '啦啦啦啦啦',
+                comment_id: this.commentid
+              }
+          );
+          this.commentid++;
+      }
   },
   methods:{
     open() {
@@ -674,10 +703,62 @@ export default {
     },
     like() {
       this.iflike=1;
+      this.$store.state.videolike++;
+      
     },
     likecancall() {
       this.iflike=0;
+      this.$store.state.videolike--;
     },
+    collect() {
+      this.ifcollection=1;
+      this.$store.state.videofavourite++;
+    },
+    collectcall() {
+      this.ifcollection=0;
+      this.$store.state.videofavourite--;
+    },
+    concern() {
+      this.ifconcerns=1;
+      this.concerns++;
+    },
+    concerncancall() {
+      this.ifconcerns=0;
+      this.concerns--;
+    },
+    submit_comment(){ //发布评论的函数，尝试阶段
+      alert(this.textarea2);
+      this.$axios(
+          {
+            method: 'post',
+            url: '/comment/postComment/'+this.$store.state.videoid,//url待定
+            data: qs.stringify(
+                {
+                  comment: this.textarea2,
+                  videoid: this.$store.state.videoid
+                }
+            )
+          }
+      )
+          .then((res) => {
+            console.log(res)
+            switch (res.data.status_code) {
+              case 1:
+                console.log("发送成功");
+                this.$router.push({
+                  path: './'
+                })
+                break;
+              case 2:
+                alert('发送失败')
+                break;
+            }
+          })
+          .catch((error) => {
+            console.log("请求失败");
+            console.log(error);
+          });
+    }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
@@ -703,7 +784,7 @@ export default {
   width: 800px;
 }
 .comment{
-  height: 450px;
+  height: 150px;
   width: 800px;
   text-align: left;
   margin: 0 auto;
