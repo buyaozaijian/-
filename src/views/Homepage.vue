@@ -1451,6 +1451,12 @@ export default {
       this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
       this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
       this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
+      //this.$store.state.videoname = 'cnm';
+      //this.$store.state.videoid = 1;
+      //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
     },
 
     click_login(){

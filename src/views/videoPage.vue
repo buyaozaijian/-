@@ -354,7 +354,7 @@
   <div style="width: 800px">
     <div>
       <video controls class="video">
-        <source  :src = "this.$store.state.videourl" id = "视频内容"> 视频播放内容的位置
+        <source  :src = "this.url"> 视频播放内容的位置
       </video>
     </div>
     <div class="operation">
@@ -415,227 +415,11 @@
         <el-divider></el-divider>
         <img class="small-head" :src = "comment.comment_head_url">
         <div style="display: inline-block; color:black"><b>{{comment.comment_name}}</b></div>
+        <div>评论时间:{{comment.comment_time}}</div>
         <div>&nbsp;</div>
         <div>{{comment.comment_in}}</div>
       </div>
     </div>
-    <!--<div class="comment">
-      <div class="lon">
-        <a href="https://element.eleme.cn/#/zh-CN/component/button">
-          <img class="big-head" src="../img/picture1.webp">
-        </a>
-      </div>
-      <div class="con">
-        <div class="big-name"><a href="https://element.eleme.cn/#/zh-CN/component/button"><b>胡巨</b></a></div>
-        <div class="comment-content" style="font-size: 20px; position: relative;">
-          深林之晦三眠茧，绕指之柔百炼钢。
-          玉蝶穿花零碎锦，一天飞絮斗轻狂。
-        </div>
-        <div class="comment-date" style="color:#9195a3; position: relative; top: 15px">
-          2022-04-12 15:00
-          &nbsp;&nbsp;
-          <button class="fa fa-thumbs-o-up" style="margin: 0; border: 0; outline: none; background: white; color: gray"></button>
-          1557
-          &nbsp;&nbsp;
-          回复
-        </div>
-        <div class="comment-reply" style="height: 130px">
-          <div style="height: 50px">
-            <a href="https://element.eleme.cn/#/zh-CN/component/button">
-              <img class="small-head" src="../img/picture2.webp">
-            </a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="https://element.eleme.cn/#/zh-CN/component/button" style="position: relative; top: -15px;">
-              <b>JGG</b>
-            </a>
-          </div>
-          <div style="font-size: 20px; height: 50px;">
-            笑望沧溟千军破，策定乾坤算因果。无觉无惧轻生死，非神非鬼似封魔。
-          </div>
-          <div class="comment-date" style="color:#9195a3">
-            2022-04-12 15:00
-            &nbsp;&nbsp;
-            <button class="fa fa-thumbs-o-up" style="margin: 0; border: 0; outline: none; background: white; color: gray"></button>
-            1557
-            &nbsp;&nbsp;
-            回复
-          </div>
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture3.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button" style="position: relative; top: -15px;">
-            <b>某不愿意透露姓名的的吟游诗人</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          欸嘿
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00
-          &nbsp;&nbsp;
-          <button class="fa fa-thumbs-o-up" style="margin: 0; border: 0; outline: none; background: white; color: gray"></button>
-          1557
-          &nbsp;&nbsp;
-          回复
-        </div>
-      </div>
-    </div>-->
-    <!--<div class="comment">
-      <el-divider></el-divider>
-      <div class="lon">
-        <a href="https://element.eleme.cn/#/zh-CN/component/button">
-          <img class="big-head" src="../img/picture1.webp">
-        </a>
-      </div>
-      <div class="con">
-        <div class="big-name"><a href="https://element.eleme.cn/#/zh-CN/component/button"><b>胡巨</b></a></div>
-        <div class="comment-content" style="font-size: 20px;">
-          深林之晦三眠茧，绕指之柔百炼钢。
-          玉蝶穿花零碎锦，一天飞絮斗轻狂。
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture2.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <b>JGG</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          笑望沧溟千军破，策定乾坤算因果。无觉无惧轻生死，非神非鬼似封魔。
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture3.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <b>某不愿意透露姓名的的吟游诗人</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          欸嘿
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-      </div>
-    </div>-->
-    <!--<div class="comment">
-      <el-divider></el-divider>
-      <div class="lon">
-        <a href="https://element.eleme.cn/#/zh-CN/component/button">
-          <img class="big-head" src="../img/picture1.webp">
-        </a>
-      </div>
-      <div class="con">
-        <div class="big-name"><a href="https://element.eleme.cn/#/zh-CN/component/button"><b>胡巨</b></a></div>
-        <div class="comment-content" style="font-size: 20px;">
-          深林之晦三眠茧，绕指之柔百炼钢。
-          玉蝶穿花零碎锦，一天飞絮斗轻狂。
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture2.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <b>JGG</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          笑望沧溟千军破，策定乾坤算因果。无觉无惧轻生死，非神非鬼似封魔。
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture3.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <b>某不愿意透露姓名的的吟游诗人</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          欸嘿
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-      </div>
-    </div>-->
-    <!--<div class="comment">
-      <el-divider></el-divider>
-      <div class="lon">
-        <a href="https://element.eleme.cn/#/zh-CN/component/button">
-          <img class="big-head" src="../img/picture1.webp">
-        </a>
-      </div>
-      <div class="con">
-        <div class="big-name"><a href="https://element.eleme.cn/#/zh-CN/component/button"><b>胡巨</b></a></div>
-        <div class="comment-content" style="font-size: 20px;">
-          深林之晦三眠茧，绕指之柔百炼钢。
-          玉蝶穿花零碎锦，一天飞絮斗轻狂。
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture2.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <b>JGG</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          笑望沧溟千军破，策定乾坤算因果。无觉无惧轻生死，非神非鬼似封魔。
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-        <div class="comment-reply">
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <img class="small-head" src="../img/picture3.webp">
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="https://element.eleme.cn/#/zh-CN/component/button">
-            <b>某不愿意透露姓名的的吟游诗人</b>
-          </a>
-        </div>
-        <div style="font-size: 20px; height: 50px">
-          欸嘿
-        </div>
-        <div class="comment-date" style="color:#9195a3">
-          2022-04-12 15:00 1557
-          回复
-        </div>
-      </div>
-    </div>-->
   </div>
   </body>
   </html>
@@ -651,7 +435,8 @@ export default {
     return {
       username: '',
       password: '',
-      title: this.$store.state.videoname,
+      //title: this.$store.state.videoname,
+      title: JSON.parse(sessionStorage.getItem('videoname')),
       needFixed: false,
       textarea2: '',
       likes: 12,
@@ -662,29 +447,50 @@ export default {
       ifconcerns: 0,
       videotime: '',
       comment_list: [],
-      comment_num: 5,
-      commentid: 0
+      comment_num: 1,
+      commentid: 0,
+      url: JSON.parse(sessionStorage.getItem('videourl')),
+      vid: JSON.parse(sessionStorage.getItem('videoid'))
     }
   },
   created() {
+    //加载时接收评论，处于尝试阶段
       var i = 0;
-      for(i=0;i<this.comment_num-1;i++){
+      this.$axios.get('comment/commentDetail/'+ this.vid).then(
+          res => {
+            this.comment_num = res.data.commentNumber;
+            alert(this.comment_num);
+            for(i=0;i<this.comment_num;i++){
+              this.comment_list.push(
+                  {
+                    comment_head_url: res.data.commentList[i].CommentUserPhotoUrl,
+                    comment_name: res.data.commentList[i].CommentUserName,
+                    comment_in: res.data.commentList[i].CommentContent,
+                    comment_id: res.data.commentList[i].id,
+                    comment_time: res.data.commentList[i].CommentDate
+                  }
+              )
+            }
+          },
+      );
+      /*for(i=0;i<this.comment_num;i++){
           this.comment_list.push(
               {
                 comment_head_url: '',
                 comment_name:'高进',
                 comment_in: '啦啦啦啦啦',
-                comment_id: this.commentid
-              }
-          );
+                comment_id: this.commentid,
+                comment_time: '2022-06-05T11:50:11.757535'
+             }
+         );
           this.commentid++;
-      }
+      }*/
   },
   methods:{
     open() {
       this.$notify({
         title: '站内通知',
-        message: this.$store.state.videourl ,
+        message: this.vid ,
         offset: 100
       });
     },
@@ -768,16 +574,25 @@ export default {
       this.$axios(
           {
             method: 'post',
-            url: '/comment/postComment/'+this.$store.state.videoid,//url待定
+            url: '/comment/postComment/'+this.vid,//url待定
             data: qs.stringify(
                 {
-                  comment: this.textarea2,
-                  videoid: this.$store.state.videoid
+                  CommentContent: this.textarea2,
+                  //videoid: this.$store.state.videoid
                 }
             )
           }
       )
           .then((res) => {
+            this.comment_list.push(
+                {
+                  comment_head_url: res.data.userList.UserProfilePhotoUrl,
+                  comment_name: res.data.userList.UserName,
+                  comment_in: res.data.commentList.CommentContent,
+                  comment_id: res.data.commentList.id,
+                  comment_time: res.data.commentList.CommentDate
+                }
+            )
             console.log(res)
             switch (res.data.status_code) {
               case 1:
@@ -795,6 +610,21 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
+      /*this.$axios.get('comment/commentDetail/'+this.vid).then(
+          res => {
+            this.comment_num = res.data.commentNumber;
+            alert(this.comment_num);
+              this.comment_list.push(
+                  {
+                    comment_head_url: res.data.commentList[this.comment_num-1].CommentUserPhotoUrl,
+                    comment_name: res.data.commentList[this.comment_num-1].CommentUserName,
+                    comment_in: res.data.commentList[this.comment_num-1].CommentContent,
+                    comment_id: res.data.commentList[this.comment_num-1].id,
+                    comment_time: res.data.commentList[this.comment_num-1].CommentDate
+                  }
+              )
+          },
+      );*/
     }
   },
   mounted() {
