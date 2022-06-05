@@ -360,19 +360,22 @@
     <div class="operation">
       <el-divider></el-divider>
       <div style="float: left; width: 100px">
-        <button class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-if="this.iflike===0" @click="like" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
-        1234
+        {{this.$store.state.videolike}}
       </div>
       <div style="float: left; width: 100px">
-        <button class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-else  @click="collectcall" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
-        123
+        {{this.$store.state.videofavourite}}
       </div>
       <div style="float: right; width: 100px">
-        <el-button type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
+        <el-button v-if="ifconcerns===0" @click="concern" type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
+        <el-button v-else @click="concerncancall" type="danger" style="position: relative; background: gray; position: relative; top: -5px">已关注</el-button>
       </div>
     </div>
     <div class="introduction">
@@ -387,7 +390,7 @@
       <el-divider></el-divider>
       评论
       <span style="font-size: 15px">
-        12
+        {{comments}}
       </span>
     </div>
     <div class="comment-tijiao">
@@ -436,6 +439,13 @@ export default {
       title: JSON.parse(sessionStorage.getItem('videoname')),
       needFixed: false,
       textarea2: '',
+      likes: 12,
+      iflike: 0,
+      collections: 20,
+      ifcollection: 0,
+      concerns: 100,
+      ifconcerns: 0,
+      videotime: '',
       comment_list: [],
       comment_num: 1,
       commentid: 0,
@@ -496,6 +506,86 @@ export default {
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll)
+    },
+    like() {
+      this.iflike=1;
+      this.$store.state.videolike++;
+      this.$axios({
+        method: 'post',
+        url: '',
+        //data: this.iflike,
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.iflike
+        })
+      })
+    },
+    likecancall() {
+      this.iflike=0;
+      this.$store.state.videolike--;
+      this.$axios({
+        method: 'post',
+        url: '',
+        //data: this.iflike,
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.iflike
+        })
+      })
+    },
+    collect() {
+      this.ifcollection=1;
+      this.$store.state.videofavourite++;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.ifcollection
+        })
+      })
+    },
+    collectcall() {
+      this.ifcollection=0;
+      this.$store.state.videofavourite--;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoid: this.$store.state.videoid,
+          userid: this.$store.state.userid,
+          operation: this.ifcollection
+        })
+      })
+    },
+    concern() {
+      this.ifconcerns=1;
+      this.concerns++;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoauthor: this.$store.state.videoauthor,
+          userid: this.$store.state.userid,
+          operation: this.ifconcerns
+        })
+      })
+    },
+    concerncancall() {
+      this.ifconcerns=0;
+      this.concerns--;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoauthor: this.$store.state.videoauthor,
+          userid: this.$store.state.userid,
+          operation: this.ifconcerns
+        })
+      })
     },
     submit_comment(){ //发布评论的函数，尝试阶段
       alert(this.textarea2);
