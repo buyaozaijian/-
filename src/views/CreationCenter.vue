@@ -4,7 +4,8 @@
   <body>
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -12,55 +13,45 @@
         text-color="#fff"
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
-        <a href="https://www.bilibili.com">
+        <router-link :to="'/User_center'">
           <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
-        </a>
+        </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
           {{this.$store.state.username}}
         </a>
       </div>
-      <div
-          style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'UserPage'">
-          <el-button type="primary"
-                     style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
-            <i class="el-icon-upload el-icon--right">
-              上传&ensp;
+      <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
+        <router-link :to="'CreationCenter'">
+          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <i class="el-icon-upload el-icon--right" style="margin: 0">
+              创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1200px; top: 25px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
             style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
-          &ensp;站内通知
+          站内通知
         </el-button>
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
         <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px"><a>
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color:gray"></i>
-          <span style="color: gray">
-                  个人中心
-                </span>
-        </router-link>
-      </a></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/saving_box" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="4" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/friend_list" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
@@ -226,84 +217,201 @@
       </div>
     </div>
   </header>
-  <div class="user_main">
-    <div style="position: absolute;left:50px;top:50px">
-      <a>
-        <img class="big-head" style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.$store.state.userhead">
-      </a>
-    </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.$store.state.username}}</div>
-    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
-    <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
-    <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="评论数" style="position:absolute;left:60px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
-    <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
-    <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
-    <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下
-    </div>
-    <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"
-               background-color="whitesmoke"
-               text-color="black"
-               active-text-color="black">
-        <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
-        <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
-      </el-menu>
-    </div>
-  </div>
-  <div
-      style="display: inline-block; background: whitesmoke;position: relative;top: 30px;left: 190px;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
-    <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
-      <el-form-item label="视频标题">
-        <el-input v-model="willAddQuestion.videoTitle"></el-input>
-      </el-form-item>
-      <el-form-item label="视频简介">
-        <el-input type="textarea" v-model="willAddQuestion.videoIntroduction"></el-input>
-      </el-form-item>
-      <!--<el-form-item label="视频标签">
-        <el-input type="textarea" v-model="willAddQuestion.videoTags"></el-input>
-      </el-form-item>-->
-      <el-form-item label="封面">
-        <el-upload
-            list-type="picture-card"
-            :action=uploadImgUrl
-            multiple
-            :http-request="upLoadImage"
-            :before-upload="beforeImageUpload"
-            :file-list="willAddQuestion.imgList"
-            :limit="6">
-          <i class="el-icon-plus"></i>
-        </el-upload>
-        <el-dialog :visible.sync="dialogVisible">
-          <img width="100%" :src="dialogImageUrl" alt="">
-        </el-dialog>
-        <div style="font-size: 10px">图片只能为jpg/png格式</div>
-      </el-form-item>
-      <el-form-item label="视频">
-        <el-upload
-            class="upload-demo"
-            :action=uploadVideoUrl
-            :http-request="upLoadVideo"
-            :before-upload="beforeVideoUpload"
-            :file-list="willAddQuestion.videoList"
-            :limit="1">
-          <i class="el-icon-upload"></i>
-          <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-          <div class="el-upload__tip" slot="tip">只能上传视频文件，且大小不超过10mb</div>
-        </el-upload>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
-        <el-button style="width: 80px;height: 40px" @click="cancel_pre">取消</el-button>
-      </el-form-item>
-    </el-form>
+  <div style="margin-top: 25px; ">
+    <el-tabs :tab-position="tabPosition" type="border-card" style="height: 900px">
+      <el-tab-pane label="视 频 管 理">
+        <div align="center" style="margin-left: 100px;">
+          <ul style="list-style: none;">
+            <div style="display: block;height: 1px;width: 100%;width: 1000px">
+              <el-divider ></el-divider>
+            </div>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian4.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian1.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian2.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian3.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </el-tab-pane>
+      <el-tab-pane label="视 频 上 传">
+      <div
+          style="display: inline-block; background: whitesmoke;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
+        <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
+          <el-form-item label="视频标题">
+            <el-input v-model="willAddQuestion.videoTitle"></el-input>
+          </el-form-item>
+          <el-form-item label="视频简介">
+            <el-input type="textarea" v-model="willAddQuestion.videoIntroduction"></el-input>
+          </el-form-item>
+          <el-form-item label="封面">
+            <el-upload
+                list-type="picture-card"
+                :action=uploadImgUrl
+                multiple
+                :http-request="upLoadImage"
+                :before-upload="beforeImageUpload"
+                :file-list="willAddQuestion.imgList"
+                :limit="6">
+              <i class="el-icon-plus"></i>
+            </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt="">
+            </el-dialog>
+            <div style="font-size: 10px">图片只能为jpg/png格式</div>
+          </el-form-item>
+          <el-form-item label="视频">
+            <el-upload
+                class="upload-demo"
+                :action=uploadVideoUrl
+                :http-request="upLoadVideo"
+                :before-upload="beforeVideoUpload"
+                :file-list="willAddQuestion.videoList"
+                :limit="1">
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+              <div class="el-upload__tip" slot="tip">只能上传视频文件，且大小不超过10mb</div>
+            </el-upload>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
+            <el-button style="width: 80px;height: 40px" @click="cancel_pre">取消</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+    </el-tab-pane>
+      <el-tab-pane label="视 频 审 核">
+        <div align="center" style="margin-left: 100px;">
+          <ul style="list-style: none;">
+            <div style="display: block;height: 1px;width: 100%;width: 1000px">
+              <el-divider ></el-divider>
+            </div>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian4.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian1.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian2.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+            <li style="height: 140px;margin-top: 15px">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian3.webp">
+              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <span style="margin-right: 20px">
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                </span>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
   </div>
   </body>
   </html>
@@ -318,6 +426,7 @@ export default {
   data() {
     return {
 
+      tabPosition: 'left',
       dialogImageUrl: '',
       dataList: '',
       dialogVisible: false,
@@ -334,7 +443,7 @@ export default {
       activeIndex: '1',
       dialogTableVisible: false,
       dialogFormVisible: false,
-      needFixed: false,
+      needFixed: true,
 
       video: new FormData(),
       uploadImgUrl: '/video/uploadphoto',
@@ -381,16 +490,6 @@ export default {
         message: '这是一条不会自动关闭的消息',
         duration: 0
       });
-    },
-    handleScroll() {
-      let self = this
-      let scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
-      console.log(scrollTop)
-      if (scrollTop > 300) {
-        self.needFixed = true;
-      } else {
-        self.needFixed = false;
-      }
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll)

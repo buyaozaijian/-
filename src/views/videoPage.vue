@@ -23,19 +23,19 @@
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'Up_video1'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
-            <i class="el-icon-upload el-icon--right">
-              上传&ensp;
+        <router-link :to="'CreationCenter'">
+          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <i class="el-icon-upload el-icon--right" style="margin: 0">
+              创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block;">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
           &ensp;站内通知
         </el-button>
       </div>
@@ -47,21 +47,13 @@
                 </span>
       </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color:gray"></i>
-          <span style="color: gray">
-                  个人中心
-                </span>
-        </router-link>
-      </el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Saving_box'">
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
       </router-link></el-menu-item>
-      <el-menu-item index="4" style="width: 100px; font-size: 15px">
+      <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Friend_list'">
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
