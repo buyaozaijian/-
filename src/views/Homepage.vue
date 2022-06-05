@@ -1324,7 +1324,9 @@ export default {
         videoId: '',
         videoUrl: '',
         videoCoverUrl: '',
-        videoName: '视频连接中'
+        videoName: '视频连接中',
+        videolike: '',
+        videofavourite: '',
       });
     }
     this.$axios.get('/index/main').then(
@@ -1335,7 +1337,10 @@ export default {
               this.videoList[i].videoId= res.data.videoList[i].id,
               this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
               this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
-              this.videoList[i].videoName= res.data.videoList[i].VideoTitle
+              this.videoList[i].videoName= res.data.videoList[i].VideoTitle,
+              this.videoList[i].videolike= res.data.videoList[i].videolike,
+              this.videoList[i].videofavourite= res.data.videoList[i].videofavourite
+
           }
         },
     );
@@ -1347,7 +1352,9 @@ export default {
             this.videoList[i].videoId= res.data.videoList[i-6].id,
             this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
             this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
-            this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle
+            this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-6].videolike,
+                this.videoList[i].videofavourite= res.data.videoList[i-6].videofavourite
           }
         },
     );
@@ -1359,7 +1366,9 @@ export default {
                 this.videoList[i].videoId= res.data.videoList[i-14].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle
+                this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-14].videolike,
+                this.videoList[i].videofavourite= res.data.videoList[i-14].videofavourite
           }
         },
     );
@@ -1371,7 +1380,9 @@ export default {
                 this.videoList[i].videoId= res.data.videoList[i-22].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle
+                this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-22].videolike,
+                this.videoList[i].videofavourite= res.data.videoList[i-22].videofavourite
           }
         },
     );
@@ -1383,7 +1394,9 @@ export default {
                 this.videoList[i].videoId= res.data.videoList[i-30].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle
+                this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-30].videolike,
+                this.videoList[i].videofavourite= res.data.videoList[i-30].videofavourite
           }
         },
     );
@@ -1395,7 +1408,9 @@ export default {
                 this.videoList[i].videoId= res.data.videoList[i-38].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle
+                this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-38].videolike,
+                this.videoList[i].videofavourite= res.data.videoList[i-38].videofavourite
           }
         },
     );
@@ -1407,7 +1422,9 @@ export default {
                 this.videoList[i].videoId= res.data.videoList[i-46].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle
+                this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-46].videolike,
+                this.videoList[i].videofavourite= res.data.videoList[i-46].videofavourite
           }
         },
     );
@@ -1451,6 +1468,7 @@ export default {
       this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
       this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
       this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
+      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
       //this.$store.state.videoname = 'cnm';
       //this.$store.state.videoid = 1;
       //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';

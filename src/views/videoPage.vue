@@ -564,10 +564,28 @@ export default {
     concern() {
       this.ifconcerns=1;
       this.concerns++;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoauthor: this.$store.state.videoauthor,
+          userid: this.$store.state.userid,
+          operation: this.ifconcerns
+        })
+      })
     },
     concerncancall() {
       this.ifconcerns=0;
       this.concerns--;
+      this.$axios({
+        method: 'post',
+        url: '',
+        data: qs.stringify({
+          videoauthor: this.$store.state.videoauthor,
+          userid: this.$store.state.userid,
+          operation: this.ifconcerns
+        })
+      })
     },
     submit_comment(){ //发布评论的函数，尝试阶段
       alert(this.textarea2);
