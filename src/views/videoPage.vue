@@ -505,8 +505,8 @@ export default {
             url: '/comment/postComment/'+this.vid,//url待定
             data: qs.stringify(
                 {
-                  comment: this.textarea2,
-                  videoid: this.$store.state.videoid
+                  CommentContent: this.textarea2,
+                  //videoid: this.$store.state.videoid
                 }
             )
           }
@@ -514,8 +514,8 @@ export default {
           .then((res) => {
             this.comment_list.push(
                 {
-                  comment_head_url: res.data.commentList.CommentUserPhotoUrl,
-                  comment_name: res.data.commentList.CommentUserName,
+                  comment_head_url: res.data.userList.UserProfilePhotoUrl,
+                  comment_name: res.data.userList.UserName,
                   comment_in: res.data.commentList.CommentContent,
                   comment_id: res.data.commentList.id,
                   comment_time: res.data.commentList.CommentDate

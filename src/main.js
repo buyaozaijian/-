@@ -23,6 +23,7 @@ axios.interceptors.request.use(
         console.log(userInfo);
         if (userInfo) {
             config.headers.Authorization = userInfo.user.Authorization;
+            config.headers.username = userInfo.user.username;
         }
         console.log(config.headers);
         return config;
