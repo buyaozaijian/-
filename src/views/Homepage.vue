@@ -164,7 +164,7 @@
           </el-popover>
         </div>
         <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
               </span></router-link>

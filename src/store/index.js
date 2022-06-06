@@ -22,7 +22,7 @@ export default new Vuex.Store({
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
   ],
     //islogin: JSON.parse(sessionStorage.getItem('IFLOGIN')),
-    islogin:JSON.parse(sessionStorage.getItem('IFLOGIN')),
+    islogin:JSON.parse(sessionStorage.getItem('ISLOGIN')),
     //islogin:true,
     username: '' ,
     userid: '' ,
