@@ -233,7 +233,7 @@
       <div style="display: block;height: 1px;width: 100%;width: 900px">
       </div>
     </div>
-    <div style="position: relative;left: -850px;top: 100px">
+    <!--<div style="position: relative;left: -850px;top: 100px">
       <ul style="list-style: none">
         <div style="display: block;height: 1px;width: 100%;width: 900px">
           <el-divider ></el-divider>
@@ -314,6 +314,21 @@
           </div>
         </li>
       </ul>
+    </div>-->
+    <div v-for="friend in friendlist" :key="friend.friend_id">
+      <div>
+        <el-divider></el-divider>
+        <li style="height: 75px;margin-top: 15px">
+          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url">
+          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
+            <div style="font-size: 10px;color: gray">
+              {{friend.friend_sign}}
+            </div>
+            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
+          </div>
+        </li>
+      </div>
     </div>
     <el-pagination
         :page-size="20"
@@ -367,10 +382,30 @@ export default {
         desc: '',
         code: ''
       },
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      friendnum: 1,
+      friendlist: [],
+      userid: this.$store.state.userid,
     }
   },
-
+  created() {
+    var i=0;
+    this.$axios.get().then(
+        res =>{
+          this.friendnum=res.data.friendnum;
+          alert(this.friendnum);
+          for(i=0;i<this.friendnum;i++){
+            this.friendlist.push({
+              friend_head_url: res.data.friendlist[i].friendheadurl,
+              friend_name: res.data.friendlist[i].friendname,
+              friend_sign: res.data.friendlist[i].friendsign,
+              friend_id: res.data.friendlist[i].friendid,
+            }
+            )
+          }
+        },
+    );
+  },
   methods:{
     handleClick() {
       alert('button click');
