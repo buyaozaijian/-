@@ -388,7 +388,7 @@
     <div class="comment-tijiao">
       <span style="margin-right: 20px; float: left" >
         <a href="https://www.bilibili.com">
-          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userHead" style="width: 40px;height: 40px;border-radius: 50%">
         </a>
       </span>
       <span>
