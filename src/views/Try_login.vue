@@ -43,7 +43,6 @@ export default {
   methods: {
     login: function () {
       // 检查表单是否有填写内容
-      this.$router.push('/');
       //sessionStorage.setItem('ISLOGIN', JSON.stringify(true));
       //window.location.reload();
       if (this.form.username === '' || this.form.password === '') {
@@ -60,14 +59,14 @@ export default {
             switch (res.data.errno) {
               case 0:
                 this.$message.success("登录成功！");
+                this.$router.push('/');
                 sessionStorage.setItem('ISLOGIN', JSON.stringify(true));
-                window.location.reload();
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                   //console.log(res.data.data);
                 this.$store.dispatch('saveUserInfo', {
                     user: res.data.data
                 });
-
+                window.location.reload();
                 /* 从 localStorage 中读取 preRoute 键对应的值 */
                 // eslint-disable-next-line no-case-declarations
                 //const history_pth = localStorage.getItem('preRoute');
@@ -78,8 +77,7 @@ export default {
                   } else {
                     //this.$router.push({ path: history_pth });
                     this.$router.push('/');
-                  }
-                }, 1000);*/
+                  } */
                 break;
               case 100004:
                 this.$message.error("用户名不存在！");

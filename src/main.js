@@ -25,7 +25,6 @@ axios.interceptors.request.use(
             config.headers.Authorization = userInfo.user.Authorization;
             config.headers.username = userInfo.user.username;
         }
-        console.log(config.headers);
         return config;
     },
     error => {
