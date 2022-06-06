@@ -23,8 +23,8 @@
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'CreationCenter'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+        <router-link  :to="'CreationCenter'">
+          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
@@ -1284,6 +1284,7 @@ export default {
         }
       ],
       videoList: [],
+      isLogin: false
     }
   },
   created() {
