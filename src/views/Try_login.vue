@@ -57,7 +57,7 @@ export default {
             switch (res.data.errno) {
               case 0:
                 this.$message.success("登录成功！");
-                this.$store.state.islogin = true;//设置登录后值为true
+                sessionStorage.setItem('ISLOGIN', JSON.stringify(true));
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                   //console.log(res.data.data);
                 this.$store.dispatch('saveUserInfo', {

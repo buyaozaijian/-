@@ -143,13 +143,6 @@
             </div>
           </div>
         </div>
-        <div v-if="this.$store.state.islogin==true" style="position: absolute; left: 930px; top: -3px;z-index: 9999; display: inline-block;">
-          <button  @click="logout" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-             <span style="color: red">
-                退出登录
-              </span>
-          </button>
-        </div>
         <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
@@ -160,6 +153,9 @@
             <div>
               <div>
                 id:{{this.$store.state.userid}}
+              </div>
+              <div>
+                <el-button type="danger" @click="logout">退出登录</el-button>
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
@@ -1430,7 +1426,8 @@ export default {
 
   methods:{
     logout(){
-      this.$store.state.islogin = false;
+      alert('退出登录！');
+      sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       this.$store.dispatch('clearUserInfo' );
     },
     open() {
