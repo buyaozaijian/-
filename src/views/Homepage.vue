@@ -1,6 +1,8 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <head>
+  </head>
   <body style="max-width:1560px;margin: 0 auto;">
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
@@ -1426,6 +1428,7 @@ export default {
 
   methods:{
     logout(){
+      window.location.reload();
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       this.$store.dispatch('clearUserInfo' );
