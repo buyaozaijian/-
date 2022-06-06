@@ -1296,7 +1296,6 @@ export default {
         }
       ],
       videoList: [],
-      isLogin: false
     }
   },
   created() {
