@@ -1428,9 +1428,9 @@ export default {
 
   methods:{
     logout(){
-      window.location.reload();
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
+      window.location.reload();
       this.$store.dispatch('clearUserInfo' );
     },
     open() {
