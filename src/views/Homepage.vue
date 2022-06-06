@@ -1238,6 +1238,7 @@
 
 <script>
 import qs from "qs";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Homepage",
