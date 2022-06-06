@@ -161,7 +161,7 @@
               left="">
             <div>
               <div>
-                id:{{this.$store.state.userid}}
+                id:{{this.userid}}
               </div>
               <div>
                 <el-button type="danger" @click="logout">退出登录</el-button>
@@ -1259,6 +1259,7 @@ export default {
     return {
       userhead:'',
       username:'',
+      userid: 0,
       Title:"视频连接中",
       password: '',
       dialogOfUpload: false,
@@ -1426,6 +1427,7 @@ export default {
         this.userhead = userInfo.user.UserProfilePhotoUrl;
         this.username = userInfo.user.username;
         this.isLogin = 1;
+        this.userid = userInfo.user.userid
       } else {
         this.isLogin = 0;
       }
