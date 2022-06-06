@@ -11,10 +11,32 @@
         background-color="whitesmoke"
         text-color="#fff"
         active-text-color="#ffd04b">
-      <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
-        <a href="https://www.bilibili.com">
-          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
-        </a>
+      <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
+        <el-popover
+            placement="top-start"
+            :title= this.username
+            width="300"
+            trigger="hover"
+            left="">
+          <div>
+            <div>
+              id:{{this.userid}}
+            </div>
+            <div>
+              <el-button type="danger" @click="logout">退出登录</el-button>
+            </div>
+          </div>
+          <router-link :to="'User_center'" slot="reference">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          </router-link>
+        </el-popover>
+      </div>
+      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+        <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+        </button>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
