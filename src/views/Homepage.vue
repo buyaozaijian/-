@@ -14,10 +14,17 @@
         background-color="whitesmoke"
         text-color="#fff"
         active-text-color="#ffd04b">
-      <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
+      <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'/User_center'">
           <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
+      </div>
+      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+        <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+        </button>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">

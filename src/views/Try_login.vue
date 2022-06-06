@@ -43,6 +43,9 @@ export default {
   methods: {
     login: function () {
       // 检查表单是否有填写内容
+      this.$router.push('/');
+      //sessionStorage.setItem('ISLOGIN', JSON.stringify(true));
+      //window.location.reload();
       if (this.form.username === '' || this.form.password === '') {
         this.$message.warning("请输入用户名和密码！");
         return;
@@ -58,6 +61,7 @@ export default {
               case 0:
                 this.$message.success("登录成功！");
                 sessionStorage.setItem('ISLOGIN', JSON.stringify(true));
+                window.location.reload();
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                   //console.log(res.data.data);
                 this.$store.dispatch('saveUserInfo', {
@@ -66,18 +70,16 @@ export default {
 
                 /* 从 localStorage 中读取 preRoute 键对应的值 */
                 // eslint-disable-next-line no-case-declarations
-                const history_pth = localStorage.getItem('preRoute');
+                //const history_pth = localStorage.getItem('preRoute');
                 /* 若保存的路由为空或为注册路由，则跳转首页；否则跳转前路由（setTimeout表示1000ms后执行） */
-                setTimeout(() => {
+                /*setTimeout(() => {
                   if (history_pth == null || history_pth === '/register') {
-                    window.location.reload();
                     this.$router.push('/');
                   } else {
-                    window.location.reload();
                     //this.$router.push({ path: history_pth });
                     this.$router.push('/');
                   }
-                }, 1000);
+                }, 1000);*/
                 break;
               case 100004:
                 this.$message.error("用户名不存在！");
