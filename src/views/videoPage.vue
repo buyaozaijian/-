@@ -136,8 +136,8 @@
          {{this.video_userintroduction}}
       </div>
       <div style="margin-top: 10px;float: left;width: 230px">
-        <el-button v-if="this.videoAuthorStatus==0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
-        <el-button v-if="this.videoAuthorStatus==1" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus===1" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
         <span style="float: right;">
                   <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
@@ -513,8 +513,16 @@ export default {
   methods:{
     follow(){
       if(this.isLogin===1) {
-        alert('关注该用户');
-        this.videoAuthorStatus = 1;
+        if(this.videoAuthorStatus === 0) {
+          alert('关注该用户');
+          this.videoAuthorStatus = 1;
+          this.videoAuthorFollow += 1;
+        }
+        else{
+          alert('取消关注');
+          this.videoAuthorFollow -= 1;
+          this.videoAuthorStatus = 0;
+        }
         this.$axios.get('user/follow/' + this.video_userid).then(
         );
       }
