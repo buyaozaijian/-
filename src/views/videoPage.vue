@@ -112,26 +112,26 @@
     <span style="margin-right: 20px;">
       <el-popover
           placement="top-start"
-          :title="this.$store.state.username"
+          :title="this.video_username"
           width="300"
           trigger="hover"
           left="">
         <div>
           <div>
-            id:{{this.$store.state.userid}}
+            id:{{this.video_userid}}
           </div>
         </div>
         <router-link :to="'User_center'" slot="reference">
-          <img :src="this.$store.state.userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
+          <img :src="this.video_userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
       </el-popover>
     </span>
     <div style="display: inline-block">
       <div style="text-align: left;color: #fb7299;width: 250px">
-        {{this.$store.state.username}}
+        {{this.video_username}}
       </div>
       <div style="text-align: left;font-size: 13px;width: 250px">
-        一旦接受了自己的软弱，那我就是无敌的
+         {{this.video_userintroduction}}
       </div>
       <div style="margin-top: 10px;float: left;width: 230px">
         <el-button style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：10.7万</el-button>
@@ -396,7 +396,7 @@
     <div class="comment-tijiao">
       <span style="margin-right: 20px; float: left" >
         <a href="https://www.bilibili.com">
-          <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </a>
       </span>
       <span>
@@ -447,10 +447,16 @@ export default {
       ifconcerns: 0,
       videotime: '',
       comment_list: [],
+      video_listnum: 0,
+      video_list: [],
       comment_num: 1,
       commentid: 0,
       url: JSON.parse(sessionStorage.getItem('videourl')),
-      vid: JSON.parse(sessionStorage.getItem('videoid'))
+      vid: JSON.parse(sessionStorage.getItem('videoid')),
+      video_username: '',
+      video_userid:'',
+      video_userhead:'',
+      video_userintroduction:''
     }
   },
   created() {
@@ -473,18 +479,14 @@ export default {
             }
           },
       );
-      /*for(i=0;i<this.comment_num;i++){
-          this.comment_list.push(
-              {
-                comment_head_url: '',
-                comment_name:'高进',
-                comment_in: '啦啦啦啦啦',
-                comment_id: this.commentid,
-                comment_time: '2022-06-05T11:50:11.757535'
-             }
-         );
-          this.commentid++;
-      }*/
+      this.$axios.get('user/'+this.$store.state.videoauthor).then(
+          res => {
+               this.video_username = res.data.user.UserName;
+               this.video_userid = res.data.user.id;
+               this.video_userhead = res.data.user.UserProfilePhotoUrl;
+               this.video_userintroduction = res.data.user.UserIntroduction;
+          },
+      );
   },
   methods:{
     open() {
