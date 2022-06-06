@@ -145,7 +145,7 @@
             </div>
           </div>
         </div>
-        <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
               :title= this.username
@@ -980,7 +980,7 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[38].videoCoverUrl"
+              :src="this.videoList[40].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
@@ -1253,10 +1253,6 @@ export default {
       userhead:'',
       username:'',
       Title:"视频连接中",
-      //islogin: JSON.parse(sessionStorage.getItem('IFLOGIN')),
-      //username: JSON.parse(sessionStorage.getItem('IFLOGIN')),
-     // userid: JSON.parse(sessionStorage.getItem('USERID')),
-      //userhead: JSON.parse(sessionStorage.getItem('USERHEAD')),
       password: '',
       dialogOfUpload: false,
       fileList: [],
@@ -1422,8 +1418,10 @@ export default {
       if (userInfo) {
         this.userhead = userInfo.user.UserProfilePhotoUrl;
         this.username = userInfo.user.username;
+        this.isLogin = 1;
+      } else {
+        this.isLogin = 0;
       }
-      alert(userInfo.user.username)
   },
 
   methods:{

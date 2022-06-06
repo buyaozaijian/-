@@ -70,14 +70,13 @@ export default {
                 /* 若保存的路由为空或为注册路由，则跳转首页；否则跳转前路由（setTimeout表示1000ms后执行） */
                 setTimeout(() => {
                   if (history_pth == null || history_pth === '/register') {
-                    window.location.reload();
                     this.$router.push('/');
                   } else {
-                    window.location.reload();
                     //this.$router.push({ path: history_pth });
                     this.$router.push('/');
                   }
                 }, 1000);
+                window.location.reload();
                 break;
               case 100004:
                 this.$message.error("用户名不存在！");

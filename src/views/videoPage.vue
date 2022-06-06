@@ -460,7 +460,6 @@ export default {
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
           res => {
             this.comment_num = res.data.commentNumber;
-            alert(this.comment_num);
             for(i=0;i<this.comment_num;i++){
               this.comment_list.push(
                   {
@@ -488,7 +487,6 @@ export default {
           this.userHead = userInfo.user.UserProfilePhotoUrl;
           this.username = userInfo.user.username;
       }
-      alert(userInfo.user.username)
   },
   methods:{
     open() {
@@ -592,7 +590,6 @@ export default {
       })
     },
     submit_comment(){ //发布评论的函数，尝试阶段
-      alert(this.textarea2);
       this.$axios(
           {
             method: 'post',
