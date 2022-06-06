@@ -367,7 +367,7 @@
         <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
-        {{this.$store.state.videolike}}
+        {{this.videoLikeNum}}
       </div>
       <div style="float: left; width: 100px">
         <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
@@ -468,6 +468,7 @@ export default {
       video_userintroduction:'',
       videoAuthorStatus: 0,
       videoAuthorFollow: 0,
+      videoLikeNum: 0,
     }
   },
   created() {
@@ -476,6 +477,8 @@ export default {
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
           res => {
             this.comment_num = res.data.commentNumber;
+            this.iflike = res.data.like;
+            this.videoLikeNum = res.data.likeNum;
             for(i=0;i<this.comment_num;i++){
               this.comment_list.push(
                   {
@@ -558,30 +561,18 @@ export default {
     },
     like() {
       this.iflike=1;
-      this.$store.state.videolike++;
+      this.videoLikeNum++;
       this.$axios({
-        method: 'post',
-        url: '',
-        //data: this.iflike,
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.iflike
-        })
+        method: 'get',
+        url: 'video/like/' + this.vid,
       })
     },
     likecancall() {
       this.iflike=0;
-      this.$store.state.videolike--;
+      this.videoLikeNum--;
       this.$axios({
-        method: 'post',
-        url: '',
-        //data: this.iflike,
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.iflike
-        })
+        method: 'get',
+        url: 'video/like/' + this.vid,
       })
     },
     collect() {
