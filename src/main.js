@@ -47,7 +47,7 @@ new Vue({
                         next();
                     }
                     else{
-                        this.$router.push({path:to.fullPath});
+                        //this.$router.push({path:to.fullPath});
                         next();
                     }
                 }
