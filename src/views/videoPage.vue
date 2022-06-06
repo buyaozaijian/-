@@ -82,6 +82,13 @@
                   关注
                 </span>
       </router-link></el-menu-item>
+      <el-menu-item index="3" style="width: 100px; font-size: 15px">
+        <router-link :to="'User_center'">
+          <i class="fa fa-user-o" style="color: gray"></i>
+          <span style="color: gray">
+                  个人中心
+                </span>
+        </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
         <!--<form action="" class="parent">
           <input type="text" class="search">

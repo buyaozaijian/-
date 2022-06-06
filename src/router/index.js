@@ -60,6 +60,11 @@ const routes = [
     component:() => import('../views/Try_login')
   },
   {
+    path: '/user_center',
+    name: 'user_center',
+    component: () => import('../views/User_center')
+  },
+  {
     path:'/CreationCenter',
     name:'CreationCenter',
     component:() => import('../views/CreationCenter'),

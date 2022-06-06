@@ -81,6 +81,12 @@
                   关注
                 </span>
       </a></el-menu-item>
+      <el-menu-item index="/user_center" style="width: 100px; font-size: 15px"><a>
+        <i class="fa fa-user-o" style="color: gray"></i>
+        <span style="color: gray">
+                  个人中心
+                </span>
+      </a></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
         <!--<form action="" class="parent">
           <input type="text" class="search">
@@ -140,6 +146,14 @@
               <i class="fa fa-heart" style="color: white"></i>
               <span style="color: white">
                   关注&nbsp;&nbsp;&nbsp;
+                </span>
+            </router-link>
+          </li>
+          <li style="display: inline">
+            <router-link :to="'/User_center'">
+              <i class="fa fa-user-o" style="color: white"></i>
+              <span style="color: white">
+                  个人中心
                 </span>
             </router-link>
           </li>
