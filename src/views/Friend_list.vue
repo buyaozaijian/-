@@ -134,6 +134,14 @@
                 </span>
             </router-link>
           </li>
+          <li style="display: inline">
+            <router-link :to="'User_center'">
+              <i class="fa fa-user-o" style="color: black"></i>
+              <span style="color: black">
+                  个人中心&nbsp;&nbsp;&nbsp;
+                </span>
+            </router-link>
+          </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
           <div class="nav-search-box">
