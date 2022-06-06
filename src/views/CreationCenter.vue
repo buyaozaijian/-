@@ -243,75 +243,30 @@
     <el-tabs :tab-position="tabPosition" type="border-card" style="height: 900px">
       <el-tab-pane label="视 频 管 理">
         <div align="center" style="margin-left: 100px;">
-          <ul style="list-style: none;">
-            <div style="display: block;height: 1px;width: 100%;width: 1000px">
-              <el-divider ></el-divider>
-            </div>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian4.webp">
-              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+          <ul style="list-style: none;" v-if="this.video_num != 0">
+            <li style="height: 140px;margin-top: 15px" v-for="video in videocontrolList" :key="video.videoid">
+              <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
+                <el-divider ></el-divider>
               </div>
-            </li>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian1.webp">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videoLike}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
-              </div>
-            </li>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian2.webp">
-              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
-              </div>
-            </li>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian3.webp">
-              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
                 <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
               </div>
             </li>
           </ul>
+          <div v-if="this.video_num == 0">
+            诶嘿，一个视频都没有噢
+          </div>
         </div>
       </el-tab-pane>
       <el-tab-pane label="视 频 上 传">
@@ -362,75 +317,31 @@
     </el-tab-pane>
       <el-tab-pane label="视 频 审 核">
         <div align="center" style="margin-left: 100px;">
-          <ul style="list-style: none;">
-            <div style="display: block;height: 1px;width: 100%;width: 1000px">
-              <el-divider ></el-divider>
-            </div>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian4.webp">
-              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+          <ul style="list-style: none;" v-if="this.audit_num != 0">
+            <li style="height: 140px;margin-top: 15px" v-for="video in videoauditList" :key="video.videoid">
+              <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
+                <el-divider ></el-divider>
               </div>
-            </li>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian1.webp">
+              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
+                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
+                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videoLike}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
+                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
-              </div>
-            </li>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian2.webp">
-              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
-              </div>
-            </li>
-            <li style="height: 140px;margin-top: 15px">
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" src="../img/fengmian3.webp">
-              <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">这把我们就遇到高手了</div>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>20
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <span style="margin-right: 20px">
-                  <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>300
-                </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
+                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
               </div>
             </li>
           </ul>
+          <div v-if="this.audit_num == 0">
+            诶嘿，一个视频都没有噢
+          </div>
         </div>
       </el-tab-pane>
     </el-tabs>
@@ -484,7 +395,13 @@ export default {
       options: {
         value: '1',
         label: '游戏'
-      }
+      },
+      video_num:0,
+      videocontrolList:[
+      ],
+      audit_num:0,
+      videoauditList:[
+      ],
     }
   },
   created(){
@@ -498,6 +415,41 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    var i = 0;
+    this.$axios.get("index/videoAll/"+this.userid).then(
+      res => {
+        this.video_num = res.data.videoNumber;
+        for(i=0;i<this.video_num;i++){
+          this.videocontrolList.push(
+              {
+                videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
+                videoName:res.data.videoList[i].VideoTitle,
+                videoLike:res.data.videoList[i].VideoLike,
+                videoViewcount:res.data.videoList[i].VideoViewcounts,
+                videofavourite: res.data.videoList[i].VideoFavourite,
+                videoid:res.data.videoList[i].id
+              }
+          )
+        }
+      },
+    );
+    this.$axios.get("index/waitForCheck").then(
+        res => {
+          this.audit_num = res.data.videoNumber;
+          for(i=0;i<this.video_num;i++){
+            this.videoauditList.push(
+                {
+                  videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
+                  videoName:res.data.videoList[i].VideoTitle,
+                  videoLike:res.data.videoList[i].VideoLike,
+                  videoViewcount:res.data.videoList[i].VideoViewcounts,
+                  videofavourite: res.data.videoList[i].VideoFavourite,
+                  videoid:res.data.videoList[i].id
+                }
+            )
+          }
+        },
+    )
   },
   methods: {
     logout(){
@@ -745,6 +697,9 @@ export default {
       });
     },
 
+    deletevideo() {
+
+    }
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

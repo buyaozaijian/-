@@ -1647,7 +1647,7 @@ a:active {
   padding-left: 105px;
   margin-right: auto;
   margin-left: auto;
-  padding-bottom: 200px;
+  padding-bottom: 100px;
 }
 .top-content * {
   /* 文字在图片后面居中对齐 */
