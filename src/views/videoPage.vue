@@ -517,7 +517,6 @@ export default {
         this.videoAuthorStatus = 1;
         this.$axios.get('user/follow/' + this.video_userid).then(
         );
-        window.location.reload();
       }
       else{
         this.$router.push('/try_login');
