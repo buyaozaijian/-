@@ -14,12 +14,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'/User_center'">
-          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          {{this.$store.state.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -143,10 +143,17 @@
             </div>
           </div>
         </div>
+        <div v-if="this.$store.state.islogin==true" style="position: absolute; left: 930px; top: -3px;z-index: 9999; display: inline-block;">
+          <button  @click="logout" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+             <span style="color: red">
+                退出登录
+              </span>
+          </button>
+        </div>
         <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              :title= this.$store.state.username
+              :title= this.username
               width="300"
               trigger="hover"
               left="">
@@ -156,7 +163,7 @@
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
-              <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
         </div>
@@ -1238,12 +1245,15 @@
 
 <script>
 import qs from "qs";
+import user from "@/store/user";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Homepage",
   data(){
     return {
+      userhead:'',
+      username:'',
       Title:"视频连接中",
       //islogin: JSON.parse(sessionStorage.getItem('IFLOGIN')),
       //username: JSON.parse(sessionStorage.getItem('IFLOGIN')),
@@ -1409,9 +1419,20 @@ export default {
           }
         },
     );
+      const userInfo = user.getters.getUser(user.state());
+      console.log(userInfo);
+      if (userInfo) {
+        this.userhead = userInfo.user.UserProfilePhotoUrl;
+        this.username = userInfo.user.username;
+      }
+      alert(userInfo.user.username)
   },
 
   methods:{
+    logout(){
+      this.$store.state.islogin = false;
+      this.$store.dispatch('clearUserInfo' );
+    },
     open() {
       this.$notify({
         title: '站内通知',

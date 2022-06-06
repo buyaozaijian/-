@@ -14,12 +14,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'/User_center'">
-          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          {{this.$store.state.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -419,13 +419,14 @@
 
 <script>
 import qs from "qs";
+import user from "@/store/user";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "User_center",
   data() {
     return {
-
+      userhead:'',
       tabPosition: 'left',
       dialogImageUrl: '',
       dataList: '',
@@ -462,7 +463,15 @@ export default {
       }
     }
   },
-
+  created(){
+    const userInfo = user.getters.getUser(user.state());
+    console.log(userInfo);
+    if (userInfo) {
+      this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.username = userInfo.user.username;
+    }
+    alert(userInfo.user.username)
+  },
   methods: {
     handleClick() {
       alert('button click');
