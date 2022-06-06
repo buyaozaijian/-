@@ -504,6 +504,7 @@ export default {
                this.video_userid = res.data.user.id;
                this.video_userhead = res.data.user.UserProfilePhotoUrl;
                this.video_userintroduction = res.data.user.UserIntroduction;
+               this.v
           },
       );
     const userInfo = user.getters.getUser(user.state());
