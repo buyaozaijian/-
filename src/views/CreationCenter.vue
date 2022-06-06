@@ -470,7 +470,6 @@ export default {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
     }
-    alert(userInfo.user.username)
   },
   methods: {
     handleClick() {
