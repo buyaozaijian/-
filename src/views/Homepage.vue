@@ -15,9 +15,24 @@
         text-color="#fff"
         active-text-color="#ffd04b">
       <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
-        <router-link :to="'/User_center'">
-          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
-        </router-link>
+        <el-popover
+            placement="top-start"
+            :title= this.username
+            width="300"
+            trigger="hover"
+            left="">
+          <div>
+            <div>
+              id:{{this.userid}}
+            </div>
+            <div>
+              <el-button type="danger" @click="logout">退出登录</el-button>
+            </div>
+          </div>
+          <router-link :to="'User_center'" slot="reference">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          </router-link>
+        </el-popover>
       </div>
       <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
         <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -1297,7 +1312,6 @@ export default {
         }
       ],
       videoList: [],
-      isLogin: false
     }
   },
   created() {

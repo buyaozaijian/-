@@ -11,10 +11,32 @@
         background-color="whitesmoke"
         text-color="#fff"
         active-text-color="#ffd04b">
-      <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
-        <router-link :to="'User_center'">
-          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
-        </router-link>
+      <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
+        <el-popover
+            placement="top-start"
+            :title= this.username
+            width="300"
+            trigger="hover"
+            left="">
+          <div>
+            <div>
+              id:{{this.userid}}
+            </div>
+            <div>
+              <el-button type="danger" @click="logout">退出登录</el-button>
+            </div>
+          </div>
+          <router-link :to="'User_center'" slot="reference">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          </router-link>
+        </el-popover>
+      </div>
+      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+        <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+        </button>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
@@ -136,7 +158,7 @@
             </div>
           </div>
         </div>
-        <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
               :title="this.username"
@@ -145,7 +167,7 @@
               left="">
             <div>
               <div>
-                id:{{this.$store.state.userid}}
+                id:{{this.userid}}
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
@@ -359,6 +381,8 @@ export default {
   name: "User_center",
   data(){
     return {
+      isLogin: 0,
+      userid:0,
       islogin: true,
       userhead:'',
       username: '',
@@ -387,7 +411,6 @@ export default {
       formLabelWidth: '120px',
       friendnum: 1,
       friendlist: [],
-      userid: this.$store.state.userid,
     }
   },
   created(){
@@ -396,6 +419,10 @@ export default {
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
+      this.isLogin = 1;
+      this.userid = userInfo.user.userid
+    } else {
+      this.isLogin = 0;
     }
     alert(userInfo.user.username);
     var i=0;
@@ -414,8 +441,15 @@ export default {
           }
         },
     );
+
   },
   methods:{
+    logout(){
+      alert('退出登录！');
+      sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
+      window.location.reload();
+      this.$store.dispatch('clearUserInfo' );
+    },
     handleClick() {
       alert('button click');
     },
