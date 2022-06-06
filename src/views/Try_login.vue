@@ -54,13 +54,10 @@ export default {
       })
           .then(res => {/* res 是 response 的缩写 */
             //获取用户登录的三个基本信息并存放于sessionStorage
-            sessionStorage.setItem('USERNAME', JSON.stringify(res.data.user.UserName));
-            sessionStorage.setItem('USERID', JSON.stringify(res.data.user.id));
-            sessionStorage.setItem('USERHEAD',JSON.stringify(res.data.user.UserProfilePhotoUrl));
-            sessionStorage.setItem('IFLOGIN',JSON.stringify(true));//设置登录后值为true
             switch (res.data.errno) {
               case 0:
                 this.$message.success("登录成功！");
+                sessionStorage.setItem('IFLOGIN',JSON.stringify(true));//设置登录后值为true
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                   //console.log(res.data.data);
                 this.$store.dispatch('saveUserInfo', {
