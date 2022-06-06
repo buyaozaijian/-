@@ -1292,6 +1292,7 @@ export default {
     for(i=0;i<54;i++)
     {
       this.videoList.push({
+        videoAuthorId: '',
         videoAuthor: '未知',
         videoId: '',
         videoUrl: '',
@@ -1306,6 +1307,7 @@ export default {
           for(i=0;i<6;i++)
           {
               this.videoList[i].videoAuthor= res.data.videoList[i].VideoAuthorName,
+              this.videoList[i].videoAuthorId= res.data.videoList[i].VideoAuthorId,
               this.videoList[i].videoId= res.data.videoList[i].id,
               this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
               this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
@@ -1321,6 +1323,7 @@ export default {
           for(i=6;i<14;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-6].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-6].VideoAuthorId,
             this.videoList[i].videoId= res.data.videoList[i-6].id,
             this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
             this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
@@ -1335,6 +1338,7 @@ export default {
           for(i=14;i<22;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-14].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-14].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-14].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
@@ -1349,6 +1353,7 @@ export default {
           for(i=22;i<30;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-22].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-22].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-22].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
@@ -1363,6 +1368,7 @@ export default {
           for(i=30;i<38;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-30].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-30].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-30].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
@@ -1377,6 +1383,7 @@ export default {
           for(i=38;i<46;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-38].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-38].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-38].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
@@ -1391,6 +1398,7 @@ export default {
           for(i=46;i<54;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-46].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-46].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-46].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
@@ -1441,12 +1449,14 @@ export default {
       this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
       this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
       this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
       //this.$store.state.videoname = 'cnm';
       //this.$store.state.videoid = 1;
       //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
     },
 
     click_login(){
