@@ -40,7 +40,8 @@ new Vue({
         router.beforeEach(
             (to,from,next) => {
                 if(to.meta.requireAuth){
-                    if(!(this.$store.state.islogin == true)){
+                    const userInfo = user.getters.getUser(user.state());
+                    if (!userInfo) {
                         alert('没有登陆');
                         this.$router.push({path:'/try_login'});
                         next();

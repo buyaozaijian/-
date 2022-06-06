@@ -57,7 +57,7 @@ const routes = [
   {
     path:'/try_login',
     name:'try_login',
-    component:() => import('../views/Try_login')
+    component:() => import('../views/Try_login'),
   },
   {
     path:'/CreationCenter',
