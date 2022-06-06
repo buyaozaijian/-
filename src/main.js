@@ -25,7 +25,6 @@ axios.interceptors.request.use(
             config.headers.Authorization = userInfo.user.Authorization;
             config.headers.username = userInfo.user.username;
         }
-        console.log(config.headers);
         return config;
     },
     error => {
@@ -36,5 +35,25 @@ axios.interceptors.request.use(
 new Vue({
     router,
     store,
-    render: h => h(App)
+    render: h => h(App),
+    created(){
+        router.beforeEach(
+            (to,from,next) => {
+                if(to.meta.requireAuth){
+                    if(!(this.$store.state.islogin == true)){
+                        alert('没有登陆');
+                        this.$router.push({path:'/try_login'});
+                        next();
+                    }
+                    else{
+                        //this.$router.push({path:to.fullPath});
+                        next();
+                    }
+                }
+                else{
+                    next();
+                }
+            }
+        )
+    }
 }).$mount('#app')

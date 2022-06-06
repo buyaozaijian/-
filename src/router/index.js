@@ -62,7 +62,8 @@ const routes = [
   {
     path:'/CreationCenter',
     name:'CreationCenter',
-    component:() => import('../views/CreationCenter')
+    component:() => import('../views/CreationCenter'),
+    meta:{requireAuth:true}
   }
 ]
 
