@@ -124,21 +124,9 @@
   </div>
   <div style="position: absolute; left: 1015px;top: 110px">
     <span style="margin-right: 20px;">
-      <el-popover
-          placement="top-start"
-          :title="this.video_username"
-          width="300"
-          trigger="hover"
-          left="">
-        <div>
-          <div>
-            id:{{this.video_userid}}
-          </div>
-        </div>
         <router-link :to="'User_center'" slot="reference">
           <img :src="this.video_userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
-      </el-popover>
     </span>
     <div style="display: inline-block">
       <div style="text-align: left;color: #fb7299;width: 250px">
@@ -148,7 +136,8 @@
          {{this.video_userintroduction}}
       </div>
       <div style="margin-top: 10px;float: left;width: 230px">
-        <el-button style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：10.7万</el-button>
+        <el-button v-if="this.videoAuthorStatus==0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus==1" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
         <span style="float: right;">
                   <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
@@ -506,7 +495,7 @@ export default {
                this.video_userid = res.data.user.id;
                this.video_userhead = res.data.user.UserProfilePhotoUrl;
                this.video_userintroduction = res.data.user.UserIntroduction;
-               this.videoAuthorStatus = res.data.fold;
+               this.videoAuthorStatus = res.data.fol;
                this.videoAuthorFollow = res.data.follow;
           },
       );
@@ -522,6 +511,18 @@ export default {
     }
   },
   methods:{
+    follow(){
+      if(this.isLogin===1) {
+        alert('关注该用户');
+        this.videoAuthorStatus = 1;
+        this.$axios.get('user/follow/' + this.video_userid).then(
+        );
+        window.location.reload();
+      }
+      else{
+        this.$router.push('/try_login');
+      }
+    },
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
