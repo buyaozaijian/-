@@ -22,10 +22,10 @@
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'Up_video1'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
-            <i class="el-icon-upload el-icon--right">
-              上传&ensp;
+        <router-link :to="'CreationCenter'">
+          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <i class="el-icon-upload el-icon--right" style="margin: 0">
+              创作中心
             </i></el-button>
         </router-link>
       </div>
@@ -34,7 +34,7 @@
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
           &ensp;站内通知
         </el-button>
       </div>
@@ -46,21 +46,13 @@
                 </span>
       </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color:gray"></i>
-          <span style="color: gray">
-                  个人中心
-                </span>
-        </router-link>
-      </el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Saving_box'">
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
       </router-link></el-menu-item>
-      <el-menu-item index="4" style="width: 100px; font-size: 15px">
+      <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Friend_list'">
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
@@ -68,10 +60,6 @@
                 </span>
       </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
-        <!--<form action="" class="parent">
-          <input type="text" class="search">
-          <input type="button" name=""  class="btn" style="z-index:1" >
-        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -109,14 +97,6 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :tp="'User_center'">
-              <i class="fa fa-user-o" style="color:black"></i>
-              <span style="color: black">
-                  个人中心&nbsp;&nbsp;&nbsp;
-                </span>
-            </router-link>
-          </li>
-          <li style="display: inline">
             <router-link :to="'Saving_box'">
               <i class="fa fa-file-video-o" style="color: black"></i>
               <span style="color: black">
@@ -134,10 +114,6 @@
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
-          <!--<form action="" class="parent">
-            <input type="text" class="search">
-            <input type="button" name=""  class="btn" style="z-index:1" >
-          </form>-->
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -178,19 +154,19 @@
           </el-popover>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-          <router-link :to="'Up_video1'">
-            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
-              <i class="el-icon-upload el-icon--right">
-                上传&ensp;
+          <router-link :to="'CreationCenter'">
+            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+              <i class="el-icon-upload el-icon--right" style="margin: 0">
+                创作中心
               </i></el-button>
           </router-link>
         </div>
-        <div style="position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
               plain
               @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
             &ensp;站内通知
           </el-button>
         </div>

@@ -23,10 +23,10 @@
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'Up_video1'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
+        <router-link :to="'CreationCenter'">
+          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
-              上传&ensp;
+              创作中心
             </i></el-button>
         </router-link>
       </div>
@@ -44,14 +44,6 @@
         <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </a></el-menu-item>
-      <el-menu-item index="/user_center" style="width: 100px; font-size: 15px"><a>
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color:gray"></i>
-          <span style="color: gray">
-                  个人中心
-                </span>
-        </router-link>
       </a></el-menu-item>
       <el-menu-item index="/saving_box" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
@@ -112,14 +104,6 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'/User_center'">
-              <i class="fa fa-user-o" style="color:white"></i>
-              <span style="color: white">
-                  个人中心&nbsp;&nbsp;&nbsp;
-                </span>
-            </router-link>
-          </li>
-          <li style="display: inline">
             <router-link :to="'/Saving_box'">
               <i class="fa fa-file-video-o" style="color: white"></i>
               <span style="color: white">
@@ -137,10 +121,6 @@
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
-          <!--<form action="" class="parent">
-            <input type="text" class="search">
-            <input type="button" name=""  class="btn" style="z-index:1" >
-          </form>-->
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -188,19 +168,19 @@
           </button>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-          <router-link :to="'Up_video1'">
-            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
+          <router-link :to="'CreationCenter'">
+            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
               <i class="el-icon-upload el-icon--right" style="margin: 0">
-                上传
+                创作中心
               </i></el-button>
           </router-link>
         </div>
-        <div style="position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: white"></i>
           <el-button
               plain
               @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: white;font-size: 15px">
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: white;font-size: 15px;padding: 0">
             &ensp;站内通知
           </el-button>
         </div>
@@ -216,16 +196,17 @@
   </header>
   <div class="zouma">
     <div>
-      <el-carousel indicator-position="outside" style="width: 40%; display: inline-block; left: -370px; border-radius: 4px;top: 50px" >
-        <el-carousel-item v-for="(img,index) in imgList" :key="index">
+      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 0px;
+           width: 550px; height: 400px" >
+        <el-carousel-item v-for="(img,index) in imgList" :key="index" style="height: 400px">
           <img :src="img.url" width="100%" height="100%">
         </el-carousel-item>
       </el-carousel>
     </div>
     <div>
-      <table style="display: inline-block; left:650px; top:419px" cellspacing="20">
+      <table style="display: inline-block; left:675px; top:440px" cellspacing="6">
         <tr>
-          <td>
+          <td style="width: 250px">
             <img
                 class="picture"
                 :src="this.videoList[0].videoCoverUrl"
@@ -242,7 +223,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td style="width: 250px">
             <img
                 class="picture"
                 :src="this.videoList[1].videoCoverUrl"
@@ -259,7 +240,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td style="width: 250px">
             <img
                 class="picture"
                 :src="this.videoList[2].videoCoverUrl"
@@ -278,7 +259,7 @@
           </td>
         </tr>
         <tr>
-          <td>
+          <td style="width: 250px">
             <img
                 class="picture"
                 :src="this.videoList[3].videoCoverUrl"
@@ -295,7 +276,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td style="width: 250px">
             <img
                 class="picture"
                 :src="this.videoList[4].videoCoverUrl"
@@ -312,7 +293,7 @@
               </div>
             </div>
           </td>
-          <td>
+          <td style="width: 250px">
             <img
                 class="picture"
                 :src="this.videoList[5].videoCoverUrl"
