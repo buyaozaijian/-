@@ -264,7 +264,7 @@
               </div>
             </li>
           </ul>
-          <div v-if="this.video_num == 0">
+          <div v-if="this.video_num === 0">
             诶嘿，一个视频都没有噢
           </div>
         </div>
@@ -339,7 +339,7 @@
               </div>
             </li>
           </ul>
-          <div v-if="this.audit_num == 0">
+          <div v-if="this.audit_num === 0">
             诶嘿，一个视频都没有噢
           </div>
         </div>
