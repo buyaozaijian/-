@@ -260,7 +260,7 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+                <el-button :id="video.comid" @click="deletevideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
               </div>
             </li>
           </ul>
@@ -334,8 +334,8 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
-                <el-button style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
+                <el-button :id="video.comid_pass" @click="auditvideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
+                <el-button :id="video.comid_notpass" @click="auditvideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
               </div>
             </li>
           </ul>
@@ -396,8 +396,26 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:0,
+      video_num:2,
       videocontrolList:[
+        {
+          videoCoverUrl:'../img/fengmian1.webp',
+          videoName:'dada',
+          videoLike:1,
+          videoViewcount:2,
+          videofavourite: 3,
+          videoid:1,
+          comid:2,
+        },
+        {
+          videoCoverUrl:'../img/fengmian1.webp',
+          videoName:'dada',
+          videoLike:1,
+          videoViewcount:2,
+          videofavourite: 3,
+          videoid:1,
+          comid:4,
+        }
       ],
       audit_num:0,
       videoauditList:[
@@ -427,7 +445,8 @@ export default {
                 videoLike:res.data.videoList[i].VideoLike,
                 videoViewcount:res.data.videoList[i].VideoViewcounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
-                videoid:res.data.videoList[i].id
+                videoid:res.data.videoList[i].id,
+                comid:i,
               }
           )
         }
@@ -444,7 +463,9 @@ export default {
                   videoLike:res.data.videoList[i].VideoLike,
                   videoViewcount:res.data.videoList[i].VideoViewcounts,
                   videofavourite: res.data.videoList[i].VideoFavourite,
-                  videoid:res.data.videoList[i].id
+                  videoid:res.data.videoList[i].id,
+                  comid_pass:i*2,
+                  comid_notpass:i*2+1,
                 }
             )
           }
@@ -698,7 +719,43 @@ export default {
     },
 
     deletevideo() {
-
+      this.$axios.get("video/delete/"+this.videocontrolList[event.srcElement.id].videoid).then(
+          res=> {
+            alert(res.data.msg);
+          }
+      )
+    },
+    auditvideo() {
+      if(event.srcElement.id%2==0)
+      {
+        this.$axios({
+              method:"post",
+              url:"video/changeStatus/"+this.videocontrolList[event.srcElement.id/2].videoid,
+              data: qs.stringify({
+                status:1
+              })
+            }
+        ).then(
+            res=> {
+              alert(res.data.msg);
+            }
+        )
+      }
+      if(event.srcElement.id%2!=0)
+      {
+        this.$axios({
+              method:"post",
+              url:"video/changeStatus/"+this.videocontrolList[(event.srcElement.id-1)/2].videoid,
+              data: qs.stringify({
+                status:0
+              })
+            }
+        ).then(
+            res=> {
+              alert(res.data.msg);
+            }
+        )
+      }
     }
   },
   mounted() {

@@ -250,11 +250,22 @@
     </div>
   </div>
   <div class="收藏夹" >
-    <div style="height: 50px;position: relative;top: 35px;left: 50px">
-      <div style="font-size: 20px;float: left">全部关注</div>
-      <div style="display: block;height: 1px;width: 100%;width: 900px">
+      <div style="font-size: 20px; position: relative;top: 30px;left: 80px">全部关注</div>
+      <div style="position: relative;top:80px">
+        <ul style="list-style: none;">
+          <li style="height: 75px;margin-top: 15px;" v-for="friend in friendlist" :key="friend.friend_id">
+            <el-divider></el-divider>
+            <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url">
+            <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
+              <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
+              <div style="font-size: 10px;color: gray">
+                {{friend.friend_sign}}
+              </div>
+              <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
+            </div>
+          </li>
+        </ul>
       </div>
-    </div>
     <!--<div style="position: relative;left: -850px;top: 100px">
       <ul style="list-style: none">
         <div style="display: block;height: 1px;width: 100%;width: 900px">
@@ -337,29 +348,6 @@
         </li>
       </ul>
     </div>-->
-    <div v-for="friend in friendlist" :key="friend.friend_id">
-      <div>
-        <el-divider></el-divider>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
-            <div style="font-size: 10px;color: gray">
-              {{friend.friend_sign}}
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-      </div>
-    </div>
-    <el-pagination
-        :page-size="20"
-        :pager-count="11"
-        layout="prev, pager, next"
-        :total="1000"
-        style="position: absolute;top: 800px;left: 250px"
-    >
-    </el-pagination>
     </div>
   </body>
   <!--<div class="login">
@@ -409,8 +397,9 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      friendnum: 1,
-      friendlist: [],
+      friendnum: 0,
+      friendlist: [
+      ],
     }
   },
   created(){
