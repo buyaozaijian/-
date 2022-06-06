@@ -477,6 +477,8 @@ export default {
       video_userid:'',
       video_userhead:'',
       video_userintroduction:'',
+      videoAuthorStatus: 0,
+      videoAuthorFollow: 0,
     }
   },
   created() {
@@ -504,7 +506,8 @@ export default {
                this.video_userid = res.data.user.id;
                this.video_userhead = res.data.user.UserProfilePhotoUrl;
                this.video_userintroduction = res.data.user.UserIntroduction;
-               this.v
+               this.videoAuthorStatus = res.data.fold;
+               this.videoAuthorFollow = res.data.follow;
           },
       );
     const userInfo = user.getters.getUser(user.state());
