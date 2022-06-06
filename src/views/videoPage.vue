@@ -378,7 +378,7 @@
       </div>
       <div style="float: left; width: 100px">
         <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
-        <button v-else  @click="collectcall" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
+        <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
         {{this.$store.state.videofavourite}}
