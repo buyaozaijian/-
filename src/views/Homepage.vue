@@ -14,10 +14,17 @@
         background-color="whitesmoke"
         text-color="#fff"
         active-text-color="#ffd04b">
-      <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
+      <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'/User_center'">
           <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
+      </div>
+      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+        <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+        </button>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
@@ -145,7 +152,7 @@
             </div>
           </div>
         </div>
-        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin == 1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
               :title= this.username
@@ -154,7 +161,7 @@
               left="">
             <div>
               <div>
-                id:{{this.$store.state.userid}}
+                id:{{this.userid}}
               </div>
               <div>
                 <el-button type="danger" @click="logout">退出登录</el-button>
@@ -1252,6 +1259,7 @@ export default {
     return {
       userhead:'',
       username:'',
+      userid: 0,
       Title:"视频连接中",
       password: '',
       dialogOfUpload: false,
@@ -1419,6 +1427,7 @@ export default {
         this.userhead = userInfo.user.UserProfilePhotoUrl;
         this.username = userInfo.user.username;
         this.isLogin = 1;
+        this.userid = userInfo.user.userid
       } else {
         this.isLogin = 0;
       }
