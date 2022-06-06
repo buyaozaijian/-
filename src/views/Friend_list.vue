@@ -13,12 +13,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'User_center'">
-          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          {{this.$store.state.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -139,7 +139,7 @@
         <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              :title="this.$store.state.username"
+              :title="this.username"
               width="300"
               trigger="hover"
               left="">
@@ -149,7 +149,7 @@
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
-              <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
         </div>
@@ -200,10 +200,10 @@
   <div class = "user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.$store.state.userhead">
+        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
       </a>
     </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.$store.state.username}}</div>
+    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
     <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
     <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
     <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
@@ -338,12 +338,14 @@
 
 <script>
 import qs from "qs";
+import user from "@/store/user";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "User_center",
   data(){
     return {
       islogin: true,
+      userhead:'',
       username: '',
       password: '',
       dialogOfUpload: false,
@@ -370,7 +372,15 @@ export default {
       formLabelWidth: '120px'
     }
   },
-
+  created(){
+    const userInfo = user.getters.getUser(user.state());
+    console.log(userInfo);
+    if (userInfo) {
+      this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.username = userInfo.user.username;
+    }
+    alert(userInfo.user.username)
+  },
   methods:{
     handleClick() {
       alert('button click');

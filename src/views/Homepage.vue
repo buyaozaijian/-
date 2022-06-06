@@ -1,6 +1,8 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <head>
+  </head>
   <body style="max-width:1560px;margin: 0 auto;">
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
@@ -14,17 +16,17 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'/User_center'">
-          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          {{this.$store.state.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'CreationCenter'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+        <router-link  :to="'CreationCenter'">
+          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
@@ -143,10 +145,10 @@
             </div>
           </div>
         </div>
-        <div v-if="this.$store.state.islogin==true" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              :title= this.$store.state.username
+              :title= this.username
               width="300"
               trigger="hover"
               left="">
@@ -154,14 +156,17 @@
               <div>
                 id:{{this.$store.state.userid}}
               </div>
+              <div>
+                <el-button type="danger" @click="logout">退出登录</el-button>
+              </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
-              <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
         </div>
         <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+          <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
               </span></router-link>
@@ -975,7 +980,7 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[38].videoCoverUrl"
+              :src="this.videoList[40].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
           />
@@ -1238,16 +1243,16 @@
 
 <script>
 import qs from "qs";
+import user from "@/store/user";
+
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Homepage",
   data(){
     return {
+      userhead:'',
+      username:'',
       Title:"视频连接中",
-      //islogin: JSON.parse(sessionStorage.getItem('IFLOGIN')),
-      //username: JSON.parse(sessionStorage.getItem('IFLOGIN')),
-     // userid: JSON.parse(sessionStorage.getItem('USERID')),
-      //userhead: JSON.parse(sessionStorage.getItem('USERHEAD')),
       password: '',
       dialogOfUpload: false,
       fileList: [],
@@ -1284,6 +1289,7 @@ export default {
         }
       ],
       videoList: [],
+      isLogin: false
     }
   },
   created() {
@@ -1291,6 +1297,7 @@ export default {
     for(i=0;i<54;i++)
     {
       this.videoList.push({
+        videoAuthorId: '',
         videoAuthor: '未知',
         videoId: '',
         videoUrl: '',
@@ -1305,6 +1312,7 @@ export default {
           for(i=0;i<6;i++)
           {
               this.videoList[i].videoAuthor= res.data.videoList[i].VideoAuthorName,
+              this.videoList[i].videoAuthorId= res.data.videoList[i].VideoAuthorId,
               this.videoList[i].videoId= res.data.videoList[i].id,
               this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
               this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
@@ -1320,6 +1328,7 @@ export default {
           for(i=6;i<14;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-6].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-6].VideoAuthorId,
             this.videoList[i].videoId= res.data.videoList[i-6].id,
             this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
             this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
@@ -1334,6 +1343,7 @@ export default {
           for(i=14;i<22;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-14].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-14].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-14].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
@@ -1348,6 +1358,7 @@ export default {
           for(i=22;i<30;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-22].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-22].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-22].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
@@ -1362,6 +1373,7 @@ export default {
           for(i=30;i<38;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-30].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-30].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-30].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
@@ -1376,6 +1388,7 @@ export default {
           for(i=38;i<46;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-38].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-38].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-38].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
@@ -1390,6 +1403,7 @@ export default {
           for(i=46;i<54;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-46].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-46].VideoAuthorId,
                 this.videoList[i].videoId= res.data.videoList[i-46].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
@@ -1399,9 +1413,24 @@ export default {
           }
         },
     );
+      const userInfo = user.getters.getUser(user.state());
+      console.log(userInfo);
+      if (userInfo) {
+        this.userhead = userInfo.user.UserProfilePhotoUrl;
+        this.username = userInfo.user.username;
+        this.isLogin = 1;
+      } else {
+        this.isLogin = 0;
+      }
   },
 
   methods:{
+    logout(){
+      alert('退出登录！');
+      sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
+      window.location.reload();
+      this.$store.dispatch('clearUserInfo' );
+    },
     open() {
       this.$notify({
         title: '站内通知',
@@ -1440,12 +1469,14 @@ export default {
       this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
       this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
       this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
       //this.$store.state.videoname = 'cnm';
       //this.$store.state.videoid = 1;
       //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
     },
 
     click_login(){

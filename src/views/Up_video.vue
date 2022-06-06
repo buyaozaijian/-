@@ -13,12 +13,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:10px;z-index: 9999; display: inline-block">
         <a href="https://www.bilibili.com">
-          <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
         </a>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          高进进进进
+          {{this.username}}
         </a>
       </div>
       <el-menu-item index="1" style="width: 100px; font-size: 20px">
@@ -116,6 +116,8 @@
 </template>
 
 <script>
+import user from "@/store/user";
+
 export default {
   name: "Up_video",
   data() {
@@ -130,6 +132,8 @@ export default {
         resource: '',
         desc: ''
       },
+      userhead:'',
+      username:'',
       dialogImageUrl: '',
       dialogVisible: false,
       input1: '',
@@ -155,6 +159,15 @@ export default {
       }],
       value1: []
     };
+  },
+  created(){
+    const userInfo = user.getters.getUser(user.state());
+    console.log(userInfo);
+    if (userInfo) {
+      this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.username = userInfo.user.username;
+    }
+    alert(userInfo.user.username)
   },
   methods: {
     handleRemove(file, fileList) {

@@ -14,12 +14,12 @@
         active-text-color="#ffd04b">
       <div style="position: absolute;left:1000px; top:13px;z-index: 9999; display: inline-block">
         <router-link :to="'User_center'">
-          <img :src="this.$store.state.userhead" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userHead" style="width: 40px;height: 40px;border-radius: 50%">
         </router-link>
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-          {{this.$store.state.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -104,26 +104,26 @@
     <span style="margin-right: 20px;">
       <el-popover
           placement="top-start"
-          :title="this.$store.state.username"
+          :title="this.video_username"
           width="300"
           trigger="hover"
           left="">
         <div>
           <div>
-            id:{{this.$store.state.userid}}
+            id:{{this.video_userid}}
           </div>
         </div>
         <router-link :to="'User_center'" slot="reference">
-          <img :src="this.$store.state.userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
+          <img :src="this.video_userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
       </el-popover>
     </span>
     <div style="display: inline-block">
       <div style="text-align: left;color: #fb7299;width: 250px">
-        {{this.$store.state.username}}
+        {{this.video_username}}
       </div>
       <div style="text-align: left;font-size: 13px;width: 250px">
-        一旦接受了自己的软弱，那我就是无敌的
+         {{this.video_userintroduction}}
       </div>
       <div style="margin-top: 10px;float: left;width: 230px">
         <el-button style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：10.7万</el-button>
@@ -388,7 +388,7 @@
     <div class="comment-tijiao">
       <span style="margin-right: 20px; float: left" >
         <a href="https://www.bilibili.com">
-          <img src="../img/touxiang1.jpg" style="width: 40px;height: 40px;border-radius: 50%">
+          <img :src="this.userHead" style="width: 40px;height: 40px;border-radius: 50%">
         </a>
       </span>
       <span>
@@ -419,6 +419,7 @@
 
 <script>
 import qs from "qs";
+import user from "@/store/user";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -426,6 +427,7 @@ export default {
   data(){
     return {
       username: '',
+      userHead: '',
       password: '',
       //title: this.$store.state.videoname,
       title: JSON.parse(sessionStorage.getItem('videoname')),
@@ -439,10 +441,17 @@ export default {
       ifconcerns: 0,
       videotime: '',
       comment_list: [],
+      video_listnum: 0,
+      video_list: [],
       comment_num: 1,
       commentid: 0,
       url: JSON.parse(sessionStorage.getItem('videourl')),
-      vid: JSON.parse(sessionStorage.getItem('videoid'))
+      vid: JSON.parse(sessionStorage.getItem('videoid')),
+      aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
+      video_username: '',
+      video_userid:'',
+      video_userhead:'',
+      video_userintroduction:'',
     }
   },
   created() {
@@ -451,7 +460,6 @@ export default {
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
           res => {
             this.comment_num = res.data.commentNumber;
-            alert(this.comment_num);
             for(i=0;i<this.comment_num;i++){
               this.comment_list.push(
                   {
@@ -465,18 +473,20 @@ export default {
             }
           },
       );
-      /*for(i=0;i<this.comment_num;i++){
-          this.comment_list.push(
-              {
-                comment_head_url: '',
-                comment_name:'高进',
-                comment_in: '啦啦啦啦啦',
-                comment_id: this.commentid,
-                comment_time: '2022-06-05T11:50:11.757535'
-             }
-         );
-          this.commentid++;
-      }*/
+      this.$axios.get('user/'+this.aid).then(
+          res => {
+               this.video_username = res.data.user.UserName;
+               this.video_userid = res.data.user.id;
+               this.video_userhead = res.data.user.UserProfilePhotoUrl;
+               this.video_userintroduction = res.data.user.UserIntroduction;
+          },
+      );
+      const userInfo = user.getters.getUser(user.state());
+      console.log(userInfo);
+      if (userInfo) {
+          this.userHead = userInfo.user.UserProfilePhotoUrl;
+          this.username = userInfo.user.username;
+      }
   },
   methods:{
     open() {
@@ -580,7 +590,6 @@ export default {
       })
     },
     submit_comment(){ //发布评论的函数，尝试阶段
-      alert(this.textarea2);
       this.$axios(
           {
             method: 'post',
