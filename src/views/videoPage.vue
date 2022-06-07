@@ -180,18 +180,14 @@
         <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
-        {{this.like1}}
+        {{this.videoLikeNum}}
       </div>
       <div style="float: left; width: 100px">
         <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
         <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
-        {{this.favorite}}
-      </div>
-      <div style="float: right; width: 100px">
-        <el-button v-if="ifconcerns===0" @click="concern" type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
-        <el-button v-else @click="concerncancall" type="danger" style="position: relative; background: gray; position: relative; top: -5px">已关注</el-button>
+        {{this.videoFavorNum}}
       </div>
     </div>
     <div class="introduction">
@@ -285,7 +281,7 @@ export default {
       like1:JSON.parse(sessionStorage.getItem('like')),
       favorite:JSON.parse(sessionStorage.getItem('like')),
       videoLikeNum: 0,
-
+      videoFavorNum: 0,
     }
   },
   created() {
@@ -311,7 +307,9 @@ export default {
           res => {
             this.comment_num = res.data.commentNumber;
             this.iflike = res.data.like;
+            this.ifcollection = res.data.favor;
             this.videoLikeNum = res.data.likeNum;
+            this.videoFavorNum = res.data.favorNum;
             for(i=0;i<this.comment_num;i++){
               this.comment_list.push(
                   {
@@ -338,46 +336,21 @@ export default {
       this.$axios.get('index/videoAll/'+this.aid).then(//获取作者视频列表
         res => {
           this.video_num = res.data.videoNum;
-          var if_get = 0;
-          for(i=0;i<this.video_num;i++) {
-            var idtemp = res.data.videoList[i].id;
-            if (idtemp !== this.vid) {
-              if (if_get === 0) {
-                this.video_list.push(
-                    {
-                      video_name: res.data.videoList[i].VideoTitle,
-                      video_photo: res.data.videoList[i].VideoCoverUrl,
-                      video_viewnums: res.data.videoList[i].VideoViewCounts,
-                      video_url: res.data.videoList[i].VideoUrl,
-                      video_commentnums: res.data.videoList[i].CommentNum,
-                      video_id: res.data.videoList[i].id,
-                      video_like: res.data.videoList[i].VideoLike,
-                      video_favorite: res.data.videoList[i].VideoFavorite,
-                      author: this.video_username,
-                      video_id_use: i,
-                    }
-                )
-              }
-              else{
-                this.video_list.push(
-                    {
-                      video_name: res.data.videoList[i].VideoTitle,
-                      video_photo: res.data.videoList[i].VideoCoverUrl,
-                      video_viewnums: res.data.videoList[i].VideoViewCounts,
-                      video_url: res.data.videoList[i].VideoUrl,
-                      video_commentnums: res.data.videoList[i].CommentNum,
-                      video_id: res.data.videoList[i].id,
-                      video_like: res.data.videoList[i].VideoLike,
-                      video_favorite: res.data.videoList[i].VideoFavorite,
-                      author: this.video_username,
-                      video_id_use: i-1,
-                    }
-                )
-              }
-            }
-            else{
-              if_get = 1;
-            }
+          for(i=0;i<this.video_num;i++){
+            this.video_list.push(
+                {
+                  video_name: res.data.videoList[i].VideoTitle,
+                  video_photo: res.data.videoList[i].VideoCoverUrl,
+                  video_viewnums: res.data.videoList[i].VideoViewCounts,
+                  video_url: res.data.videoList[i].VideoUrl,
+                  video_commentnums: res.data.videoList[i].CommentNum,
+                  video_id: res.data.videoList[i].id,
+                  video_like: res.data.videoList[i].VideoLike,
+                  video_favorite: res.data.videoList[i].VideoFavorite,
+                  author: this.video_username,
+                  video_id_use: i,
+                }
+            )
           }
         }
       );
@@ -475,28 +448,18 @@ export default {
     },
     collect() {
       this.ifcollection=1;
-      this.$store.state.videofavourite++;
+      this.videoFavorNum++;
       this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.ifcollection
-        })
+        method: 'get',
+        url: 'video/favor/' + this.vid,
       })
     },
     collectcall() {
       this.ifcollection=0;
-      this.$store.state.videofavourite--;
+      this.videoFavorNum--;
       this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.ifcollection
-        })
+        method: 'get',
+        url: 'video/favor/' + this.vid,
       })
     },
     concern() {
