@@ -250,12 +250,14 @@
               </div>
               <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                <router-link :to="'/videoPage'" @click="click1">
+                  <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                </router-link>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videoLike}}
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videolike}}
                 </span>
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
@@ -315,21 +317,23 @@
         </el-form>
       </div>
     </el-tab-pane>
-      <el-tab-pane label="视 频 审 核">
+      <el-tab-pane label="视 频 审 核" v-if="this.identity==='admin'">
         <div align="center" style="margin-left: 100px;">
-          <ul style="list-style: none;" v-if="this.audit_num != 0">
+          <ul style="list-style: none;" v-if="this.audit_num !== 0">
             <li style="height: 140px;margin-top: 15px" v-for="video in videoauditList" :key="video.videoid">
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
               <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                <router-link :to="'/videoPage'" @click="click1">
+                  <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                </router-link>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videoLike}}
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videolike}}
                 </span>
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
@@ -361,6 +365,7 @@ export default {
     return {
       isLogin: 0,
       userid:0,
+      identity: 'admin',
       userhead:'',
       tabPosition: 'left',
       dialogImageUrl: '',
@@ -396,30 +401,11 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:2,
-      videocontrolList:[
-        {
-          videoCoverUrl:'../img/fengmian1.webp',
-          videoName:'dada',
-          videoLike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoid:1,
-          comid:2,
-        },
-        {
-          videoCoverUrl:'../img/fengmian1.webp',
-          videoName:'dada',
-          videoLike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoid:1,
-          comid:4,
-        }
-      ],
+      video_num:0,
+      videocontrolList:[],
       audit_num:0,
-      videoauditList:[
-      ],
+      videoauditList:[],
+
     }
   },
   created(){
@@ -429,24 +415,28 @@ export default {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
-      this.userid = userInfo.user.userid
+      this.userid = userInfo.user.userid;
+      this.identity = userInfo.user.UserIdentity;//储存user身份信息，管理员身份为'admin'
     } else {
       this.isLogin = 0;
     }
     var i = 0;
     this.$axios.get("index/videoAll/"+this.userid).then(
       res => {
-        this.video_num = res.data.videoNumber;
+        this.video_num = res.data.videoNum;
         for(i=0;i<this.video_num;i++){
           this.videocontrolList.push(
               {
                 videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
                 videoName:res.data.videoList[i].VideoTitle,
-                videoLike:res.data.videoList[i].VideoLike,
-                videoViewcount:res.data.videoList[i].VideoViewcounts,
+                videolike:res.data.videoList[i].VideoLike,
+                videoViewcount:res.data.videoList[i].VideoViewCounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
-                videoid:res.data.videoList[i].id,
+                videoId:res.data.videoList[i].id,
                 comid:i,
+                videoUrl:res.data.videoList[i].VideoUrl,
+                videoAuthor:res.data.videoList[i].VideoAuthorName,
+                videoAuthorId:res.data.videoList[i].VideoAuthor,
               }
           )
         }
@@ -454,18 +444,21 @@ export default {
     );
     this.$axios.get("index/waitForCheck").then(
         res => {
-          this.audit_num = res.data.videoNumber;
+          this.audit_num = res.data.videoNum;
           for(i=0;i<this.video_num;i++){
             this.videoauditList.push(
                 {
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
                   videoName:res.data.videoList[i].VideoTitle,
                   videoLike:res.data.videoList[i].VideoLike,
-                  videoViewcount:res.data.videoList[i].VideoViewcounts,
+                  videoViewcount:res.data.videoList[i].VideoViewCounts,
                   videofavourite: res.data.videoList[i].VideoFavourite,
                   videoid:res.data.videoList[i].id,
                   comid_pass:i*2,
                   comid_notpass:i*2+1,
+                  videoUrl:res.data.videoList[i].VideoUrl,
+                  videoAuthor:res.data.videoList[i].VideoAuthorName,
+                  videoAuthorId:res.data.videoList[i].VideoAuthor,
                 }
             )
           }
@@ -489,7 +482,22 @@ export default {
         offset: 100
       });
     },
-
+    click1(){
+      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
+      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
+      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
+      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
+      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
+          //this.$store.state.videoname = 'cnm';
+          //this.$store.state.videoid = 1;
+          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+    },
     open1() {
       const h = this.$createElement;
 

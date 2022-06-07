@@ -90,10 +90,6 @@
                 </span>
         </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
-        <!--<form action="" class="parent">
-          <input type="text" class="search">
-          <input type="button" name=""  class="btn" style="z-index:1" >
-        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -127,7 +123,7 @@
       <i class="fa fa-camera-retro" style="margin: 0; border: 0; outline: none; background: white; color: gray"></i>
       {{title}}
     </div>
-    <p style="color:#9195a3;font-size: 15px">12345播放 · 总评论数321 2001-11-22 12:01</p>
+    <p style="color:#9195a3;font-size: 15px">{{this.videoviewcounts}}播放 · 总评论数{{this.comment_num}}  {{this.videouploadtime}}</p>
   </div>
   <div style="position: absolute; left: 1015px;top: 110px">
     <span style="margin-right: 20px;">
@@ -145,226 +141,32 @@
       <div style="margin-top: 10px;float: left;width: 230px">
         <el-button v-if="this.videoAuthorStatus===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
         <el-button v-if="this.videoAuthorStatus===1" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
-        <span style="float: right;">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon" style="font-size: 30px"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消关注</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
       </div>
     </div>
     <div style="text-align: left;margin-top: 50px;margin-bottom: 30px;font-family: 微软雅黑">
         他的视频还有
     </div>
     <div>
-      <ul style="list-style: none">
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian7.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
+        <div v-for="videos in this.video_list" :key="videos.video_id_use" style="margin-bottom:55px;width: 370px;height: 40px">
+          <img :src="videos.video_photo" style="width: 150px;height: 80px; float: left;border-radius: 8px;margin-right: 10px">
           <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
+            <router-link to="/videoPage"><div :id="videos.video_id_use" @click="click1" style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
+              {{videos.video_name}}
+            </div></router-link>
             <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 140px;text-align: left">
-              打野哈哈
+              {{videos.author}}
             </div>
             <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 140px;text-align: left">
-              播放123&ensp;评论123
+              播放{{videos.video_viewnums}}&ensp;评论{{videos.video_commentnums}}
             </div>
           </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian8.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              【打野茶茶】0操作也能上钻石
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 140px;text-align: left">
-              国服最强打野
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 140px;text-align: left">
-              播放1203&ensp;评论323
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian9.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              军！训！UZI！
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian1.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;">
-              【LOL】20G2MSI宣传片——上单教父
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              g2电子经济俱乐部
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian2.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              【ADC玄学技巧】职业选手的对线压制力为什么这么强
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              不知名up主
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian3.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian4.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian5.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian6.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian7.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian7.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian7.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian7.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-        <li style="margin-bottom:55px;width: 370px;height: 40px">
-          <img src="../img/fengmian7.webp" style="width: 150px;float: left;border-radius: 8px;margin-right: 10px">
-          <div>
-            <div style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
-              为啥脱坑白银要练佛爷，掌握全英雄就是不死战神
-            </div>
-            <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              打野哈哈
-            </div>
-            <div style="float: left;margin-top: 3px;font-size: 13px;color: gray;width: 160px;text-align: left">
-              播放123&ensp;评论123
-            </div>
-          </div>
-        </li>
-      </ul>
+        </div>
     </div>
   </div>
   <div style="width: 800px">
     <div>
-      <video controls class="video">
-        <source  :src = "this.url"> 视频播放内容的位置
+      <video controls class="video" id="videoPlay">
+        <source  :src = "this.videourl"> 视频播放内容的位置
       </video>
     </div>
     <div class="operation">
@@ -381,11 +183,7 @@
         <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
-        {{this.$store.state.videofavourite}}
-      </div>
-      <div style="float: right; width: 100px">
-        <el-button v-if="ifconcerns===0" @click="concern" type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
-        <el-button v-else @click="concerncancall" type="danger" style="position: relative; background: gray; position: relative; top: -5px">已关注</el-button>
+        {{this.videoFavorNum}}
       </div>
     </div>
     <div class="introduction">
@@ -462,30 +260,45 @@ export default {
       ifconcerns: 0,
       videotime: '',
       comment_list: [],
-      video_listnum: 0,
-      video_list: [],
-      comment_num: 1,
+      video_num: 5,
+      video_list: [
+      ],
+      comment_num: 0,
       commentid: 0,
-      url: JSON.parse(sessionStorage.getItem('videourl')),
+      videourl: JSON.parse(sessionStorage.getItem('videourl')),
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
       video_username: '',
-      video_userid:'',
+      video_userid:0,
       video_userhead:'',
       video_userintroduction:'',
       videoAuthorStatus: 0,
       videoAuthorFollow: 0,
       videoLikeNum: 0,
+      videoFavorNum: 0,
+      videoPlay: 0,
+      videoviewcounts: 0,
+      videouploadtime: 0,
     }
   },
   created() {
-    //加载时接收评论，处于尝试阶段
-      var i = 0;
+    this.videoPlay = 0;
+    var i = 0;
+    this.$axios.get('video/detail/'+ this.vid).then(
+        res => {
+          this.videoLikeNum = res.data.VideoLike;
+          this.videoFavorNum = res.data.VideoFavourite;
+          this.videoviewcounts = res.data.VideoViewCounts;
+          this.videouploadtime = res.data.VideoUploadDate;
+        }
+    );
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
           res => {
             this.comment_num = res.data.commentNumber;
             this.iflike = res.data.like;
+            this.ifcollection = res.data.favor;
             this.videoLikeNum = res.data.likeNum;
+            this.videoFavorNum = res.data.favorNum;
             for(i=0;i<this.comment_num;i++){
               this.comment_list.push(
                   {
@@ -509,6 +322,34 @@ export default {
                this.videoAuthorFollow = res.data.follow;
           },
       );
+      this.$axios.get('index/videoAll/'+this.aid).then(//获取作者视频列表
+        res => {
+          this.video_num = res.data.videoNum;
+          var j;
+          for (i = 0, j = 0; i < this.video_num; i++, j++) {
+            if (res.data.videoList[i].id !== this.vid) {
+              this.video_list.push(
+                  {
+                    video_name: res.data.videoList[i].VideoTitle,
+                    video_photo: res.data.videoList[i].VideoCoverUrl,
+                    video_viewnums: res.data.videoList[i].VideoViewCounts,
+                    video_url: res.data.videoList[i].VideoUrl,
+                    video_commentnums: res.data.videoList[i].CommentNum,
+                    video_id: res.data.videoList[i].id,
+                    video_like: res.data.videoList[i].VideoLike,
+                    video_favorite: res.data.videoList[i].VideoFavorite,
+                    author: this.video_username,
+                    video_id_use: j,
+                    videoviewnum: res.data.videoList[i].VideoViewCounts,
+                    videouploadtime: res.data.videoList[i].VideoUploadTime
+                  }
+              )
+            } else {
+              j --;
+            }
+          }
+        }
+      );
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -521,6 +362,25 @@ export default {
     }
   },
   methods:{
+    click2(){
+      alert('cnmb');
+    },
+    click1(){
+      this.$store.state.videourl = this.video_list[event.srcElement.id].video_url;
+      this.$store.state.videoname = this.video_list[event.srcElement.id].video_name;
+      this.$store.state.videoid = this.video_list[event.srcElement.id].video_id;
+      this.$store.state.videolike=this.video_list[event.srcElement.id].video_like;
+      this.$store.state.videofavourite=this.video_list[event.srcElement.id].video_favorite;
+      this.$store.state.videoauthor=this.video_username;
+      this.$store.state.videoauthorid=this.video_userid;
+      this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
+      this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
+      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+      window.location.reload();
+    },
     follow(){
       if(this.isLogin===1) {
         if(this.videoAuthorStatus === 0) {
@@ -584,55 +444,29 @@ export default {
     },
     collect() {
       this.ifcollection=1;
-      this.$store.state.videofavourite++;
+      this.videoFavorNum++;
       this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.ifcollection
-        })
+        method: 'get',
+        url: 'video/favor/' + this.vid,
       })
     },
     collectcall() {
       this.ifcollection=0;
-      this.$store.state.videofavourite--;
+      this.videoFavorNum--;
       this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.ifcollection
-        })
+        method: 'get',
+        url: 'video/favor/' + this.vid,
       })
     },
-    concern() {
-      this.ifconcerns=1;
-      this.concerns++;
-      this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoauthor: this.$store.state.videoauthor,
-          userid: this.$store.state.userid,
-          operation: this.ifconcerns
+    addView() {
+      if (this.videoPlay === 0) {
+        this.$axios({
+          method: 'get',
+          url: 'video/viewCount/' + this.vid,
         })
-      })
-    },
-    concerncancall() {
-      this.ifconcerns=0;
-      this.concerns--;
-      this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoauthor: this.$store.state.videoauthor,
-          userid: this.$store.state.userid,
-          operation: this.ifconcerns
-        })
-      })
+        this.videoPlay = 1;
+        this.videoviewcounts ++;
+      }
     },
     submit_comment(){ //发布评论的函数，尝试阶段
       this.$axios(
@@ -642,12 +476,12 @@ export default {
             data: qs.stringify(
                 {
                   CommentContent: this.textarea2,
-                  //videoid: this.$store.state.videoid
                 }
             )
           }
       )
           .then((res) => {
+            this.comment_num ++;
             this.comment_list.push(
                 {
                   comment_head_url: res.data.userList.UserProfilePhotoUrl,
@@ -674,24 +508,11 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
-      /*this.$axios.get('comment/commentDetail/'+this.vid).then(
-          res => {
-            this.comment_num = res.data.commentNumber;
-            alert(this.comment_num);
-              this.comment_list.push(
-                  {
-                    comment_head_url: res.data.commentList[this.comment_num-1].CommentUserPhotoUrl,
-                    comment_name: res.data.commentList[this.comment_num-1].CommentUserName,
-                    comment_in: res.data.commentList[this.comment_num-1].CommentContent,
-                    comment_id: res.data.commentList[this.comment_num-1].id,
-                    comment_time: res.data.commentList[this.comment_num-1].CommentDate
-                  }
-              )
-          },
-      );*/
     }
   },
   mounted() {
+    var video = document.getElementById("videoPlay")
+    video.addEventListener('play', this.addView)
     window.addEventListener('scroll', this.handleScroll)
   }
 }

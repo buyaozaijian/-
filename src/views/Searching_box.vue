@@ -1,10 +1,11 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-  <body>
+  <body style="max-width:1560px;margin: 0 auto;">
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -44,44 +45,51 @@
         </a>
       </div>
       <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'CreationCenter'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+        <router-link  :to="'CreationCenter'">
+          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1200px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
-          &ensp;站内通知
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+          站内通知
         </el-button>
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px">
-        <router-link :to="'/'">
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
         <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'">
+      </a></el-menu-item>
+      <el-menu-item index="/saving_box" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'">
+      </a></el-menu-item>
+      <el-menu-item index="/friend_list" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
-      </router-link></el-menu-item>
+      </a></el-menu-item>
+      <el-menu-item index="/user_center" style="width: 100px; font-size: 15px"><a>
+        <i class="fa fa-user-o" style="color: gray"></i>
+        <span style="color: gray">
+                  个人中心
+                </span>
+      </a></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
+        <!--<form action="" class="parent">
+          <input type="text" class="search">
+          <input type="button" name=""  class="btn" style="z-index:1" >
+        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -92,13 +100,13 @@
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
                       style="width: 34px;height: 34px;padding: 0px 7px;"
                   />
-                </button>
+                </button></router-link>
               </div>
             </form>
           </div>
@@ -119,7 +127,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'">
+            <router-link :to="'/Saving_box'">
               <i class="fa fa-file-video-o" style="color: black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
@@ -127,7 +135,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'">
+            <router-link :to="'/Friend_list'">
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
@@ -135,10 +143,10 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'User_center'">
+            <router-link :to="'/User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
               <span style="color: black">
-                  个人中心&nbsp;&nbsp;&nbsp;
+                  个人中心
                 </span>
             </router-link>
           </li>
@@ -151,7 +159,7 @@
                     class="search-input"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px;background: whitesmoke"
+                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
                   <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
@@ -166,10 +174,10 @@
             </div>
           </div>
         </div>
-        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin == 1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              :title="this.username"
+              :title= this.username
               width="300"
               trigger="hover"
               left="">
@@ -177,11 +185,21 @@
               <div>
                 id:{{this.userid}}
               </div>
+              <div>
+                <el-button type="danger" @click="logout">退出登录</el-button>
+              </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
               <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
+        </div>
+        <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+          <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+          </button>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
           <router-link :to="'CreationCenter'">
@@ -191,7 +209,7 @@
               </i></el-button>
           </router-link>
         </div>
-        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;;width: 100px">
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
               plain
@@ -200,81 +218,51 @@
             &ensp;站内通知
           </el-button>
         </div>
-        <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-              <span style="color: #0b95f1">
-                登录
-              </span>
-          </button>
-          <el-dialog title="登录" :visible.sync="dialogFormVisible" style="z-index: 9999">
-            <el-form :model="form">
-              <el-form-item label="用户名" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
-              </el-form-item>
-              <div>
-                <br>
-              </div>
-              <el-form-item label="密码" :label-width="formLabelWidth">
-                <el-input v-model="form.code" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-            </div>
-          </el-dialog>
-        </div>
+        <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+               <router-link to="/try_login"><span style="color: #0b95f1">
+                 登录
+               </span></router-link>
+           </button>
+         </div>-->
       </div>
     </div>
   </header>
-  <div class = "user_main">
-    <div style="position: absolute;left:50px;top:50px">
-      <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
-      </a>
-    </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
-    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
-    <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
-    <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="评论数" style="position:absolute;left:60px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
-    <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
-    <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
-    <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下</div>
-    <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
-               text-color="black"
-               active-text-color="black" >
-        <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
-        <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
-      </el-menu>
+  <div class="收藏夹">
+    <div style="position: relative;top: 100px;left: 25px;">
+      <div style="width: 240px;display: inline-block;float: left" v-for="video in videoList" :key="video.videoid">
+        <img
+            class="picture"
+            :src="video.videoCoverUrl"
+            alt=""
+            style="border-radius: 6px"
+        />
+        <div class="up">
+          <div class="up-cover">
+            <div style="float: left" class="txt">
+              <router-link :to="'/videoPage'" @click="click1">
+                <p class="name">{{video.videoName}}</p>
+                <span class="title">
+                      {{video.videoauthor}}
+                      <span style="float: right">
+                  <el-dropdown @command="handleCommand">
+                  <span class="el-dropdown-link">
+                  <i class="fa fa-navicon"></i>
+                  </span>
+                    <el-dropdown-menu slot="dropdown">
+                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                </span>
+                    </span>
+              </router-link>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="收藏夹" >
-      <div style="font-size: 20px; position: relative;top: 30px;left: 80px">全部关注</div>
-      <div style="position: relative;top:80px">
-        <ul style="list-style: none;">
-          <li style="height: 75px;margin-top: 15px;" v-for="friend in friendlist" :key="friend.friend_id">
-            <el-divider></el-divider>
-            <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url">
-            <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-              <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
-              <div style="font-size: 10px;color: gray">
-                {{friend.friend_sign}}
-              </div>
-              <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
   </body>
   </html>
 </template>
@@ -287,7 +275,7 @@ export default {
   name: "User_center",
   data(){
     return {
-      isLogin: 0,
+      isLogin:0,
       userid:0,
       islogin: true,
       userhead:'',
@@ -315,12 +303,61 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      friendnum: 0,
-      friendlist: [
+      videoList:[
       ],
+      videonum:7,
+      message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
   created(){
+    var i=0;
+    //搜索请求
+    this.$axios(
+        {
+          method: 'post',
+          url: 'search/searchVideo',
+          data: qs.stringify({
+            keyword: this.message,
+          })
+        }
+    ).then(
+        res =>{
+          this.videonum=res.data.videoNum;
+          for(i=0;i<this.videonum;i++){
+            this.videoList.push({
+                  videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
+                  videoauthor: res.data.videoList[i].VideoAuthorName,
+                  comid:i,
+                  videoUrl:res.data.videoList[i].VideoUrl,
+                  videoName:res.data.videoList[i].VideoTitle,
+                  videoId:res.data.videoList[i].id,
+                  videolike:res.data.videoList[i].VideoLike,
+                  videofavourite:res.data.videoList[i].VideoFavourite,
+                  videoAuthorId:res.data.videoList[i].VideoAuthor,
+                }
+            )
+          }
+        }
+    );
+    /*this.$axios.get('user/favorVideo/').then(
+        res =>{
+          this.videonum=res.data.friendnum;
+          for(i=0;i<this.videonum;i++){
+            this.videoList.push({
+                  videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
+                  videoauthor: res.data.videoList[i].VideoAuthorName,
+                  comid:i,
+                  videoUrl:res.data.videoList[i].VideoUrl,
+                  videoName:res.data.videoList[i].VideoTitle,
+                  videoId:res.data.videoList[i].id,
+                  videolike:res.data.videoList[i].VideoLike,
+                  videofavourite:res.data.videoList[i].VideoFavourite,
+                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
+                }
+            )
+          }
+        },
+    );*/
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -331,24 +368,6 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    alert(userInfo.user.username);
-    var i=0;
-    this.$axios.get('user/allFollow').then(
-        res =>{
-          this.friendnum=res.data.friendnum;
-          alert(this.friendnum);
-          for(i=0;i<this.friendnum;i++){
-            this.friendlist.push({
-                  friend_head_url: res.data.friendlist[i].UserProfilePhotoUrl,
-                  friend_name: res.data.friendlist[i].UserName,
-                  friend_sign: res.data.friendlist[i].UserIntroduction,
-                  friend_id: res.data.friendlist[i].id,
-                }
-            )
-          }
-        },
-    );
-
   },
   methods:{
     logout(){
@@ -376,7 +395,29 @@ export default {
         message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
       });
     },
-
+    handleCommand() {
+      this.$axios.get('video/favor/'+this.videoList[event.srcElement.id].videoId).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
+    },
+    click1(){
+      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
+      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
+      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
+      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
+      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId;
+          //this.$store.state.videoname = 'cnm';
+          //this.$store.state.videoid = 1;
+          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+    },
     open2() {
       this.$notify({
         title: '提示',
@@ -442,14 +483,9 @@ export default {
 </script>
 
 <style scoped>
-.el-dropdown {
-  vertical-align: top;
-}
+
 .el-dropdown + .el-dropdown {
   margin-left: 15px;
-}
-.el-icon-arrow-down {
-  font-size: 15px;
 }
 .a1:hover .c1{
 
@@ -473,43 +509,14 @@ export default {
   position: absolute;
   display:inline-block;
   background: whitesmoke;
-  left:420px;
+  left:150px;
   top:70px;
-  width:1000px;
-  height:900px;
+  width:1250px;
+  height:2000px;
   border-radius: 8px;
   border-color: #DCDFE6;
   display: -moz-box;/*兼容Firefox*/
   display: -webkit-box;/*兼容FSafari、Chrome*/
-}
-.input-picture{
-  position:absolute;
-  display:inline-block;
-  background: #545c64;
-  left:520px;
-  top:70px;
-  width:1000px;
-  height:350px;
-  border-radius: 8px;
-  border-color: #DCDFE6;
-}
-.视频上传{
-  position:absolute;
-  display:inline-block;
-  background: #545c64;
-  left:520px;
-  top:430px;
-  width: 1000px;
-  height:350px;
-  border-radius: 8px;
-  border-color: #DCDFE6;
-
-}
-.head{
-  position:absolute;
-  left:210px;
-  top:50px;
-
 }
 html {
   width: 100%;
@@ -531,55 +538,17 @@ a:hover {
 a:active {
   text-decoration: none;
 }
-#main {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  width: 70%;
-}
 /* banner图片等比例缩小 */
 .banner{padding-bottom:34px;}
 
 .banner,.banner a,.banner img{width: 100%;height: 100%;}
-.pic {
-  height: 228px;
-  width: 280px;
-}
 .picture {
-  height: 150px;
-  width: 250px;
+  height: 135px;
+  width: 225px;
 }
 #mian div {
   width: 100px;
   height: 100px;
-}
-.all {
-  /* display: flex;
-  flex-direction: column; */
-  padding-right: 95px;
-  padding-left: 105px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-bottom: 600px;
-}
-.zouma{
-  padding-right: 95px;
-  padding-left: 105px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-bottom: 100px;
-}
-.live-card {
-  /* color: #505050;
-  font-size: 12px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  width: 206px; */
-}
-.row {
-  padding-left: 15px;
-  padding-right: 15px;
 }
 .top-content * {
   /* 文字在图片后面居中对齐 */
@@ -588,80 +557,6 @@ a:active {
   padding-top: 10px;
   padding-bottom: 5px;
   /* left: 120px; */
-}
-.video-title {
-  font-size: 24px;
-  color: #000000;
-}
-.text-info {
-  text-align: center;
-  font-size: 12px;
-  box-sizing: border-box;
-  margin: 0;
-  padding-left: 30px;
-  color: #505050;
-  line-height: 28px;
-}
-.swap {
-  padding-left: 417px;
-}
-.btn {
-  font-size: 12px;
-  height: 28px;
-  width: 60px;
-  line-height: 6px;
-  border: none;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
-}
-.other {
-  padding-left: 15px;
-
-}
-.tab-switch {
-  color: #505050;
-  font-size: 12px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-size: 12px;
-  line-height: 18px;
-  height: 22px;
-  margin-right: 20px;
-  border-bottom: 2px solid;
-  padding: 0px;
-}
-.container {
-  width: 1160px;
-  height: 520px;
-  margin: 0 auto;
-  display: flex;
-  border: 4px solid #ededed;
-  border-radius: 4px;
-}
-.icon {
-  height: 36px;
-  width: 36px;
-  padding-top: 30px;
-  padding-left: 120px;
-}
-
-.live {
-  padding-left: 30px;
-}
-.right {
-  float: right;
-  width: 320px;
-  height: 330px;
-  box-sizing: border-box;
-
-}
-.slide-pic {
-  padding-top: 10px;
-  width: 315px;
-  height: 367px;
 }
 table {
   position: absolute;
@@ -687,47 +582,8 @@ table {
   padding: 0;
   position: relative;
 }
-.face {
-  position: absolute;
-  font-size: 12px;
-  color: #212121;
-  line-height: 16px;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-  border-style: none;
-  width: 36px;
-  height: 36px;
-  display: inline-block;
-  border-radius: 50%;
-  background: #f7f7f7;
-  margin-top: 20px;
-}
 .txt {
-  padding-left: 50px;
-}
-.name {
-  font-size: 14px;
-  font-weight: bold;
-  /* padding-left: 50px; */
-}
-.tag {
-  font-size: 12px;
-  line-height: 16px;
-  color: #999;
-  margin-top: 8px;
-}
-.form-box {
-  width: 300px;
-  padding: 40px;  /* 内边界宽度  */
-  position: absolute;  /* 设置为绝对定位，使下方的top和left生效  */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);  /* 作用见后方描述  */
-  background: #90b9e5;  /* 设置背景颜色  */
-  text-align: center;  /* 表单中内容居中  */
-  border-radius: 10px;
+  padding-left: 10px;
 }
 .form-box h1 {
   text-transform: uppercase;  /* 将字体全部设置成大写字母  */
@@ -759,47 +615,12 @@ table {
   transition: 0.25s;
   cursor: pointer;    /* 设置光标的样式 */
 }
-* {
-  margin: 0;
-  padding: 0;
-}
-.parent {
-  position: relative;
-}
-.search {
-  width: 300px;
-  height: 40px;
-  border-radius: 18px;
-  outline: none;
-  border: 1px solid #ccc;
-  padding-left: 20px;
-  position: absolute;
-}
-.btn {
-  height: 35px;
-  width: 35px;
-  position: absolute;
-  background: no-repeat 150px 60px;
-  top: 6px;
-  left: 285px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
 .el-carousel__item h3 {
   color: #475669;
   font-size: 18px;
   opacity: 0.75;
   line-height: 300px;
   margin: 0;
-}
-
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n+1) {
-  background-color: #d3dce6;
 }
 .nav-search-box {
   margin: 0 10px;
@@ -852,5 +673,24 @@ table {
   background: #e7e7e7;
   line-height: 35px;
 }
-
+.title{
+  float: left;
+  text-align: left;
+  font-size: 13px;
+  color: gray;
+  height: 30px;
+  width: 220px;
+}
+.name {
+  float: left;
+  line-height: 20px;
+  text-align: left;
+  margin-top: 5px;
+  height: 45px;
+  width: 220px;
+  font-size: 14px;
+  color: black;
+  font-weight: 600;
+  /* padding-left: 50px; */
+}
 </style>

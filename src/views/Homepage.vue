@@ -97,18 +97,19 @@
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
               <input
                   class="search-input"
+                  ref="search1"
                   type="text"
                   placeholder="      谁说站在光里的才算英雄 "
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <button @click="click2" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                  <img
+                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                   <img
                       src="../img/sousuo1.png"
                       alt=""
                       style="width: 34px;height: 34px;padding: 0px 7px;"
                   />
-                </button>
+                </button></router-link>
               </div>
             </form>
           </div>
@@ -161,21 +162,22 @@
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-              <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+              <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
+                    ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
                     style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
-                  <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                     <img
                         src="../img/sousuo1.png"
                         alt=""
                         style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
                     />
-                  </button>
+                  </button></router-link>
                 </div>
               </form>
             </div>
@@ -1341,6 +1343,8 @@ export default {
         videoName: '视频连接中',
         videolike: '',
         videofavourite: '',
+        videoviewnum:0,
+        videouploadtime:'',
       });
     }
     this.$axios.get('/index/main').then(
@@ -1348,14 +1352,15 @@ export default {
           for(i=0;i<6;i++)
           {
               this.videoList[i].videoAuthor= res.data.videoList[i].VideoAuthorName,
-              this.videoList[i].videoAuthorId= res.data.videoList[i].VideoAuthorId,
+              this.videoList[i].videoAuthorId= res.data.videoList[i].VideoAuthor,
               this.videoList[i].videoId= res.data.videoList[i].id,
               this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
               this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
               this.videoList[i].videoName= res.data.videoList[i].VideoTitle,
-              this.videoList[i].videolike= res.data.videoList[i].videolike,
-              this.videoList[i].videofavourite= res.data.videoList[i].videofavourite
-
+              this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+              this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                  this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                  this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1364,13 +1369,15 @@ export default {
           for(i=6;i<14;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-6].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-6].VideoAuthorId,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-6].VideoAuthor,
             this.videoList[i].videoId= res.data.videoList[i-6].id,
             this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
             this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
             this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-6].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-6].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i-6].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-6].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-6].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-6].VideoUploadTime
           }
         },
     );
@@ -1379,13 +1386,15 @@ export default {
           for(i=14;i<22;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-14].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-14].VideoAuthorId,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-14].VideoAuthor,
                 this.videoList[i].videoId= res.data.videoList[i-14].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-14].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-14].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i-14].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-14].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-14].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-14].VideoUploadTime
           }
         },
     );
@@ -1394,13 +1403,15 @@ export default {
           for(i=22;i<30;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-22].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-22].VideoAuthorId,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-22].VideoAuthor,
                 this.videoList[i].videoId= res.data.videoList[i-22].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-22].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-22].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i-22].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-22].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-22].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-22].VideoUploadTime
           }
         },
     );
@@ -1409,13 +1420,15 @@ export default {
           for(i=30;i<38;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-30].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-30].VideoAuthorId,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-30].VideoAuthor,
                 this.videoList[i].videoId= res.data.videoList[i-30].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-30].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-30].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i-30].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-30].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-30].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-30].VideoUploadTime
           }
         },
     );
@@ -1424,13 +1437,15 @@ export default {
           for(i=38;i<46;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-38].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-38].VideoAuthorId,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-38].VideoAuthor,
                 this.videoList[i].videoId= res.data.videoList[i-38].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-38].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-38].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i-38].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-38].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-38].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-38].VideoUploadTime
           }
         },
     );
@@ -1439,13 +1454,15 @@ export default {
           for(i=46;i<54;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-46].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-46].VideoAuthorId,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-46].VideoAuthor,
                 this.videoList[i].videoId= res.data.videoList[i-46].id,
                 this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-46].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-46].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i-46].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-46].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-46].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-46].VideoUploadTime
           }
         },
     );
@@ -1462,6 +1479,14 @@ export default {
   },
 
   methods:{
+    click_search(){
+      alert(this.$refs.search.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+    },
+    click_search1(){
+      alert(this.$refs.search1.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
@@ -1506,17 +1531,13 @@ export default {
       this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
       this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
       this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
-      //this.$store.state.videoname = 'cnm';
-      //this.$store.state.videoid = 1;
-      //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId;
+      this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
+      this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
-    },
-
-    click_search() {
     },
 
     click_login(){
