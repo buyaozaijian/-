@@ -338,21 +338,46 @@ export default {
       this.$axios.get('index/videoAll/'+this.aid).then(//获取作者视频列表
         res => {
           this.video_num = res.data.videoNum;
-          for(i=0;i<this.video_num;i++){
-            this.video_list.push(
-                {
-                  video_name: res.data.videoList[i].VideoTitle,
-                  video_photo: res.data.videoList[i].VideoCoverUrl,
-                  video_viewnums: res.data.videoList[i].VideoViewCounts,
-                  video_url: res.data.videoList[i].VideoUrl,
-                  video_commentnums: res.data.videoList[i].CommentNum,
-                  video_id: res.data.videoList[i].id,
-                  video_like: res.data.videoList[i].VideoLike,
-                  video_favorite: res.data.videoList[i].VideoFavorite,
-                  author: this.video_username,
-                  video_id_use: i,
-                }
-            )
+          var if_get = 0;
+          for(i=0;i<this.video_num;i++) {
+            var idtemp = res.data.videoList[i].id;
+            if (idtemp !== this.vid) {
+              if (if_get === 0) {
+                this.video_list.push(
+                    {
+                      video_name: res.data.videoList[i].VideoTitle,
+                      video_photo: res.data.videoList[i].VideoCoverUrl,
+                      video_viewnums: res.data.videoList[i].VideoViewCounts,
+                      video_url: res.data.videoList[i].VideoUrl,
+                      video_commentnums: res.data.videoList[i].CommentNum,
+                      video_id: res.data.videoList[i].id,
+                      video_like: res.data.videoList[i].VideoLike,
+                      video_favorite: res.data.videoList[i].VideoFavorite,
+                      author: this.video_username,
+                      video_id_use: i,
+                    }
+                )
+              }
+              else{
+                this.video_list.push(
+                    {
+                      video_name: res.data.videoList[i].VideoTitle,
+                      video_photo: res.data.videoList[i].VideoCoverUrl,
+                      video_viewnums: res.data.videoList[i].VideoViewCounts,
+                      video_url: res.data.videoList[i].VideoUrl,
+                      video_commentnums: res.data.videoList[i].CommentNum,
+                      video_id: res.data.videoList[i].id,
+                      video_like: res.data.videoList[i].VideoLike,
+                      video_favorite: res.data.videoList[i].VideoFavorite,
+                      author: this.video_username,
+                      video_id_use: i-1,
+                    }
+                )
+              }
+            }
+            else{
+              if_get = 1;
+            }
           }
         }
       );
