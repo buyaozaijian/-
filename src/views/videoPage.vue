@@ -173,14 +173,16 @@
     <div class="operation">
       <el-divider></el-divider>
       <div style="float: left; width: 100px">
-        <button v-if="this.iflike===0" @click="like" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-if="this.isLogin===0" @click="jumplogin" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-else-if="this.iflike===0" @click="like" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
         <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
         {{this.videoLikeNum}}
       </div>
       <div style="float: left; width: 100px">
-        <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-if="this.isLogin===0" @click="jumplogin" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
+        <button v-else-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
         <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
@@ -392,6 +394,10 @@ export default {
     }
   },
   methods:{
+    jumplogin(){
+      alert('请先登录');
+      this.$router.push('/try_login');
+    },
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
