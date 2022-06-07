@@ -241,8 +241,8 @@
       </div>
     </div>
   </header>
-  <div style="margin-top: 25px; ">
-    <el-tabs :tab-position="tabPosition" type="border-card" style="">
+  <div style="margin-top: 25px;">
+    <el-tabs :tab-position="tabPosition" type="border-card" style="min-height: 1000px">
       <el-tab-pane label="视 频 管 理">
         <div align="center" style="margin-left: 100px;">
           <ul style="list-style: none;" v-if="this.video_num != 0">
@@ -250,7 +250,9 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              <router-link :to="'/videoPage'" @click="click1">
+                <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
                 <router-link :to="'/videoPage'" @click="click1">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
@@ -326,7 +328,9 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              <router-link :to="'/videoPage'" @click="click1">
+                <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
                 <router-link :to="'/videoPage'" @click="click1">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
@@ -403,40 +407,11 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:1,
+      video_num:0,
       videocontrolList:[
-        {
-          videoCoverUrl:'../img/fengmian1.wdbp',
-          videoName:'aa',
-          videolike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoId:0,
-          comid:0,
-        }
       ],
-      audit_num:2,
+      audit_num:0,
       videoauditList:[
-        {
-          videoCoverUrl:'../img/fengmian1.wdbp',
-          videoName:'aa',
-          videolike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoId:0,
-          comid_pass:0,
-          comid_notpass:1,
-        },
-        {
-          videoCoverUrl:'../img/fengmian1.wdbp',
-          videoName:'aa',
-          videolike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoId:0,
-          comid_pass:2,
-          comid_notpass:3,
-        }
       ],
 
     }
@@ -531,7 +506,7 @@ export default {
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
-          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
