@@ -1341,6 +1341,8 @@ export default {
         videoName: '视频连接中',
         videolike: '',
         videofavourite: '',
+        videoviewnum:0,
+        videouploadtime:'',
       });
     }
     this.$axios.get('/index/main').then(
@@ -1353,9 +1355,10 @@ export default {
               this.videoList[i].videoUrl= res.data.videoList[i].VideoUrl,
               this.videoList[i].videoCoverUrl= res.data.videoList[i].VideoCoverUrl,
               this.videoList[i].videoName= res.data.videoList[i].VideoTitle,
-              this.videoList[i].videolike= res.data.videoList[i].videolike,
-              this.videoList[i].videofavourite= res.data.videoList[i].videofavourite
-
+              this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+              this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                  this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                  this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1369,8 +1372,10 @@ export default {
             this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
             this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
             this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-6].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-6].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1384,8 +1389,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-14].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-14].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1399,8 +1406,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-22].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-22].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1414,8 +1423,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-30].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-30].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1429,8 +1440,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-38].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-38].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1444,8 +1457,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-46].videolike,
-                this.videoList[i].videofavourite= res.data.videoList[i-46].videofavourite
+                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
@@ -1506,7 +1521,9 @@ export default {
       this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
       this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
       this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId;
+      this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
+      this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
       //this.$store.state.videoname = 'cnm';
       //this.$store.state.videoid = 1;
       //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
@@ -1514,6 +1531,8 @@ export default {
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+      sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
+      sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
     },
 
     click_login(){
