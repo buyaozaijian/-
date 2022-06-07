@@ -36,7 +36,7 @@ new Vue({
     router,
     store,
     render: h => h(App),
-   created(){
+    /*created(){
         router.beforeEach(
             (to,from,next) => {
                 if(to.meta.requireAuth){
@@ -56,5 +56,5 @@ new Vue({
                 }
             }
         )
-    }
+    }*/
 }).$mount('#app')

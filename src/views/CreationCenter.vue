@@ -241,16 +241,18 @@
       </div>
     </div>
   </header>
-  <div style="margin-top: 25px; ">
-    <el-tabs :tab-position="tabPosition" type="border-card" style="height: 900px">
+  <div style="margin-top: 25px;">
+    <el-tabs :tab-position="tabPosition" type="border-card" style="min-height: 1000px">
       <el-tab-pane label="视 频 管 理">
         <div align="center" style="margin-left: 100px;">
           <ul style="list-style: none;" v-if="this.video_num != 0">
-            <li style="height: 140px;margin-top: 15px" v-for="video in videocontrolList" :key="video.videoid">
+            <li style="height: 140px;margin-top: 15px" v-for="(video,index) in videocontrolList" :key="video.videoid">
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              <router-link :to="'/videoPage'" @click="click1">
+                <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
                 <router-link :to="'/videoPage'" @click="click1">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
@@ -264,7 +266,7 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button :id="video.comid" @click="deletevideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+                <el-button id="0" @click="deletevideo(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
               </div>
             </li>
           </ul>
@@ -326,7 +328,9 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              <router-link :to="'/videoPage'" @click="click1">
+                <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
                 <router-link :to="'/videoPage'" @click="click1">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
@@ -340,8 +344,8 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button :id="video.comid_pass" @click="auditvideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
-                <el-button :id="video.comid_notpass" @click="auditvideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
+                <el-button :id="video.comid_pass" @click="auditvideo_pass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
+                <el-button :id="video.comid_notpass" @click="auditvideo_notpass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
               </div>
             </li>
           </ul>
@@ -404,9 +408,11 @@ export default {
         label: '游戏'
       },
       video_num:0,
-      videocontrolList:[],
+      videocontrolList:[
+      ],
       audit_num:0,
-      videoauditList:[],
+      videoauditList:[
+      ],
 
     }
   },
@@ -435,7 +441,6 @@ export default {
                 videoViewcount:res.data.videoList[i].VideoViewCounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
                 videoId:res.data.videoList[i].id,
-                comid:i,
                 videoUrl:res.data.videoList[i].VideoUrl,
                 videoAuthor:res.data.videoList[i].VideoAuthorName,
                 videoAuthorId:res.data.videoList[i].VideoAuthor,
@@ -447,7 +452,7 @@ export default {
     this.$axios.get("index/waitForCheck").then(
         res => {
           this.audit_num = res.data.videoNum;
-          for(i=0;i<this.video_num;i++){
+          for(i=0;i<this.audit_num;i++){
             this.videoauditList.push(
                 {
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
@@ -456,8 +461,6 @@ export default {
                   videoViewcount:res.data.videoList[i].VideoViewCounts,
                   videofavourite: res.data.videoList[i].VideoFavourite,
                   videoid:res.data.videoList[i].id,
-                  comid_pass:i*2,
-                  comid_notpass:i*2+1,
                   videoUrl:res.data.videoList[i].VideoUrl,
                   videoAuthor:res.data.videoList[i].VideoAuthorName,
                   videoAuthorId:res.data.videoList[i].VideoAuthor,
@@ -503,7 +506,7 @@ export default {
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
-          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
@@ -736,45 +739,41 @@ export default {
       });
     },
 
-    deletevideo() {
-      this.$axios.get("video/delete/"+this.videocontrolList[event.srcElement.id].videoid).then(
+    deletevideo(index) {
+      this.$axios.get("video/delete/"+this.videocontrolList[index].videoid).then(
           res=> {
             alert(res.data.msg);
           }
       )
     },
-    auditvideo() {
-      if(event.srcElement.id%2==0)
-      {
-        this.$axios({
-              method:"post",
-              url:"video/changeStatus/"+this.videocontrolList[event.srcElement.id/2].videoid,
-              data: qs.stringify({
-                status:1
-              })
-            }
-        ).then(
-            res=> {
-              alert(res.data.msg);
-            }
-        )
-      }
-      if(event.srcElement.id%2!=0)
-      {
-        this.$axios({
-              method:"post",
-              url:"video/changeStatus/"+this.videocontrolList[(event.srcElement.id-1)/2].videoid,
-              data: qs.stringify({
-                status:0
-              })
-            }
-        ).then(
-            res=> {
-              alert(res.data.msg);
-            }
-        )
-      }
-    }
+    auditvideo_notpass(index) {
+      this.$axios({
+            method: "post",
+            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            data: qs.stringify({
+              status: 0
+            })
+          }
+      ).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
+    },
+    auditvideo_pass(index) {
+      this.$axios({
+            method: "post",
+            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            data: qs.stringify({
+              status: 1
+            })
+          }
+      ).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
