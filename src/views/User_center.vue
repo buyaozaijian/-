@@ -395,7 +395,7 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-
+      imgList: [],
     }
   },
   created(){
@@ -429,10 +429,11 @@ export default {
         method: 'post',
         url:'',
         data: qs.stringify({
-          newsign: this.change.sign,
-          newname: this.change.name,
-          newmail: this.change.mail,
-          newpassword: this.change.password,
+          photoUrl: this.imgList.url,
+          Introduction: this.change.sign,
+          username: this.change.name,
+          email: this.change.mail,
+          password: this.change.password,
         })
       })
           .then((res) => {
@@ -469,14 +470,11 @@ export default {
                 break;
               case 1:
                 var url_img = res.data.url_img;
-                var key_img = res.data.key_img;
-                this.willAddQuestion.imgList.push({
+                this.imgList.push({
                   url: url_img,
-                  key: key_img
                 });
                 alert("封面上传成功");
                 console.log(this.willAddQuestion.imgList);
-                alert(this.willAddQuestion.imgList[0].url);
                 break;
               case 2:
                 // this.$message.error("上传文件格式错误！");
