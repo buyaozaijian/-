@@ -295,7 +295,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <router-link :to="'/videoPage'" @click="click1">
-                    <p class="name">{{video.videoTitle}}</p>
+                    <p class="name">{{video.videoName}}</p>
                     <span class="title">
                       {{video.videoauthor}}
                       <span style="float: right">
