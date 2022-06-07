@@ -395,7 +395,7 @@ export default {
   },
   methods:{
     jumplogin(){
-      alert('请先登录');
+      this.$message.success("请先登录！");
       this.$router.push('/try_login');
     },
     click_search(){
@@ -442,6 +442,7 @@ export default {
         );
       }
       else{
+        this.$message.success("请先登录");
         this.$router.push('/try_login');
       }
     },
