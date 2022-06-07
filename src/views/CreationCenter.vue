@@ -317,7 +317,7 @@
         </el-form>
       </div>
     </el-tab-pane>
-      <el-tab-pane label="视 频 审 核">
+      <el-tab-pane label="视 频 审 核" v-if="this.identity=='admin'">
         <div align="center" style="margin-left: 100px;">
           <ul style="list-style: none;" v-if="this.audit_num != 0">
             <li style="height: 140px;margin-top: 15px" v-for="video in videoauditList" :key="video.videoid">
@@ -365,7 +365,7 @@ export default {
     return {
       isLogin: 0,
       userid:0,
-      identity: '',
+      identity: 'admin',
       userhead:'',
       tabPosition: 'left',
       dialogImageUrl: '',
@@ -401,10 +401,11 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:2,
+      video_num:0,
       videocontrolList:[],
       audit_num:0,
       videoauditList:[],
+
     }
   },
   created(){
