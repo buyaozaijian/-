@@ -243,17 +243,9 @@
               <router-link :to="'/videoPage'" @click="click1">
                 <p class="name">{{video.videoName}}</p>
                 <span class="title">
-                      {{video.videoauthor}}
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
+                  投稿人:<b>{{video.videoauthor}}</b>
+                      播放:<b>{{video.videoviewnum}}</b>
+                      评论:<b>{{video.videocommentnum}}</b>
                     </span>
               </router-link>
             </div>
@@ -312,6 +304,19 @@ export default {
   created(){
     var i=0;
     //搜索请求
+    /*for(i=0;i<8;i++){
+      this.videoList.push(
+          {
+            videoCoverUrl:'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+            videoauthor: 'zbh',
+            comid:i,
+            videoUrl: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/ff2f3f6a-f4f7-472a-8252-84d0d80de8ec.mp4',
+            videoName: 'dadada',
+            videocommentnum:  100,
+            videoviewnum:  200,
+          }
+      )
+    }*/
     this.$axios(
         {
           method: 'post',
@@ -334,30 +339,13 @@ export default {
                   videolike:res.data.videoList[i].VideoLike,
                   videofavourite:res.data.videoList[i].VideoFavourite,
                   videoAuthorId:res.data.videoList[i].VideoAuthor,
+                  videocommentnum: res.data.videoList[i].CommentNum,
+                  videoviewnum: res.data.videoList[i].VideoViewCounts,
                 }
             )
           }
         }
     );
-    /*this.$axios.get('user/favorVideo/').then(
-        res =>{
-          this.videonum=res.data.friendnum;
-          for(i=0;i<this.videonum;i++){
-            this.videoList.push({
-                  videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
-                  videoauthor: res.data.videoList[i].VideoAuthorName,
-                  comid:i,
-                  videoUrl:res.data.videoList[i].VideoUrl,
-                  videoName:res.data.videoList[i].VideoTitle,
-                  videoId:res.data.videoList[i].id,
-                  videolike:res.data.videoList[i].VideoLike,
-                  videofavourite:res.data.videoList[i].VideoFavourite,
-                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
-                }
-            )
-          }
-        },
-    );*/
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
