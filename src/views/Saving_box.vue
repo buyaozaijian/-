@@ -283,249 +283,41 @@
         <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">鬼畜</el-menu-item>
       </el-menu>
     </div>
-    <div style="position: relative;top: 100px;left: 25px">
-      <table style="border-spacing:10px 25px;">
-        <tr>
-          <td>
+    <div style="position: relative;top: 100px;left: 25px;">
+      <div style="width: 240px;display: inline-block;float: left" v-for="video in videoList" :key="video.videoid">
             <img
-                class="picture"
-                src="../img/fengmian1.webp"
-                alt=""
-                style="border-radius: 6px"
+            class="picture"
+            :src="video.videoCoverUrl"
+            alt=""
+            style="border-radius: 6px"
             />
             <div class="up">
               <div class="up-cover">
                 <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'">
-                    <p class="name">【LOL】20G2MSI宣传片——上单教父</p>
+                  <router-link :to="'/videoPage'" @click="click1">
+                    <p class="name">{{video.videoTitle}}</p>
                     <span class="title">
-                      g2电子经济俱乐部
+                      {{video.videoauthor}}
                       <span style="float: right">
                   <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
                   <i class="fa fa-navicon"></i>
                   </span>
                     <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
+                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
                     </el-dropdown-menu>
                   </el-dropdown>
                 </span>
                     </span>
                   </router-link>
                 </div>
+              </div>
+            </div>
+      </div>
 
-              </div>
-            </div>
-          </td>
-          <td>
-            <img
-                class="picture"
-                src="../img/fengmian2.webp"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">【ADC玄学技巧】职业选手的对线压制力为什么这么强</p></a>
-                  <span class="title">
-                    不知名up主
-                    <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <img
-                class="picture"
-                src="../img/fengmian3.webp"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">【爆肝特效】三 国 第 一 战 神</p></a>
-                    <span class="title">
-                      高进进进
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
-                    </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <img
-                class="picture"
-                src="../img/fengmian4.webp"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">反 向 面 试 PUA</p></a>
-                    <span class="title">
-                      不说再见
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
-                    </span>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <img
-                class="picture"
-                src="../img/fengmian5.webp"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">&ensp;这首歌能否治愈你</p></a>
-                    <span class="title">&ensp;
-                      错过他很遗憾吧
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
-                    </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <img
-                class="picture"
-                src="../img/fengmian6.webp"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">这一吹，吹出了整个盛夏</p></a>
-                    <span class="title">
-                      ZB龙哥
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
-                    </span>
-                </div>
-              </div>
-            </div>
-          </td>
-          <td>
-          <img
-              class="picture"
-              src="../img/fengmian1.webp"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <router-link :to="'/videoPage'">
-                  <p class="name">【LOL】20G2MSI宣传片——上单教父</p>
-                  <span class="title">
-                      g2电子经济俱乐部
-                    </span>
-                </router-link>
-              </div>
-            </div>
-          </div>
-        </td>
-          <td>
-            <img
-                class="picture"
-                src="../img/fengmian2.webp"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="display: inline-block" class="txt">
-                  <a href="https://live.bilibili.com/13?spm_id_from=333.851.b_62696c695f7265706f72745f6c697665.3" target="blank">
-                    <p class="name">【ADC玄学技巧】职业选手的对线压制力为什么这么强</p></a>
-                    <span class="title">
-                      不知名up主
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item command="a">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
-                    </span>
-                </div>
-              </div>
-            </div>
-          </td>
-        </tr>
-      </table>
     </div>
   </div>
   </body>
-  <!--<div class="login">
-    <div class="form-box">
-      <h1>Login</h1>
-      <label><input v-model="username" type="text" placeholder="Username" class="username"></label>
-      <label><input v-model="password" type="password" placeholder="Password" class="password"></label>
-      <button type="submit" @click="click_login" class="login">Login</button>
-    </div>
-  </div>-->
   </html>
 </template>
 
@@ -564,7 +356,10 @@ export default {
         desc: '',
         code: ''
       },
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+      videoList:[
+      ],
+      videonum:1,
     }
   },
   created(){
@@ -578,6 +373,26 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    var i=0;
+    this.$axios.get().then(
+        res =>{
+          this.videonum=res.data.friendnum;
+          for(i=0;i<this.videonum;i++){
+            this.videoList.push({
+                  videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
+                  videoauthor: res.data.videoList[i].VideoAuthorName,
+                  comid:i,
+                  videoUrl:res.data.videoList[i].VideoUrl,
+                  videoName:res.data.videoList[i].VideoTitle,
+                  videoId:res.data.videoList[i].id,
+                  videolike:res.data.videoList[i].VideoLike,
+                  videofavourite:res.data.videoList[i].VideoFavourite,
+                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
+                }
+            )
+          }
+        },
+    );
   },
   methods:{
     logout(){
@@ -605,10 +420,26 @@ export default {
         message: h('i', { style: 'color: teal'}, '这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案这是提示文案')
       });
     },
-    handleCommand(command) {
-      this.$message('click on item ' + command);
-    },
+    handleCommand() {
+      alert(event.srcElement.id);
 
+    },
+    click1(){
+      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
+      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
+      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
+      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
+      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
+          //this.$store.state.videoname = 'cnm';
+          //this.$store.state.videoid = 1;
+          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+    },
     open2() {
       this.$notify({
         title: '提示',
