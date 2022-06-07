@@ -231,6 +231,7 @@
     </div>
   </header>
   <div class="收藏夹">
+    <div v-if="this.videonum === 0" style="position:absolute; left:370px;font-size: 60px">亲,什么都没有搜到哦</div>
     <div style="position: relative;top: 100px;left: 25px;">
       <div style="width: 240px;display: inline-block;float: left" v-for="video in videoList" :key="video.videoid">
         <img
@@ -299,7 +300,7 @@ export default {
       formLabelWidth: '120px',
       videoList:[
       ],
-      videonum:7,
+      videonum:0,
       message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
@@ -363,10 +364,12 @@ export default {
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+      window.location.reload();
     },
     click_search1(){
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+      window.location.reload();
     },
     logout(){
       alert('退出登录！');
