@@ -396,6 +396,7 @@ export default {
       },
       formLabelWidth: '120px',
       imgList: [],
+      url: '',
     }
   },
   created(){
@@ -403,18 +404,19 @@ export default {
     console.log(userInfo);
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.url = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('user/<int:id>').then(
+    this.$axios.get('user/' + this.userid).then(
         res =>{
-          this.oldpassword=res.data.password;
-          this.oldmail=res.data.mail;
-          this.oldsign=res.data.sign;
-          this.oldname=res.data.name;
+          this.oldpassword=res.data.user.UserPassword;
+          this.oldmail=res.data.user.UserEmail;
+          this.oldsign=res.data.user.UserIntroduction;
+          this.oldname=res.data.user.UserName;
         },
     );
 
@@ -427,9 +429,9 @@ export default {
       alert(this.change.password);
       this.$axios({
         method: 'post',
-        url:'',
+        url:'user/changeUser',
         data: qs.stringify({
-          photoUrl: this.imgList.url,
+          photoUrl: this.url,
           Introduction: this.change.sign,
           username: this.change.name,
           email: this.change.mail,
@@ -469,10 +471,7 @@ export default {
                 window.alert("error");
                 break;
               case 1:
-                var url_img = res.data.url_img;
-                this.imgList.push({
-                  url: url_img,
-                });
+                this.url = res.data.url_img;
                 alert("封面上传成功");
                 console.log(this.willAddQuestion.imgList);
                 break;
