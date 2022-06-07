@@ -280,7 +280,8 @@
         :http-request="upLoadImage"
         :before-upload="beforeImageUpload"
         :file-list="willAddQuestion.imgList"
-        :limit="6" style="width: 200px;display: block; clear: both; margin: 0 auto">
+        :limit="6"
+        style="width: 200px;display: block; clear: both; margin: 0 auto">
       <i class="el-icon-plus"></i>
     </el-upload>
     <div style="width: 1000px; height: 50px; position: relative; top: 10px; font-size: 15px">图片只能为jpg/png格式</div>
@@ -303,30 +304,27 @@
       <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入新密码"></el-input>
     </div>-->
     <div style="width: 800px; margin: 0 auto;">
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-form ref="form" :model="change" label-width="80px">
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
-         <el-input v-model="form1.name" style="width: 500px"></el-input>
+         <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign"></el-input>
        </el-form-item>
-        <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px;">提交</el-button>
       </el-form>
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="change" label-width="80px">
           <el-form-item label="用户名" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="form1.name" style="width: 500px"></el-input>
+            <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname"></el-input>
           </el-form-item>
-          <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
         </el-form>
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="change" label-width="80px">
           <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="form1.name" style="width: 500px"></el-input>
+            <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail"></el-input>
           </el-form-item>
-          <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
         </el-form>
-        <el-form ref="form" :model="form" label-width="80px">
+        <el-form ref="form" :model="change" label-width="80px">
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="form1.name" style="width: 500px"></el-input>
+            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword"></el-input>
           </el-form-item>
-          <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
         </el-form>
+      <el-button @click="submit_all" type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
     </div>
   </div>
   </body>
@@ -349,17 +347,17 @@ export default {
   name: "User_center",
   data(){
     return {
-      form1: {
+      change: {
         name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        sign: '',
+        mail: '',
+        password: '',
       },
-      input: '',
+      oldname: '',
+      oldsign: '',
+      oldmail: '',
+      oldpassword: '',
+
       uploadImgUrl:'',
       upLoadImage:'',
       beforeImageUpload:'',
@@ -411,12 +409,51 @@ export default {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
-      this.userid = userInfo.user.userid
+      this.userid = userInfo.user.userid;
+      this.oldmail=userInfo.user.mail;
+      this.oldname=userInfo.user.name;
+      this.oldsign=userInfo.user.sign;
+      this.oldpassword=userInfo.user.password;
     } else {
       this.isLogin = 0;
     }
   },
   methods:{
+    submit_all(){
+      alert(this.change.name);
+      alert(this.change.sign);
+      alert(this.change.mail);
+      alert(this.change.password);
+      this.$axios({
+        method: 'post',
+        url:'',
+        data: qs.stringify({
+          newsign: this.change.sign,
+          newname: this.change.name,
+          newmail: this.change.mail,
+          newpassword: this.change.password,
+        })
+      })
+          .then((res) => {
+            console.log(res)
+            switch (res.data.status_code) {
+              case 1:
+                console.log("上传成功");
+                this.$router.push({
+                  path: './'
+                })
+                break;
+              case 2:
+                alert('上传失败')
+                break;
+            }
+          })
+          .catch((error) => {
+            console.log("请求失败");
+            console.log(error);
+          });
+    },
+
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
