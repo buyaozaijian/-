@@ -295,7 +295,7 @@
               <div class="up-cover">
                 <div style="float: left" class="txt">
                   <router-link :to="'/videoPage'" @click="click1">
-                    <p class="name">{{video.videoTitle}}</p>
+                    <p class="name">{{video.videoName}}</p>
                     <span class="title">
                       {{video.videoauthor}}
                       <span style="float: right">
@@ -363,6 +363,7 @@ export default {
     }
   },
   created(){
+    var i=0;
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -373,7 +374,6 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    var i=0;
     this.$axios.get().then(
         res =>{
           this.videonum=res.data.friendnum;
