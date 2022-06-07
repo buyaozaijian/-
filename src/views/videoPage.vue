@@ -189,11 +189,10 @@
     </div>
     <div class="introduction">
       <el-divider></el-divider>
-      这是一则简介；
+      视频简介:
       <br/>
-      可以写很多行
+      {{this.videodescription}}
       <br>
-      一旦接受了自己的软弱，那我就是无敌的；
     </div>
     <div style="font-size: 20px; text-align: left">
       <el-divider></el-divider>
@@ -308,6 +307,7 @@ export default {
       videoPlay: 0,
       videoviewcounts: 0,
       videouploadtime: 0,
+      videodescription:'',
     }
   },
   created() {
@@ -319,6 +319,7 @@ export default {
           this.videoFavorNum = res.data.VideoFavourite;
           this.videoviewcounts = res.data.VideoViewCounts;
           this.videouploadtime = res.data.VideoUploadDate;
+          this.videodescription = res.data.VideoDescription;
         }
     );
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
