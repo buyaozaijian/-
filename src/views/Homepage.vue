@@ -1372,10 +1372,10 @@ export default {
             this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
             this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
             this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+                this.videoList[i].videolike= res.data.videoList[i-6].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-6].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-6].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-6].VideoUploadTime
           }
         },
     );
@@ -1389,10 +1389,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+                this.videoList[i].videolike= res.data.videoList[i-14].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-14].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-14].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-14].VideoUploadTime
           }
         },
     );
@@ -1406,10 +1406,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+                this.videoList[i].videolike= res.data.videoList[i-22].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-22].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-22].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-22].VideoUploadTime
           }
         },
     );
@@ -1423,10 +1423,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+                this.videoList[i].videolike= res.data.videoList[i-30].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-30].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-30].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-30].VideoUploadTime
           }
         },
     );
@@ -1440,10 +1440,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+                this.videoList[i].videolike= res.data.videoList[i-38].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-38].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-38].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-38].VideoUploadTime
           }
         },
     );
@@ -1457,10 +1457,10 @@ export default {
                 this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
                 this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
                 this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+                this.videoList[i].videolike= res.data.videoList[i-46].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-46].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-46].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-46].VideoUploadTime
           }
         },
     );

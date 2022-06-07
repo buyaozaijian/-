@@ -374,7 +374,7 @@ export default {
       this.isLogin = 0;
     }
     var i=0;
-    this.$axios.get('user/favorVideo/').then(
+    this.$axios.get('user/favorVideo').then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){

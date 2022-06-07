@@ -274,98 +274,8 @@
           </li>
         </ul>
       </div>
-    <!--<div style="position: relative;left: -850px;top: 100px">
-      <ul style="list-style: none">
-        <div style="display: block;height: 1px;width: 100%;width: 900px">
-          <el-divider ></el-divider>
-        </div>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" src="../img/friend1.jpg">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">高进的一抹多</div>
-            <div style="font-size: 10px;color: gray">
-              一旦接受了自己的软弱，那我就是无敌的！
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-        <div style="display: block;height: 1px;width: 100%;width: 900px">
-          <el-divider ></el-divider>
-        </div>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" src="../img/touxiang1.jpg">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">高进</div>
-            <div style="font-size: 10px;color: gray">
-              jintianxiaojin
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-        <div style="display: block;height: 1px;width: 100%;width: 900px">
-          <el-divider ></el-divider>
-        </div>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" src="../img/touxiang2.jpg">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px;width: 780px">小左哦</div>
-            <div style="font-size: 10px;color: gray">
-              而你掉进我❤里
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-        <div style="display: block;height: 1px;width: 100%;width: 900px">
-          <el-divider ></el-divider>
-        </div>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" src="../img/touxiang3.jpg">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">公筱羽</div>
-            <div style="font-size: 10px;color: gray">
-              摆大烂！
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-        <div style="display: block;height: 1px;width: 100%;width: 900px">
-          <el-divider ></el-divider>
-        </div>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" src="../img/touxiang5.jpg">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">钻石绒</div>
-            <div style="font-size: 10px;color: gray">
-              UNITED WE STAND DIVIDED WE FALL
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-        <div style="display: block;height: 1px;width: 100%;width: 900px">
-          <el-divider ></el-divider>
-        </div>
-        <li style="height: 75px;margin-top: 15px">
-          <img style=" position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" src="../img/touxiang4.jpg">
-          <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-            <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">错过他很遗憾吧</div>
-            <div style="font-size: 10px;color: gray">
-              合额！满天飞羽！
-            </div>
-            <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
-          </div>
-        </li>
-      </ul>
-    </div>-->
     </div>
   </body>
-  <!--<div class="login">
-    <div class="form-box">
-      <h1>Login</h1>
-      <label><input v-model="username" type="text" placeholder="Username" class="username"></label>
-      <label><input v-model="password" type="password" placeholder="Password" class="password"></label>
-      <button type="submit" @click="click_login" class="login">Login</button>
-    </div>
-  </div>-->
   </html>
 </template>
 
@@ -423,16 +333,16 @@ export default {
     }
     alert(userInfo.user.username);
     var i=0;
-    this.$axios.get().then(
+    this.$axios.get('user/allFollow').then(
         res =>{
           this.friendnum=res.data.friendnum;
           alert(this.friendnum);
           for(i=0;i<this.friendnum;i++){
             this.friendlist.push({
-                  friend_head_url: res.data.friendlist[i].friendheadurl,
-                  friend_name: res.data.friendlist[i].friendname,
-                  friend_sign: res.data.friendlist[i].friendsign,
-                  friend_id: res.data.friendlist[i].friendid,
+                  friend_head_url: res.data.friendlist[i].UserProfilePhotoUrl,
+                  friend_name: res.data.friendlist[i].UserName,
+                  friend_sign: res.data.friendlist[i].UserIntroduction,
+                  friend_id: res.data.friendlist[i].id,
                 }
             )
           }
