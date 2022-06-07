@@ -250,12 +250,14 @@
               </div>
               <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                <router-link :to="'/videoPage'" @click="click1">
+                  <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                </router-link>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videoLike}}
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videolike}}
                 </span>
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
@@ -324,12 +326,14 @@
               </div>
               <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                <router-link :to="'/videoPage'" @click="click1">
+                  <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                </router-link>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
                 <span style="margin-right: 20px">
-                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videoLike}}
+                  <i class="fa fa-thumbs-up" style="font-size: 20px;margin-right: 5px"></i>{{video.videolike}}
                 </span>
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
@@ -442,11 +446,14 @@ export default {
               {
                 videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
                 videoName:res.data.videoList[i].VideoTitle,
-                videoLike:res.data.videoList[i].VideoLike,
+                videolike:res.data.videoList[i].VideoLike,
                 videoViewcount:res.data.videoList[i].VideoViewcounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
-                videoid:res.data.videoList[i].id,
+                videoId:res.data.videoList[i].id,
                 comid:i,
+                videoUrl:res.data.videoList[i].VideoUrl,
+                videoAuthor:res.data.videoList[i].VideoAuthorName,
+                videoAuthorId:res.data.videoList[i].VideoAuthorId,
               }
           )
         }
@@ -466,6 +473,9 @@ export default {
                   videoid:res.data.videoList[i].id,
                   comid_pass:i*2,
                   comid_notpass:i*2+1,
+                  videoUrl:res.data.videoList[i].VideoUrl,
+                  videoAuthor:res.data.videoList[i].VideoAuthorName,
+                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
                 }
             )
           }
@@ -489,7 +499,22 @@ export default {
         offset: 100
       });
     },
-
+    click1(){
+      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
+      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
+      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
+      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
+      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
+      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
+          //this.$store.state.videoname = 'cnm';
+          //this.$store.state.videoid = 1;
+          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+    },
     open1() {
       const h = this.$createElement;
 
