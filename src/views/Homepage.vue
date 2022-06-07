@@ -1524,15 +1524,10 @@ export default {
       this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId;
       this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
       this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
-      //this.$store.state.videoname = 'cnm';
-      //this.$store.state.videoid = 1;
-      //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
-      //sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
-      //sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
     },
 
     click_login(){
