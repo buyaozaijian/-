@@ -169,7 +169,7 @@
   </div>
   <div style="width: 800px">
     <div>
-      <video id="video_show" controls class="video">
+      <video controls class="video" id="videoPlay">
         <source  :src = "this.url"> 视频播放内容的位置
       </video>
     </div>
@@ -283,10 +283,12 @@ export default {
       favorite:JSON.parse(sessionStorage.getItem('like')),
       videoLikeNum: 0,
       videoFavorNum: 0,
+      videoPlay: 0,
     }
   },
   created() {
     //加载时接收评论，处于尝试阶段
+    this.videoPlay = 0;
     var i = 0;
       /*for(i=0;i<this.video_num;i++){ //调试使用
         this.video_list.push(
@@ -471,31 +473,15 @@ export default {
         url: 'video/favor/' + this.vid,
       })
     },
-    concern() {
-      this.ifconcerns=1;
-      this.concerns++;
-      this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoauthor: this.$store.state.videoauthor,
-          userid: this.$store.state.userid,
-          operation: this.ifconcerns
+    addView() {
+      if (this.videoPlay === 0) {
+        alert('提示该视频正在播放中');
+        this.$axios({
+          method: 'get',
+          url: 'video/viewCount/' + this.vid,
         })
-      })
-    },
-    concerncancall() {
-      this.ifconcerns=0;
-      this.concerns--;
-      this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoauthor: this.$store.state.videoauthor,
-          userid: this.$store.state.userid,
-          operation: this.ifconcerns
-        })
-      })
+        this.videoPlay = 1;
+      }
     },
     submit_comment(){ //发布评论的函数，尝试阶段
       this.$axios(
@@ -505,7 +491,6 @@ export default {
             data: qs.stringify(
                 {
                   CommentContent: this.textarea2,
-                  //videoid: this.$store.state.videoid
                 }
             )
           }
@@ -537,24 +522,11 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
-      /*this.$axios.get('comment/commentDetail/'+this.vid).then(
-          res => {
-            this.comment_num = res.data.commentNumber;
-            alert(this.comment_num);
-              this.comment_list.push(
-                  {
-                    comment_head_url: res.data.commentList[this.comment_num-1].CommentUserPhotoUrl,
-                    comment_name: res.data.commentList[this.comment_num-1].CommentUserName,
-                    comment_in: res.data.commentList[this.comment_num-1].CommentContent,
-                    comment_id: res.data.commentList[this.comment_num-1].id,
-                    comment_time: res.data.commentList[this.comment_num-1].CommentDate
-                  }
-              )
-          },
-      );*/
     }
   },
   mounted() {
+    var video = document.getElementById("videoPlay")
+    video.addEventListener('play', this.addView)
     window.addEventListener('scroll', this.handleScroll)
   }
 }
