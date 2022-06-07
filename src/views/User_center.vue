@@ -121,7 +121,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="''">
+            <router-link to="/">
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -130,28 +130,31 @@
 
           </li>
           <li style="display: inline">
+            <router-link to="saving_box">
             <a>
-              <i class="fa fa-user-o" style="color:black"></i>
-              <span style="color: black">
-                  个人中心&nbsp;&nbsp;&nbsp;
-                </span>
-            </a>
-          </li>
-          <li style="display: inline">
-            <a>
-              <i class="fa fa-file-video-o" style="color: black"></i>
+              <i class="fa fa-file-video-o" style="color:black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
-            </a>
+            </a></router-link>
           </li>
           <li style="display: inline">
+            <router-link to="friend_list">
             <a>
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
-            </a>
+            </a></router-link>
+          </li>
+          <li style="display: inline">
+            <router-link to="user_center">
+            <a>
+              <i class="fa fa-user-o" style="color: black"></i>
+              <span style="color: black">
+                  个人中心&nbsp;&nbsp;&nbsp;
+                </span>
+            </a></router-link>
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
