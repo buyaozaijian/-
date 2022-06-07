@@ -276,7 +276,7 @@ export default {
       url: JSON.parse(sessionStorage.getItem('videourl')),
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
-      video_username: 'yyz',
+      video_username: '',
       video_userid:0,
       video_userhead:'',
       video_userintroduction:'',
