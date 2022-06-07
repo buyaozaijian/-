@@ -321,7 +321,7 @@
           <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail"></el-input>
           </el-form-item>
-        
+
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword"></el-input>
           </el-form-item>
@@ -406,13 +406,18 @@ export default {
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
-      this.oldmail=userInfo.user.mail;
-      this.oldname=userInfo.user.name;
-      this.oldsign=userInfo.user.sign;
-      this.oldpassword=userInfo.user.password;
     } else {
       this.isLogin = 0;
     }
+    this.$axios.get('user/<int:id>').then(
+        res =>{
+          this.oldpassword=res.data.password;
+          this.oldmail=res.data.mail;
+          this.oldsign=res.data.sign;
+          this.oldname=res.data.name;
+        },
+    );
+
   },
   methods:{
     submit_all(){
