@@ -169,7 +169,7 @@
   </div>
   <div style="width: 800px">
     <div>
-      <video controls class="video">
+      <video controls class="video" id="videoPlay">
         <source  :src = "this.url"> 视频播放内容的位置
       </video>
     </div>
@@ -180,18 +180,14 @@
         <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
-        {{this.like1}}
+        {{this.videoLikeNum}}
       </div>
       <div style="float: left; width: 100px">
         <button v-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
         <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
-        {{this.favorite}}
-      </div>
-      <div style="float: right; width: 100px">
-        <el-button v-if="ifconcerns===0" @click="concern" type="danger" style="position: relative; background: #fb7299; position: relative; top: -5px">关注</el-button>
-        <el-button v-else @click="concerncancall" type="danger" style="position: relative; background: gray; position: relative; top: -5px">已关注</el-button>
+        {{this.videoFavorNum}}
       </div>
     </div>
     <div class="introduction">
@@ -285,11 +281,13 @@ export default {
       like1:JSON.parse(sessionStorage.getItem('like')),
       favorite:JSON.parse(sessionStorage.getItem('like')),
       videoLikeNum: 0,
-
+      videoFavorNum: 0,
+      videoPlay: 0,
     }
   },
   created() {
     //加载时接收评论，处于尝试阶段
+    this.videoPlay = 0;
     var i = 0;
       /*for(i=0;i<this.video_num;i++){ //调试使用
         this.video_list.push(
@@ -311,7 +309,9 @@ export default {
           res => {
             this.comment_num = res.data.commentNumber;
             this.iflike = res.data.like;
+            this.ifcollection = res.data.favor;
             this.videoLikeNum = res.data.likeNum;
+            this.videoFavorNum = res.data.favorNum;
             for(i=0;i<this.comment_num;i++){
               this.comment_list.push(
                   {
@@ -338,21 +338,26 @@ export default {
       this.$axios.get('index/videoAll/'+this.aid).then(//获取作者视频列表
         res => {
           this.video_num = res.data.videoNum;
-          for(i=0;i<this.video_num;i++){
-            this.video_list.push(
-                {
-                  video_name: res.data.videoList[i].VideoTitle,
-                  video_photo: res.data.videoList[i].VideoCoverUrl,
-                  video_viewnums: res.data.videoList[i].VideoViewCounts,
-                  video_url: res.data.videoList[i].VideoUrl,
-                  video_commentnums: res.data.videoList[i].CommentNum,
-                  video_id: res.data.videoList[i].id,
-                  video_like: res.data.videoList[i].VideoLike,
-                  video_favorite: res.data.videoList[i].VideoFavorite,
-                  author: this.video_username,
-                  video_id_use: i,
-                }
-            )
+          var j;
+          for (i = 0, j = 0; i < this.video_num; i++, j++) {
+            if (res.data.videoList[i].id !== this.vid) {
+              this.video_list.push(
+                  {
+                    video_name: res.data.videoList[i].VideoTitle,
+                    video_photo: res.data.videoList[i].VideoCoverUrl,
+                    video_viewnums: res.data.videoList[i].VideoViewCounts,
+                    video_url: res.data.videoList[i].VideoUrl,
+                    video_commentnums: res.data.videoList[i].CommentNum,
+                    video_id: res.data.videoList[i].id,
+                    video_like: res.data.videoList[i].VideoLike,
+                    video_favorite: res.data.videoList[i].VideoFavorite,
+                    author: this.video_username,
+                    video_id_use: j,
+                  }
+              )
+            } else {
+              j --;
+            }
           }
         }
       );
@@ -450,55 +455,29 @@ export default {
     },
     collect() {
       this.ifcollection=1;
-      this.$store.state.videofavourite++;
+      this.videoFavorNum++;
       this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.ifcollection
-        })
+        method: 'get',
+        url: 'video/favor/' + this.vid,
       })
     },
     collectcall() {
       this.ifcollection=0;
-      this.$store.state.videofavourite--;
+      this.videoFavorNum--;
       this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoid: this.$store.state.videoid,
-          userid: this.$store.state.userid,
-          operation: this.ifcollection
-        })
+        method: 'get',
+        url: 'video/favor/' + this.vid,
       })
     },
-    concern() {
-      this.ifconcerns=1;
-      this.concerns++;
-      this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoauthor: this.$store.state.videoauthor,
-          userid: this.$store.state.userid,
-          operation: this.ifconcerns
+    addView() {
+      if (this.videoPlay === 0) {
+        alert('提示该视频正在播放中');
+        this.$axios({
+          method: 'get',
+          url: 'video/viewCount/' + this.vid,
         })
-      })
-    },
-    concerncancall() {
-      this.ifconcerns=0;
-      this.concerns--;
-      this.$axios({
-        method: 'post',
-        url: '',
-        data: qs.stringify({
-          videoauthor: this.$store.state.videoauthor,
-          userid: this.$store.state.userid,
-          operation: this.ifconcerns
-        })
-      })
+        this.videoPlay = 1;
+      }
     },
     submit_comment(){ //发布评论的函数，尝试阶段
       this.$axios(
@@ -508,7 +487,6 @@ export default {
             data: qs.stringify(
                 {
                   CommentContent: this.textarea2,
-                  //videoid: this.$store.state.videoid
                 }
             )
           }
@@ -540,24 +518,11 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
-      /*this.$axios.get('comment/commentDetail/'+this.vid).then(
-          res => {
-            this.comment_num = res.data.commentNumber;
-            alert(this.comment_num);
-              this.comment_list.push(
-                  {
-                    comment_head_url: res.data.commentList[this.comment_num-1].CommentUserPhotoUrl,
-                    comment_name: res.data.commentList[this.comment_num-1].CommentUserName,
-                    comment_in: res.data.commentList[this.comment_num-1].CommentContent,
-                    comment_id: res.data.commentList[this.comment_num-1].id,
-                    comment_time: res.data.commentList[this.comment_num-1].CommentDate
-                  }
-              )
-          },
-      );*/
     }
   },
   mounted() {
+    var video = document.getElementById("videoPlay")
+    video.addEventListener('play', this.addView)
     window.addEventListener('scroll', this.handleScroll)
   }
 }
