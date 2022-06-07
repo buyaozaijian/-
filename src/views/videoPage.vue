@@ -169,7 +169,7 @@
   </div>
   <div style="width: 800px">
     <div>
-      <video id="video_show" controls autoplay class="video">
+      <video id="video_show" controls class="video">
         <source  :src = "this.url"> 视频播放内容的位置
       </video>
     </div>
