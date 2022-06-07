@@ -95,12 +95,13 @@
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
               <input
                   class="search-input"
+                  ref="search1"
                   type="text"
                   placeholder="      谁说站在光里的才算英雄 "
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <router-link to="/searching_box"><button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -157,18 +158,19 @@
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
+                    ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
                     style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
-                  <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                     <img
                         src="../img/sousuo1.png"
                         alt=""
                         style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
                     />
-                  </button>
+                  </button></router-link>
                 </div>
               </form>
             </div>
@@ -358,6 +360,14 @@ export default {
     }
   },
   methods:{
+    click_search(){
+      alert(this.$refs.search.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+    },
+    click_search1(){
+      alert(this.$refs.search1.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
