@@ -421,7 +421,7 @@ export default {
       this.isLogin = 0;
     }
     var i = 0;
-    this.$axios.get("index/videoAll/"+this.userid).then(
+    this.$axios.get("index/AuthorVideo/"+this.userid).then(
       res => {
         this.video_num = res.data.videoNum;
         for(i=0;i<this.video_num;i++){
