@@ -90,27 +90,24 @@
                 </span>
         </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
-        <!--<form action="" class="parent">
-          <input type="text" class="search">
-          <input type="button" name=""  class="btn" style="z-index:1" >
-        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
               <input
                   class="search-input"
+                  ref="search1"
                   type="text"
                   placeholder="      谁说站在光里的才算英雄 "
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
                       style="width: 34px;height: 34px;padding: 0px 7px;"
                   />
-                </button>
+                </button></router-link>
               </div>
             </form>
           </div>
@@ -266,11 +263,38 @@ export default {
       comment_list: [],
       video_num: 5,
       video_list: [
+        /*{
+          video_name: 'dududu',
+          video_photo:  'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+          video_viewnums: 100,
+          video_url: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4',
+          video_commentnums: 150,
+          video_id: 1,
+          video_like: 200,
+          video_favorite:  250,
+          author:  'yyz',
+          video_id_use: 0,
+          videoviewnum:  300,
+          videouploadtime:  350
+        },
+        {
+          video_name: 'dududu',
+          video_photo:  'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+          video_viewnums: 1000,
+          video_url: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/ff2f3f6a-f4f7-472a-8252-84d0d80de8ec.mp4',
+          video_commentnums: 1500,
+          video_id: 2,
+          video_like: 2000,
+          video_favorite:  2500,
+          author:  'yyz',
+          video_id_use: 1,
+          videoviewnum:  3000,
+          videouploadtime:  3500
+        }*/
       ],
       comment_num: 0,
       commentid: 0,
       videourl: JSON.parse(sessionStorage.getItem('videourl')),
-      //url: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4',
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
       video_username: '',
@@ -367,10 +391,19 @@ export default {
     }
   },
   methods:{
+    click_search(){
+      alert(this.$refs.search.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+    },
+    click_search1(){
+      alert(this.$refs.search1.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
     click2(){
       alert('cnmb');
     },
     click1(){
+      alert("点击视频");
       this.$store.state.videourl = this.video_list[event.srcElement.id].video_url;
       this.$store.state.videoname = this.video_list[event.srcElement.id].video_name;
       this.$store.state.videoid = this.video_list[event.srcElement.id].video_id;
@@ -378,19 +411,12 @@ export default {
       this.$store.state.videofavourite=this.video_list[event.srcElement.id].video_favorite;
       this.$store.state.videoauthor=this.video_username;
       this.$store.state.videoauthorid=this.video_userid;
-      this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
-      this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
-          //this.$store.state.videoname = 'cnm';
-          //this.$store.state.videoid = 1;
-          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+      this.$store.state.videoviewcounts = this.video_list[event.srcElement.id].videoviewnum;
+      this.$store.state.videouploadtime = this.video_list[event.srcElement.id].videouploadtime;
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
-      //sessionStorage.setItem('like',JSON.stringify(this.$store.state.videolike));
-      //sessionStorage.setItem('favorite',JSON.stringify(this.$store.state.video_favorite));
-      //sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
-      //sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
       window.location.reload();
     },
     follow(){
@@ -421,7 +447,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: this.vid ,
+        message: JSON.parse(sessionStorage.getItem('videourl')),
         offset: 100
       });
     },

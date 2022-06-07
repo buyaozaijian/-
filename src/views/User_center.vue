@@ -96,18 +96,19 @@
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
               <input
                   class="search-input"
+                  ref="search1"
                   type="text"
                   placeholder="      谁说站在光里的才算英雄 "
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
                       style="width: 34px;height: 34px;padding: 0px 7px;"
                   />
-                </button>
+                </button></router-link>
               </div>
             </form>
           </div>
@@ -163,18 +164,19 @@
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
+                    ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
                     style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
-                  <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                     <img
                         src="../img/sousuo1.png"
                         alt=""
                         style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
                     />
-                  </button>
+                  </button></router-link>
                 </div>
               </form>
             </div>
@@ -272,6 +274,62 @@
     </div>
   </div>
   <div class="收藏夹">
+    <div style="width: 1000px; height: 50px; position: relative; top: 20px">在此处上传头像</div>
+    <el-upload
+        list-type="picture-card"
+        :action=uploadImgUrl
+        multiple
+        :http-request="upLoadImage"
+        :before-upload="beforeImageUpload"
+        :file-list="willAddQuestion.imgList"
+        :limit="6" style="width: 200px;display: block; clear: both; margin: 0 auto">
+      <i class="el-icon-plus"></i>
+    </el-upload>
+    <div style="width: 1000px; height: 50px; position: relative; top: 10px; font-size: 15px">图片只能为jpg/png格式</div>
+    <!--<div style="width: 1000px; height: 60px">
+      <span style="width: 1000px; height: 50px; margin-right: 20px">个性签名:</span>
+      <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入个性签名内容"></el-input>
+      <el-button type="primary" style="height: 40px; margin-left: 10px; width: 60px; font-size: 10px">提交</el-button>
+    </div>
+    <div>
+      <span style="width: 1000px; height: 50px; margin-right: 20px">用户名:</span>
+      <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入新用户名"></el-input>
+      <el-button type="primary" style="height: 40px; margin-left: 10px; width: 60px; font-size: 10px">提交</el-button>
+    </div>
+    <div>
+      <span style="width: 1000px; height: 50px; margin-right: 20px">邮箱:</span>
+      <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入新邮箱"></el-input>
+    </div>
+    <div>
+      <span style="width: 1000px; height: 50px; margin-right: 20px">密码:</span>
+      <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入新密码"></el-input>
+    </div>-->
+    <div style="width: 800px; margin: 0 auto;">
+      <el-form ref="form" :model="form" label-width="80px">
+       <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
+         <el-input v-model="form1.name" style="width: 500px"></el-input>
+       </el-form-item>
+        <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px;">提交</el-button>
+      </el-form>
+        <el-form ref="form" :model="form" label-width="80px">
+          <el-form-item label="用户名" style="margin-bottom: 20px; display: inline-block">
+            <el-input v-model="form1.name" style="width: 500px"></el-input>
+          </el-form-item>
+          <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
+        </el-form>
+        <el-form ref="form" :model="form" label-width="80px">
+          <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
+            <el-input v-model="form1.name" style="width: 500px"></el-input>
+          </el-form-item>
+          <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
+        </el-form>
+        <el-form ref="form" :model="form" label-width="80px">
+          <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
+            <el-input v-model="form1.name" style="width: 500px"></el-input>
+          </el-form-item>
+          <el-button type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
+        </el-form>
+    </div>
   </div>
   </body>
   <!--<div class="login">
@@ -293,6 +351,30 @@ export default {
   name: "User_center",
   data(){
     return {
+      form1: {
+        name: '',
+        region: '',
+        date1: '',
+        date2: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        desc: ''
+      },
+      input: '',
+      uploadImgUrl:'',
+      upLoadImage:'',
+      beforeImageUpload:'',
+      dialogVisible:'',
+      dialogImageUrl:'',
+      willAddQuestion: {
+        videoTitle: '',
+        videoIntroduction: '',
+        videoTags: '',
+        imgList: [],
+        videoList: [],
+      },
+      //以上data均复制粘贴子CreationCenter.vue，如需完成后端接口，请重新定义变量名，并在上方275行后相应部分进行修改
       isLogin:0,
       userid:0,
       islogin: true,
@@ -320,7 +402,8 @@ export default {
         desc: '',
         code: ''
       },
-      formLabelWidth: '120px'
+      formLabelWidth: '120px',
+
     }
   },
   created(){
@@ -336,6 +419,14 @@ export default {
     }
   },
   methods:{
+    click_search(){
+      alert(this.$refs.search.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+    },
+    click_search1(){
+      alert(this.$refs.search1.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
@@ -418,7 +509,7 @@ export default {
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
-    }
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
@@ -456,7 +547,6 @@ export default {
 }
 .收藏夹{
   position: absolute;
-  display:inline-block;
   background: whitesmoke;
   left:420px;
   top:70px;
@@ -465,7 +555,7 @@ export default {
   border-radius: 8px;
   border-color: #DCDFE6;
   display: -moz-box;/*兼容Firefox*/
-  display: -webkit-box;/*兼容FSafari、Chrome*/
+  /*display: -webkit-box;/*兼容FSafari、Chrome*/
 }
 .input-picture{
   position:absolute;
@@ -837,5 +927,6 @@ table {
   background: #e7e7e7;
   line-height: 35px;
 }
+
 
 </style>

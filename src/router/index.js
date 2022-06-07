@@ -69,6 +69,11 @@ const routes = [
     name:'CreationCenter',
     component:() => import('../views/CreationCenter'),
     meta:{requireAuth:true}
+  },
+  {
+    path:'/searching_box',
+    name:'searching_box',
+    component:() => import('../views/Searching_box')
   }
 ]
 
