@@ -95,12 +95,13 @@
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
               <input
                   class="search-input"
+                  ref="search1"
                   type="text"
                   placeholder="      谁说站在光里的才算英雄 "
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <router-link to="/searching_box"><button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -157,18 +158,19 @@
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
+                    ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
                     style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
-                  <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                     <img
                         src="../img/sousuo1.png"
                         alt=""
                         style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
                     />
-                  </button>
+                  </button></router-link>
                 </div>
               </form>
             </div>
@@ -229,6 +231,7 @@
     </div>
   </header>
   <div class="收藏夹">
+    <div v-if="this.videonum === 0" style="position:absolute; left:370px;font-size: 60px">亲,什么都没有搜到哦</div>
     <div style="position: relative;top: 100px;left: 25px;">
       <div style="width: 240px;display: inline-block;float: left" v-for="video in videoList" :key="video.videoid">
         <img
@@ -243,17 +246,9 @@
               <router-link :to="'/videoPage'" @click="click1">
                 <p class="name">{{video.videoName}}</p>
                 <span class="title">
-                      {{video.videoauthor}}
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
+                  <b>{{video.videoauthor}}</b>
+                      播放:<b>{{video.videoviewnum}}</b>
+                      评论:<b>{{video.videocommentnum}}</b>
                     </span>
               </router-link>
             </div>
@@ -305,13 +300,26 @@ export default {
       formLabelWidth: '120px',
       videoList:[
       ],
-      videonum:7,
+      videonum:0,
       message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
   created(){
     var i=0;
     //搜索请求
+    /*for(i=0;i<8;i++){
+      this.videoList.push(
+          {
+            videoCoverUrl:'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+            videoauthor: 'zbh',
+            comid:i,
+            videoUrl: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/ff2f3f6a-f4f7-472a-8252-84d0d80de8ec.mp4',
+            videoName: 'dadada',
+            videocommentnum:  100,
+            videoviewnum:  200,
+          }
+      )
+    }*/
     this.$axios(
         {
           method: 'post',
@@ -334,30 +342,13 @@ export default {
                   videolike:res.data.videoList[i].VideoLike,
                   videofavourite:res.data.videoList[i].VideoFavourite,
                   videoAuthorId:res.data.videoList[i].VideoAuthor,
+                  videocommentnum: res.data.videoList[i].CommentNum,
+                  videoviewnum: res.data.videoList[i].VideoViewCounts,
                 }
             )
           }
         }
     );
-    /*this.$axios.get('user/favorVideo/').then(
-        res =>{
-          this.videonum=res.data.friendnum;
-          for(i=0;i<this.videonum;i++){
-            this.videoList.push({
-                  videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
-                  videoauthor: res.data.videoList[i].VideoAuthorName,
-                  comid:i,
-                  videoUrl:res.data.videoList[i].VideoUrl,
-                  videoName:res.data.videoList[i].VideoTitle,
-                  videoId:res.data.videoList[i].id,
-                  videolike:res.data.videoList[i].VideoLike,
-                  videofavourite:res.data.videoList[i].VideoFavourite,
-                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
-                }
-            )
-          }
-        },
-    );*/
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -370,6 +361,16 @@ export default {
     }
   },
   methods:{
+    click_search(){
+      alert(this.$refs.search.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+      window.location.reload();
+    },
+    click_search1(){
+      alert(this.$refs.search1.value);
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+      window.location.reload();
+    },
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
