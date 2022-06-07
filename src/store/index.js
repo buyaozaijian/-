@@ -12,6 +12,8 @@ export default new Vuex.Store({
     videofavourite:0,
     videoauthor:'',
     videoauthorid:0,
+    videoviewcounts:0,
+    videouploadtime:'',
     video1:[
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},
       {id:0,videoCoverurl:"未知",videoname:"视频连接中",videourl:''},

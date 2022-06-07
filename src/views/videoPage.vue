@@ -127,7 +127,7 @@
       <i class="fa fa-camera-retro" style="margin: 0; border: 0; outline: none; background: white; color: gray"></i>
       {{title}}
     </div>
-    <p style="color:#9195a3;font-size: 15px">12345播放 · 总评论数321 2001-11-22 12:01</p>
+    <p style="color:#9195a3;font-size: 15px">{{this.videoviewcounts}}播放 · 总评论数{{this.comment_num}}  {{this.videouploadtime}}</p>
   </div>
   <div style="position: absolute; left: 1015px;top: 110px">
     <span style="margin-right: 20px;">
@@ -267,7 +267,7 @@ export default {
       video_num: 5,
       video_list: [
       ],
-      comment_num: 1,
+      comment_num: 0,
       commentid: 0,
       url: JSON.parse(sessionStorage.getItem('videourl')),
       //url: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4',
@@ -284,6 +284,8 @@ export default {
       videoLikeNum: 0,
       videoFavorNum: 0,
       videoPlay: 0,
+      videoviewcounts: JSON.parse(sessionStorage.getItem('videoviewnum')),
+      videouploadtime: JSON.parse(sessionStorage.getItem('videoviewnum')),
     }
   },
   created() {
@@ -354,6 +356,8 @@ export default {
                     video_favorite: res.data.videoList[i].VideoFavorite,
                     author: this.video_username,
                     video_id_use: j,
+                    videoviewnum: res.data.videoList[i].VideoViewCounts,
+                    videouploadtime: res.data.videoList[i].VideoUploadTime
                   }
               )
             } else {
@@ -385,6 +389,8 @@ export default {
       this.$store.state.videofavourite=this.video_list[event.srcElement.id].video_favorite;
       this.$store.state.videoauthor=this.video_username;
       this.$store.state.videoauthorid=this.video_userid;
+      this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
+      this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
@@ -394,6 +400,8 @@ export default {
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
       sessionStorage.setItem('like',JSON.stringify(this.$store.state.videolike));
       sessionStorage.setItem('favorite',JSON.stringify(this.$store.state.video_favorite));
+      sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
+      sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
       window.location.reload();
     },
     follow(){
