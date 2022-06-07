@@ -363,7 +363,6 @@ export default {
     }
   },
   created(){
-    var i=0;
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -374,7 +373,8 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('user/favorVideo/').then(
+    var i=0;
+    this.$axios.get('user/favorVideo').then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){

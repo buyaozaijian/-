@@ -317,9 +317,9 @@
         </el-form>
       </div>
     </el-tab-pane>
-      <el-tab-pane label="视 频 审 核" v-if="this.identity=='admin'">
+      <el-tab-pane label="视 频 审 核" v-if="this.identity==='admin'">
         <div align="center" style="margin-left: 100px;">
-          <ul style="list-style: none;" v-if="this.audit_num != 0">
+          <ul style="list-style: none;" v-if="this.audit_num !== 0">
             <li style="height: 140px;margin-top: 15px" v-for="video in videoauditList" :key="video.videoid">
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>

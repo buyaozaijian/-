@@ -90,10 +90,6 @@
                 </span>
         </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
-        <!--<form action="" class="parent">
-          <input type="text" class="search">
-          <input type="button" name=""  class="btn" style="z-index:1" >
-        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -270,7 +266,6 @@ export default {
       comment_num: 0,
       commentid: 0,
       videourl: JSON.parse(sessionStorage.getItem('videourl')),
-      //url: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4',
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
       video_username: '',
@@ -380,17 +375,10 @@ export default {
       this.$store.state.videoauthorid=this.video_userid;
       this.$store.state.videoviewcounts = this.videoList[event.srcElement.id].videoviewnum;
       this.$store.state.videouploadtime = this.videoList[event.srcElement.id].videouploadtime;
-          //this.$store.state.videoname = 'cnm';
-          //this.$store.state.videoid = 1;
-          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
-      //sessionStorage.setItem('like',JSON.stringify(this.$store.state.videolike));
-      //sessionStorage.setItem('favorite',JSON.stringify(this.$store.state.video_favorite));
-      //sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
-      //sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
       window.location.reload();
     },
     follow(){
