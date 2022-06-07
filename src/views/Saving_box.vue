@@ -374,7 +374,7 @@ export default {
       this.isLogin = 0;
     }
     var i=0;
-    this.$axios.get().then(
+    this.$axios.get('user/favorVideo/').then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){
@@ -421,8 +421,11 @@ export default {
       });
     },
     handleCommand() {
-      alert(event.srcElement.id);
-
+      this.$axios.get('video/favor/'+this.videoList[event.srcElement.id].videoId).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
     },
     click1(){
       this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
