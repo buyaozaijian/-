@@ -240,11 +240,11 @@
     </div>
   </header>
   <div style="margin-top: 25px; ">
-    <el-tabs :tab-position="tabPosition" type="border-card" style="height: 900px">
+    <el-tabs :tab-position="tabPosition" type="border-card" style="">
       <el-tab-pane label="视 频 管 理">
         <div align="center" style="margin-left: 100px;">
           <ul style="list-style: none;" v-if="this.video_num != 0">
-            <li style="height: 140px;margin-top: 15px" v-for="video in videocontrolList" :key="video.videoid">
+            <li style="height: 140px;margin-top: 15px" v-for="(video,index) in videocontrolList" :key="video.videoid">
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
@@ -262,7 +262,7 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button :id="video.comid" @click="deletevideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
+                <el-button id="0" @click="deletevideo(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>删除该视频</el-button>
               </div>
             </li>
           </ul>
@@ -338,8 +338,8 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button :id="video.comid_pass" @click="auditvideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
-                <el-button :id="video.comid_notpass" @click="auditvideo" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
+                <el-button :id="video.comid_pass" @click="auditvideo_pass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
+                <el-button :id="video.comid_notpass" @click="auditvideo_notpass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
               </div>
             </li>
           </ul>
@@ -401,10 +401,41 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:0,
-      videocontrolList:[],
-      audit_num:0,
-      videoauditList:[],
+      video_num:1,
+      videocontrolList:[
+        {
+          videoCoverUrl:'../img/fengmian1.wdbp',
+          videoName:'aa',
+          videolike:1,
+          videoViewcount:2,
+          videofavourite: 3,
+          videoId:0,
+          comid:0,
+        }
+      ],
+      audit_num:2,
+      videoauditList:[
+        {
+          videoCoverUrl:'../img/fengmian1.wdbp',
+          videoName:'aa',
+          videolike:1,
+          videoViewcount:2,
+          videofavourite: 3,
+          videoId:0,
+          comid_pass:0,
+          comid_notpass:1,
+        },
+        {
+          videoCoverUrl:'../img/fengmian1.wdbp',
+          videoName:'aa',
+          videolike:1,
+          videoViewcount:2,
+          videofavourite: 3,
+          videoId:0,
+          comid_pass:2,
+          comid_notpass:3,
+        }
+      ],
 
     }
   },
@@ -433,7 +464,6 @@ export default {
                 videoViewcount:res.data.videoList[i].VideoViewCounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
                 videoId:res.data.videoList[i].id,
-                comid:i,
                 videoUrl:res.data.videoList[i].VideoUrl,
                 videoAuthor:res.data.videoList[i].VideoAuthorName,
                 videoAuthorId:res.data.videoList[i].VideoAuthorId,
@@ -445,7 +475,7 @@ export default {
     this.$axios.get("index/waitForCheck").then(
         res => {
           this.audit_num = res.data.videoNum;
-          for(i=0;i<this.video_num;i++){
+          for(i=0;i<this.audit_num;i++){
             this.videoauditList.push(
                 {
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
@@ -454,8 +484,6 @@ export default {
                   videoViewcount:res.data.videoList[i].VideoViewCounts,
                   videofavourite: res.data.videoList[i].VideoFavourite,
                   videoid:res.data.videoList[i].id,
-                  comid_pass:i*2,
-                  comid_notpass:i*2+1,
                   videoUrl:res.data.videoList[i].VideoUrl,
                   videoAuthor:res.data.videoList[i].VideoAuthorName,
                   videoAuthorId:res.data.videoList[i].VideoAuthorId,
@@ -726,45 +754,41 @@ export default {
       });
     },
 
-    deletevideo() {
-      this.$axios.get("video/delete/"+this.videocontrolList[event.srcElement.id].videoid).then(
+    deletevideo(index) {
+      this.$axios.get("video/delete/"+this.videocontrolList[index].videoid).then(
           res=> {
             alert(res.data.msg);
           }
       )
     },
-    auditvideo() {
-      if(event.srcElement.id%2==0)
-      {
-        this.$axios({
-              method:"post",
-              url:"video/changeStatus/"+this.videocontrolList[event.srcElement.id/2].videoid,
-              data: qs.stringify({
-                status:1
-              })
-            }
-        ).then(
-            res=> {
-              alert(res.data.msg);
-            }
-        )
-      }
-      if(event.srcElement.id%2!=0)
-      {
-        this.$axios({
-              method:"post",
-              url:"video/changeStatus/"+this.videocontrolList[(event.srcElement.id-1)/2].videoid,
-              data: qs.stringify({
-                status:0
-              })
-            }
-        ).then(
-            res=> {
-              alert(res.data.msg);
-            }
-        )
-      }
-    }
+    auditvideo_notpass(index) {
+      this.$axios({
+            method: "post",
+            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            data: qs.stringify({
+              status: 0
+            })
+          }
+      ).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
+    },
+    auditvideo_pass(index) {
+      this.$axios({
+            method: "post",
+            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            data: qs.stringify({
+              status: 1
+            })
+          }
+      ).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
