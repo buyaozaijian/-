@@ -102,7 +102,7 @@
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <button style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <button @click="click2" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -1514,6 +1514,9 @@ export default {
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+    },
+
+    click_search() {
     },
 
     click_login(){
