@@ -277,15 +277,18 @@
     <div style="width: 1000px; height: 50px; position: relative; top: 20px">在此处上传头像</div>
     <el-upload
         list-type="picture-card"
-        :action=uploadImgUrl
+        action='video/uploadphoto'
         multiple
-        :http-request="upLoadImage"
-        :before-upload="beforeImageUpload"
-        :file-list="willAddQuestion.imgList"
-        :limit="6"
+        :http-request="upLoadImage2"
+        :before-upload="beforeImageUpload2"
+        :file-list="change.head"
+        :limit="1"
         style="width: 200px;display: block; clear: both; margin: 0 auto">
       <i class="el-icon-plus"></i>
     </el-upload>
+    <!--<el-dialog :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>-->
     <div style="width: 1000px; height: 50px; position: relative; top: 10px; font-size: 15px">图片只能为jpg/png格式</div>
     <!--<div style="width: 1000px; height: 60px">
       <span style="width: 1000px; height: 50px; margin-right: 20px">个性签名:</span>
@@ -310,18 +313,15 @@
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
          <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign"></el-input>
        </el-form-item>
-      </el-form>
-        <el-form ref="form" :model="change" label-width="80px">
+
           <el-form-item label="用户名" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname"></el-input>
           </el-form-item>
-        </el-form>
-        <el-form ref="form" :model="change" label-width="80px">
+
           <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail"></el-input>
           </el-form-item>
-        </el-form>
-        <el-form ref="form" :model="change" label-width="80px">
+        
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword"></el-input>
           </el-form-item>
@@ -350,6 +350,7 @@ export default {
   data(){
     return {
       change: {
+        head: [],
         name: '',
         sign: '',
         mail: '',
@@ -365,13 +366,6 @@ export default {
       beforeImageUpload:'',
       dialogVisible:'',
       dialogImageUrl:'',
-      willAddQuestion: {
-        videoTitle: '',
-        videoIntroduction: '',
-        videoTags: '',
-        imgList: [],
-        videoList: [],
-      },
       //以上data均复制粘贴子CreationCenter.vue，如需完成后端接口，请重新定义变量名，并在上方275行后相应部分进行修改
       isLogin:0,
       userid:0,
@@ -454,6 +448,53 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
+    },
+    upLoadImage2(file) {
+      const formData = new FormData();
+      formData.append('image', file.file);
+      this.$axios({
+        method: 'post',
+        url: 'video/uploadphoto',
+        data: formData,
+      })
+          .then(res => {
+            switch (res.data.status_code) {
+              case 0:
+                window.alert("error");
+                break;
+              case 1:
+                var url_img = res.data.url_img;
+                var key_img = res.data.key_img;
+                this.willAddQuestion.imgList.push({
+                  url: url_img,
+                  key: key_img
+                });
+                alert("封面上传成功");
+                console.log(this.willAddQuestion.imgList);
+                alert(this.willAddQuestion.imgList[0].url);
+                break;
+              case 2:
+                // this.$message.error("上传文件格式错误！");
+                break;
+              default:
+                this.$message.error("操作失败！");
+                break;
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+    },
+    beforeImageUpload2(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isPNG = file.type === 'image/png';
+      const isLt5M = file.size / 1024 / 1024 < 10;
+      if (!isJPG && !isPNG) {
+        this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
+      } else if (!isLt5M) {
+        this.$message.error('上传头像图片大小不能超过 5MB!');
+      }
+      return (isJPG || isPNG) && isLt5M;
     },
     click_search(){
       alert(this.$refs.search.value);
