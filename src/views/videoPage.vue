@@ -169,7 +169,7 @@
   </div>
   <div style="width: 800px">
     <div>
-      <video controls class="video">
+      <video id="video_show" controls autoplay class="video">
         <source  :src = "this.url"> 视频播放内容的位置
       </video>
     </div>
@@ -274,6 +274,7 @@ export default {
       comment_num: 1,
       commentid: 0,
       url: JSON.parse(sessionStorage.getItem('videourl')),
+      //url: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4',
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
       video_username: '',
@@ -393,6 +394,9 @@ export default {
     }
   },
   methods:{
+    click2(){
+      alert('cnmb');
+    },
     click1(){
       this.$store.state.videourl = this.video_list[event.srcElement.id].video_url;
       this.$store.state.videoname = this.video_list[event.srcElement.id].video_name;
