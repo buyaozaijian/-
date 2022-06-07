@@ -461,7 +461,7 @@ export default {
     );
     this.$axios.get("index/waitForCheck").then(
         res => {
-          this.audit_num = res.data.videoNumber;
+          this.audit_num = res.data.videoNum;
           for(i=0;i<this.video_num;i++){
             this.videoauditList.push(
                 {
