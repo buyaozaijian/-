@@ -316,11 +316,13 @@ export default {
         {
           method: 'post',
           url: 'search/searchVideo',
-          data: qs.stringify(this.message)
+          data: qs.stringify({
+            keyword: this.message,
+          })
         }
     ).then(
         res =>{
-          this.videonum=res.data.VideoNum;
+          this.videonum=res.data.videoNum;
           for(i=0;i<this.videonum;i++){
             this.videoList.push({
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
@@ -331,7 +333,7 @@ export default {
                   videoId:res.data.videoList[i].id,
                   videolike:res.data.videoList[i].VideoLike,
                   videofavourite:res.data.videoList[i].VideoFavourite,
-                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
+                  videoAuthorId:res.data.videoList[i].VideoAuthor,
                 }
             )
           }

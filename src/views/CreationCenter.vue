@@ -436,7 +436,7 @@ export default {
                 comid:i,
                 videoUrl:res.data.videoList[i].VideoUrl,
                 videoAuthor:res.data.videoList[i].VideoAuthorName,
-                videoAuthorId:res.data.videoList[i].VideoAuthorId,
+                videoAuthorId:res.data.videoList[i].VideoAuthor,
               }
           )
         }
@@ -458,7 +458,7 @@ export default {
                   comid_notpass:i*2+1,
                   videoUrl:res.data.videoList[i].VideoUrl,
                   videoAuthor:res.data.videoList[i].VideoAuthorName,
-                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
+                  videoAuthorId:res.data.videoList[i].VideoAuthor,
                 }
             )
           }

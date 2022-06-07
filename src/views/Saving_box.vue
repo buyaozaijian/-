@@ -387,7 +387,7 @@ export default {
                   videoId:res.data.videoList[i].id,
                   videolike:res.data.videoList[i].VideoLike,
                   videofavourite:res.data.videoList[i].VideoFavourite,
-                  videoAuthorId:res.data.videoList[i].VideoAuthorId,
+                  videoAuthorId:res.data.videoList[i].VideoAuthor,
                 }
             )
           }
