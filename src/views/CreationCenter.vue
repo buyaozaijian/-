@@ -365,6 +365,7 @@ export default {
     return {
       isLogin: 0,
       userid:0,
+      identity: '',
       userhead:'',
       tabPosition: 'left',
       dialogImageUrl: '',
@@ -413,7 +414,8 @@ export default {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
-      this.userid = userInfo.user.userid
+      this.userid = userInfo.user.userid;
+      this.identity = userInfo.user.UserIdentity;//储存user身份信息，管理员身份为'admin'
     } else {
       this.isLogin = 0;
     }

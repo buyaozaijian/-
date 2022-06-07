@@ -1531,8 +1531,8 @@ export default {
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
-      sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
-      sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
+      //sessionStorage.setItem('videoviewnum', JSON.stringify(this.$store.state.videoviewcounts));
+      //sessionStorage.setItem('videouploadtime', JSON.stringify(this.$store.state.videouploadtime));
     },
 
     click_login(){
