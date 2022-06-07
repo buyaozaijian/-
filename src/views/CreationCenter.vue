@@ -401,29 +401,9 @@ export default {
         label: '游戏'
       },
       video_num:2,
-      videocontrolList:[
-        {
-          videoCoverUrl:'../img/fengmian1.webp',
-          videoName:'dada',
-          videoLike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoid:1,
-          comid:2,
-        },
-        {
-          videoCoverUrl:'../img/fengmian1.webp',
-          videoName:'dada',
-          videoLike:1,
-          videoViewcount:2,
-          videofavourite: 3,
-          videoid:1,
-          comid:4,
-        }
-      ],
+      videocontrolList:[],
       audit_num:0,
-      videoauditList:[
-      ],
+      videoauditList:[],
     }
   },
   created(){
@@ -447,7 +427,7 @@ export default {
                 videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
                 videoName:res.data.videoList[i].VideoTitle,
                 videolike:res.data.videoList[i].VideoLike,
-                videoViewcount:res.data.videoList[i].VideoViewcounts,
+                videoViewcount:res.data.videoList[i].VideoViewCounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
                 videoId:res.data.videoList[i].id,
                 comid:i,
@@ -468,7 +448,7 @@ export default {
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
                   videoName:res.data.videoList[i].VideoTitle,
                   videoLike:res.data.videoList[i].VideoLike,
-                  videoViewcount:res.data.videoList[i].VideoViewcounts,
+                  videoViewcount:res.data.videoList[i].VideoViewCounts,
                   videofavourite: res.data.videoList[i].VideoFavourite,
                   videoid:res.data.videoList[i].id,
                   comid_pass:i*2,
