@@ -324,7 +324,7 @@
       <el-tab-pane label="视 频 审 核" v-if="this.identity==='admin'">
         <div align="center" style="margin-left: 100px;">
           <ul style="list-style: none;" v-if="this.audit_num !== 0">
-            <li style="height: 140px;margin-top: 15px" v-for="video in videoauditList" :key="video.videoid">
+            <li style="height: 140px;margin-top: 15px" v-for="(video, index) in videoauditList" :key="video.videoid">
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
@@ -440,7 +440,7 @@ export default {
                 videolike:res.data.videoList[i].VideoLike,
                 videoViewcount:res.data.videoList[i].VideoViewCounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
-                videoId:res.data.videoList[i].id,
+                videoid:res.data.videoList[i].id,
                 videoUrl:res.data.videoList[i].VideoUrl,
                 videoAuthor:res.data.videoList[i].VideoAuthorName,
                 videoAuthorId:res.data.videoList[i].VideoAuthor,
@@ -571,12 +571,12 @@ export default {
       this.dialogVisible = true;
     },
     submit() {
-      alert(this.willAddQuestion.videoTitle);
-      alert(this.willAddQuestion.videoIntroduction);
-      alert(this.willAddQuestion.imgList[0].url);
-      alert(this.willAddQuestion.videoList[0].url);
+      //alert(this.willAddQuestion.videoTitle);
+      //alert(this.willAddQuestion.videoIntroduction);
+      //alert(this.willAddQuestion.imgList[0].url);
+      //alert(this.willAddQuestion.videoList[0].url);
       alert(this.willAddQuestion.videoList[0].key);
-      alert(this.willAddQuestion.imgList[0].key);
+      //alert(this.willAddQuestion.imgList[0].key);
       this.$axios({
         method: 'post',
         url: "/video/create/upload",
@@ -740,6 +740,7 @@ export default {
     },
 
     deletevideo(index) {
+      alert(this.videocontrolList[index].videoid);
       this.$axios.get("video/delete/"+this.videocontrolList[index].videoid).then(
           res=> {
             alert(res.data.msg);
