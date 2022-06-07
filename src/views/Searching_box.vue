@@ -243,7 +243,7 @@
               <router-link :to="'/videoPage'" @click="click1">
                 <p class="name">{{video.videoName}}</p>
                 <span class="title">
-                  投稿人:<b>{{video.videoauthor}}</b>
+                  <b>{{video.videoauthor}}</b>
                       播放:<b>{{video.videoviewnum}}</b>
                       评论:<b>{{video.videocommentnum}}</b>
                     </span>
