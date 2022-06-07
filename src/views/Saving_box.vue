@@ -404,8 +404,6 @@
               </div>
             </div>
           </td>
-        </tr>
-        <tr>
           <td>
             <img
                 class="picture"
@@ -518,14 +516,6 @@
     </div>
   </div>
   </body>
-  <!--<div class="login">
-    <div class="form-box">
-      <h1>Login</h1>
-      <label><input v-model="username" type="text" placeholder="Username" class="username"></label>
-      <label><input v-model="password" type="password" placeholder="Password" class="password"></label>
-      <button type="submit" @click="click_login" class="login">Login</button>
-    </div>
-  </div>-->
   </html>
 </template>
 
