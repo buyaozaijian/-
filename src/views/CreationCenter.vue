@@ -595,7 +595,8 @@ export default {
       });
     },
     click_search2(args){
-      sessionStorage.setItem('message', JSON.stringify(args));
+      this.$refs.search.value=args;
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll)
