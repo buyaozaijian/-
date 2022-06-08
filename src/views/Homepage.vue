@@ -279,7 +279,13 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p id="0" class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
-                  <span><a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white">haha</a></span>
+                    <span v-for="tags in videoList[0].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
                   <p class="title">{{this.videoList[0].videoAuthor}}</p>
                 </div>
               </div>
@@ -297,28 +303,42 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p id="1" class="name" @click="click1">{{this.videoList[1].videoName}}</p></router-link></a>
+                  <span v-for="tags in videoList[1].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
                   <p class="title">{{this.videoList[1].videoAuthor}}</p>
                 </div>
               </div>
             </div>
           </td>
           <td style="width: 250px;padding-right: 6px">
-            <img
-                class="picture"
-                :src="this.videoList[2].videoCoverUrl"
-                alt=""
-                style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="float: left" class="txt">
-                  <a target="blank">
-                    <router-link to="/videoPage"><p id="2" class="name" @click="click1">{{this.videoList[2].videoName}}</p></router-link></a>
-                  <p class="title">{{this.videoList[2].videoAuthor}}</p>
-                </div>
+          <img
+              class="picture"
+              :src="this.videoList[2].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="2" class="name" @click="click1">{{this.videoList[2].videoName}}</p></router-link></a>
+                <span v-for="tags in videoList[2].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
+                <p class="title">{{this.videoList[2].videoAuthor}}</p>
               </div>
             </div>
-          </td>
+          </div>
+        </td>
         </tr>
         <tr>
           <td style="width: 250px;padding-right: 6px">
@@ -333,6 +353,13 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p id="3" class="name" @click="click1">{{this.videoList[3].videoName}}</p></router-link></a>
+                  <span v-for="tags in videoList[3].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
                   <p class="title">{{this.videoList[3].videoAuthor}}</p>
                 </div>
               </div>
@@ -350,6 +377,13 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p id="4" class="name" @click="click1">{{this.videoList[4].videoName}}</p></router-link></a>
+                  <span v-for="tags in videoList[4].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
                   <p class="title">{{this.videoList[4].videoAuthor}}</p>
                 </div>
               </div>
@@ -367,6 +401,13 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p id="5" class="name" @click="click1">{{this.videoList[5].videoName}}</p></router-link></a>
+                  <span v-for="tags in videoList[5].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
                   <p class="title">{{this.videoList[5].videoAuthor}}</p>
                 </div>
               </div>
@@ -400,6 +441,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="10" class="name" @click="click1">{{this.videoList[10].videoName}}</p></router-link></a>
+                  <div v-for="tags in videoList[10].videoTags" :key="tags">
+                      <router-link to="Searching_box" @click="click_search2(tags)">
+                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                  </div>
                 <p class="title">{{this.videoList[10].videoAuthor}}</p>
               </div>
             </div>
@@ -417,6 +465,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="11" class="name" @click="click1">{{this.videoList[11].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[11].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[11].videoAuthor}}</p>
               </div>
             </div>
@@ -434,6 +489,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="12" class="name" @click="click1">{{this.videoList[12].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[12].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[12].videoAuthor}}</p>
               </div>
             </div>
@@ -451,7 +513,112 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="13" class="name" @click="click1">{{this.videoList[13].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[13].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[13].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[14].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="14" class="name" @click="click1">{{this.videoList[14].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[14].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[14].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[15].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="15" class="name" @click="click1">{{this.videoList[15].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[15].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[15].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[16].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="16" class="name" @click="click1">{{this.videoList[16].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[16].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[16].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[17].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="17" class="name" @click="click1">{{this.videoList[17].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[17].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[17].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -474,89 +641,6 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[14].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="14" class="name" @click="click1">{{this.videoList[14].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[14].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[15].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="15" class="name" @click="click1">{{this.videoList[15].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[15].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[16].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="16" class="name" @click="click1">{{this.videoList[16].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[16].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[17].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="17" class="name" @click="click1">{{this.videoList[17].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[17].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-        <span style="font-size: 30px">
-          <i class="fa fa-bookmark-o" style="color: gray" ></i>
-          电影
-        </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
-      <tr>
-        <td class="fenqu">
-          <img
-              class="picture1"
               :src="this.videoList[18].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
@@ -566,6 +650,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="18" class="name" @click="click1">{{this.videoList[18].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[18].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[18].videoAuthor}}</p>
               </div>
             </div>
@@ -583,6 +674,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="19" class="name" @click="click1">{{this.videoList[19].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[19].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[19].videoAuthor}}</p>
               </div>
             </div>
@@ -600,6 +698,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="20" class="name" @click="click1">{{this.videoList[20].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[20].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[20].videoAuthor}}</p>
               </div>
             </div>
@@ -617,7 +722,112 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="21" class="name" @click="click1">{{this.videoList[21].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[21].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[21].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[22].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="22" class="name" @click="click1">{{this.videoList[22].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[22].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[22].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[23].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="23" class="name" @click="click1">{{this.videoList[23].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[23].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[23].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[24].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="24" class="name" @click="click1">{{this.videoList[24].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[24].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[24].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[25].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="25" class="name" @click="click1">{{this.videoList[25].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[25].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[25].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -640,89 +850,6 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[22].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="22" class="name" @click="click1">{{this.videoList[22].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[22].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[23].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="23" class="name" @click="click1">{{this.videoList[23].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[23].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[24].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="24" class="name" @click="click1">{{this.videoList[24].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[24].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[25].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="25" class="name" @click="click1">{{this.videoList[25].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[25].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            游戏
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
-      <tr>
-        <td class="fenqu">
-          <img
-              class="picture1"
               :src="this.videoList[26].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
@@ -732,6 +859,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="26" class="name" @click="click1">{{this.videoList[26].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[26].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[26].videoAuthor}}</p>
               </div>
             </div>
@@ -749,6 +883,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="27" class="name" @click="click1">{{this.videoList[27].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[27].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[27].videoAuthor}}</p>
               </div>
             </div>
@@ -766,6 +907,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="28" class="name" @click="click1">{{this.videoList[28].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[28].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[28].videoAuthor}}</p>
               </div>
             </div>
@@ -783,7 +931,112 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="29" class="name" @click="click1">{{this.videoList[29].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[29].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[29].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[30].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="30" class="name" @click="click1">{{this.videoList[30].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[30].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[30].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[31].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="31" class="name" @click="click1">{{this.videoList[31].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[31].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[31].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[32].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="32" class="name" @click="click1">{{this.videoList[32].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[32].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[32].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[33].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="33" class="name" @click="click1">{{this.videoList[33].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[33].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[33].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -806,89 +1059,6 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[30].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="30" class="name" @click="click1">{{this.videoList[30].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[30].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[31].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="31" class="name" @click="click1">{{this.videoList[31].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[31].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[32].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="32" class="name" @click="click1">{{this.videoList[32].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[32].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[33].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="33" class="name" @click="click1">{{this.videoList[33].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[33].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            音乐
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
-      <tr>
-        <td class="fenqu">
-          <img
-              class="picture1"
               :src="this.videoList[34].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
@@ -898,6 +1068,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="34" class="name" @click="click1">{{this.videoList[34].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[34].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[34].videoAuthor}}</p>
               </div>
             </div>
@@ -915,6 +1092,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="35" class="name" @click="click1">{{this.videoList[35].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[35].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[35].videoAuthor}}</p>
               </div>
             </div>
@@ -932,6 +1116,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="36" class="name" @click="click1">{{this.videoList[36].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[36].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[36].videoAuthor}}</p>
               </div>
             </div>
@@ -949,7 +1140,112 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="37" class="name" @click="click1">{{this.videoList[37].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[37].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[37].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[38].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="38" class="name" @click="click1">{{this.videoList[38].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[38].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[38].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[39].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="39" class="name" @click="click1">{{this.videoList[39].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[39].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[39].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[40].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="40" class="name" @click="click1">{{this.videoList[40].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[40].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[40].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[41].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="41" class="name" @click="click1">{{this.videoList[41].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[41].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[41].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -972,89 +1268,6 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[38].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="38" class="name" @click="click1">{{this.videoList[38].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[38].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[39].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="39" class="name" @click="click1">{{this.videoList[39].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[39].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[40].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="40" class="name" @click="click1">{{this.videoList[40].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[40].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[41].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="41" class="name" @click="click1">{{this.videoList[41].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[41].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            学习
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
-      <tr>
-        <td class="fenqu">
-          <img
-              class="picture1"
               :src="this.videoList[42].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
@@ -1064,6 +1277,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="42" class="name" @click="click1">{{this.videoList[42].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[42].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[42].videoAuthor}}</p>
               </div>
             </div>
@@ -1081,6 +1301,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="43" class="name" @click="click1">{{this.videoList[43].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[43].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[43].videoAuthor}}</p>
               </div>
             </div>
@@ -1098,6 +1325,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="44" class="name" @click="click1">{{this.videoList[44].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[44].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[44].videoAuthor}}</p>
               </div>
             </div>
@@ -1115,7 +1349,112 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="45" class="name" @click="click1">{{this.videoList[45].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[45].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[45].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[46].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="46" class="name" @click="click1">{{this.videoList[46].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[46].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[46].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[47].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="47" class="name" @click="click1">{{this.videoList[47].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[47].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[47].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[48].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="48" class="name" @click="click1">{{this.videoList[48].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[48].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[48].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[49].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="49" class="name" @click="click1">{{this.videoList[49].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[49].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
+                <p class="title">{{this.videoList[49].videoAuthor}}</p>
               </div>
             </div>
           </div>
@@ -1138,89 +1477,6 @@
         <td class="fenqu">
           <img
               class="picture1"
-              :src="this.videoList[46].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="46" class="name" @click="click1">{{this.videoList[46].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[46].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[47].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="47" class="name" @click="click1">{{this.videoList[47].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[47].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[48].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="48" class="name" @click="click1">{{this.videoList[48].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[48].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[49].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="49" class="name" @click="click1">{{this.videoList[49].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[49].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            鬼畜
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
-      <tr>
-        <td class="fenqu">
-          <img
-              class="picture1"
               :src="this.videoList[50].videoCoverUrl"
               alt=""
               style="border-radius: 6px"
@@ -1230,6 +1486,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="50" class="name" @click="click1">{{this.videoList[50].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[50].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[50].videoAuthor}}</p>
               </div>
             </div>
@@ -1247,6 +1510,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="51" class="name" @click="click1">{{this.videoList[51].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[51].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[51].videoAuthor}}</p>
               </div>
             </div>
@@ -1264,6 +1534,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="52" class="name" @click="click1">{{this.videoList[52].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[52].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[52].videoAuthor}}</p>
               </div>
             </div>
@@ -1281,6 +1558,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="53" class="name" @click="click1">{{this.videoList[53].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[53].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[53].videoAuthor}}</p>
               </div>
             </div>
@@ -1300,6 +1584,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="54" class="name" @click="click1">{{this.videoList[54].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[54].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[54].videoAuthor}}</p>
               </div>
             </div>
@@ -1317,6 +1608,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="55" class="name" @click="click1">{{this.videoList[55].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[55].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[55].videoAuthor}}</p>
               </div>
             </div>
@@ -1334,6 +1632,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="56" class="name" @click="click1">{{this.videoList[56].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[56].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[56].videoAuthor}}</p>
               </div>
             </div>
@@ -1351,6 +1656,13 @@
               <div style="float: left" class="txt">
                 <a target="blank">
                   <router-link to="/videoPage"><p id="57" class="name" @click="click1">{{this.videoList[57].videoName}}</p></router-link></a>
+                <div v-for="tags in videoList[57].videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <p class="title">{{this.videoList[57].videoAuthor}}</p>
               </div>
             </div>
@@ -1416,6 +1728,8 @@ export default {
         videofavourite: '',
         videoviewnum:0,
         videouploadtime:'',
+        videoTags:[
+        ],
       });
     }
     this.$axios.get('/index/main').then(
@@ -1431,7 +1745,8 @@ export default {
               this.videoList[i].videolike= res.data.videoList[i].VideoLike,
               this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
               this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-              this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+              this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime,
+              this.videoList[i].videoTags = res.data.videoList[i].VideoTags
           }
         },
     );
@@ -1439,16 +1754,17 @@ export default {
         res => {
           for(i=10;i<18;i++)
           {
-            this.videoList[i].videoAuthor= res.data.videoList[i-6].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-6].VideoAuthor,
-            this.videoList[i].videoId= res.data.videoList[i-6].id,
-            this.videoList[i].videoUrl= res.data.videoList[i-6].VideoUrl,
-            this.videoList[i].videoCoverUrl= res.data.videoList[i-6].VideoCoverUrl,
-            this.videoList[i].videoName= res.data.videoList[i-6].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-6].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i-6].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i-6].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-6].VideoUploadTime
+            this.videoList[i].videoAuthor= res.data.videoList[i-10].VideoAuthorName,
+            this.videoList[i].videoAuthorId= res.data.videoList[i-10].VideoAuthor,
+            this.videoList[i].videoId= res.data.videoList[i-10].id,
+            this.videoList[i].videoUrl= res.data.videoList[i-10].VideoUrl,
+            this.videoList[i].videoCoverUrl= res.data.videoList[i-10].VideoCoverUrl,
+            this.videoList[i].videoName= res.data.videoList[i-10].VideoTitle,
+            this.videoList[i].videolike= res.data.videoList[i-10].VideoLike,
+            this.videoList[i].videofavourite= res.data.videoList[i-10].VideoFavourite,
+            this.videoList[i].videoviewnum= res.data.videoList[i-10].VideoViewCounts,
+            this.videoList[i].videouploadtime= res.data.videoList[i-10].VideoUploadTime
+            this.videoList[i].videoTags = res.data.videoList[i-10].VideoTags
           }
         },
     );
@@ -1456,16 +1772,17 @@ export default {
         res => {
           for(i=18;i<26;i++)
           {
-            this.videoList[i].videoAuthor= res.data.videoList[i-14].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-14].VideoAuthor,
-                this.videoList[i].videoId= res.data.videoList[i-14].id,
-                this.videoList[i].videoUrl= res.data.videoList[i-14].VideoUrl,
-                this.videoList[i].videoCoverUrl= res.data.videoList[i-14].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-14].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-14].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i-14].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i-14].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-14].VideoUploadTime
+                this.videoList[i].videoAuthor= res.data.videoList[i-18].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-18].VideoAuthor,
+                this.videoList[i].videoId= res.data.videoList[i-18].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-18].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-18].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-18].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-18].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-18].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-18].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-18].VideoUploadTime
+                this.videoList[i].videoTags = res.data.videoList[i-18].VideoTags
           }
         },
     );
@@ -1473,16 +1790,17 @@ export default {
         res => {
           for(i=26;i<34;i++)
           {
-            this.videoList[i].videoAuthor= res.data.videoList[i-22].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-22].VideoAuthor,
-                this.videoList[i].videoId= res.data.videoList[i-22].id,
-                this.videoList[i].videoUrl= res.data.videoList[i-22].VideoUrl,
-                this.videoList[i].videoCoverUrl= res.data.videoList[i-22].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-22].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-22].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i-22].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i-22].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-22].VideoUploadTime
+                this.videoList[i].videoAuthor= res.data.videoList[i-26].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-26].VideoAuthor,
+                this.videoList[i].videoId= res.data.videoList[i-26].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-26].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-26].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-26].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-26].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-26].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-26].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-26].VideoUploadTime,
+                this.videoList[i].videoTags = res.data.videoList[i-26].VideoTags
           }
         },
     );
@@ -1490,16 +1808,17 @@ export default {
         res => {
           for(i=34;i<42;i++)
           {
-            this.videoList[i].videoAuthor= res.data.videoList[i-30].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-30].VideoAuthor,
-                this.videoList[i].videoId= res.data.videoList[i-30].id,
-                this.videoList[i].videoUrl= res.data.videoList[i-30].VideoUrl,
-                this.videoList[i].videoCoverUrl= res.data.videoList[i-30].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-30].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-30].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i-30].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i-30].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-30].VideoUploadTime
+            this.videoList[i].videoAuthor= res.data.videoList[i-34].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-34].VideoAuthor,
+                this.videoList[i].videoId= res.data.videoList[i-34].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-34].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-34].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-34].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-34].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-34].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-34].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-34].VideoUploadTime,
+                this.videoList[i].videoTags = res.data.videoList[i-34].VideoTags
           }
         },
     );
@@ -1507,16 +1826,17 @@ export default {
         res => {
           for(i=42;i<50;i++)
           {
-            this.videoList[i].videoAuthor= res.data.videoList[i-38].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-38].VideoAuthor,
-                this.videoList[i].videoId= res.data.videoList[i-38].id,
-                this.videoList[i].videoUrl= res.data.videoList[i-38].VideoUrl,
-                this.videoList[i].videoCoverUrl= res.data.videoList[i-38].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-38].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-38].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i-38].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i-38].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-38].VideoUploadTime
+            this.videoList[i].videoAuthor= res.data.videoList[i-42].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-42].VideoAuthor,
+                this.videoList[i].videoId= res.data.videoList[i-42].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-42].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-42].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-42].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-42].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-42].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-42].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-42].VideoUploadTime,
+                this.videoList[i].videoTags = res.data.videoList[i-42].VideoTags
           }
         },
     );
@@ -1524,16 +1844,17 @@ export default {
         res => {
           for(i=50;i<58;i++)
           {
-            this.videoList[i].videoAuthor= res.data.videoList[i-46].VideoAuthorName,
-                this.videoList[i].videoAuthorId= res.data.videoList[i-46].VideoAuthor,
-                this.videoList[i].videoId= res.data.videoList[i-46].id,
-                this.videoList[i].videoUrl= res.data.videoList[i-46].VideoUrl,
-                this.videoList[i].videoCoverUrl= res.data.videoList[i-46].VideoCoverUrl,
-                this.videoList[i].videoName= res.data.videoList[i-46].VideoTitle,
-                this.videoList[i].videolike= res.data.videoList[i-46].VideoLike,
-                this.videoList[i].videofavourite= res.data.videoList[i-46].VideoFavourite,
-                this.videoList[i].videoviewnum= res.data.videoList[i-46].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-46].VideoUploadTime
+            this.videoList[i].videoAuthor= res.data.videoList[i-50].VideoAuthorName,
+                this.videoList[i].videoAuthorId= res.data.videoList[i-50].VideoAuthor,
+                this.videoList[i].videoId= res.data.videoList[i-50].id,
+                this.videoList[i].videoUrl= res.data.videoList[i-50].VideoUrl,
+                this.videoList[i].videoCoverUrl= res.data.videoList[i-50].VideoCoverUrl,
+                this.videoList[i].videoName= res.data.videoList[i-50].VideoTitle,
+                this.videoList[i].videolike= res.data.videoList[i-50].VideoLike,
+                this.videoList[i].videofavourite= res.data.videoList[i-50].VideoFavourite,
+                this.videoList[i].videoviewnum= res.data.videoList[i-50].VideoViewCounts,
+                this.videoList[i].videouploadtime= res.data.videoList[i-50].VideoUploadTime,
+                this.videoList[i].videoTags = res.data.videoList[i-50].VideoTags
           }
         },
     );
@@ -1587,6 +1908,9 @@ export default {
     click_search1(){
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
+    click_search2(args){
+      sessionStorage.setItem('message', JSON.stringify(args));
     },
     logout(){
       alert('退出登录！');
@@ -1918,6 +2242,7 @@ table {
 }
 .fenqu {
   width: 250px;
+  padding-right: 35px;
 }
 .picture1 {
   height: 200px;
