@@ -371,7 +371,8 @@
     <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
     <div style="position:absolute;left:80px;top:370px;">
       <div>
-        <el-button  @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button  v-if="this.iffollow===0&&this.if_same===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button  v-if="this.iffollow===1&&this.if_same===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
         <!--<el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>-->
       </div>
       <!--<el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
@@ -538,6 +539,8 @@ export default {
           UserIntroduction:'wu'
         }
       ],
+      videoAuthorFollow:0,
+      if_same:0,
     }
   },
   created(){
@@ -558,6 +561,7 @@ export default {
     this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
             this.userdata[0].FansNum=res.data.FansNum,
+            this.videoAuthorFollow = this.userdata[0].FansNum,
             this.userdata[0].VideoNum=res.data.VideoNum,
             this.userdata[0].FavorNum=res.data.FavorNum,
             this.userdata[0].LikeNum=res.data.LikeNum,
@@ -580,6 +584,9 @@ export default {
           this.url=this.userhead;
         },
     );
+    if(this.userid === this.centerId){
+      this.if_same = 1;
+    }
     /*
     this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
@@ -596,6 +603,26 @@ export default {
     );*/
   },
   methods:{
+    follow(){
+      if(this.isLogin===1) {
+        if(this.iffollow === 0) {
+          alert('关注该用户');
+          this.iffollow = 1;
+          this.videoAuthorFollow += 1;
+        }
+        else{
+          alert('取消关注');
+          this.videoAuthorFollow -= 1;
+          this.iffollow = 0;
+        }
+        this.$axios.get('user/follow/' + this.video_userid).then(
+        );
+      }
+      else{
+        this.$message.success("请先登录");
+        this.$router.push('/try_login');
+      }
+    },
     notice1(){
       this.drawer = true;
       this.$axios.get('note/all').then(
