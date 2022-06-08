@@ -534,6 +534,7 @@ export default {
     this.$axios.get('note/all').then(
         res => {
           this.notification_num=res.data.notificationReadNum;
+          this.unread_notification_num=res.data.unread_notificationUnreadNum;
           for(i=0;i<this.notification_num;i++){
             this.readnotificationList.push(
                 {
@@ -545,11 +546,6 @@ export default {
                 }
             )
           }
-        },
-    );
-    this.$axios.get().then(
-        res => {
-          this.unread_notification_num=res.data.unread_notificationUnreadNum;
           for(i=0;i<this.unread_notification_num;i++){
             this.unreadnotificationList.push(
                 {
