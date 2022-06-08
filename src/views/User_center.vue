@@ -44,48 +44,50 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'UserPage'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
-            <i class="el-icon-upload el-icon--right">
-              上传&ensp;
+        <router-link :to="'CreationCenter'">
+          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <i class="el-icon-upload el-icon--right" style="margin: 0">
+              创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1300px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
           &ensp;站内通知
         </el-button>
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px"><a>
-        <i class="fa fa-bank" style="color: gray"></i>
-        <span style="color: gray;">
+      <el-menu-item index="1" style="width: 100px; font-size: 15px">
+        <router-link :to="'/'">
+          <i class="fa fa-bank" style="color: gray"></i>
+          <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </a></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px"><a>
+        </router-link></el-menu-item>
+      <el-menu-item index="2" style="width: 100px; font-size: 15px">
+        <router-link :to="'Saving_box'">
+          <i class="fa fa-file-video-o" style="color: gray"></i>
+          <span style="color: gray">
+                  收藏夹
+                </span>
+        </router-link></el-menu-item>
+      <el-menu-item index="3" style="width: 100px; font-size: 15px">
+        <router-link :to="'Friend_list'">
+          <i class="fa fa-heart" style="color: gray"></i>
+          <span style="color: gray">
+                  关注
+                </span>
+        </router-link></el-menu-item>
+      <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color:gray"></i>
+          <i class="fa fa-user-o" style="color: gray"></i>
           <span style="color: gray">
                   个人中心
                 </span>
-        </router-link>
-      </a></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px"><a>
-        <i class="fa fa-file-video-o" style="color: gray"></i>
-        <span style="color: gray">
-                  收藏夹
-                </span>
-      </a></el-menu-item>
-      <el-menu-item index="4" style="width: 100px; font-size: 15px"><a>
-        <i class="fa fa-heart" style="color: gray"></i>
-        <span style="color: gray">
-                  关注
-                </span>
-      </a></el-menu-item>
+        </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
         <!--<form action="" class="parent">
           <input type="text" class="search">
@@ -121,47 +123,39 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link to="/">
+            <router-link :to="'/'">
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
-              </span>
+                </span>
             </router-link>
-
           </li>
           <li style="display: inline">
-            <router-link to="saving_box">
-            <a>
-              <i class="fa fa-file-video-o" style="color:black"></i>
+            <router-link :to="'Saving_box'">
+              <i class="fa fa-file-video-o" style="color: black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
-            </a></router-link>
+            </router-link>
           </li>
           <li style="display: inline">
-            <router-link to="friend_list">
-            <a>
+            <router-link :to="'Friend_list'">
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
-            </a></router-link>
+            </router-link>
           </li>
           <li style="display: inline">
-            <router-link to="user_center">
-            <a>
+            <router-link :to="'User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
               <span style="color: black">
                   个人中心&nbsp;&nbsp;&nbsp;
                 </span>
-            </a></router-link>
+            </router-link>
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
-          <!--<form action="" class="parent">
-            <input type="text" class="search">
-            <input type="button" name=""  class="btn" style="z-index:1" >
-          </form>-->
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
               <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -170,7 +164,7 @@
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
+                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px;background: whitesmoke"
                 />
                 <div class="nav-search-btn">
                   <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
@@ -197,16 +191,16 @@
                 id:{{this.userid}}
               </div>
             </div>
-            <a href="https://www.bilibili.com" slot="reference">
+            <router-link :to="'User_center'" slot="reference">
               <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-            </a>
+            </router-link>
           </el-popover>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-          <router-link :to="'UserPage'">
-            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
-              <i class="el-icon-upload el-icon--right">
-                上传&ensp;
+          <router-link :to="'CreationCenter'">
+            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+              <i class="el-icon-upload el-icon--right" style="margin: 0">
+                创作中心
               </i></el-button>
           </router-link>
         </div>
@@ -221,11 +215,11 @@
           </el-button>
           <el-button
               v-else
-              @click="drawer = true"
+              @click="notice1"
               style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
             &ensp;站内通知
           </el-button>
-          <el-badge class="mark" :value="this.unread_notification_num" />
+          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
           <el-drawer
               title="站内通知"
               :visible.sync="drawer"
@@ -233,14 +227,22 @@
               append-to-body="true"
               >
             <!-- :before-close="handleClose-->
-            <el-divider></el-divider>
-
+            <!--<el-divider></el-divider>
+            <div  style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;mmm关注了你注了你注了你注了&ensp;</el-badge></div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;2022-02-06 16:00</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>-->
             <!--<div v-for="notice in notificationList" :key="notice.notice_id">
             </div>-->
             <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
               <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你&ensp;</el-badge></div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -249,7 +251,7 @@
               </div>
               <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：&ensp;</el-badge></div>
                 <br/>
                 <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
                 <br/>
@@ -260,7 +262,7 @@
               </div>
               <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核&ensp;</el-badge></div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -269,7 +271,7 @@
               </div>
               <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核&ensp;</el-badge></div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -434,14 +436,6 @@
     </div>
   </div>
   </body>
-  <!--<div class="login">
-    <div class="form-box">
-      <h1>Login</h1>
-      <label><input v-model="username" type="text" placeholder="Username" class="username"></label>
-      <label><input v-model="password" type="password" placeholder="Password" class="password"></label>
-      <button type="submit" @click="click_login" class="login">Login</button>
-    </div>
-  </div>-->
   </html>
 </template>
 
@@ -453,6 +447,11 @@ export default {
   name: "User_center",
   data(){
     return {
+      FansNum:0,
+      VideoNum:0,
+      FavorNum:0,
+      LikeNum:0,
+      FollowNum:0,
       drawer: false,
       direction: 'rtl',
       notificationnum: '',
@@ -523,6 +522,14 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    this.$axios.get('user/detail/').then(
+        res =>{
+          this.oldpassword=res.data.user.UserPassword;
+          this.oldmail=res.data.user.UserEmail;
+          this.oldsign=res.data.user.UserIntroduction;
+          this.oldname=res.data.user.UserName;
+        },
+    );
     this.$axios.get('user/' + this.userid).then(
         res =>{
           this.oldpassword=res.data.user.UserPassword;
@@ -561,6 +568,20 @@ export default {
     );
   },
   methods:{
+    notice1(){
+      this.drawer = true;
+      this.unread_notification_num=0;
+      this.$axios(
+          {
+            method: 'post',
+            url: 'note/setStauts',
+            data: qs.stringify(
+                {
+                }
+            )
+          }
+      )
+    },
     /*handleClose(done) {
       this.$confirm('确认关闭？')
           .then(_ => {
