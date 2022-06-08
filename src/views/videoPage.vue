@@ -122,7 +122,7 @@
     <br>
     <div style="font-size: 20px; height: 35px;">
       <i class="fa fa-camera-retro" style="margin: 0; border: 0; outline: none; background: white; color: gray"></i>
-      {{title}}
+      {{this.title}}
     </div>
     <p style="color:#9195a3;font-size: 15px">{{this.videoviewcounts}}播放 · 总评论数{{this.comment_num}}  {{this.videouploadtime}}</p>
   </div>
@@ -148,12 +148,12 @@
         他的视频还有
     </div>
     <div>
-        <div v-for="videos in this.video_list" :key="videos.video_id_use" style="margin-bottom:55px;width: 370px;height: 40px">
+        <div v-for="(videos,index) in this.video_list" :key="videos.video_id_use" style="margin-bottom:55px;width: 370px;height: 40px">
           <img :src="videos.video_photo" style="width: 150px;height: 80px; float: left;border-radius: 8px;margin-right: 10px">
           <div>
-            <router-link to="/videoPage"><div :id="videos.video_id_use" @click="click1" style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
+           <div :id="videos.video_id_use" @click="click1(index)" style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
               {{videos.video_name}}
-            </div></router-link>
+            </div>
             <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 140px;text-align: left">
               {{videos.author}}
             </div>
@@ -295,7 +295,7 @@ export default {
       ],
       comment_num: 0,
       commentid: 0,
-      videourl: JSON.parse(sessionStorage.getItem('videourl')),
+      videourl:JSON.parse(sessionStorage.getItem('videourl')),
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
       video_username: '',
@@ -314,6 +314,9 @@ export default {
   },
   created() {
     this.videoPlay = 0;
+    this.videourl= JSON.parse(sessionStorage.getItem('videourl'));
+    this.vid = JSON.parse(sessionStorage.getItem('videoid'));
+    this.aid = JSON.parse(sessionStorage.getItem('videoauthorid'));
     var i = 0;
     this.$axios.get('video/detail/'+ this.vid).then(
         res => {
@@ -409,17 +412,16 @@ export default {
     click2(){
       alert('cnmb');
     },
-    click1(){
-      alert("点击视频");
-      this.$store.state.videourl = this.video_list[event.srcElement.id].video_url;
-      this.$store.state.videoname = this.video_list[event.srcElement.id].video_name;
-      this.$store.state.videoid = this.video_list[event.srcElement.id].video_id;
-      this.$store.state.videolike=this.video_list[event.srcElement.id].video_like;
-      this.$store.state.videofavourite=this.video_list[event.srcElement.id].video_favorite;
+    click1(index){
+      this.$store.state.videourl = this.video_list[index].video_url;
+      this.$store.state.videoname = this.video_list[index].video_name;
+      this.$store.state.videoid = this.video_list[index].video_id;
+      this.$store.state.videolike=this.video_list[index].video_like;
+      this.$store.state.videofavourite=this.video_list[index].video_favorite;
       this.$store.state.videoauthor=this.video_username;
       this.$store.state.videoauthorid=this.video_userid;
-      this.$store.state.videoviewcounts = this.video_list[event.srcElement.id].videoviewnum;
-      this.$store.state.videouploadtime = this.video_list[event.srcElement.id].videouploadtime;
+      this.$store.state.videoviewcounts = this.video_list[index].videoviewnum;
+      this.$store.state.videouploadtime = this.video_list[index].videouploadtime;
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
@@ -455,7 +457,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: JSON.parse(sessionStorage.getItem('videourl')),
+        message: this.videourl,
         offset: 100
       });
     },

@@ -364,7 +364,7 @@
             动画
           </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into1" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -1479,6 +1479,11 @@ export default {
   },
 
   methods:{
+    into1(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(1));
+      this.$router.push('/part_show');
+    },
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));

@@ -361,10 +361,11 @@ export default {
       formLabelWidth: '120px',
       videoList:[
       ],
-      videonum:1,
+      videonum:0,
     }
   },
   created(){
+    var i=0;
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -375,7 +376,6 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    var i=0;
     this.$axios.get('user/favorVideo').then(
         res =>{
           this.videonum=res.data.friendnum;

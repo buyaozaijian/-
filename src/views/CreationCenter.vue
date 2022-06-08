@@ -250,11 +250,11 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <router-link :to="'/videoPage'" @click="click1">
+              <router-link :to="'/videoPage'" @click="click1(index)">
                 <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <router-link :to="'/videoPage'" @click="click1">
+                <router-link :to="'/videoPage'" @click="click1(index)">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
                 <span style="margin-right: 20px">
@@ -328,11 +328,11 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <router-link :to="'/videoPage'" @click="click1">
+              <router-link :to="'/videoPage'" @click="click1(index)">
                 <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <router-link :to="'/videoPage'" @click="click1">
+                <router-link :to="'/videoPage'" @click="click1(index)">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
                 <span style="margin-right: 20px">
@@ -495,14 +495,14 @@ export default {
         offset: 100
       });
     },
-    click1(){
-      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
-      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
-      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
-      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
-      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
-      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
+    click1(index){
+      this.$store.state.videourl = this.videoList[index].videoUrl;
+      this.$store.state.videoname = this.videoList[index].videoName;
+      this.$store.state.videoid = this.videoList[index].videoId;
+      this.$store.state.videolike=this.videoList[index].videolike;
+      this.$store.state.videofavourite=this.videoList[index].videofavourite;
+      this.$store.state.videoauthor=this.videoList[index].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[index].videoAuthorId,
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';

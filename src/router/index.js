@@ -74,6 +74,11 @@ const routes = [
     path:'/searching_box',
     name:'searching_box',
     component:() => import('../views/Searching_box')
+  },
+  {
+    path:'/part_show',
+    name:'part_show',
+    component:() => import('../views/part_show')
   }
 ]
 
