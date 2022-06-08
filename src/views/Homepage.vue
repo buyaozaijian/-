@@ -278,8 +278,8 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="0" class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
                     <span v-for="tags in videoList[0].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -302,8 +302,8 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="1" class="name" @click="click1">{{this.videoList[1].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[1].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box">
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -326,8 +326,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="2" class="name" @click="click1">{{this.videoList[2].videoName}}</p></router-link></a>
                 <span v-for="tags in videoList[2].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box">
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -352,8 +352,8 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="3" class="name" @click="click1">{{this.videoList[3].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[3].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -376,8 +376,8 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="4" class="name" @click="click1">{{this.videoList[4].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[4].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -400,8 +400,8 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="5" class="name" @click="click1">{{this.videoList[5].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[5].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -440,8 +440,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="10" class="name" @click="click1">{{this.videoList[10].videoName}}</p></router-link></a>
                   <div v-for="tags in videoList[10].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
@@ -464,8 +464,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="11" class="name" @click="click1">{{this.videoList[11].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[11].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -488,8 +488,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="12" class="name" @click="click1">{{this.videoList[12].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[12].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -512,8 +512,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="13" class="name" @click="click1">{{this.videoList[13].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[13].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -538,8 +538,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="14" class="name" @click="click1">{{this.videoList[14].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[14].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -562,8 +562,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="15" class="name" @click="click1">{{this.videoList[15].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[15].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -586,8 +586,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="16" class="name" @click="click1">{{this.videoList[16].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[16].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -610,8 +610,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="17" class="name" @click="click1">{{this.videoList[17].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[17].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -649,8 +649,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="18" class="name" @click="click1">{{this.videoList[18].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[18].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -673,8 +673,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="19" class="name" @click="click1">{{this.videoList[19].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[19].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -697,8 +697,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="20" class="name" @click="click1">{{this.videoList[20].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[20].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -721,8 +721,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="21" class="name" @click="click1">{{this.videoList[21].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[21].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -747,8 +747,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="22" class="name" @click="click1">{{this.videoList[22].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[22].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -771,8 +771,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="23" class="name" @click="click1">{{this.videoList[23].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[23].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -795,8 +795,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="24" class="name" @click="click1">{{this.videoList[24].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[24].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -819,8 +819,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="25" class="name" @click="click1">{{this.videoList[25].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[25].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -858,8 +858,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="26" class="name" @click="click1">{{this.videoList[26].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[26].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -882,8 +882,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="27" class="name" @click="click1">{{this.videoList[27].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[27].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -906,8 +906,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="28" class="name" @click="click1">{{this.videoList[28].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[28].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -930,8 +930,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="29" class="name" @click="click1">{{this.videoList[29].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[29].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -956,8 +956,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="30" class="name" @click="click1">{{this.videoList[30].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[30].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -980,8 +980,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="31" class="name" @click="click1">{{this.videoList[31].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[31].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1004,8 +1004,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="32" class="name" @click="click1">{{this.videoList[32].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[32].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1028,8 +1028,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="33" class="name" @click="click1">{{this.videoList[33].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[33].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1067,8 +1067,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="34" class="name" @click="click1">{{this.videoList[34].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[34].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1091,8 +1091,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="35" class="name" @click="click1">{{this.videoList[35].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[35].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1115,8 +1115,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="36" class="name" @click="click1">{{this.videoList[36].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[36].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1139,8 +1139,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="37" class="name" @click="click1">{{this.videoList[37].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[37].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1165,8 +1165,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="38" class="name" @click="click1">{{this.videoList[38].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[38].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1189,8 +1189,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="39" class="name" @click="click1">{{this.videoList[39].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[39].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1213,8 +1213,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="40" class="name" @click="click1">{{this.videoList[40].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[40].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1237,8 +1237,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="41" class="name" @click="click1">{{this.videoList[41].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[41].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1276,8 +1276,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="42" class="name" @click="click1">{{this.videoList[42].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[42].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1300,8 +1300,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="43" class="name" @click="click1">{{this.videoList[43].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[43].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1324,8 +1324,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="44" class="name" @click="click1">{{this.videoList[44].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[44].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1348,8 +1348,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="45" class="name" @click="click1">{{this.videoList[45].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[45].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1374,8 +1374,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="46" class="name" @click="click1">{{this.videoList[46].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[46].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1398,8 +1398,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="47" class="name" @click="click1">{{this.videoList[47].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[47].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1422,8 +1422,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="48" class="name" @click="click1">{{this.videoList[48].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[48].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1446,8 +1446,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="49" class="name" @click="click1">{{this.videoList[49].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[49].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1485,8 +1485,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="50" class="name" @click="click1">{{this.videoList[50].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[50].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1509,8 +1509,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="51" class="name" @click="click1">{{this.videoList[51].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[51].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1533,8 +1533,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="52" class="name" @click="click1">{{this.videoList[52].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[52].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1557,8 +1557,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="53" class="name" @click="click1">{{this.videoList[53].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[53].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1583,8 +1583,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="54" class="name" @click="click1">{{this.videoList[54].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[54].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1607,8 +1607,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="55" class="name" @click="click1">{{this.videoList[55].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[55].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1631,8 +1631,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="56" class="name" @click="click1">{{this.videoList[56].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[56].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1655,8 +1655,8 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="57" class="name" @click="click1">{{this.videoList[57].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[57].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -1909,11 +1909,9 @@ export default {
       this.$router.push('/part_show');
     },
     click_search(){
-      alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
     click_search1(){
-      alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_search2(args){

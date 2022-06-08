@@ -510,6 +510,8 @@ export default {
       formLabelWidth: '120px',
       imgList: [],
       url: '',
+      Authorization: '',
+      Identity: '',
     }
   },
   created(){
@@ -521,6 +523,8 @@ export default {
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
+      this.Authorization = userInfo.user.Authorization;
+      this.Identity = userInfo.user.Identity;
     } else {
       this.isLogin = 0;
     }
@@ -538,7 +542,8 @@ export default {
           this.url=this.userhead;
         },
     );
-    this.$axios.get('user/' + this.userid).then(
+    alert(this.unread_notification_num);
+    this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;
@@ -550,9 +555,9 @@ export default {
   methods:{
     notice1(){
       this.drawer = true;
-      var i=0;
       this.$axios.get('note/all').then(
           res => {
+            var i = 0;
             this.notification_num=res.data.notificationReadNum;
             this.unread_notification_num=res.data.notificationUnreadNum;
             this.unreadnotificationList.length=0;
@@ -584,12 +589,8 @@ export default {
       this.unread_notification_num=0;
       /*this.$axios(
           {
-            method: 'post',
-            url: 'note/setStauts',
-            data: qs.stringify(
-                {
-                }
-            )
+            method: 'get',
+            url: 'note/setStatus',
           }
       )*/
     },
@@ -623,6 +624,16 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 console.log("上传成功");
+                this.$store.dispatch('clearUserInfo');
+                this.$store.dispatch('saveUserInfo', {
+                  user: {
+                    userid: this.userid,
+                    username: this.change.name,
+                    Authorization: this.Authorization,
+                    UserProfilePhotoUrl: this.url,
+                    UserIdentity: this.Identity,
+                  }
+                })
                 this.$router.push({
                   path: './'
                 })
