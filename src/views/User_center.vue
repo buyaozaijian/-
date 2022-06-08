@@ -68,21 +68,21 @@
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'">
+        <router-link :to="'Saving_box'" @click="click_centerself">
           <i class="fa fa-file-video-o" style="color: gray"></i>
           <span style="color: gray">
                   收藏夹
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'">
+        <router-link :to="'Friend_list'" @click="click_centerself">
           <i class="fa fa-heart" style="color: gray"></i>
           <span style="color: gray">
                   关注
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
+        <router-link :to="'User_center'" @click="click_centerself">
           <i class="fa fa-user-o" style="color: gray"></i>
           <span style="color: gray">
                   个人中心
@@ -131,7 +131,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'">
+            <router-link :to="'Saving_box'" @click="click_centerself">
               <i class="fa fa-file-video-o" style="color: black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
@@ -139,7 +139,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'">
+            <router-link :to="'Friend_list'" @click="click_centerself">
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
@@ -147,7 +147,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'User_center'">
+            <router-link :to="'User_center'" @click="click_centerself">
               <i class="fa fa-user-o" style="color: black"></i>
               <span style="color: black">
                   个人中心&nbsp;&nbsp;&nbsp;
@@ -356,20 +356,19 @@
       </a>
     </div>
     <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
-    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
+    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FansNum}}</div>
+    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">{{this.userdata[0].VideoNum}}</div>
+    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FavorNum}}</div>
     <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
     <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
     <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="评论数" style="position:absolute;left:60px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">0</div>
+    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">{{this.userdata[0].LikeNum}}</div>
+    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">{{this.userdata[0].FollowNum}}</div>
     <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
     <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
     <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下</div>
+    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
     <div style="position:absolute;left:20px;top:370px;">
       <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
                text-color="black"
@@ -512,6 +511,7 @@ export default {
       url: '',
       Authorization: '',
       Identity: '',
+      userdata:[],
     }
   },
   created(){
@@ -528,6 +528,18 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    this.$axios.get('user/detail/'+this.$store.state.center_id).then(
+        res =>{
+          this.userdata.push({
+            FansNum:res.data.FansNum,
+            VideoNum:res.data.VideoNum,
+            FavorNum:res.data.FavorNum,
+            LikeNum:res.data.LikeNum,
+            FollowNum:res.data.FollowNum,
+            UserIntroduction:res.data.UserIntroduction
+          })
+        },
+    );
     this.$axios.get('user/detail/').then(
         res =>{
           this.oldpassword=res.data.user.UserPassword;
@@ -542,7 +554,6 @@ export default {
           this.url=this.userhead;
         },
     );
-    alert(this.unread_notification_num);
     this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
@@ -696,6 +707,9 @@ export default {
     click_search1(){
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
+    click_centerself(){
+      this.$store.state.center_id = this.userid;
     },
     logout(){
       alert('退出登录！');

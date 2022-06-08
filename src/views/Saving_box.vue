@@ -68,21 +68,21 @@
                 </span>
       </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'">
+        <router-link :to="'Saving_box'" @click="click_centerself">
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
       </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'">
+        <router-link :to="'Friend_list'" @click="click_centerself">
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
       </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
+        <router-link :to="'User_center'" @click="click_centerself">
           <i class="fa fa-user-o" style="color: gray"></i>
           <span style="color: gray">
                   个人中心
@@ -123,7 +123,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="'/'">
+            <router-link :to="'/'" >
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -131,7 +131,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'">
+            <router-link :to="'Saving_box'" @click="click_centerself">
               <i class="fa fa-file-video-o" style="color: black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
@@ -139,14 +139,14 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'">
+            <router-link :to="'Friend_list'" @click="click_centerself">
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
-          <li style="display: inline">
+          <li style="display: inline" @click="click_centerself">
             <router-link :to="'User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
               <span style="color: black">
@@ -404,6 +404,12 @@ export default {
     click_search1(){
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
+    click_center(id){
+      this.$store.state.center_id = id;
+    },
+    click_centerself(){
+      this.$store.state.center_id = this.userid;
     },
     logout(){
       alert('退出登录！');

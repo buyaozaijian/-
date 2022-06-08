@@ -76,13 +76,13 @@
                   收藏夹
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/friend_list" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/friend_list" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/user_center" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/user_center" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -142,7 +142,7 @@
                 </span>
           </li>
           <li style="display: inline">
-            <router-link :to="'/Friend_list'">
+            <router-link :to="'/Friend_list'" @click="click_centerself">
               <i class="fa fa-heart" style="color: white"></i>
               <span style="color: white">
                   关注&nbsp;&nbsp;&nbsp;
@@ -150,7 +150,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'/User_center'">
+            <router-link :to="'/User_center'" @click="click_centerself">
               <i class="fa fa-user-o" style="color: white"></i>
               <span style="color: white">
                   个人中心
@@ -284,7 +284,9 @@
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[0].videoAuthor}}</p>
+                  <router-link to="User_center" @click="click_center(this.videoList[0].videoAuthorId)">
+                    <p class="title">{{this.videoList[0].videoAuthor}}</p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -308,7 +310,9 @@
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[1].videoAuthor}}</p>
+                  <router-link to="User_center" @click="click_center(this.videoList[1].videoAuthorId)">
+                    <p class="title">{{this.videoList[1].videoAuthor}}</p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -332,7 +336,9 @@
                         </a>
                     </router-link>
                     </span>
-                <p class="title">{{this.videoList[2].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[2].videoAuthorId)">
+                  <p class="title">{{this.videoList[2].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -358,7 +364,9 @@
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[3].videoAuthor}}</p>
+                  <router-link to="User_center" @click="click_center(this.videoList[3].videoAuthorId)">
+                    <p class="title">{{this.videoList[3].videoAuthor}}</p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -382,7 +390,9 @@
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[4].videoAuthor}}</p>
+                  <router-link to="User_center" @click="click_center(this.videoList[4].videoAuthorId)">
+                    <p class="title">{{this.videoList[4].videoAuthor}}</p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -406,7 +416,9 @@
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[5].videoAuthor}}</p>
+                  <router-link to="User_center" @click="click_center(this.videoList[5].videoAuthorId)">
+                    <p class="title">{{this.videoList[5].videoAuthor}}</p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -446,7 +458,9 @@
                         </a>
                     </router-link>
                   </div>
-                <p class="title">{{this.videoList[10].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[10].videoAuthorId)">
+                  <p class="title">{{this.videoList[10].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -470,7 +484,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[11].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[11].videoAuthorId)">
+                  <p class="title">{{this.videoList[11].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -494,7 +510,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[12].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[12].videoAuthorId)">
+                  <p class="title">{{this.videoList[12].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -518,7 +536,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[13].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[13].videoAuthorId)">
+                  <p class="title">{{this.videoList[13].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -544,7 +564,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[14].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[14].videoAuthorId)">
+                  <p class="title">{{this.videoList[14].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -568,7 +590,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[15].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[15].videoAuthorId)">
+                  <p class="title">{{this.videoList[15].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -592,7 +616,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[16].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[16].videoAuthorId)">
+                  <p class="title">{{this.videoList[16].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -616,7 +642,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[17].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[17].videoAuthorId)">
+                  <p class="title">{{this.videoList[17].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -655,7 +683,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[18].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[18].videoAuthorId)">
+                  <p class="title">{{this.videoList[18].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -679,7 +709,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[19].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[19].videoAuthorId)">
+                  <p class="title">{{this.videoList[19].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -703,7 +735,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[20].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[20].videoAuthorId)">
+                  <p class="title">{{this.videoList[20].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -727,7 +761,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[21].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[21].videoAuthorId)">
+                  <p class="title">{{this.videoList[21].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -753,7 +789,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[22].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[22].videoAuthorId)">
+                  <p class="title">{{this.videoList[22].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -777,7 +815,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[23].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[23].videoAuthorId)">
+                  <p class="title">{{this.videoList[23].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -801,7 +841,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[24].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[24].videoAuthorId)">
+                  <p class="title">{{this.videoList[24].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -825,7 +867,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[25].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[25].videoAuthorId)">
+                  <p class="title">{{this.videoList[25].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -864,7 +908,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[26].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[26].videoAuthorId)">
+                  <p class="title">{{this.videoList[26].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -888,7 +934,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[27].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[27].videoAuthorId)">
+                  <p class="title">{{this.videoList[27].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -912,7 +960,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[28].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[28].videoAuthorId)">
+                  <p class="title">{{this.videoList[28].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -936,7 +986,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[29].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[29].videoAuthorId)">
+                  <p class="title">{{this.videoList[29].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -962,7 +1014,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[30].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[30].videoAuthorId)">
+                  <p class="title">{{this.videoList[30].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -986,7 +1040,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[31].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[31].videoAuthorId)">
+                  <p class="title">{{this.videoList[31].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1010,7 +1066,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[32].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[32].videoAuthorId)">
+                  <p class="title">{{this.videoList[32].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1034,7 +1092,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[33].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[33].videoAuthorId)">
+                  <p class="title">{{this.videoList[33].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1073,7 +1133,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[34].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[34].videoAuthorId)">
+                  <p class="title">{{this.videoList[34].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1097,7 +1159,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[35].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[35].videoAuthorId)">
+                  <p class="title">{{this.videoList[35].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1121,7 +1185,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[36].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[36].videoAuthorId)">
+                  <p class="title">{{this.videoList[36].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1145,7 +1211,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[37].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[37].videoAuthorId)">
+                  <p class="title">{{this.videoList[37].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1171,7 +1239,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[38].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[38].videoAuthorId)">
+                  <p class="title">{{this.videoList[38].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1195,7 +1265,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[39].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[39].videoAuthorId)">
+                  <p class="title">{{this.videoList[39].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1219,7 +1291,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[40].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[40].videoAuthorId)">
+                  <p class="title">{{this.videoList[40].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1243,7 +1317,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[41].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[41].videoAuthorId)">
+                  <p class="title">{{this.videoList[41].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1282,7 +1358,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[42].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[42].videoAuthorId)">
+                  <p class="title">{{this.videoList[42].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1306,7 +1384,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[43].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[43].videoAuthorId)">
+                  <p class="title">{{this.videoList[43].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1330,7 +1410,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[44].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[44].videoAuthorId)">
+                  <p class="title">{{this.videoList[44].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1354,7 +1436,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[45].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[45].videoAuthorId)">
+                  <p class="title">{{this.videoList[45].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1380,7 +1464,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[46].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[46].videoAuthorId)">
+                  <p class="title">{{this.videoList[46].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1404,7 +1490,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[47].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[47].videoAuthorId)">
+                  <p class="title">{{this.videoList[47].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1428,7 +1516,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[48].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[48].videoAuthorId)">
+                  <p class="title">{{this.videoList[48].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1452,7 +1542,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[49].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[49].videoAuthorId)">
+                  <p class="title">{{this.videoList[49].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1491,7 +1583,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[50].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[50].videoAuthorId)">
+                  <p class="title">{{this.videoList[50].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1515,7 +1609,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[51].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[51].videoAuthorId)">
+                  <p class="title">{{this.videoList[51].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1539,7 +1635,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[52].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[52].videoAuthorId)">
+                  <p class="title">{{this.videoList[52].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1563,7 +1661,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[53].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[53].videoAuthorId)">
+                  <p class="title">{{this.videoList[53].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1589,7 +1689,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[54].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[54].videoAuthorId)">
+                  <p class="title">{{this.videoList[54].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1613,7 +1715,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[55].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[55].videoAuthorId)">
+                  <p class="title">{{this.videoList[55].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1637,7 +1741,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[56].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[56].videoAuthorId)">
+                  <p class="title">{{this.videoList[56].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1661,7 +1767,9 @@
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[57].videoAuthor}}</p>
+                <router-link to="User_center" @click="click_center(this.videoList[57].videoAuthorId)">
+                  <p class="title">{{this.videoList[57].videoAuthor}}</p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -1876,6 +1984,7 @@ export default {
       }
       else{
         this.$router.push(dir);
+        this.click_centerself();
       }
     },
     into1(){
@@ -1916,6 +2025,12 @@ export default {
     },
     click_search2(args){
       sessionStorage.setItem('message', JSON.stringify(args));
+    },
+    click_center(id){
+      this.$store.state.center_id = id;
+    },
+    click_centerself(){
+      this.$store.state.center_id = this.userid;
     },
     logout(){
       alert('退出登录！');
