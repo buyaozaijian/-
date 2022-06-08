@@ -248,7 +248,7 @@ export default {
       userhead:'',
       isLogin:0,
       userid:0,
-      username: 'yyz',
+      username: '',
       userHead: '',
       password: '',
       //title: this.$store.state.videoname,
@@ -420,7 +420,7 @@ export default {
       );
   },
   methods:{
-    
+
     delete_comment(id,index){
       this.$axios.get('comment/delete/'+id).then(
       )
