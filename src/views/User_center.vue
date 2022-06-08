@@ -31,7 +31,7 @@
           </router-link>
         </el-popover>
       </div>
-      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+      <div v-else  style="position: absolute; left: 1100px; top: 13px;z-index: 9999; display: inline-block;">
         <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
           <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
@@ -43,7 +43,7 @@
           {{this.username}}
         </a>
       </div>
-      <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
+      <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
         <router-link :to="'UserPage'">
           <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right">
@@ -51,7 +51,7 @@
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1300px; top: 22px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
@@ -121,7 +121,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="''">
+            <router-link to="/">
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -130,28 +130,31 @@
 
           </li>
           <li style="display: inline">
+            <router-link to="saving_box">
             <a>
-              <i class="fa fa-user-o" style="color:black"></i>
-              <span style="color: black">
-                  个人中心&nbsp;&nbsp;&nbsp;
-                </span>
-            </a>
-          </li>
-          <li style="display: inline">
-            <a>
-              <i class="fa fa-file-video-o" style="color: black"></i>
+              <i class="fa fa-file-video-o" style="color:black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
-            </a>
+            </a></router-link>
           </li>
           <li style="display: inline">
+            <router-link to="friend_list">
             <a>
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
-            </a>
+            </a></router-link>
+          </li>
+          <li style="display: inline">
+            <router-link to="user_center">
+            <a>
+              <i class="fa fa-user-o" style="color: black"></i>
+              <span style="color: black">
+                  个人中心&nbsp;&nbsp;&nbsp;
+                </span>
+            </a></router-link>
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
@@ -277,15 +280,18 @@
     <div style="width: 1000px; height: 50px; position: relative; top: 20px">在此处上传头像</div>
     <el-upload
         list-type="picture-card"
-        :action=uploadImgUrl
+        action='video/uploadphoto'
         multiple
-        :http-request="upLoadImage"
-        :before-upload="beforeImageUpload"
-        :file-list="willAddQuestion.imgList"
-        :limit="6"
+        :http-request="upLoadImage2"
+        :before-upload="beforeImageUpload2"
+        :file-list="change.head"
+        :limit="1"
         style="width: 200px;display: block; clear: both; margin: 0 auto">
       <i class="el-icon-plus"></i>
     </el-upload>
+    <!--<el-dialog :visible.sync="dialogVisible">
+      <img width="100%" :src="dialogImageUrl" alt="">
+    </el-dialog>-->
     <div style="width: 1000px; height: 50px; position: relative; top: 10px; font-size: 15px">图片只能为jpg/png格式</div>
     <!--<div style="width: 1000px; height: 60px">
       <span style="width: 1000px; height: 50px; margin-right: 20px">个性签名:</span>
@@ -310,18 +316,15 @@
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
          <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign"></el-input>
        </el-form-item>
-      </el-form>
-        <el-form ref="form" :model="change" label-width="80px">
+
           <el-form-item label="用户名" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname"></el-input>
           </el-form-item>
-        </el-form>
-        <el-form ref="form" :model="change" label-width="80px">
+
           <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail"></el-input>
           </el-form-item>
-        </el-form>
-        <el-form ref="form" :model="change" label-width="80px">
+
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
             <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword"></el-input>
           </el-form-item>
@@ -350,6 +353,7 @@ export default {
   data(){
     return {
       change: {
+        head: [],
         name: '',
         sign: '',
         mail: '',
@@ -365,13 +369,6 @@ export default {
       beforeImageUpload:'',
       dialogVisible:'',
       dialogImageUrl:'',
-      willAddQuestion: {
-        videoTitle: '',
-        videoIntroduction: '',
-        videoTags: '',
-        imgList: [],
-        videoList: [],
-      },
       //以上data均复制粘贴子CreationCenter.vue，如需完成后端接口，请重新定义变量名，并在上方275行后相应部分进行修改
       isLogin:0,
       userid:0,
@@ -401,7 +398,8 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-
+      imgList: [],
+      url: '',
     }
   },
   created(){
@@ -409,16 +407,22 @@ export default {
     console.log(userInfo);
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.url = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
-      this.oldmail=userInfo.user.mail;
-      this.oldname=userInfo.user.name;
-      this.oldsign=userInfo.user.sign;
-      this.oldpassword=userInfo.user.password;
     } else {
       this.isLogin = 0;
     }
+    this.$axios.get('user/' + this.userid).then(
+        res =>{
+          this.oldpassword=res.data.user.UserPassword;
+          this.oldmail=res.data.user.UserEmail;
+          this.oldsign=res.data.user.UserIntroduction;
+          this.oldname=res.data.user.UserName;
+        },
+    );
+
   },
   methods:{
     submit_all(){
@@ -428,12 +432,13 @@ export default {
       alert(this.change.password);
       this.$axios({
         method: 'post',
-        url:'',
+        url:'user/changeUser',
         data: qs.stringify({
-          newsign: this.change.sign,
-          newname: this.change.name,
-          newmail: this.change.mail,
-          newpassword: this.change.password,
+          photoUrl: this.url,
+          Introduction: this.change.sign,
+          username: this.change.name,
+          email: this.change.mail,
+          password: this.change.password,
         })
       })
           .then((res) => {
@@ -454,6 +459,47 @@ export default {
             console.log("请求失败");
             console.log(error);
           });
+    },
+    upLoadImage2(file) {
+      const formData = new FormData();
+      formData.append('image', file.file);
+      this.$axios({
+        method: 'post',
+        url: 'video/uploadphoto',
+        data: formData,
+      })
+          .then(res => {
+            switch (res.data.status_code) {
+              case 0:
+                window.alert("error");
+                break;
+              case 1:
+                this.url = res.data.url_img;
+                alert("封面上传成功");
+                console.log(this.willAddQuestion.imgList);
+                break;
+              case 2:
+                // this.$message.error("上传文件格式错误！");
+                break;
+              default:
+                this.$message.error("操作失败！");
+                break;
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          })
+    },
+    beforeImageUpload2(file) {
+      const isJPG = file.type === 'image/jpeg';
+      const isPNG = file.type === 'image/png';
+      const isLt5M = file.size / 1024 / 1024 < 10;
+      if (!isJPG && !isPNG) {
+        this.$message.error('上传头像图片只能是 JPG/PNG 格式!');
+      } else if (!isLt5M) {
+        this.$message.error('上传头像图片大小不能超过 5MB!');
+      }
+      return (isJPG || isPNG) && isLt5M;
     },
     click_search(){
       alert(this.$refs.search.value);

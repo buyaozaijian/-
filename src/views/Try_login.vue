@@ -66,7 +66,6 @@ export default {
                 this.$store.dispatch('saveUserInfo', {
                     user: res.data.data
                 });
-                window.location.reload();
                 /* 从 localStorage 中读取 preRoute 键对应的值 */
                 // eslint-disable-next-line no-case-declarations
                 //const history_pth = localStorage.getItem('preRoute');
