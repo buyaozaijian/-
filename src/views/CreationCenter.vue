@@ -1,6 +1,7 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <body>
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
@@ -266,6 +267,13 @@
                 <router-link :to="'/videoPage'" @click="click1(index)">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
+                <div v-for="tags in video.videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
@@ -285,8 +293,7 @@
         </div>
       </el-tab-pane>
       <el-tab-pane label="视 频 上 传">
-      <div
-          style="display: inline-block; background: whitesmoke;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
+      <div style="display: inline-block; background: whitesmoke;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
         <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
           <el-form-item label="视频标题" style="margin-bottom: 10px">
             <el-input v-model="willAddQuestion.videoTitle"></el-input>
@@ -358,6 +365,13 @@
                 <router-link :to="'/videoPage'" @click="click1(index)">
                   <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
+                <div v-for="tags in video.videoTags" :key="tags">
+                  <router-link to="Searching_box" @click="click_search2(tags)">
+                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      {{tags}}
+                    </a>
+                  </router-link>
+                </div>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
                 </span>
@@ -431,13 +445,40 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:0,
+      video_num:1,
       videocontrolList:[
+        {
+          videoCoverUrl:'../img/fengmian1.webp',
+          videoName:'asd',
+          videolike:1,
+          videoViewcount:1,
+          videofavourite:1,
+          videoid:1,
+          videoAuthor:'asd',
+          videoAuthorId:1,
+          videoTags:[
+              "asd",
+              "asd"
+          ]
+        }
       ],
-      audit_num:0,
+      audit_num:1,
       videoauditList:[
+        {
+          videoCoverUrl:'../img/fengmian1.webp',
+          videoName:'asd',
+          videolike:1,
+          videoViewcount:1,
+          videofavourite:1,
+          videoid:1,
+          videoAuthor:'asd',
+          videoAuthorId:1,
+          videoTags:[
+            "asd",
+            "asd"
+          ]
+        }
       ],
-
     }
   },
   created(){
@@ -468,6 +509,7 @@ export default {
                 videoUrl:res.data.videoList[i].VideoUrl,
                 videoAuthor:res.data.videoList[i].VideoAuthorName,
                 videoAuthorId:res.data.videoList[i].VideoAuthor,
+                videoTags:res.data.videoList[i].VideoTags
               }
           )
         }
@@ -488,6 +530,7 @@ export default {
                   videoUrl:res.data.videoList[i].VideoUrl,
                   videoAuthor:res.data.videoList[i].VideoAuthorName,
                   videoAuthorId:res.data.videoList[i].VideoAuthor,
+                  videoTags:res.data.videoList[i].VideoTags
                 }
             )
           }
@@ -550,6 +593,9 @@ export default {
         message: '这是一条不会自动关闭的消息',
         duration: 0
       });
+    },
+    click_search2(args){
+      sessionStorage.setItem('message', JSON.stringify(args));
     },
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll)
