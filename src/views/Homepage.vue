@@ -1,6 +1,7 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <head>
   </head>
   <body style="max-width:1560px;margin: 0 auto;">
@@ -241,15 +242,32 @@
     <div>
       <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 0px;
            width: 550px; height: 400px" >
-        <el-carousel-item v-for="(img,index) in imgList" :key="index" style="height: 400px">
-          <img :src="img.url" width="100%" height="100%">
+        <el-carousel-item style="height: 400px">
+          <router-link to="videoPage" @click="click1" id="6">
+            <img :src="this.videoList[6].videoCoverUrl" width="100%" height="100%">
+          </router-link>
+        </el-carousel-item>
+        <el-carousel-item style="height: 400px">
+          <router-link to="videoPage" @click="click1" id="7">
+            <img :src="this.videoList[7].videoCoverUrl" width="100%" height="100%">
+          </router-link>
+        </el-carousel-item>
+        <el-carousel-item style="height: 400px">
+          <router-link to="videoPage" @click="click1" id="8">
+            <img :src="this.videoList[8].videoCoverUrl" width="100%" height="100%">
+          </router-link>
+        </el-carousel-item>
+        <el-carousel-item style="height: 400px">
+          <router-link to="videoPage" @click="click1" id="9">
+            <img :src="this.videoList[9].videoCoverUrl" width="100%" height="100%">
+          </router-link>
         </el-carousel-item>
       </el-carousel>
     </div>
     <div>
-      <table style="display: inline-block; left:675px; top:440px" cellspacing="6">
+      <table style="display: inline-block; left:675px; top:440px">
         <tr>
-          <td style="width: 250px">
+          <td style="width: 250px;padding-right: 6px">
             <img
                 class="picture"
                 :src="this.videoList[0].videoCoverUrl"
@@ -261,12 +279,13 @@
                 <div style="float: left" class="txt">
                   <a target="blank">
                     <router-link to="/videoPage"><p id="0" class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
+                  <span><a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white">haha</a></span>
                   <p class="title">{{this.videoList[0].videoAuthor}}</p>
                 </div>
               </div>
             </div>
           </td>
-          <td style="width: 250px">
+          <td style="width: 250px;padding-right: 6px">
             <img
                 class="picture"
                 :src="this.videoList[1].videoCoverUrl"
@@ -283,7 +302,7 @@
               </div>
             </div>
           </td>
-          <td style="width: 250px">
+          <td style="width: 250px;padding-right: 6px">
             <img
                 class="picture"
                 :src="this.videoList[2].videoCoverUrl"
@@ -302,7 +321,7 @@
           </td>
         </tr>
         <tr>
-          <td style="width: 250px">
+          <td style="width: 250px;padding-right: 6px">
             <img
                 class="picture"
                 :src="this.videoList[3].videoCoverUrl"
@@ -319,7 +338,7 @@
               </div>
             </div>
           </td>
-          <td style="width: 250px">
+          <td style="width: 250px;padding-right: 6px">
             <img
                 class="picture"
                 :src="this.videoList[4].videoCoverUrl"
@@ -336,7 +355,7 @@
               </div>
             </div>
           </td>
-          <td style="width: 250px">
+          <td style="width: 250px;padding-right: 6px">
             <img
                 class="picture"
                 :src="this.videoList[5].videoCoverUrl"
@@ -368,76 +387,6 @@
           </span>
     </div>
     <table class="tab" cellspacing="35">
-      <tr>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[6].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="6" class="name" @click="click1">{{this.videoList[6].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[6].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[7].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="7" class="name" @click="click1">{{this.videoList[7].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[7].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[8].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="8" class="name" @click="click1">{{this.videoList[8].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[8].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td class="fenqu">
-          <img
-              class="picture1"
-              :src="this.videoList[9].videoCoverUrl"
-              alt=""
-              style="border-radius: 6px"
-          />
-          <div class="up">
-            <div class="up-cover">
-              <div style="float: left" class="txt">
-                <a target="blank">
-                  <router-link to="/videoPage"><p id="9" class="name" @click="click1">{{this.videoList[9].videoName}}</p></router-link></a>
-                <p class="title">{{this.videoList[9].videoAuthor}}</p>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
       <tr>
         <td class="fenqu">
           <img
@@ -508,19 +457,6 @@
           </div>
         </td>
       </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-        <span style="font-size: 30px">
-          <i class="fa fa-bookmark-o" style="color: gray" ></i>
-          电影
-        </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -591,6 +527,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+        <span style="font-size: 30px">
+          <i class="fa fa-bookmark-o" style="color: gray" ></i>
+          电影
+        </span>
+      <span>
+            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -661,19 +610,6 @@
           </div>
         </td>
       </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            游戏
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -744,6 +680,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            游戏
+          </span>
+      <span>
+            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -814,19 +763,6 @@
           </div>
         </td>
       </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            音乐
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -897,6 +833,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            音乐
+          </span>
+      <span>
+            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -967,19 +916,6 @@
           </div>
         </td>
       </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            学习
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -1050,6 +986,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            学习
+          </span>
+      <span>
+            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -1120,19 +1069,6 @@
           </div>
         </td>
       </tr>
-    </table>
-  </div>
-  <div class="all">
-    <div align="left">
-          <span style="font-size: 30px">
-            <i class="fa fa-bookmark-o" style="color: gray" ></i>
-            鬼畜
-          </span>
-      <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
-          </span>
-    </div>
-    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -1203,6 +1139,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            鬼畜
+          </span>
+      <span>
+            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -1273,6 +1222,76 @@
           </div>
         </td>
       </tr>
+      <tr>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[54].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="54" class="name" @click="click1">{{this.videoList[54].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[54].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[55].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="55" class="name" @click="click1">{{this.videoList[55].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[55].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[56].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="56" class="name" @click="click1">{{this.videoList[56].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[56].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+        <td class="fenqu">
+          <img
+              class="picture1"
+              :src="this.videoList[57].videoCoverUrl"
+              alt=""
+              style="border-radius: 6px"
+          />
+          <div class="up">
+            <div class="up-cover">
+              <div style="float: left" class="txt">
+                <a target="blank">
+                  <router-link to="/videoPage"><p id="57" class="name" @click="click1">{{this.videoList[57].videoName}}</p></router-link></a>
+                <p class="title">{{this.videoList[57].videoAuthor}}</p>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
     </table>
   </div>
   </body>
@@ -1313,26 +1332,13 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      imgList:[
-        {
-          url:require('../img/fengmian1.webp')
-        },
-        {
-          url:require('../img/fengmian2.webp')
-        },
-        {
-          url:require('../img/fengmian3.webp')
-        },
-        {
-          url:require('../img/fengmian4.webp')
-        }
-      ],
       videoList: [],
     }
   },
   created() {
+
     var i = 0;
-    for(i=0;i<54;i++)
+    for(i=0;i<58;i++)
     {
       this.videoList.push({
         videoAuthorId: '',
@@ -1349,7 +1355,7 @@ export default {
     }
     this.$axios.get('/index/main').then(
         res => {
-          for(i=0;i<6;i++)
+          for(i=0;i<10;i++)
           {
               this.videoList[i].videoAuthor= res.data.videoList[i].VideoAuthorName,
               this.videoList[i].videoAuthorId= res.data.videoList[i].VideoAuthor,
@@ -1359,14 +1365,14 @@ export default {
               this.videoList[i].videoName= res.data.videoList[i].VideoTitle,
               this.videoList[i].videolike= res.data.videoList[i].VideoLike,
               this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
-                  this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
-                  this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
+              this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
+              this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime
           }
         },
     );
     this.$axios.get('index/main/area/1').then(//动画分区
         res => {
-          for(i=6;i<14;i++)
+          for(i=10;i<18;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-6].VideoAuthorName,
                 this.videoList[i].videoAuthorId= res.data.videoList[i-6].VideoAuthor,
@@ -1383,7 +1389,7 @@ export default {
     );
     this.$axios.get('index/main/area/2').then(//电影分区
         res => {
-          for(i=14;i<22;i++)
+          for(i=18;i<26;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-14].VideoAuthorName,
                 this.videoList[i].videoAuthorId= res.data.videoList[i-14].VideoAuthor,
@@ -1400,7 +1406,7 @@ export default {
     );
     this.$axios.get('index/main/area/3').then(//游戏分区
         res => {
-          for(i=22;i<30;i++)
+          for(i=26;i<34;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-22].VideoAuthorName,
                 this.videoList[i].videoAuthorId= res.data.videoList[i-22].VideoAuthor,
@@ -1417,7 +1423,7 @@ export default {
     );
     this.$axios.get('index/main/area/4').then(//音乐分区
         res => {
-          for(i=30;i<38;i++)
+          for(i=34;i<42;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-30].VideoAuthorName,
                 this.videoList[i].videoAuthorId= res.data.videoList[i-30].VideoAuthor,
@@ -1434,7 +1440,7 @@ export default {
     );
     this.$axios.get('index/main/area/5').then(//学习分区
         res => {
-          for(i=38;i<46;i++)
+          for(i=42;i<50;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-38].VideoAuthorName,
                 this.videoList[i].videoAuthorId= res.data.videoList[i-38].VideoAuthor,
@@ -1451,7 +1457,7 @@ export default {
     );
     this.$axios.get('index/main/area/6').then(//鬼畜分区
         res => {
-          for(i=46;i<54;i++)
+          for(i=50;i<58;i++)
           {
             this.videoList[i].videoAuthor= res.data.videoList[i-46].VideoAuthorName,
                 this.videoList[i].videoAuthorId= res.data.videoList[i-46].VideoAuthor,
@@ -1744,7 +1750,7 @@ table {
   line-height: 20px;
   text-align: left;
   margin-top: 5px;
-  height: 45px;
+  height: 25px;
   width: 240px;
   font-size: 14px;
   color: black;

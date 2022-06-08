@@ -4,8 +4,7 @@
   <body>
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="this.$router.path"
-        router
+        :default-active="activeIndex2"
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -52,33 +51,43 @@
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1330px; top: 25px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
-          站内通知
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
+          &ensp;站内通知
         </el-button>
       </div>
-      <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
-        <i class="fa fa-bank" style="color: gray"></i>
-        <span style="color: gray;">
+      <el-menu-item index="1" style="width: 100px; font-size: 15px">
+        <router-link :to="'/'">
+          <i class="fa fa-bank" style="color: gray"></i>
+          <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </a></el-menu-item>
-      <el-menu-item index="/saving_box" style="width: 100px; font-size: 15px"><a>
-        <i class="fa fa-file-video-o" style="color: gray"></i>
-        <span style="color: gray">
+        </router-link></el-menu-item>
+      <el-menu-item index="2" style="width: 100px; font-size: 15px">
+        <router-link :to="'Saving_box'">
+          <i class="fa fa-file-video-o" style="color: gray"></i>
+          <span style="color: gray">
                   收藏夹
                 </span>
-      </a></el-menu-item>
-      <el-menu-item index="/friend_list" style="width: 100px; font-size: 15px"><a>
-        <i class="fa fa-heart" style="color: gray"></i>
-        <span style="color: gray">
+        </router-link></el-menu-item>
+      <el-menu-item index="3" style="width: 100px; font-size: 15px">
+        <router-link :to="'Friend_list'">
+          <i class="fa fa-heart" style="color: gray"></i>
+          <span style="color: gray">
                   关注
                 </span>
-      </a></el-menu-item>
+        </router-link></el-menu-item>
+      <el-menu-item index="2" style="width: 100px; font-size: 15px">
+        <router-link :to="'User_center'">
+          <i class="fa fa-user-o" style="color: gray"></i>
+          <span style="color: gray">
+                  个人中心
+                </span>
+        </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
         <!--<form action="" class="parent">
           <input type="text" class="search">
@@ -279,13 +288,26 @@
       <div
           style="display: inline-block; background: whitesmoke;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
         <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
-          <el-form-item label="视频标题">
+          <el-form-item label="视频标题" style="margin-bottom: 10px">
             <el-input v-model="willAddQuestion.videoTitle"></el-input>
           </el-form-item>
-          <el-form-item label="视频简介">
+          <el-form-item label="视频简介" style="margin-bottom: 10px">
             <el-input type="textarea" v-model="willAddQuestion.videoIntroduction"></el-input>
           </el-form-item>
-          <el-form-item label="封面">
+          <el-form-item label="视频标签" style="margin-bottom: 10px">
+            <el-input v-model="willAddQuestion.videoTags"></el-input>
+          </el-form-item>
+          <el-form-item label="视频分区" style="margin-bottom: 10px">
+          <el-select v-model="willAddQuestion.videoArea" placeholder="请选择活动区域">
+            <el-option label="动画" value="1"></el-option>
+            <el-option label="电影" value="2"></el-option>
+            <el-option label="游戏" value="3"></el-option>
+            <el-option label="音乐" value="4"></el-option>
+            <el-option label="学习" value="5"></el-option>
+            <el-option label="鬼畜" value="6"></el-option>
+          </el-select>
+        </el-form-item>
+          <el-form-item label="封面" style="margin-bottom: 10px">
             <el-upload
                 list-type="picture-card"
                 :action=uploadImgUrl
@@ -293,7 +315,7 @@
                 :http-request="upLoadImage"
                 :before-upload="beforeImageUpload"
                 :file-list="willAddQuestion.imgList"
-                :limit="6">
+                :limit="1">
               <i class="el-icon-plus"></i>
             </el-upload>
             <el-dialog :visible.sync="dialogVisible">
@@ -301,9 +323,10 @@
             </el-dialog>
             <div style="font-size: 10px">图片只能为jpg/png格式</div>
           </el-form-item>
-          <el-form-item label="视频">
+          <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
                 class="upload-demo"
+                darg
                 :action=uploadVideoUrl
                 :http-request="upLoadVideo"
                 :before-upload="beforeVideoUpload"
@@ -399,6 +422,7 @@ export default {
         videoTitle: '',
         videoIntroduction: '',
         videoTags: '',
+        videoArea:'',
         imgList: [],
         videoList: [],
       },
@@ -407,11 +431,8 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:1,
+      video_num:0,
       videocontrolList:[
-        {
-          videoid:1,
-        }
       ],
       audit_num:0,
       videoauditList:[
@@ -574,12 +595,6 @@ export default {
       this.dialogVisible = true;
     },
     submit() {
-      //alert(this.willAddQuestion.videoTitle);
-      //alert(this.willAddQuestion.videoIntroduction);
-      //alert(this.willAddQuestion.imgList[0].url);
-      //alert(this.willAddQuestion.videoList[0].url);
-      alert(this.willAddQuestion.videoList[0].key);
-      //alert(this.willAddQuestion.imgList[0].key);
       this.$axios({
         method: 'post',
         url: "/video/create/upload",
@@ -590,7 +605,8 @@ export default {
           VideoUrl: this.willAddQuestion.videoList[0].url,
           VideoKey: this.willAddQuestion.videoList[0].key,
           VideoCoverKey: this.willAddQuestion.imgList[0].key,
-          //videoTags: this.videoTags
+          VideoTags: this.willAddQuestion.videoTags,
+          VideoArea: this.willAddQuestion.videoArea
         })
       })
           .then((res) => {
