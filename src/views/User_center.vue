@@ -352,10 +352,10 @@
   <div class = "user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
+        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userdata[0].UserHead">
       </a>
     </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
+    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.userdata[0].UserName}}</div>
     <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FansNum}}</div>
     <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">{{this.userdata[0].VideoNum}}</div>
     <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FavorNum}}</div>
@@ -536,7 +536,9 @@ export default {
           FavorNum:0,
           LikeNum:0,
           FollowNum:0,
-          UserIntroduction:'wu'
+          UserIntroduction:'wu',
+          UserHead: '',
+          UserName: '',
         }
       ],
       videoAuthorFollow:0,
@@ -558,18 +560,18 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    alert(this.centerId)
-    alert(this.userid)
     this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
-            this.userdata[0].FansNum=res.data.FansNum,
-            this.videoAuthorFollow = this.userdata[0].FansNum,
-            this.userdata[0].VideoNum=res.data.VideoNum,
-            this.userdata[0].FavorNum=res.data.FavorNum,
-            this.userdata[0].LikeNum=res.data.LikeNum,
-            this.userdata[0].FollowNum=res.data.FollowNum,
-            this.userdata[0].UserIntroduction=res.data.user.UserIntroduction,
-            this.iffollow=res.data.fol
+            this.userdata[0].FansNum=res.data.FansNum;
+            this.videoAuthorFollow = this.userdata[0].FansNum;
+            this.userdata[0].VideoNum=res.data.VideoNum;
+            this.userdata[0].FavorNum=res.data.FavorNum;
+            this.userdata[0].LikeNum=res.data.LikeNum;
+            this.userdata[0].FollowNum=res.data.FollowNum;
+            this.userdata[0].UserIntroduction=res.data.user.UserIntroduction;
+          this.userdata[0].UserName=res.data.user.UserName;
+          this.userdata[0].UserHead=res.data.user.UserProfilePhotoUrl;
+            this.iffollow=res.data.fol;
         },
     );
     this.$axios.get('user/detail/' + this.userid).then(

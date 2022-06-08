@@ -198,7 +198,7 @@
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
-              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
             </router-link>
           </el-popover>
         </div>
@@ -2079,7 +2079,6 @@ export default {
         this.username = userInfo.user.username;
         this.isLogin = 1;
         this.userid = userInfo.user.userid;
-        alert(this.userid);
       } else {
         this.isLogin = 0;
       }
@@ -2138,7 +2137,6 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(id));
     },
     click_centerself(){
-      alert(this.userid);
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
