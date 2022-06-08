@@ -219,7 +219,7 @@
               style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
             &ensp;站内通知
           </el-button>
-          <el-badge class="mark" :value="this.unread_notification_num" />
+          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
           <el-drawer
               title="站内通知"
               :visible.sync="drawer"
@@ -570,6 +570,7 @@ export default {
   methods:{
     notice1(){
       this.drawer = true;
+      this.unread_notification_num=0;
       this.$axios(
           {
             method: 'post',
