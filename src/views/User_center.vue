@@ -221,7 +221,7 @@
           </el-button>
           <el-button
               v-else
-              @click="drawer = true"
+              @click="notice1"
               style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
             &ensp;站内通知
           </el-button>
@@ -233,14 +233,22 @@
               append-to-body="true"
               >
             <!-- :before-close="handleClose-->
-            <el-divider></el-divider>
-
+            <!--<el-divider></el-divider>
+            <div  style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;mmm关注了你注了你注了你注了&ensp;</el-badge></div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;2022-02-06 16:00</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>-->
             <!--<div v-for="notice in notificationList" :key="notice.notice_id">
             </div>-->
             <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
               <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你&ensp;</el-badge></div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -249,7 +257,7 @@
               </div>
               <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：&ensp;</el-badge></div>
                 <br/>
                 <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
                 <br/>
@@ -260,7 +268,7 @@
               </div>
               <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核&ensp;</el-badge></div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -269,7 +277,7 @@
               </div>
               <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
                 <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核&ensp;</el-badge></div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -561,6 +569,19 @@ export default {
     );
   },
   methods:{
+    notice1(){
+      this.drawer = true;
+      this.$axios(
+          {
+            method: 'post',
+            url: 'note/setStauts',
+            data: qs.stringify(
+                {
+                }
+            )
+          }
+      )
+    },
     /*handleClose(done) {
       this.$confirm('确认关闭？')
           .then(_ => {
