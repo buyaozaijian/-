@@ -820,7 +820,7 @@ export default {
     auditvideo_notpass(index) {
       this.$axios({
             method: "post",
-            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            url: "video/changeStatus/" + this.videoauditList[index].videoid,
             data: qs.stringify({
               status: 0
             })
