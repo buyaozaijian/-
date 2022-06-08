@@ -381,7 +381,7 @@ export default {
             }
           },
       );
-      this.$axios.get('user/'+this.aid).then(
+      this.$axios.get('user/detail'+this.aid).then(
           res => {
                this.video_username = res.data.user.UserName;
                if(this.video_username === this.username){
