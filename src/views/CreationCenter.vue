@@ -545,9 +545,7 @@ export default {
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
-    click_search2(args){
-      sessionStorage.setItem('message', JSON.stringify(args));
-    },
+
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
@@ -596,6 +594,12 @@ export default {
         duration: 0
       });
     },
+
+    click_search2(args){
+      this.$refs.search.value = args;
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+    },
+
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll)
     },
