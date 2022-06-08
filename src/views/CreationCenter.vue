@@ -407,8 +407,11 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:0,
+      video_num:1,
       videocontrolList:[
+        {
+          videoid:1,
+        }
       ],
       audit_num:0,
       videoauditList:[
@@ -440,7 +443,7 @@ export default {
                 videolike:res.data.videoList[i].VideoLike,
                 videoViewcount:res.data.videoList[i].VideoViewCounts,
                 videofavourite: res.data.videoList[i].VideoFavourite,
-                videoId:res.data.videoList[i].id,
+                videoid:res.data.videoList[i].id,
                 videoUrl:res.data.videoList[i].VideoUrl,
                 videoAuthor:res.data.videoList[i].VideoAuthorName,
                 videoAuthorId:res.data.videoList[i].VideoAuthor,
@@ -740,6 +743,7 @@ export default {
     },
 
     deletevideo(index) {
+      alert(this.videocontrolList[index].videoid);
       this.$axios.get("video/delete/"+this.videocontrolList[index].videoid).then(
           res=> {
             alert(res.data.msg);
