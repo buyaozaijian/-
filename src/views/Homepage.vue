@@ -285,7 +285,7 @@
                     </router-link>
                     </span>
                   <router-link to="User_center" >
-                    <p class="title" @click="click_center(this.videoList[0].videoAuthorId)">{{this.videoList[0].videoAuthor}}</p>
+                    <p class="title" @click="click_center(1)">{{this.videoList[0].videoAuthor}}</p>
                   </router-link>
                 </div>
               </div>
@@ -2027,8 +2027,7 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(args));
     },
     click_center(id){
-      alert(id);
-      this.$store.state.center_id = id;
+      sessionStorage.setItem('center_id', JSON.stringify(id));
     },
     click_centerself(){
       this.$store.state.center_id = this.userid;
