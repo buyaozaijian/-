@@ -285,7 +285,7 @@
                     </router-link>
                     </span>
                   <router-link to="User_center" >
-                    <p class="title" @click="click_center(this.videoList[0].videoAuthorId)">{{this.videoList[0].videoAuthor}}</p>
+                    <p class="title" @click="click_center(1)">{{this.videoList[0].videoAuthor}}</p>
                   </router-link>
                 </div>
               </div>

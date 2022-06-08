@@ -548,16 +548,15 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    alert(3);
     this.$axios.get('user/detail/'+this.$store.state.center_id).then(
         res =>{
-          this.userdata.push({
-            FansNum:res.data.FansNum,
-            VideoNum:res.data.VideoNum,
-            FavorNum:res.data.FavorNum,
-            LikeNum:res.data.LikeNum,
-            FollowNum:res.data.FollowNum,
-            UserIntroduction:res.data.UserIntroduction
-          })
+            this.userdata[0].FansNum=res.data.FansNum,
+            this.userdata[0].VideoNum=res.data.VideoNum,
+            this.userdata[0].FavorNum=res.data.FavorNum,
+            this.userdata[0].LikeNum=res.data.LikeNum,
+            this.userdata[0].FollowNum=res.data.FollowNum,
+            this.userdata[0].UserIntroduction=res.data.UserIntroduction
         },
     );
     this.$axios.get('user/detail/').then(
