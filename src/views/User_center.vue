@@ -228,10 +228,42 @@
               >
             <!-- :before-close="handleClose-->
             <el-divider></el-divider>
-            <br/>
-            <div v-for="notice in notificationList" :key="notice.notice_id">
-              <div style="height: 120px; width: 400px; margin: 0 auto">
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
+
+            <!--<div v-for="notice in notificationList" :key="notice.notice_id">
+            </div>-->
+            <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
+              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
+                <br/>
+                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
                 <br/>
                 <br/>
                 <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
@@ -239,7 +271,48 @@
                 <el-divider></el-divider>
               </div>
             </div>
+            <div v-for="notice in readnotificationList" :key="notice.notice_video">
+            <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>
+            <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
+              <br/>
+              <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>
+            <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>
+            <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>
+            </div>
           </el-drawer>
+
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -375,7 +448,8 @@ export default {
       direction: 'rtl',
       notificationnum: '',
       unread_notification_num: '',
-      notificationList: [],
+      readnotificationList: [],
+      unreadnotificationList: [],
 
       change: {
         head: [],
@@ -458,15 +532,27 @@ export default {
     );
     this.$axios.get('note/all').then(
         res => {
-          this.notification_num=res.data.notificationNum;
-          this.unread_notification_num=res.data.unread_notificationNum;
+          this.notification_num=res.data.notificationReadNum;
+          this.unread_notification_num=res.data.unread_notificationUnreadNum;
           for(i=0;i<this.notification_num;i++){
-            this.notificationList.push(
+            this.readnotificationList.push(
                 {
-                  notice_content: res.data.notificationList[i].noticecontent,
-                  notice_id: res.data.notificationList[i].noticeid,
-                  notice_time: res.data.notificationList[i].noticetime,
-                  notice_ifread: res.data.notificationList[i].noticeifread,
+                  notice_class: res.data.notificationReadList[i].NoteClass,
+                  notice_name: res.data.notificationReadList[i].NoteSenderName,
+                  notice_content: res.data.notificationReadList[i].NoteContent,
+                  notice_video: res.data.notificationReadList[i].NoteVideoName,
+                  notice_time: res.data.notificationReadList[i].NoteDate,
+                }
+            )
+          }
+          for(i=0;i<this.unread_notification_num;i++){
+            this.unreadnotificationList.push(
+                {
+                  notice_class: res.data.notificationList[i].NoteClass,
+                  notice_name: res.data.notificationList[i].NoteSenderName,
+                  notice_content: res.data.notificationList[i].NoteContent,
+                  notice_video: res.data.notificationList[i].NoteVideoName,
+                  notice_time: res.data.notificationList[i].NoteDate,
                 }
             )
           }

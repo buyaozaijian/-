@@ -70,7 +70,7 @@
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/saving_box" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item @click="if_login('/saving_box')"  style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
@@ -135,13 +135,11 @@
                 </span>
             </router-link>
           </li>
-          <li style="display: inline">
-            <router-link :to="'/Saving_box'">
+          <li @click="if_login('/saving_box')" style="display: inline; cursor: pointer" >
               <i class="fa fa-file-video-o" style="color: white"></i>
               <span style="color: white">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
-            </router-link>
           </li>
           <li style="display: inline">
             <router-link :to="'/Friend_list'">
@@ -1684,6 +1682,7 @@ export default {
   name: "Homepage",
   data(){
     return {
+      tmp:0,
       userhead:'',
       username:'',
       userid: 0,
@@ -1871,6 +1870,14 @@ export default {
   },
 
   methods:{
+    if_login(dir){
+      if(this.isLogin===0){
+        this.$router.push('/try_login');
+      }
+      else{
+        this.$router.push(dir);
+      }
+    },
     into1(){
       //this.$message.success("进入动画分区");
       sessionStorage.setItem('part', JSON.stringify(1));
