@@ -284,8 +284,8 @@
                         </a>
                     </router-link>
                     </span>
-                  <router-link to="User_center" @click="click_center(this.videoList[0].videoAuthorId)">
-                    <p class="title">{{this.videoList[0].videoAuthor}}</p>
+                  <router-link to="User_center" >
+                    <p class="title" @click="click_center(this.videoList[0].videoAuthorId)">{{this.videoList[0].videoAuthor}}</p>
                   </router-link>
                 </div>
               </div>
@@ -1825,7 +1825,7 @@ export default {
     for(i=0;i<58;i++)
     {
       this.videoList.push({
-        videoAuthorId: '',
+        videoAuthorId: '1',
         videoAuthor: '未知',
         videoId: '',
         videoUrl: '',
@@ -2027,6 +2027,7 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(args));
     },
     click_center(id){
+      alert(id);
       this.$store.state.center_id = id;
     },
     click_centerself(){

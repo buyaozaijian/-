@@ -522,7 +522,16 @@ export default {
       url: '',
       Authorization: '',
       Identity: '',
-      userdata:[],
+      userdata:[
+        {
+          FansNum:0,
+          VideoNum:0,
+          FavorNum:0,
+          LikeNum:0,
+          FollowNum:0,
+          UserIntroduction:'wu'
+        }
+      ],
     }
   },
   created(){
