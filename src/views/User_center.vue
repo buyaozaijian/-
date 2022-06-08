@@ -558,6 +558,8 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    alert(this.centerId)
+    alert(this.userid)
     this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
             this.userdata[0].FansNum=res.data.FansNum,
