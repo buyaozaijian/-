@@ -2148,7 +2148,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: '请您先充钱再观看视频\n没钱还想白嫖？',
+        message: this.userid,
         offset: 100
       });
     },
