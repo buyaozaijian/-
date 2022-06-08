@@ -389,6 +389,7 @@
         :before-upload="beforeImageUpload2"
         :file-list="change.head"
         :limit="1"
+        :value="this.userhead"
         style="width: 200px;display: block; clear: both; margin: 0 auto">
       <i class="el-icon-plus"></i>
     </el-upload>
@@ -417,19 +418,19 @@
     <div style="width: 800px; margin: 0 auto;">
       <el-form ref="form" :model="change" label-width="80px">
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
-         <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign"></el-input>
+         <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign" :value="this.oldsign"></el-input>
        </el-form-item>
 
           <el-form-item label="用户名" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname"></el-input>
+            <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname" :value="this.oldname"></el-input>
           </el-form-item>
 
           <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail"></el-input>
+            <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail" :value="this.oldmail"></el-input>
           </el-form-item>
 
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword"></el-input>
+            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword" :value="this.oldpassword"></el-input>
           </el-form-item>
         </el-form>
       <el-button @click="submit_all" type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
@@ -459,6 +460,12 @@ export default {
       readnotificationList: [],
       unreadnotificationList: [],
 
+      oldname: '',
+      oldsign: '',
+      oldmail: '',
+      oldpassword: '',
+
+
       change: {
         head: [],
         name: '',
@@ -466,10 +473,6 @@ export default {
         mail: '',
         password: '',
       },
-      oldname: '',
-      oldsign: '',
-      oldmail: '',
-      oldpassword: '',
 
       uploadImgUrl:'',
       upLoadImage:'',
