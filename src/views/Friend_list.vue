@@ -260,7 +260,18 @@
     </div>
   </div>
   <div class="收藏夹" >
-      <div style="font-size: 20px; position: relative;top: 30px;left: 80px">全部关注</div>
+    <div style="position:absolute;left:55px;top:0px; margin: 0 auto">
+      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
+               text-color="black"
+               active-text-color="#eee"
+      >
+        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'">关注列表</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'">收藏夹</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'CreationCenter'">投稿</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'User_center'">个人信息</router-link></el-menu-item>
+      </el-menu>
+    </div>
+      <div style="font-size: 20px; position: relative;top: 80px;left: 80px">全部关注</div>
       <div style="position: relative;top:80px">
         <ul style="list-style: none;">
           <li style="height: 75px;margin-top: 15px;" v-for="friend in friendlist" :key="friend.friend_id">

@@ -272,17 +272,15 @@
   </div>
   <div class="收藏夹">
     <i class="el-icon-goods" style="position: absolute;left:20px;top:25px;"></i>
-    <div style="position:absolute;left:55px;top:0px;">
+    <div style="position:absolute;left:55px;top:0px; margin: 0 auto">
       <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
                text-color="black"
-               active-text-color="#eee" >
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">全部</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">动画</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">电影</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">游戏</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">音乐</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">学习</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">鬼畜</el-menu-item>
+               active-text-color="#eee"
+      >
+        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'">关注列表</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'">收藏夹</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'CreationCenter'">投稿</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'User_center'">个人信息</router-link></el-menu-item>
       </el-menu>
     </div>
     <div style="position: relative;top: 100px;left: 25px;">
