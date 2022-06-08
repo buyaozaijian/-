@@ -568,7 +568,7 @@ export default {
             this.userdata[0].FavorNum=res.data.FavorNum,
             this.userdata[0].LikeNum=res.data.LikeNum,
             this.userdata[0].FollowNum=res.data.FollowNum,
-            this.userdata[0].UserIntroduction=res.data.userList.UserIntroduction,
+            this.userdata[0].UserIntroduction=res.data.user.UserIntroduction,
             this.iffollow=res.data.fol
         },
     );
@@ -617,7 +617,7 @@ export default {
           this.videoAuthorFollow -= 1;
           this.iffollow = 0;
         }
-        this.$axios.get('user/follow/' + this.video_userid).then(
+        this.$axios.get('user/follow/' + this.centerId).then(
         );
       }
       else{
