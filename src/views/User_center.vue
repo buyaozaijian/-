@@ -523,6 +523,7 @@ export default {
       Authorization: '',
       Identity: '',
       centerId: 0,
+      iffollow: 0,
       userdata:[
         {
           FansNum:0,
@@ -557,7 +558,8 @@ export default {
             this.userdata[0].FavorNum=res.data.FavorNum,
             this.userdata[0].LikeNum=res.data.LikeNum,
             this.userdata[0].FollowNum=res.data.FollowNum,
-            this.userdata[0].UserIntroduction=res.data.UserIntroduction
+            this.userdata[0].UserIntroduction=res.data.userList.UserIntroduction,
+            this.iffollow=res.data.fol
         },
     );
     this.$axios.get('user/detail/' + this.userid).then(
@@ -567,8 +569,14 @@ export default {
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
           this.unread_notification_num=res.data.notificationUnreadNum;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
+    /*
     this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
@@ -581,7 +589,7 @@ export default {
           this.change.mail=this.oldmail;
           this.url=this.userhead;
         },
-    );
+    );*/
   },
   methods:{
     notice1(){
