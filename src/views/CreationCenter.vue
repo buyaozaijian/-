@@ -292,6 +292,7 @@
           </div>
         </div>
       </el-tab-pane>
+      
       <el-tab-pane label="视 频 上 传">
       <div style="display: inline-block; background: whitesmoke;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
         <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
