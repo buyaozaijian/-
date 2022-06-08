@@ -535,20 +535,19 @@ export default {
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
           this.unread_notification_num=res.data.notificationUnreadNum;
-          this.change.name=this.oldname;
-          this.change.password=this.oldpassword;
-          this.change.sign=this.oldsign;
-          this.change.mail=this.oldmail;
-          this.url=this.userhead;
         },
     );
-    alert(this.unread_notification_num);
     this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
   },
