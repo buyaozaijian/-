@@ -551,6 +551,7 @@ export default {
       this.drawer = true;
       this.$axios.get('note/all').then(
           res => {
+            var i = 0;
             this.notification_num=res.data.notificationReadNum;
             this.unread_notification_num=res.data.notificationUnreadNum;
             this.unreadnotificationList.length=0;
