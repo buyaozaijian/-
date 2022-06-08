@@ -228,8 +228,7 @@
         <div>评论时间:{{comment.comment_time}}</div>
         <div>{{comment.comment_in}}</div>
         <div>&nbsp;</div>
-        <div v-if="comment.comment_if_me===1" style="cursor: pointer"><i class="el-icon-delete"></i></div>
-        <div v-if="comment.comment_if_me===0" style="cursor: pointer"><i class="el-icon-phone"></i></div>
+        <div v-if="comment.comment_if_me===1" style="cursor: pointer" @click="delete_comment(comment.comment_id)"><i class="el-icon-delete"></i></div>
       </div>
     </div>
   </div>
@@ -283,7 +282,7 @@ export default {
       ],
       video_num: 5,
       video_list: [
-        /*{
+         /*{
           video_name: 'dududu',
           video_photo:  'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
           video_viewnums: 100,
@@ -310,7 +309,7 @@ export default {
           video_id_use: 1,
           videoviewnum:  3000,
           videouploadtime:  3500
-        }*/
+          },*/
       ],
       comment_num: 0,
       commentid: 0,
@@ -421,6 +420,12 @@ export default {
       );
   },
   methods:{
+    delete_comment(id){
+      this.$axios.get('comment/delete/'+id).then(
+      )
+      window.location.reload();
+      alert('删除评论');
+    },
     jumplogin(){
       this.$message.success("请先登录！");
       this.$router.push('/try_login');
