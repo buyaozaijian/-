@@ -515,7 +515,6 @@ export default {
   created(){
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
-    var i=0;
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.url = userInfo.user.UserProfilePhotoUrl;
@@ -531,10 +530,11 @@ export default {
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
-          this.unread_notification_num=res.data.unread_notificationUnreadNum;
+          this.unread_notification_num=res.data.notificationUnreadNum;
         },
     );
-    this.$axios.get('user/' + this.userid).then(
+    alert(this.unread_notification_num);
+    this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;
@@ -545,11 +545,13 @@ export default {
   },
   methods:{
     notice1(){
+      var i=0;
       this.drawer = true;
       this.$axios.get('note/all').then(
           res => {
             this.notification_num=res.data.notificationReadNum;
-            this.unread_notification_num=res.data.unread_notificationUnreadNum;
+            this.unread_notification_num=res.data.notificationUnreadNum;
+            alert(this.unread_notification_num);
             for(i=0;i<this.notification_num;i++){
               this.readnotificationList.push(
                   {
@@ -577,12 +579,8 @@ export default {
       this.unread_notification_num=0;
       this.$axios(
           {
-            method: 'post',
-            url: 'note/setStauts',
-            data: qs.stringify(
-                {
-                }
-            )
+            method: 'get',
+            url: 'note/setStatus',
           }
       )
     },

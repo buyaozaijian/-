@@ -333,12 +333,10 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    alert(userInfo.user.username);
     var i=0;
     this.$axios.get('user/allFollow').then(
         res =>{
           this.friendnum=res.data.friendnum;
-          alert(this.friendnum);
           for(i=0;i<this.friendnum;i++){
             this.friendlist.push({
                   friend_head_url: res.data.friendlist[i].UserProfilePhotoUrl,

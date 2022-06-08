@@ -1909,11 +1909,9 @@ export default {
       this.$router.push('/part_show');
     },
     click_search(){
-      alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
     click_search1(){
-      alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_search2(args){
