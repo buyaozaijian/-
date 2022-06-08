@@ -531,6 +531,7 @@ export default {
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
+          this.unread_notification_num=res.data.unread_notificationUnreadNum;
         },
     );
     this.$axios.get('user/' + this.userid).then(
@@ -541,38 +542,38 @@ export default {
           this.oldname=res.data.user.UserName;
         },
     );
-    this.$axios.get('note/all').then(
-        res => {
-          this.notification_num=res.data.notificationReadNum;
-          this.unread_notification_num=res.data.unread_notificationUnreadNum;
-          for(i=0;i<this.notification_num;i++){
-            this.readnotificationList.push(
-                {
-                  notice_class: res.data.notificationReadList[i].NoteClass,
-                  notice_name: res.data.notificationReadList[i].NoteSenderName,
-                  notice_content: res.data.notificationReadList[i].NoteContent,
-                  notice_video: res.data.notificationReadList[i].NoteVideoName,
-                  notice_time: res.data.notificationReadList[i].NoteDate,
-                }
-            )
-          }
-          for(i=0;i<this.unread_notification_num;i++){
-            this.unreadnotificationList.push(
-                {
-                  notice_class: res.data.notificationList[i].NoteClass,
-                  notice_name: res.data.notificationList[i].NoteSenderName,
-                  notice_content: res.data.notificationList[i].NoteContent,
-                  notice_video: res.data.notificationList[i].NoteVideoName,
-                  notice_time: res.data.notificationList[i].NoteDate,
-                }
-            )
-          }
-        },
-    );
   },
   methods:{
     notice1(){
       this.drawer = true;
+      this.$axios.get('note/all').then(
+          res => {
+            this.notification_num=res.data.notificationReadNum;
+            this.unread_notification_num=res.data.unread_notificationUnreadNum;
+            for(i=0;i<this.notification_num;i++){
+              this.readnotificationList.push(
+                  {
+                    notice_class: res.data.notificationReadList[i].NoteClass,
+                    notice_name: res.data.notificationReadList[i].NoteSenderName,
+                    notice_content: res.data.notificationReadList[i].NoteContent,
+                    notice_video: res.data.notificationReadList[i].NoteVideoName,
+                    notice_time: res.data.notificationReadList[i].NoteDate,
+                  }
+              )
+            }
+            for(i=0;i<this.unread_notification_num;i++){
+              this.unreadnotificationList.push(
+                  {
+                    notice_class: res.data.notificationList[i].NoteClass,
+                    notice_name: res.data.notificationList[i].NoteSenderName,
+                    notice_content: res.data.notificationList[i].NoteContent,
+                    notice_video: res.data.notificationList[i].NoteVideoName,
+                    notice_time: res.data.notificationList[i].NoteDate,
+                  }
+              )
+            }
+          },
+      );
       this.unread_notification_num=0;
       this.$axios(
           {
