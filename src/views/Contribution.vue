@@ -40,7 +40,7 @@
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-           {{this.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
@@ -62,25 +62,25 @@
       </div>
       <el-menu-item index="1" style="width: 100px; font-size: 15px">
         <router-link :to="'/'">
-        <i class="fa fa-bank" style="color: gray"></i>
-        <span style="color: gray;">
+          <i class="fa fa-bank" style="color: gray"></i>
+          <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </router-link></el-menu-item>
+        </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'Saving_box'">
-        <i class="fa fa-file-video-o" style="color: gray"></i>
-        <span style="color: gray">
+          <i class="fa fa-file-video-o" style="color: gray"></i>
+          <span style="color: gray">
                   收藏夹
                 </span>
-      </router-link></el-menu-item>
+        </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Friend_list'">
-        <i class="fa fa-heart" style="color: gray"></i>
-        <span style="color: gray">
+          <i class="fa fa-heart" style="color: gray"></i>
+          <span style="color: gray">
                   关注
                 </span>
-      </router-link></el-menu-item>
+        </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'User_center'">
           <i class="fa fa-user-o" style="color: gray"></i>
@@ -285,34 +285,31 @@
     </div>
     <div style="position: relative;top: 100px;left: 25px;">
       <div style="width: 240px;display: inline-block;float: left" v-for="(video,index) in videoList" :key="video.videoid">
-            <img
+        <img
             class="picture"
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'" @click="click1(index)">
-                    <p class="name">{{video.videoName}}</p>
-                    <span class="title">
+        />
+        <div class="up">
+          <div class="up-cover">
+            <div style="float: left" class="txt">
+              <router-link :to="'/videoPage'" @click="click1(index)">
+                <p class="name">{{video.videoName}}</p>
+                <span class="title">
                       {{video.videoauthor}}
                       <span style="float: right">
                   <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
                   <i class="fa fa-navicon"></i>
                   </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
                   </el-dropdown>
                 </span>
                     </span>
-                  </router-link>
-                </div>
-              </div>
+              </router-link>
             </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -357,8 +354,7 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      videoList:[
-      ],
+      videoList:[],
       videonum:0,
     }
   },
@@ -374,7 +370,7 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('user/favorVideo').then(
+    this.$axios.get('index/videoAll'+this.userid).then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){
@@ -446,7 +442,7 @@ export default {
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
-      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));

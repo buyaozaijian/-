@@ -140,8 +140,8 @@
          {{this.video_userintroduction}}
       </div>
       <div style="margin-top: 10px;float: left;width: 230px">
-        <el-button v-if="this.videoAuthorStatus===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
-        <el-button v-if="this.videoAuthorStatus===1" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus===0&&this.ifthisuser===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
       </div>
     </div>
     <div style="text-align: left;margin-top: 50px;margin-bottom: 30px;font-family: 微软雅黑">
@@ -328,6 +328,7 @@ export default {
       videoviewcounts: 0,
       videouploadtime: 0,
       videodescription:'',
+      ifthisuser:0,
     }
   },
   created() {
@@ -383,6 +384,9 @@ export default {
       this.$axios.get('user/'+this.aid).then(
           res => {
                this.video_username = res.data.user.UserName;
+               if(this.video_username === this.username){
+                 this.ifthisuser = 1;
+               }
                this.video_userid = res.data.user.id;
                this.video_userhead = res.data.user.UserProfilePhotoUrl;
                this.video_userintroduction = res.data.user.UserIntroduction;
