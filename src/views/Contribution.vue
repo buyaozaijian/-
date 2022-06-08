@@ -303,9 +303,6 @@
                   <span class="el-dropdown-link">
                   <i class="fa fa-navicon"></i>
                   </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
                   </el-dropdown>
                 </span>
                     </span>
@@ -357,8 +354,7 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      videoList:[
-      ],
+      videoList:[],
       videonum:0,
     }
   },
@@ -374,7 +370,7 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('user/favorVideo').then(
+    this.$axios.get('index/videoAll'+this.userid).then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){
