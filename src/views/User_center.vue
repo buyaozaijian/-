@@ -460,10 +460,10 @@ export default {
       readnotificationList: [],
       unreadnotificationList: [],
 
-      oldname: '',
-      oldsign: '',
-      oldmail: '',
-      oldpassword: '',
+      oldname: '1',
+      oldsign: '2',
+      oldmail: '3',
+      oldpassword: '12345667',
 
 
       change: {
@@ -515,7 +515,6 @@ export default {
   created(){
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
-    var i=0;
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.url = userInfo.user.UserProfilePhotoUrl;
@@ -531,7 +530,12 @@ export default {
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
-          this.unread_notification_num=res.data.unread_notificationUnreadNum;
+          this.unread_notification_num=res.data.notificationUnreadNum;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
     this.$axios.get('user/' + this.userid).then(
@@ -546,10 +550,13 @@ export default {
   methods:{
     notice1(){
       this.drawer = true;
+      var i=0;
       this.$axios.get('note/all').then(
           res => {
             this.notification_num=res.data.notificationReadNum;
-            this.unread_notification_num=res.data.unread_notificationUnreadNum;
+            this.unread_notification_num=res.data.notificationUnreadNum;
+            this.unreadnotificationList.length=0;
+            this.readnotificationList.length=0;
             for(i=0;i<this.notification_num;i++){
               this.readnotificationList.push(
                   {
@@ -575,7 +582,7 @@ export default {
           },
       );
       this.unread_notification_num=0;
-      this.$axios(
+      /*this.$axios(
           {
             method: 'post',
             url: 'note/setStauts',
@@ -584,7 +591,7 @@ export default {
                 }
             )
           }
-      )
+      )*/
     },
     /*handleClose(done) {
       this.$confirm('确认关闭？')
