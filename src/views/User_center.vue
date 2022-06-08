@@ -558,18 +558,16 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    alert(this.centerId)
-    alert(this.userid)
     this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
-            this.userdata[0].FansNum=res.data.FansNum,
-            this.videoAuthorFollow = this.userdata[0].FansNum,
-            this.userdata[0].VideoNum=res.data.VideoNum,
-            this.userdata[0].FavorNum=res.data.FavorNum,
-            this.userdata[0].LikeNum=res.data.LikeNum,
-            this.userdata[0].FollowNum=res.data.FollowNum,
-            this.userdata[0].UserIntroduction=res.data.userList.UserIntroduction,
-            this.iffollow=res.data.fol
+            this.userdata[0].FansNum=res.data.FansNum;
+            this.videoAuthorFollow = this.userdata[0].FansNum;
+            this.userdata[0].VideoNum=res.data.VideoNum;
+            this.userdata[0].FavorNum=res.data.FavorNum;
+            this.userdata[0].LikeNum=res.data.LikeNum;
+            this.userdata[0].FollowNum=res.data.FollowNum;
+            this.userdata[0].UserIntroduction=res.data.user.UserIntroduction;
+            this.iffollow=res.data.fol;
         },
     );
     this.$axios.get('user/detail/' + this.userid).then(
