@@ -420,6 +420,7 @@ export default {
       );
   },
   methods:{
+    
     delete_comment(id,index){
       this.$axios.get('comment/delete/'+id).then(
       )
