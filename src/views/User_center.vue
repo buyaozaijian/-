@@ -31,7 +31,7 @@
           </router-link>
         </el-popover>
       </div>
-      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+      <div v-else  style="position: absolute; left: 1100px; top: 13px;z-index: 9999; display: inline-block;">
         <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
           <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
@@ -43,7 +43,7 @@
           {{this.username}}
         </a>
       </div>
-      <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
+      <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
         <router-link :to="'UserPage'">
           <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 85px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right">
@@ -51,7 +51,7 @@
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1200px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1300px; top: 22px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
@@ -121,7 +121,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="''">
+            <router-link to="/">
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -130,28 +130,31 @@
 
           </li>
           <li style="display: inline">
+            <router-link to="saving_box">
             <a>
-              <i class="fa fa-user-o" style="color:black"></i>
-              <span style="color: black">
-                  个人中心&nbsp;&nbsp;&nbsp;
-                </span>
-            </a>
-          </li>
-          <li style="display: inline">
-            <a>
-              <i class="fa fa-file-video-o" style="color: black"></i>
+              <i class="fa fa-file-video-o" style="color:black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
-            </a>
+            </a></router-link>
           </li>
           <li style="display: inline">
+            <router-link to="friend_list">
             <a>
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
-            </a>
+            </a></router-link>
+          </li>
+          <li style="display: inline">
+            <router-link to="user_center">
+            <a>
+              <i class="fa fa-user-o" style="color: black"></i>
+              <span style="color: black">
+                  个人中心&nbsp;&nbsp;&nbsp;
+                </span>
+            </a></router-link>
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
@@ -430,6 +433,7 @@ export default {
       },
       formLabelWidth: '120px',
       imgList: [],
+      url: '',
     }
   },
   created(){
@@ -438,18 +442,19 @@ export default {
     var i=0;
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.url = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('user/<int:id>').then(
+    this.$axios.get('user/' + this.userid).then(
         res =>{
-          this.oldpassword=res.data.password;
-          this.oldmail=res.data.mail;
-          this.oldsign=res.data.sign;
-          this.oldname=res.data.name;
+          this.oldpassword=res.data.user.UserPassword;
+          this.oldmail=res.data.user.UserEmail;
+          this.oldsign=res.data.user.UserIntroduction;
+          this.oldname=res.data.user.UserName;
         },
     );
     this.$axios.get('note/all').then(
@@ -486,9 +491,9 @@ export default {
       alert(this.change.password);
       this.$axios({
         method: 'post',
-        url:'',
+        url:'user/changeUser',
         data: qs.stringify({
-          photoUrl: this.imgList.url,
+          photoUrl: this.url,
           Introduction: this.change.sign,
           username: this.change.name,
           email: this.change.mail,
@@ -528,10 +533,7 @@ export default {
                 window.alert("error");
                 break;
               case 1:
-                var url_img = res.data.url_img;
-                this.imgList.push({
-                  url: url_img,
-                });
+                this.url = res.data.url_img;
                 alert("封面上传成功");
                 console.log(this.willAddQuestion.imgList);
                 break;

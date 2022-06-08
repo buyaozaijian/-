@@ -32,7 +32,7 @@
           </router-link>
         </el-popover>
       </div>
-      <div v-else  style="position: absolute; left: 1000px; top: 15px;z-index: 9999; display: inline-block;">
+      <div v-else  style="position: absolute; left: 1100px; top: 13px;z-index: 9999; display: inline-block;">
         <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
           <router-link to="/try_login"><span style="color: #0b95f1">
                 登录
@@ -44,7 +44,7 @@
           {{this.username}}
         </a>
       </div>
-      <div style="position: absolute;left:1350px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
+      <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
         <router-link :to="'CreationCenter'">
           <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
@@ -52,7 +52,7 @@
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1200px; top: 25px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1330px; top: 25px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
