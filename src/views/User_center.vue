@@ -219,7 +219,7 @@
               style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
             &ensp;站内通知
           </el-button>
-          <el-badge class="mark" :value="this.unread_notification_num" />
+          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
           <el-drawer
               title="站内通知"
               :visible.sync="drawer"
@@ -389,6 +389,7 @@
         :before-upload="beforeImageUpload2"
         :file-list="change.head"
         :limit="1"
+        :value="this.userhead"
         style="width: 200px;display: block; clear: both; margin: 0 auto">
       <i class="el-icon-plus"></i>
     </el-upload>
@@ -417,19 +418,19 @@
     <div style="width: 800px; margin: 0 auto;">
       <el-form ref="form" :model="change" label-width="80px">
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
-         <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign"></el-input>
+         <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign" :value="this.oldsign"></el-input>
        </el-form-item>
 
           <el-form-item label="用户名" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname"></el-input>
+            <el-input v-model="change.name" style="width: 500px" :placeholder="this.oldname" :value="this.oldname"></el-input>
           </el-form-item>
 
           <el-form-item label="邮箱" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail"></el-input>
+            <el-input v-model="change.mail" style="width: 500px" :placeholder="this.oldmail" :value="this.oldmail"></el-input>
           </el-form-item>
 
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword"></el-input>
+            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword" :value="this.oldpassword"></el-input>
           </el-form-item>
         </el-form>
       <el-button @click="submit_all" type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
@@ -459,6 +460,12 @@ export default {
       readnotificationList: [],
       unreadnotificationList: [],
 
+      oldname: '1',
+      oldsign: '2',
+      oldmail: '3',
+      oldpassword: '12345667',
+
+
       change: {
         head: [],
         name: '',
@@ -466,10 +473,6 @@ export default {
         mail: '',
         password: '',
       },
-      oldname: '',
-      oldsign: '',
-      oldmail: '',
-      oldpassword: '',
 
       uploadImgUrl:'',
       upLoadImage:'',
@@ -507,18 +510,21 @@ export default {
       formLabelWidth: '120px',
       imgList: [],
       url: '',
+      Authorization: '',
+      Identity: '',
     }
   },
   created(){
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
-    var i=0;
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.url = userInfo.user.UserProfilePhotoUrl;
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
+      this.Authorization = userInfo.user.Authorization;
+      this.Identity = userInfo.user.Identity;
     } else {
       this.isLogin = 0;
     }
@@ -528,9 +534,16 @@ export default {
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
+          this.unread_notification_num=res.data.notificationUnreadNum;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
-    this.$axios.get('user/' + this.userid).then(
+    alert(this.unread_notification_num);
+    this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;
@@ -538,48 +551,48 @@ export default {
           this.oldname=res.data.user.UserName;
         },
     );
-    this.$axios.get('note/all').then(
-        res => {
-          this.notification_num=res.data.notificationReadNum;
-          this.unread_notification_num=res.data.unread_notificationUnreadNum;
-          for(i=0;i<this.notification_num;i++){
-            this.readnotificationList.push(
-                {
-                  notice_class: res.data.notificationReadList[i].NoteClass,
-                  notice_name: res.data.notificationReadList[i].NoteSenderName,
-                  notice_content: res.data.notificationReadList[i].NoteContent,
-                  notice_video: res.data.notificationReadList[i].NoteVideoName,
-                  notice_time: res.data.notificationReadList[i].NoteDate,
-                }
-            )
-          }
-          for(i=0;i<this.unread_notification_num;i++){
-            this.unreadnotificationList.push(
-                {
-                  notice_class: res.data.notificationList[i].NoteClass,
-                  notice_name: res.data.notificationList[i].NoteSenderName,
-                  notice_content: res.data.notificationList[i].NoteContent,
-                  notice_video: res.data.notificationList[i].NoteVideoName,
-                  notice_time: res.data.notificationList[i].NoteDate,
-                }
-            )
-          }
-        },
-    );
   },
   methods:{
     notice1(){
       this.drawer = true;
-      this.$axios(
+      this.$axios.get('note/all').then(
+          res => {
+            var i = 0;
+            this.notification_num=res.data.notificationReadNum;
+            this.unread_notification_num=res.data.notificationUnreadNum;
+            this.unreadnotificationList.length=0;
+            this.readnotificationList.length=0;
+            for(i=0;i<this.notification_num;i++){
+              this.readnotificationList.push(
+                  {
+                    notice_class: res.data.notificationReadList[i].NoteClass,
+                    notice_name: res.data.notificationReadList[i].NoteSenderName,
+                    notice_content: res.data.notificationReadList[i].NoteContent,
+                    notice_video: res.data.notificationReadList[i].NoteVideoName,
+                    notice_time: res.data.notificationReadList[i].NoteDate,
+                  }
+              )
+            }
+            for(i=0;i<this.unread_notification_num;i++){
+              this.unreadnotificationList.push(
+                  {
+                    notice_class: res.data.notificationList[i].NoteClass,
+                    notice_name: res.data.notificationList[i].NoteSenderName,
+                    notice_content: res.data.notificationList[i].NoteContent,
+                    notice_video: res.data.notificationList[i].NoteVideoName,
+                    notice_time: res.data.notificationList[i].NoteDate,
+                  }
+              )
+            }
+          },
+      );
+      this.unread_notification_num=0;
+      /*this.$axios(
           {
-            method: 'post',
-            url: 'note/setStauts',
-            data: qs.stringify(
-                {
-                }
-            )
+            method: 'get',
+            url: 'note/setStatus',
           }
-      )
+      )*/
     },
     /*handleClose(done) {
       this.$confirm('确认关闭？')
@@ -611,6 +624,16 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 console.log("上传成功");
+                this.$store.dispatch('clearUserInfo');
+                this.$store.dispatch('saveUserInfo', {
+                  user: {
+                    userid: this.userid,
+                    username: this.change.name,
+                    Authorization: this.Authorization,
+                    UserProfilePhotoUrl: this.url,
+                    UserIdentity: this.Identity,
+                  }
+                })
                 this.$router.push({
                   path: './'
                 })

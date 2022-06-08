@@ -226,8 +226,10 @@
         <img class="small-head" :src = "comment.comment_head_url">
         <div style="display: inline-block; color:black"><b>{{comment.comment_name}}</b></div>
         <div>评论时间:{{comment.comment_time}}</div>
-        <div>&nbsp;</div>
         <div>{{comment.comment_in}}</div>
+        <div>&nbsp;</div>
+        <div v-if="comment.comment_if_me===1" style="cursor: pointer"><i class="el-icon-delete"></i></div>
+        <div v-if="comment.comment_if_me===0" style="cursor: pointer"><i class="el-icon-phone"></i></div>
       </div>
     </div>
   </div>
@@ -247,7 +249,7 @@ export default {
       userhead:'',
       isLogin:0,
       userid:0,
-      username: '',
+      username: 'yyz',
       userHead: '',
       password: '',
       //title: this.$store.state.videoname,
@@ -261,7 +263,24 @@ export default {
       concerns: 100,
       ifconcerns: 0,
       videotime: '',
-      comment_list: [],
+      comment_list: [/*
+        {
+          comment_head_url: 'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+          comment_name:  'yyz',
+          comment_in: 'cnm' ,
+          comment_id: 0 ,
+          comment_time: '2022-6-8',
+          comment_if_me: 0,
+        },
+        {
+          comment_head_url: 'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+          comment_name:  'yyt',
+          comment_in: 'cnmb' ,
+          comment_id: 1 ,
+          comment_time: '2022-6-8',
+          comment_if_me: 1,
+        },*/
+      ],
       video_num: 5,
       video_list: [
         /*{
@@ -313,6 +332,16 @@ export default {
     }
   },
   created() {
+    const userInfo = user.getters.getUser(user.state());
+    console.log(userInfo);
+    if (userInfo) {
+      this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.username = userInfo.user.username;
+      this.isLogin = 1;
+      this.userid = userInfo.user.userid
+    } else {
+      this.isLogin = 0;
+    }
     this.videoPlay = 0;
     this.videourl= JSON.parse(sessionStorage.getItem('videourl'));
     this.vid = JSON.parse(sessionStorage.getItem('videoid'));
@@ -335,13 +364,18 @@ export default {
             this.videoLikeNum = res.data.likeNum;
             this.videoFavorNum = res.data.favorNum;
             for(i=0;i<this.comment_num;i++){
+              var tmp = 0;
+              if(res.data.commentList[i].CommentUserName === this.username){
+                tmp = 1;
+              }
               this.comment_list.push(
                   {
                     comment_head_url: res.data.commentList[i].CommentUserPhotoUrl,
                     comment_name: res.data.commentList[i].CommentUserName,
                     comment_in: res.data.commentList[i].CommentContent,
                     comment_id: res.data.commentList[i].id,
-                    comment_time: res.data.commentList[i].CommentDate
+                    comment_time: res.data.commentList[i].CommentDate,
+                    comment_if_me: tmp,
                   }
               )
             }
@@ -385,16 +419,6 @@ export default {
           }
         }
       );
-    const userInfo = user.getters.getUser(user.state());
-    console.log(userInfo);
-    if (userInfo) {
-      this.userhead = userInfo.user.UserProfilePhotoUrl;
-      this.username = userInfo.user.username;
-      this.isLogin = 1;
-      this.userid = userInfo.user.userid
-    } else {
-      this.isLogin = 0;
-    }
   },
   methods:{
     jumplogin(){
