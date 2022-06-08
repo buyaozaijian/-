@@ -203,7 +203,7 @@
         {{comments}}
       </span>
     </div>
-    <div class="comment-tijiao">
+    <div v-if="this.isLogin===1" class="comment-tijiao">
       <span style="margin-right: 20px; float: left" >
         <a href="https://www.bilibili.com">
           <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">

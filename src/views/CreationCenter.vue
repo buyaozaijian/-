@@ -333,7 +333,7 @@
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
                 class="upload-demo"
-                darg
+                drag
                 :action=uploadVideoUrl
                 :http-request="upLoadVideo"
                 :before-upload="beforeVideoUpload"
