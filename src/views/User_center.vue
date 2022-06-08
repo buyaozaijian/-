@@ -551,7 +551,8 @@ export default {
           res => {
             this.notification_num=res.data.notificationReadNum;
             this.unread_notification_num=res.data.notificationUnreadNum;
-            alert(this.unread_notification_num);
+            this.unreadnotificationList.length=0;
+            this.readnotificationList.length=0;
             for(i=0;i<this.notification_num;i++){
               this.readnotificationList.push(
                   {
