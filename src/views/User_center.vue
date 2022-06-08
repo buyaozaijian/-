@@ -515,7 +515,6 @@ export default {
   created(){
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
-    var i=0;
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.url = userInfo.user.UserProfilePhotoUrl;
@@ -548,6 +547,7 @@ export default {
       this.drawer = true;
       this.$axios.get('note/all').then(
           res => {
+            var i = 0;
             this.notification_num=res.data.notificationReadNum;
             this.unread_notification_num=res.data.unread_notificationUnreadNum;
             for(i=0;i<this.notification_num;i++){
