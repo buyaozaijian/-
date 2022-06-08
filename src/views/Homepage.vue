@@ -2078,7 +2078,8 @@ export default {
         this.userhead = userInfo.user.UserProfilePhotoUrl;
         this.username = userInfo.user.username;
         this.isLogin = 1;
-        this.userid = userInfo.user.userid
+        this.userid = userInfo.user.userid;
+        alert(this.userid);
       } else {
         this.isLogin = 0;
       }
@@ -2137,7 +2138,8 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(id));
     },
     click_centerself(){
-      this.$store.state.center_id = this.userid;
+      alert(this.userid);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
       alert('退出登录！');
