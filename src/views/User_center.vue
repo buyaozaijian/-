@@ -511,6 +511,7 @@ export default {
       imgList: [],
       url: '',
       Authorization: '',
+      Identity: '',
     }
   },
   created(){
@@ -523,6 +524,7 @@ export default {
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
       this.Authorization = userInfo.user.Authorization;
+      this.Identity = userInfo.user.Identity;
     } else {
       this.isLogin = 0;
     }
@@ -624,6 +626,7 @@ export default {
                     username: this.change.name,
                     Authorization: this.Authorization,
                     UserProfilePhotoUrl: this.url,
+                    UserIdentity: this.Identity,
                   }
                 })
                 this.$router.push({
