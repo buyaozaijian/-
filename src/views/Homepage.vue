@@ -517,7 +517,7 @@
           电影
         </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into2" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -670,7 +670,7 @@
             游戏
           </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into3" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -823,7 +823,7 @@
             音乐
           </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into4" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -976,7 +976,7 @@
             学习
           </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into5" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -1129,7 +1129,7 @@
             鬼畜
           </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into6" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -1482,6 +1482,31 @@ export default {
     into1(){
       //this.$message.success("进入动画分区");
       sessionStorage.setItem('part', JSON.stringify(1));
+      this.$router.push('/part_show');
+    },
+    into2(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(2));
+      this.$router.push('/part_show');
+    },
+    into3(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(3));
+      this.$router.push('/part_show');
+    },
+    into4(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(4));
+      this.$router.push('/part_show');
+    },
+    into5(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(5));
+      this.$router.push('/part_show');
+    },
+    into6(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(6));
       this.$router.push('/part_show');
     },
     click_search(){

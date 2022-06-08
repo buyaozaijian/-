@@ -286,7 +286,7 @@
       </el-menu>
     </div>
     <div style="position: relative;top: 100px;left: 25px;">
-      <div style="width: 240px;display: inline-block;float: left" v-for="video in videoList" :key="video.videoid">
+      <div style="width: 240px;display: inline-block;float: left" v-for="(video,index) in videoList" :key="video.videoid">
             <img
             class="picture"
             :src="video.videoCoverUrl"
@@ -296,7 +296,7 @@
             <div class="up">
               <div class="up-cover">
                 <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'" @click="click1">
+                  <router-link :to="'/videoPage'" @click="click1(index)">
                     <p class="name">{{video.videoName}}</p>
                     <span class="title">
                       {{video.videoauthor}}
@@ -437,14 +437,14 @@ export default {
           }
       )
     },
-    click1(){
-      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
-      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
-      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
-      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
-      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
-      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId,
+    click1(index){
+      this.$store.state.videourl = this.videoList[index].videoUrl;
+      this.$store.state.videoname = this.videoList[index].videoName;
+      this.$store.state.videoid = this.videoList[index].videoId;
+      this.$store.state.videolike=this.videoList[index].videolike;
+      this.$store.state.videofavourite=this.videoList[index].videofavourite;
+      this.$store.state.videoauthor=this.videoList[index].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[index].videoAuthorId,
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';

@@ -305,8 +305,8 @@ export default {
   created(){
     this.message = JSON.parse(sessionStorage.getItem('message'));
     var i=0;
-    //搜索请求
-    for(i=0;i<8;i++){
+    //搜索请求调试
+    /*for(i=0;i<8;i++){
       this.videoList.push(
           {
             videoCoverUrl:'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
@@ -318,7 +318,7 @@ export default {
             videoviewnum:  200,
           }
       )
-    }
+    }*/
     this.$axios(
         {
           method: 'post',
