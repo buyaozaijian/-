@@ -510,6 +510,7 @@ export default {
       formLabelWidth: '120px',
       imgList: [],
       url: '',
+      Authorization: '',
     }
   },
   created(){
@@ -521,6 +522,7 @@ export default {
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
+      this.Authorization = userInfo.user.Authorization;
     } else {
       this.isLogin = 0;
     }
@@ -615,6 +617,15 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 console.log("上传成功");
+                this.$store.dispatch('clearUserInfo');
+                this.$store.dispatch('saveUserInfo', {
+                  user: {
+                    userid: this.userid,
+                    username: this.change.name,
+                    Authorization: this.Authorization,
+                    UserProfilePhotoUrl: this.url,
+                  }
+                })
                 this.$router.push({
                   path: './'
                 })
