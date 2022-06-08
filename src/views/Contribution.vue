@@ -370,9 +370,9 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('index/videoAll'+this.userid).then(
+    this.$axios.get('index/videoAll/'+this.userid).then(
         res =>{
-          this.videonum=res.data.friendnum;
+          this.videonum=res.data.videoNum;
           for(i=0;i<this.videonum;i++){
             this.videoList.push({
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
