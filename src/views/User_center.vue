@@ -547,7 +547,6 @@ export default {
   },
   methods:{
     notice1(){
-      var i=0;
       this.drawer = true;
       this.$axios.get('note/all').then(
           res => {
