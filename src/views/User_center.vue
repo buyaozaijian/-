@@ -522,6 +522,7 @@ export default {
       url: '',
       Authorization: '',
       Identity: '',
+      centerId: 0,
       userdata:[
         {
           FansNum:0,
@@ -535,6 +536,7 @@ export default {
     }
   },
   created(){
+    this.centerId = JSON.parse(sessionStorage.getItem('center_id'));
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -548,8 +550,7 @@ export default {
     } else {
       this.isLogin = 0;
     }
-    alert(3);
-    this.$axios.get('user/detail/'+this.$store.state.center_id).then(
+    this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
             this.userdata[0].FansNum=res.data.FansNum,
             this.userdata[0].VideoNum=res.data.VideoNum,
@@ -559,7 +560,7 @@ export default {
             this.userdata[0].UserIntroduction=res.data.UserIntroduction
         },
     );
-    this.$axios.get('user/detail/').then(
+    this.$axios.get('user/detail/' + this.userid).then(
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;

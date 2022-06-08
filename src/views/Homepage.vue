@@ -285,7 +285,7 @@
                     </router-link>
                     </span>
                   <router-link to="User_center" >
-                    <p class="title" @click="click_center(1)">{{this.videoList[0].videoAuthor}}</p>
+                    <p class="title" @click="click_center(1)">{{this.videoList[0].videoAuthor}}&nbsp;播放:<b>{{this.videoList[0].videoviewnum}}</b>评论:<b>{{this.videoList[0].commentnum}}</b></p>
                   </router-link>
                 </div>
               </div>
@@ -311,7 +311,7 @@
                     </router-link>
                     </span>
                   <router-link to="User_center" @click="click_center(this.videoList[1].videoAuthorId)">
-                    <p class="title">{{this.videoList[1].videoAuthor}}</p>
+                    <p class="title">{{this.videoList[1].videoAuthor}}&nbsp;播放:<b>{{this.videoList[1].videoviewnum}}</b>评论:<b>{{this.videoList[1].commentnum}}</b></p>
                   </router-link>
                 </div>
               </div>
@@ -337,7 +337,7 @@
                     </router-link>
                     </span>
                 <router-link to="User_center" @click="click_center(this.videoList[2].videoAuthorId)">
-                  <p class="title">{{this.videoList[2].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[2].videoAuthor}}&nbsp;播放:<b>{{this.videoList[2].videoviewnum}}</b>评论:<b>{{this.videoList[2].commentnum}}</b></p>
                 </router-link>
               </div>
             </div>
@@ -364,9 +364,11 @@
                         </a>
                     </router-link>
                     </span>
+
                   <router-link to="User_center" @click="click_center(this.videoList[3].videoAuthorId)">
-                    <p class="title">{{this.videoList[3].videoAuthor}}</p>
+                    <p class="title">{{this.videoList[3].videoAuthor}}&nbsp;播放:<b>{{this.videoList[3].videoviewnum}}</b>评论:<b>{{this.videoList[3].commentnum}}</b></p>
                   </router-link>
+
                 </div>
               </div>
             </div>
@@ -390,9 +392,11 @@
                         </a>
                     </router-link>
                     </span>
+
                   <router-link to="User_center" @click="click_center(this.videoList[4].videoAuthorId)">
-                    <p class="title">{{this.videoList[4].videoAuthor}}</p>
+                    <p class="title">{{this.videoList[4].videoAuthor}}&nbsp;播放:<b>{{this.videoList[4].videoviewnum}}</b>评论:<b>{{this.videoList[4].commentnum}}</b></p>
                   </router-link>
+
                 </div>
               </div>
             </div>
@@ -416,9 +420,11 @@
                         </a>
                     </router-link>
                     </span>
+
                   <router-link to="User_center" @click="click_center(this.videoList[5].videoAuthorId)">
-                    <p class="title">{{this.videoList[5].videoAuthor}}</p>
+                    <p class="title">{{this.videoList[5].videoAuthor}}&nbsp;播放:<b>{{this.videoList[5].videoviewnum}}</b>评论:<b>{{this.videoList[5].commentnum}}</b></p>
                   </router-link>
+
                 </div>
               </div>
             </div>
@@ -458,9 +464,11 @@
                         </a>
                     </router-link>
                   </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[10].videoAuthorId)">
-                  <p class="title">{{this.videoList[10].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[10].videoAuthor}}&nbsp;播放:<b>{{this.videoList[10].videoviewnum}}</b>评论:<b>{{this.videoList[10].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -484,9 +492,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[11].videoAuthorId)">
-                  <p class="title">{{this.videoList[11].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[11].videoAuthor}}&nbsp;播放:<b>{{this.videoList[11].videoviewnum}}</b>评论:<b>{{this.videoList[11].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -510,9 +520,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[12].videoAuthorId)">
-                  <p class="title">{{this.videoList[12].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[12].videoAuthor}}&nbsp;播放:<b>{{this.videoList[12].videoviewnum}}</b>评论:<b>{{this.videoList[12].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -536,9 +548,10 @@
                     </a>
                   </router-link>
                 </div>
-                <router-link to="User_center" @click="click_center(this.videoList[13].videoAuthorId)">
-                  <p class="title">{{this.videoList[13].videoAuthor}}</p>
+        <router-link to="User_center" @click="click_center(this.videoList[13].videoAuthorId)">
+                  <p class="title">{{this.videoList[13].videoAuthor}}&nbsp;播放:<b>{{this.videoList[13].videoviewnum}}</b>评论:<b>{{this.videoList[13].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -564,9 +577,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[14].videoAuthorId)">
-                  <p class="title">{{this.videoList[14].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[14].videoAuthor}}&nbsp;播放:<b>{{this.videoList[14].videoviewnum}}</b>评论:<b>{{this.videoList[14].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -590,9 +605,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[15].videoAuthorId)">
-                  <p class="title">{{this.videoList[15].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[15].videoAuthor}}&nbsp;播放:<b>{{this.videoList[15].videoviewnum}}</b>评论:<b>{{this.videoList[15].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -616,9 +633,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[16].videoAuthorId)">
-                  <p class="title">{{this.videoList[16].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[16].videoAuthor}}&nbsp;播放:<b>{{this.videoList[16].videoviewnum}}</b>评论:<b>{{this.videoList[16].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -642,9 +661,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[17].videoAuthorId)">
-                  <p class="title">{{this.videoList[17].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[17].videoAuthor}}&nbsp;播放:<b>{{this.videoList[17].videoviewnum}}</b>评论:<b>{{this.videoList[17].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -683,9 +704,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[18].videoAuthorId)">
-                  <p class="title">{{this.videoList[18].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[18].videoAuthor}}&nbsp;播放:<b>{{this.videoList[18].videoviewnum}}</b>评论:<b>{{this.videoList[18].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -709,9 +732,10 @@
                     </a>
                   </router-link>
                 </div>
-                <router-link to="User_center" @click="click_center(this.videoList[19].videoAuthorId)">
-                  <p class="title">{{this.videoList[19].videoAuthor}}</p>
+       <router-link to="User_center" @click="click_center(this.videoList[19].videoAuthorId)">
+                  <p class="title">{{this.videoList[19].videoAuthor}}&nbsp;播放:<b>{{this.videoList[19].videoviewnum}}</b>评论:<b>{{this.videoList[19].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -735,9 +759,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[20].videoAuthorId)">
-                  <p class="title">{{this.videoList[20].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[20].videoAuthor}}&nbsp;播放:<b>{{this.videoList[20].videoviewnum}}</b>评论:<b>{{this.videoList[20].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -761,9 +787,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[21].videoAuthorId)">
-                  <p class="title">{{this.videoList[21].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[21].videoAuthor}}&nbsp;播放:<b>{{this.videoList[21].videoviewnum}}</b>评论:<b>{{this.videoList[21].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -789,9 +817,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[22].videoAuthorId)">
-                  <p class="title">{{this.videoList[22].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[22].videoAuthor}}&nbsp;播放:<b>{{this.videoList[22].videoviewnum}}</b>评论:<b>{{this.videoList[22].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -815,9 +845,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[23].videoAuthorId)">
-                  <p class="title">{{this.videoList[23].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[23].videoAuthor}}&nbsp;播放:<b>{{this.videoList[23].videoviewnum}}</b>评论:<b>{{this.videoList[23].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -841,9 +873,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[24].videoAuthorId)">
-                  <p class="title">{{this.videoList[24].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[24].videoAuthor}}&nbsp;播放:<b>{{this.videoList[24].videoviewnum}}</b>评论:<b>{{this.videoList[24].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -867,9 +901,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[25].videoAuthorId)">
-                  <p class="title">{{this.videoList[25].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[25].videoAuthor}}&nbsp;播放:<b>{{this.videoList[25].videoviewnum}}</b>评论:<b>{{this.videoList[25].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -908,9 +944,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[26].videoAuthorId)">
-                  <p class="title">{{this.videoList[26].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[26].videoAuthor}}&nbsp;播放:<b>{{this.videoList[26].videoviewnum}}</b>评论:<b>{{this.videoList[26].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -934,9 +972,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[27].videoAuthorId)">
-                  <p class="title">{{this.videoList[27].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[27].videoAuthor}}&nbsp;播放:<b>{{this.videoList[27].videoviewnum}}</b>评论:<b>{{this.videoList[27].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -960,9 +1000,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[28].videoAuthorId)">
-                  <p class="title">{{this.videoList[28].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[28].videoAuthor}}&nbsp;播放:<b>{{this.videoList[28].videoviewnum}}</b>评论:<b>{{this.videoList[28].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -986,9 +1028,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[29].videoAuthorId)">
-                  <p class="title">{{this.videoList[29].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[29].videoAuthor}}&nbsp;播放:<b>{{this.videoList[29].videoviewnum}}</b>评论:<b>{{this.videoList[29].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1014,9 +1058,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[30].videoAuthorId)">
-                  <p class="title">{{this.videoList[30].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[30].videoAuthor}}&nbsp;播放:<b>{{this.videoList[30].videoviewnum}}</b>评论:<b>{{this.videoList[30].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1040,9 +1086,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[31].videoAuthorId)">
-                  <p class="title">{{this.videoList[31].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[31].videoAuthor}}&nbsp;播放:<b>{{this.videoList[31].videoviewnum}}</b>评论:<b>{{this.videoList[31].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1066,9 +1114,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[32].videoAuthorId)">
-                  <p class="title">{{this.videoList[32].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[32].videoAuthor}}&nbsp;播放:<b>{{this.videoList[32].videoviewnum}}</b>评论:<b>{{this.videoList[32].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1092,9 +1142,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[33].videoAuthorId)">
-                  <p class="title">{{this.videoList[33].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[33].videoAuthor}}&nbsp;播放:<b>{{this.videoList[33].videoviewnum}}</b>评论:<b>{{this.videoList[33].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1133,9 +1185,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[34].videoAuthorId)">
-                  <p class="title">{{this.videoList[34].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[34].videoAuthor}}&nbsp;播放:<b>{{this.videoList[34].videoviewnum}}</b>评论:<b>{{this.videoList[34].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1159,9 +1213,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[35].videoAuthorId)">
-                  <p class="title">{{this.videoList[35].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[35].videoAuthor}}&nbsp;播放:<b>{{this.videoList[35].videoviewnum}}</b>评论:<b>{{this.videoList[35].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1185,9 +1241,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[36].videoAuthorId)">
-                  <p class="title">{{this.videoList[36].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[36].videoAuthor}}&nbsp;播放:<b>{{this.videoList[36].videoviewnum}}</b>评论:<b>{{this.videoList[36].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1211,9 +1269,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[37].videoAuthorId)">
-                  <p class="title">{{this.videoList[37].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[37].videoAuthor}}&nbsp;播放:<b>{{this.videoList[37].videoviewnum}}</b>评论:<b>{{this.videoList[37].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1239,9 +1299,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[38].videoAuthorId)">
-                  <p class="title">{{this.videoList[38].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[38].videoAuthor}}&nbsp;播放:<b>{{this.videoList[38].videoviewnum}}</b>评论:<b>{{this.videoList[38].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1265,9 +1327,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[39].videoAuthorId)">
-                  <p class="title">{{this.videoList[39].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[39].videoAuthor}}&nbsp;播放:<b>{{this.videoList[39].videoviewnum}}</b>评论:<b>{{this.videoList[39].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1291,9 +1355,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[40].videoAuthorId)">
-                  <p class="title">{{this.videoList[40].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[40].videoAuthor}}&nbsp;播放:<b>{{this.videoList[40].videoviewnum}}</b>评论:<b>{{this.videoList[40].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1317,9 +1383,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[41].videoAuthorId)">
-                  <p class="title">{{this.videoList[41].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[41].videoAuthor}}&nbsp;播放:<b>{{this.videoList[41].videoviewnum}}</b>评论:<b>{{this.videoList[41].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1358,9 +1426,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[42].videoAuthorId)">
-                  <p class="title">{{this.videoList[42].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[42].videoAuthor}}&nbsp;播放:<b>{{this.videoList[42].videoviewnum}}</b>评论:<b>{{this.videoList[42].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1384,9 +1454,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[43].videoAuthorId)">
-                  <p class="title">{{this.videoList[43].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[43].videoAuthor}}&nbsp;播放:<b>{{this.videoList[43].videoviewnum}}</b>评论:<b>{{this.videoList[43].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1410,9 +1482,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[44].videoAuthorId)">
-                  <p class="title">{{this.videoList[44].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[44].videoAuthor}}&nbsp;播放:<b>{{this.videoList[44].videoviewnum}}</b>评论:<b>{{this.videoList[44].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1436,9 +1510,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[45].videoAuthorId)">
-                  <p class="title">{{this.videoList[45].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[45].videoAuthor}}&nbsp;播放:<b>{{this.videoList[45].videoviewnum}}</b>评论:<b>{{this.videoList[45].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1464,9 +1540,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[46].videoAuthorId)">
-                  <p class="title">{{this.videoList[46].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[46].videoAuthor}}&nbsp;播放:<b>{{this.videoList[46].videoviewnum}}</b>评论:<b>{{this.videoList[46].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1490,9 +1568,10 @@
                     </a>
                   </router-link>
                 </div>
-                <router-link to="User_center" @click="click_center(this.videoList[47].videoAuthorId)">
-                  <p class="title">{{this.videoList[47].videoAuthor}}</p>
+       <router-link to="User_center" @click="click_center(this.videoList[47].videoAuthorId)">
+                  <p class="title">{{this.videoList[47].videoAuthor}}&nbsp;播放:<b>{{this.videoList[47].videoviewnum}}</b>评论:<b>{{this.videoList[47].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1516,9 +1595,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[48].videoAuthorId)">
-                  <p class="title">{{this.videoList[48].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[48].videoAuthor}}&nbsp;播放:<b>{{this.videoList[48].videoviewnum}}</b>评论:<b>{{this.videoList[48].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1542,9 +1623,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[49].videoAuthorId)">
-                  <p class="title">{{this.videoList[49].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[49].videoAuthor}}&nbsp;播放:<b>{{this.videoList[49].videoviewnum}}</b>评论:<b>{{this.videoList[49].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1583,9 +1666,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[50].videoAuthorId)">
-                  <p class="title">{{this.videoList[50].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[50].videoAuthor}}&nbsp;播放:<b>{{this.videoList[50].videoviewnum}}</b>评论:<b>{{this.videoList[50].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1609,9 +1694,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[51].videoAuthorId)">
-                  <p class="title">{{this.videoList[51].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[51].videoAuthor}}&nbsp;播放:<b>{{this.videoList[51].videoviewnum}}</b>评论:<b>{{this.videoList[51].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1635,9 +1722,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[52].videoAuthorId)">
-                  <p class="title">{{this.videoList[52].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[52].videoAuthor}}&nbsp;播放:<b>{{this.videoList[52].videoviewnum}}</b>评论:<b>{{this.videoList[52].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1661,9 +1750,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[53].videoAuthorId)">
-                  <p class="title">{{this.videoList[53].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[53].videoAuthor}}&nbsp;播放:<b>{{this.videoList[53].videoviewnum}}</b>评论:<b>{{this.videoList[53].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1689,9 +1780,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[54].videoAuthorId)">
-                  <p class="title">{{this.videoList[54].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[54].videoAuthor}}&nbsp;播放:<b>{{this.videoList[54].videoviewnum}}</b>评论:<b>{{this.videoList[54].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1715,9 +1808,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[55].videoAuthorId)">
-                  <p class="title">{{this.videoList[55].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[55].videoAuthor}}&nbsp;播放:<b>{{this.videoList[55].videoviewnum}}</b>评论:<b>{{this.videoList[55].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1741,9 +1836,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[56].videoAuthorId)">
-                  <p class="title">{{this.videoList[56].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[56].videoAuthor}}&nbsp;播放:<b>{{this.videoList[56].videoviewnum}}</b>评论:<b>{{this.videoList[56].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1767,9 +1864,11 @@
                     </a>
                   </router-link>
                 </div>
+
                 <router-link to="User_center" @click="click_center(this.videoList[57].videoAuthorId)">
-                  <p class="title">{{this.videoList[57].videoAuthor}}</p>
+                  <p class="title">{{this.videoList[57].videoAuthor}}&nbsp;播放:<b>{{this.videoList[57].videoviewnum}}</b>评论:<b>{{this.videoList[57].commentnum}}</b></p>
                 </router-link>
+
               </div>
             </div>
           </div>
@@ -1837,6 +1936,7 @@ export default {
         videouploadtime:'',
         videoTags:[
         ],
+        commentnum:0,
       });
     }
     this.$axios.get('/index/main').then(
@@ -1853,7 +1953,8 @@ export default {
               this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
               this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
               this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime,
-              this.videoList[i].videoTags = res.data.videoList[i].VideoTags
+              this.videoList[i].videoTags = res.data.videoList[i].VideoTags,
+                  this.videoList[i].commentnum = res.data.videoList[i].CommentNum
           }
         },
     );
@@ -1870,8 +1971,9 @@ export default {
             this.videoList[i].videolike= res.data.videoList[i-10].VideoLike,
             this.videoList[i].videofavourite= res.data.videoList[i-10].VideoFavourite,
             this.videoList[i].videoviewnum= res.data.videoList[i-10].VideoViewCounts,
-            this.videoList[i].videouploadtime= res.data.videoList[i-10].VideoUploadTime
-            this.videoList[i].videoTags = res.data.videoList[i-10].VideoTags
+            this.videoList[i].videouploadtime= res.data.videoList[i-10].VideoUploadTime,
+            this.videoList[i].videoTags = res.data.videoList[i-10].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-10].CommentNum
           }
         },
     );
@@ -1888,8 +1990,9 @@ export default {
                 this.videoList[i].videolike= res.data.videoList[i-18].VideoLike,
                 this.videoList[i].videofavourite= res.data.videoList[i-18].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-18].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-18].VideoUploadTime
-                this.videoList[i].videoTags = res.data.videoList[i-18].VideoTags
+                this.videoList[i].videouploadtime= res.data.videoList[i-18].VideoUploadTime,
+                this.videoList[i].videoTags = res.data.videoList[i-18].VideoTags,
+                    this.videoList[i].commentnum = res.data.videoList[i-18].CommentNum
           }
         },
     );
@@ -1907,7 +2010,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-26].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-26].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-26].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-26].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-26].VideoTags,
+                    this.videoList[i].commentnum = res.data.videoList[i-26].CommentNum
           }
         },
     );
@@ -1925,7 +2029,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-34].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-34].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-34].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-34].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-34].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-34].CommentNum
           }
         },
     );
@@ -1943,7 +2048,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-42].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-42].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-42].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-42].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-42].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-42].CommentNum
           }
         },
     );
@@ -1961,7 +2067,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-50].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-50].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-50].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-50].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-50].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-50].CommentNum
           }
         },
     );
@@ -2027,8 +2134,7 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(args));
     },
     click_center(id){
-      alert(id);
-      this.$store.state.center_id = id;
+      sessionStorage.setItem('center_id', JSON.stringify(id));
     },
     click_centerself(){
       this.$store.state.center_id = this.userid;

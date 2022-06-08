@@ -292,6 +292,7 @@
           </div>
         </div>
       </el-tab-pane>
+      
       <el-tab-pane label="视 频 上 传">
       <div style="display: inline-block; background: whitesmoke;width: 1000px;height: 1000px;opacity:0.9;border-radius: 8px">
         <el-form ref="form" :model="form" label-width="80px" style="padding: 40px 20px">
@@ -333,7 +334,7 @@
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
                 class="upload-demo"
-                darg
+                drag
                 :action=uploadVideoUrl
                 :http-request="upLoadVideo"
                 :before-upload="beforeVideoUpload"
@@ -820,7 +821,7 @@ export default {
     auditvideo_notpass(index) {
       this.$axios({
             method: "post",
-            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            url: "video/changeStatus/" + this.videoauditList[index].videoid,
             data: qs.stringify({
               status: 0
             })
