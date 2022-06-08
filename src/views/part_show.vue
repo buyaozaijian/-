@@ -1,10 +1,11 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
-  <body>
+  <body style="max-width:1560px;margin: 0 auto;">
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -40,54 +41,50 @@
       </div>
       <div style="position: absolute;left:1050px; top:20px;z-index: 9999; display: inline-block;color: gray">
         <a style="color: gray">
-           {{this.username}}
+          {{this.username}}
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'CreationCenter'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+        <router-link  :to="'CreationCenter'">
+          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block">
+      <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
-          &ensp;站内通知
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+          站内通知
         </el-button>
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px">
-        <router-link :to="'/'">
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
         <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'">
+      </a></el-menu-item>
+      <el-menu-item index="/saving_box" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'">
+      </a></el-menu-item>
+      <el-menu-item index="/friend_list" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray">
+      </a></el-menu-item>
+      <el-menu-item index="/user_center" style="width: 100px; font-size: 15px"><a>
+        <i class="fa fa-user-o" style="color: gray"></i>
+        <span style="color: gray">
                   个人中心
                 </span>
-        </router-link></el-menu-item>
+      </a></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
         <!--<form action="" class="parent">
           <input type="text" class="search">
@@ -131,7 +128,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'">
+            <router-link :to="'/Saving_box'">
               <i class="fa fa-file-video-o" style="color: black"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
@@ -139,7 +136,7 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'">
+            <router-link :to="'/Friend_list'">
               <i class="fa fa-heart" style="color: black"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
@@ -147,10 +144,10 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'User_center'">
+            <router-link :to="'/User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
               <span style="color: black">
-                  个人中心&nbsp;&nbsp;&nbsp;
+                  个人中心
                 </span>
             </router-link>
           </li>
@@ -164,7 +161,7 @@
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px;background: whitesmoke"
+                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
                   <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
@@ -179,10 +176,10 @@
             </div>
           </div>
         </div>
-        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin == 1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              :title="this.username"
+              :title= this.username
               width="300"
               trigger="hover"
               left="">
@@ -190,11 +187,21 @@
               <div>
                 id:{{this.userid}}
               </div>
+              <div>
+                <el-button type="danger" @click="logout">退出登录</el-button>
+              </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
               <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
+        </div>
+        <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+          <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <router-link to="/try_login"><span style="color: #0b95f1">
+                登录
+              </span></router-link>
+          </button>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
           <router-link :to="'CreationCenter'">
@@ -213,108 +220,40 @@
             &ensp;站内通知
           </el-button>
         </div>
-        <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-              <span style="color: #0b95f1">
-                登录
-              </span>
-          </button>
-          <el-dialog title="登录" :visible.sync="dialogFormVisible" style="z-index: 9999">
-            <el-form :model="form">
-              <el-form-item label="用户名" :label-width="formLabelWidth">
-                <el-input v-model="form.name" autocomplete="off"></el-input>
-              </el-form-item>
-              <div>
-                <br>
-              </div>
-              <el-form-item label="密码" :label-width="formLabelWidth">
-                <el-input v-model="form.code" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-form>
-            <div slot="footer" class="dialog-footer">
-              <el-button @click="dialogFormVisible = false">取 消</el-button>
-              <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-            </div>
-          </el-dialog>
-        </div>
+        <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+               <router-link to="/try_login"><span style="color: #0b95f1">
+                 登录
+               </span></router-link>
+           </button>
+         </div>-->
       </div>
     </div>
   </header>
-  <div class = "user_main">
-    <div style="position: absolute;left:50px;top:50px">
-      <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
-      </a>
-    </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
-    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
-    <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
-    <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="评论数" style="position:absolute;left:60px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
-    <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
-    <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
-    <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下</div>
-    <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
-               text-color="black"
-               active-text-color="black" >
-        <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
-        <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
-      </el-menu>
-    </div>
-  </div>
   <div class="收藏夹">
-    <i class="el-icon-goods" style="position: absolute;left:20px;top:25px;"></i>
-    <div style="position:absolute;left:55px;top:0px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
-               text-color="black"
-               active-text-color="#eee" >
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">全部</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">动画</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">电影</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">游戏</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">音乐</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">学习</el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1">鬼畜</el-menu-item>
-      </el-menu>
-    </div>
+    <div v-if="this.videonum === 0" style="position:absolute; left:500px;font-size: 20px">这个分区什么都没有</div>
     <div style="position: relative;top: 100px;left: 25px;">
       <div style="width: 240px;display: inline-block;float: left" v-for="(video,index) in videoList" :key="video.videoid">
-            <img
+        <img
             class="picture"
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'" @click="click1(index)">
-                    <p class="name">{{video.videoName}}</p>
-                    <span class="title">
-                      {{video.videoauthor}}
-                      <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                  </el-dropdown>
-                </span>
+        />
+        <div class="up">
+          <div class="up-cover">
+            <div style="float: left" class="txt">
+              <router-link :to="'/videoPage'" @click="click1(index)">
+                <p class="name">{{video.videoName}}</p>
+                <span class="title">
+                  <b>{{video.videoauthor}}</b>
+                      播放:<b>{{video.videoviewnum}}</b>
+                      评论:<b>{{video.videocommentnum}}</b>
                     </span>
-                  </router-link>
-                </div>
-              </div>
+              </router-link>
             </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -361,24 +300,38 @@ export default {
       formLabelWidth: '120px',
       videoList:[
       ],
-      videonum:0,
+      videonum:8,
+      part:JSON.parse(sessionStorage.getItem('part')),
     }
   },
   created(){
     var i=0;
-    const userInfo = user.getters.getUser(user.state());
-    console.log(userInfo);
-    if (userInfo) {
-      this.userhead = userInfo.user.UserProfilePhotoUrl;
-      this.username = userInfo.user.username;
-      this.isLogin = 1;
-      this.userid = userInfo.user.userid
-    } else {
-      this.isLogin = 0;
-    }
-    this.$axios.get('user/favorVideo').then(
+    //搜索请求
+    this.part = JSON.parse(sessionStorage.getItem('part'));
+    /*for(i=0;i<8;i++){
+      this.videoList.push(
+          {
+            videoCoverUrl:'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+            videoauthor: 'zbh',
+            comid:i,
+            videoUrl: 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/ff2f3f6a-f4f7-472a-8252-84d0d80de8ec.mp4',
+            videoName: 'dadada',
+            videocommentnum:  100,
+            videoviewnum:  200,
+          }
+      )
+    }*/
+    this.$axios(
+        {
+          method: 'post',
+          url: 'search/area',
+          data: qs.stringify({
+            keyword: this.part,
+          })
+        }
+    ).then(
         res =>{
-          this.videonum=res.data.friendnum;
+          this.videonum=res.data.videoNum;
           for(i=0;i<this.videonum;i++){
             this.videoList.push({
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
@@ -390,20 +343,34 @@ export default {
                   videolike:res.data.videoList[i].VideoLike,
                   videofavourite:res.data.videoList[i].VideoFavourite,
                   videoAuthorId:res.data.videoList[i].VideoAuthor,
+                  videocommentnum: res.data.videoList[i].CommentNum,
+                  videoviewnum: res.data.videoList[i].VideoViewCounts,
                 }
             )
           }
-        },
+        }
     );
+    const userInfo = user.getters.getUser(user.state());
+    console.log(userInfo);
+    if (userInfo) {
+      this.userhead = userInfo.user.UserProfilePhotoUrl;
+      this.username = userInfo.user.username;
+      this.isLogin = 1;
+      this.userid = userInfo.user.userid
+    } else {
+      this.isLogin = 0;
+    }
   },
   methods:{
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
+      window.location.reload();
     },
     click_search1(){
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+      window.location.reload();
     },
     logout(){
       alert('退出登录！');
@@ -444,10 +411,10 @@ export default {
       this.$store.state.videolike=this.videoList[index].videolike;
       this.$store.state.videofavourite=this.videoList[index].videofavourite;
       this.$store.state.videoauthor=this.videoList[index].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[index].videoAuthorId,
-          //this.$store.state.videoname = 'cnm';
-          //this.$store.state.videoid = 1;
-          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+      this.$store.state.videoauthorid=this.videoList[index].videoAuthorId;
+      //this.$store.state.videoname = 'cnm';
+      //this.$store.state.videoid = 1;
+      //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
@@ -544,9 +511,9 @@ export default {
   position: absolute;
   display:inline-block;
   background: whitesmoke;
-  left:420px;
+  left:150px;
   top:70px;
-  width:1000px;
+  width:1250px;
   height:2000px;
   border-radius: 8px;
   border-color: #DCDFE6;

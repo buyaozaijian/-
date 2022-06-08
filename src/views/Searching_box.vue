@@ -233,7 +233,7 @@
   <div class="收藏夹">
     <div v-if="this.videonum === 0" style="position:absolute; left:370px;font-size: 60px">亲,什么都没有搜到哦</div>
     <div style="position: relative;top: 100px;left: 25px;">
-      <div style="width: 240px;display: inline-block;float: left" v-for="video in videoList" :key="video.videoid">
+      <div style="width: 240px;display: inline-block;float: left" v-for="(video,index) in videoList" :key="video.comid">
         <img
             class="picture"
             :src="video.videoCoverUrl"
@@ -242,15 +242,13 @@
         />
         <div class="up">
           <div class="up-cover">
-            <div style="float: left" class="txt">
-              <router-link :to="'/videoPage'" @click="click1">
+            <div style="float: left" class="txt" @click="click1(index)">
                 <p class="name">{{video.videoName}}</p>
                 <span class="title">
                   <b>{{video.videoauthor}}</b>
                       播放:<b>{{video.videoviewnum}}</b>
                       评论:<b>{{video.videocommentnum}}</b>
                     </span>
-              </router-link>
             </div>
           </div>
         </div>
@@ -301,12 +299,13 @@ export default {
       videoList:[
       ],
       videonum:0,
-      message:JSON.parse(sessionStorage.getItem('message')),
+      message:'',
     }
   },
   created(){
+    this.message = JSON.parse(sessionStorage.getItem('message'));
     var i=0;
-    //搜索请求
+    //搜索请求调试
     /*for(i=0;i<8;i++){
       this.videoList.push(
           {
@@ -362,12 +361,10 @@ export default {
   },
   methods:{
     click_search(){
-      alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
       window.location.reload();
     },
     click_search1(){
-      alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
       window.location.reload();
     },
@@ -383,7 +380,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: '请您先充钱再观看视频\n没钱还想白嫖？',
+        message: '快点冲钱',
         offset: 100
       });
     },
@@ -403,21 +400,22 @@ export default {
           }
       )
     },
-    click1(){
-      this.$store.state.videourl = this.videoList[event.srcElement.id].videoUrl;
-      this.$store.state.videoname = this.videoList[event.srcElement.id].videoName;
-      this.$store.state.videoid = this.videoList[event.srcElement.id].videoId;
-      this.$store.state.videolike=this.videoList[event.srcElement.id].videolike;
-      this.$store.state.videofavourite=this.videoList[event.srcElement.id].videofavourite;
-      this.$store.state.videoauthor=this.videoList[event.srcElement.id].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[event.srcElement.id].videoAuthorId;
+    click1(index){
+      this.$store.state.videourl = this.videoList[index].videoUrl;
+      this.$store.state.videoname = this.videoList[index].videoName;
+      this.$store.state.videoid = this.videoList[index].videoId;
+      this.$store.state.videolike=this.videoList[index].videolike;
+      this.$store.state.videofavourite=this.videoList[index].videofavourite;
+      this.$store.state.videoauthor=this.videoList[index].videoAuthor;
+      this.$store.state.videoauthorid=this.videoList[index].videoAuthorId;
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
-          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+      this.$router.push('/videoPage');
     },
     open2() {
       this.$notify({

@@ -204,14 +204,42 @@
               </i></el-button>
           </router-link>
         </div>
-        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
+        <div style=" position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
+              v-if="this.isLogin===0"
               plain
               @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;">
             &ensp;站内通知
           </el-button>
+          <el-button
+              v-else
+              @click="drawer = true"
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
+            &ensp;站内通知
+          </el-button>
+          <el-badge class="mark" :value="this.unread_notification_num" />
+          <el-drawer
+              title="站内通知"
+              :visible.sync="drawer"
+              :direction="direction"
+              append-to-body="true"
+              >
+            <!-- :before-close="handleClose-->
+            <el-divider></el-divider>
+            <br/>
+            <div v-for="notice in notificationList" :key="notice.notice_id">
+              <div style="height: 120px; width: 400px; margin: 0 auto">
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+            </div>
+          </el-drawer>
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -338,12 +366,17 @@ export default {
   name: "User_center",
   data(){
     return {
-
       FansNum:0,
       VideoNum:0,
       FavorNum:0,
       LikeNum:0,
       FollowNum:0,
+      drawer: false,
+      direction: 'rtl',
+      notificationnum: '',
+      unread_notification_num: '',
+      notificationList: [],
+
       change: {
         head: [],
         name: '',
@@ -397,6 +430,7 @@ export default {
   created(){
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
+    var i=0;
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
       this.url = userInfo.user.UserProfilePhotoUrl;
@@ -422,9 +456,33 @@ export default {
           this.oldname=res.data.user.UserName;
         },
     );
-
+    this.$axios.get('note/all').then(
+        res => {
+          this.notification_num=res.data.notificationNum;
+          this.unread_notification_num=res.data.unread_notificationNum;
+          for(i=0;i<this.notification_num;i++){
+            this.notificationList.push(
+                {
+                  notice_content: res.data.notificationList[i].noticecontent,
+                  notice_id: res.data.notificationList[i].noticeid,
+                  notice_time: res.data.notificationList[i].noticetime,
+                  notice_ifread: res.data.notificationList[i].noticeifread,
+                }
+            )
+          }
+        },
+    );
   },
   methods:{
+    /*handleClose(done) {
+      this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {
+          });
+    },*/
+
     submit_all(){
       alert(this.change.name);
       alert(this.change.sign);
@@ -1010,5 +1068,8 @@ table {
   line-height: 35px;
 }
 
-
+.item {
+  margin-top: 10px;
+  margin-right: 40px;
+}
 </style>

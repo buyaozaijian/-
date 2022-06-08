@@ -383,7 +383,7 @@
             动画
           </span>
       <span>
-            <el-button round><i class="el-icon-refresh"></i>换一换</el-button>
+            <el-button @click="into1" round><i class="el-icon-plus"></i>进入该分区</el-button>
           </span>
     </div>
     <table class="tab" cellspacing="35">
@@ -457,6 +457,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+        <span style="font-size: 30px">
+          <i class="fa fa-bookmark-o" style="color: gray" ></i>
+          电影
+        </span>
+      <span>
+            <el-button @click="into2" round><i class="el-icon-plus"></i>进入该分区</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -610,6 +623,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            游戏
+          </span>
+      <span>
+            <el-button @click="into3" round><i class="el-icon-plus"></i>进入该分区</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -763,6 +789,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            音乐
+          </span>
+      <span>
+            <el-button @click="into4" round><i class="el-icon-plus"></i>进入该分区</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -916,6 +955,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            学习
+          </span>
+      <span>
+            <el-button @click="into5" round><i class="el-icon-plus"></i>进入该分区</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -1069,6 +1121,19 @@
           </div>
         </td>
       </tr>
+    </table>
+  </div>
+  <div class="all">
+    <div align="left">
+          <span style="font-size: 30px">
+            <i class="fa fa-bookmark-o" style="color: gray" ></i>
+            鬼畜
+          </span>
+      <span>
+            <el-button @click="into6" round><i class="el-icon-plus"></i>进入该分区</el-button>
+          </span>
+    </div>
+    <table class="tab" cellspacing="35">
       <tr>
         <td class="fenqu">
           <img
@@ -1485,6 +1550,36 @@ export default {
   },
 
   methods:{
+    into1(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(1));
+      this.$router.push('/part_show');
+    },
+    into2(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(2));
+      this.$router.push('/part_show');
+    },
+    into3(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(3));
+      this.$router.push('/part_show');
+    },
+    into4(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(4));
+      this.$router.push('/part_show');
+    },
+    into5(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(5));
+      this.$router.push('/part_show');
+    },
+    into6(){
+      //this.$message.success("进入动画分区");
+      sessionStorage.setItem('part', JSON.stringify(6));
+      this.$router.push('/part_show');
+    },
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
