@@ -243,10 +243,10 @@
   <div class = "user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
+        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userdata[0].UserHead">
       </a>
     </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
+    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.userdata[0].UserName}}</div>
     <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FansNum}}</div>
     <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">{{this.userdata[0].VideoNum}}</div>
     <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FavorNum}}</div>
@@ -259,13 +259,18 @@
     <div class="关注" style="position:absolute;left:200px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
     <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
-    <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
+    <div style="position:absolute;left:80px;top:370px;">
+      <div>
+        <el-button  v-if="this.iffollow===0&&this.if_same===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button  v-if="this.iffollow===1&&this.if_same===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
+        <!--<el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>-->
+      </div>
+      <!--<el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
                text-color="black"
                active-text-color="black" >
         <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
         <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
-      </el-menu>
+      </el-menu>-->
     </div>
   </div>
   <div class="收藏夹">
@@ -413,6 +418,7 @@ export default {
       Authorization: '',
       Identity: '',
       centerId: 0,
+      iffollow: 0,
       userdata:[
         {
           FansNum:0,
@@ -420,9 +426,13 @@ export default {
           FavorNum:0,
           LikeNum:0,
           FollowNum:0,
-          UserIntroduction:''
+          UserIntroduction:'wu',
+          UserHead: '',
+          UserName: '',
         }
       ],
+      videoAuthorFollow:0,
+      if_same:0,
     }
   },
   created(){
@@ -442,12 +452,16 @@ export default {
     }
     this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
-            this.userdata[0].FansNum=res.data.FansNum,
-            this.userdata[0].VideoNum=res.data.VideoNum,
-            this.userdata[0].FavorNum=res.data.FavorNum,
-            this.userdata[0].LikeNum=res.data.LikeNum,
-            this.userdata[0].FollowNum=res.data.FollowNum,
-            this.userdata[0].UserIntroduction=res.data.UserIntroduction
+            this.userdata[0].FansNum=res.data.FansNum;
+            this.videoAuthorFollow = this.userdata[0].FansNum;
+            this.userdata[0].VideoNum=res.data.VideoNum;
+            this.userdata[0].FavorNum=res.data.FavorNum;
+            this.userdata[0].LikeNum=res.data.LikeNum;
+            this.userdata[0].FollowNum=res.data.FollowNum;
+            this.userdata[0].UserIntroduction=res.data.user.UserIntroduction;
+          this.userdata[0].UserName=res.data.user.UserName;
+          this.userdata[0].UserHead=res.data.user.UserProfilePhotoUrl;
+            this.iffollow=res.data.fol;
         },
     );
     this.$axios.get('user/detail/' + this.userid).then(
@@ -457,8 +471,17 @@ export default {
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
           this.unread_notification_num=res.data.notificationUnreadNum;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
+    if(this.userid === this.centerId){
+      this.if_same = 1;
+    }
+    /*
     this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
@@ -471,9 +494,29 @@ export default {
           this.change.mail=this.oldmail;
           this.url=this.userhead;
         },
-    );
+    );*/
   },
   methods:{
+    follow(){
+      if(this.isLogin===1) {
+        if(this.iffollow === 0) {
+          alert('关注该用户');
+          this.iffollow = 1;
+          this.videoAuthorFollow += 1;
+        }
+        else{
+          alert('取消关注');
+          this.videoAuthorFollow -= 1;
+          this.iffollow = 0;
+        }
+        this.$axios.get('user/follow/' + this.video_userid).then(
+        );
+      }
+      else{
+        this.$message.success("请先登录");
+        this.$router.push('/try_login');
+      }
+    },
     notice1(){
       this.drawer = true;
       this.$axios.get('note/all').then(

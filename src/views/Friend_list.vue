@@ -282,9 +282,11 @@
     </div>
       <div style="position: relative;top:80px">
         <ul style="list-style: none;">
-          <li style="height: 75px;margin-top: 15px;" v-for="friend in friendlist" :key="friend.friend_id">
+          <li style="height: 75px;margin-top: 15px;" v-for="(friend,index) in friendlist" :key="friend.friend_id">
             <el-divider></el-divider>
-            <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url">
+            <router-link to="User_center">
+              <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url" @click="click_center(index)">
+            </router-link>
             <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
               <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
               <div style="font-size: 10px;color: gray">
@@ -336,8 +338,14 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      friendnum: 0,
+      friendnum: 1,
       friendlist: [
+        {
+          friend_head_url: '',
+          friend_name: 'asd',
+          friend_sign: 'asd',
+          friend_id: 7,
+        }
       ],
       centerId: 0,
       userdata:[
@@ -401,8 +409,8 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(id){
-      alert(this.videoList[id].videoAuthorId);
-      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
+      alert(this.friendlist[id].friend_id);
+      sessionStorage.setItem('center_id', JSON.stringify(this.friendlist[id].friend_id));
     },
     click_centerself(){
       alert(1);
