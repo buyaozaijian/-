@@ -379,7 +379,18 @@
     </div>
   </div>
   <div class="收藏夹">
-    <div style="width: 1000px; height: 50px; position: relative; top: 20px">在此处上传头像</div>
+    <div style="position:absolute;left:55px;top:0px; margin: 0 auto">
+      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
+               text-color="black"
+               active-text-color="#eee"
+               >
+        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'">关注列表</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'">收藏夹</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Contribution'">投稿</router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'User_center'">个人信息</router-link></el-menu-item>
+      </el-menu>
+    </div>
+    <div style="width: 1000px; height: 50px; position: relative; top: 80px">在此处上传头像</div>
     <el-upload
         list-type="picture-card"
         action='video/uploadphoto'
@@ -389,13 +400,13 @@
         :file-list="change.head"
         :limit="1"
         :value="this.userhead"
-        style="width: 200px;display: block; clear: both; margin: 0 auto">
+        style="width: 200px;display: block; clear: both; margin: 0 auto; position: relative; top: 60px">
       <i class="el-icon-plus"></i>
     </el-upload>
     <!--<el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>-->
-    <div style="width: 1000px; height: 50px; position: relative; top: 10px; font-size: 15px">图片只能为jpg/png格式</div>
+    <div style="width: 1000px; height: 50px; position: relative; top: 70px; font-size: 15px">图片只能为jpg/png格式</div>
     <!--<div style="width: 1000px; height: 60px">
       <span style="width: 1000px; height: 50px; margin-right: 20px">个性签名:</span>
       <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入个性签名内容"></el-input>
@@ -414,7 +425,7 @@
       <span style="width: 1000px; height: 50px; margin-right: 20px">密码:</span>
       <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入新密码"></el-input>
     </div>-->
-    <div style="width: 800px; margin: 0 auto;">
+    <div style="width: 800px; margin: 0 auto; position: relative; top: 60px">
       <el-form ref="form" :model="change" label-width="80px">
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
          <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign" :value="this.oldsign"></el-input>
@@ -547,11 +558,6 @@ export default {
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
           this.unread_notification_num=res.data.notificationUnreadNum;
-          this.change.name=this.oldname;
-          this.change.password=this.oldpassword;
-          this.change.sign=this.oldsign;
-          this.change.mail=this.oldmail;
-          this.url=this.userhead;
         },
     );
     this.$axios.get('user/' + this.userid).then(// 登录用户的信息
@@ -560,6 +566,11 @@ export default {
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
   },

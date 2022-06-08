@@ -220,7 +220,7 @@
       </span>
       <el-button style="width: 70px;height: 50px" type="primary" @click="submit_comment"  plain >发布</el-button>
     </div>
-    <div v-for="comment in comment_list" :key="comment.comment_id">
+    <div v-for="(comment,index) in comment_list" :key="comment.comment_id">
       <div class="comment">
         <el-divider></el-divider>
         <img class="small-head" :src = "comment.comment_head_url">
@@ -228,8 +228,7 @@
         <div>评论时间:{{comment.comment_time}}</div>
         <div>{{comment.comment_in}}</div>
         <div>&nbsp;</div>
-        <div v-if="comment.comment_if_me===1" style="cursor: pointer"><i class="el-icon-delete"></i></div>
-        <div v-if="comment.comment_if_me===0" style="cursor: pointer"><i class="el-icon-phone"></i></div>
+        <div v-if="comment.comment_if_me===1" style="cursor: pointer" @click="delete_comment(comment.comment_id,index)"><i class="el-icon-delete"></i></div>
       </div>
     </div>
   </div>
@@ -270,11 +269,11 @@ export default {
           comment_in: 'cnm' ,
           comment_id: 0 ,
           comment_time: '2022-6-8',
-          comment_if_me: 0,
+          comment_if_me: 1,
         },
         {
           comment_head_url: 'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
-          comment_name:  'yyt',
+          comment_name:  'yyz',
           comment_in: 'cnmb' ,
           comment_id: 1 ,
           comment_time: '2022-6-8',
@@ -283,7 +282,7 @@ export default {
       ],
       video_num: 5,
       video_list: [
-        /*{
+         /*{
           video_name: 'dududu',
           video_photo:  'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
           video_viewnums: 100,
@@ -310,7 +309,7 @@ export default {
           video_id_use: 1,
           videoviewnum:  3000,
           videouploadtime:  3500
-        }*/
+          },*/
       ],
       comment_num: 0,
       commentid: 0,
@@ -421,6 +420,13 @@ export default {
       );
   },
   methods:{
+    
+    delete_comment(id,index){
+      this.$axios.get('comment/delete/'+id).then(
+      )
+      alert('删除评论');
+      this.comment_list.splice(index,1);
+    },
     jumplogin(){
       this.$message.success("请先登录！");
       this.$router.push('/try_login');
