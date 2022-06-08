@@ -142,17 +142,17 @@
                 </span>
           </li>
           <li style="display: inline">
-            <router-link :to="'/Friend_list'" @click="click_centerself">
+            <router-link :to="'/Friend_list'" >
               <i class="fa fa-heart" style="color: white"></i>
-              <span style="color: white">
+              <span style="color: white" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'/User_center'" @click="click_centerself">
+            <router-link :to="'/User_center'" >
               <i class="fa fa-user-o" style="color: white"></i>
-              <span style="color: white">
+              <span style="color: white" @click="click_centerself">
                   个人中心
                 </span>
             </router-link>
@@ -285,7 +285,7 @@
                     </router-link>
                     </span>
                   <router-link to="User_center" >
-                    <p class="title" @click="click_center(1)">{{this.videoList[0].videoAuthor}}&nbsp;播放:<b>{{this.videoList[0].videoviewnum}}</b>评论:<b>{{this.videoList[0].commentnum}}</b></p>
+                    <p class="title" @click="click_center(0)">{{this.videoList[0].videoAuthor}}&nbsp;播放:<b>{{this.videoList[0].videoviewnum}}</b>评论:<b>{{this.videoList[0].commentnum}}</b></p>
                   </router-link>
                 </div>
               </div>
@@ -310,8 +310,8 @@
                         </a>
                     </router-link>
                     </span>
-                  <router-link to="User_center" @click="click_center(this.videoList[1].videoAuthorId)">
-                    <p class="title">{{this.videoList[1].videoAuthor}}&nbsp;播放:<b>{{this.videoList[1].videoviewnum}}</b>评论:<b>{{this.videoList[1].commentnum}}</b></p>
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(1)">{{this.videoList[1].videoAuthor}}&nbsp;播放:<b>{{this.videoList[1].videoviewnum}}</b>评论:<b>{{this.videoList[1].commentnum}}</b></p>
                   </router-link>
                 </div>
               </div>
@@ -336,8 +336,8 @@
                         </a>
                     </router-link>
                     </span>
-                <router-link to="User_center" @click="click_center(this.videoList[2].videoAuthorId)">
-                  <p class="title">{{this.videoList[2].videoAuthor}}&nbsp;播放:<b>{{this.videoList[2].videoviewnum}}</b>评论:<b>{{this.videoList[2].commentnum}}</b></p>
+                <router-link to="User_center">
+                  <p class="title" @click="click_center(2)">{{this.videoList[2].videoAuthor}}&nbsp;播放:<b>{{this.videoList[2].videoviewnum}}</b>评论:<b>{{this.videoList[2].commentnum}}</b></p>
                 </router-link>
               </div>
             </div>
@@ -365,8 +365,8 @@
                     </router-link>
                     </span>
 
-                  <router-link to="User_center" @click="click_center(this.videoList[3].videoAuthorId)">
-                    <p class="title">{{this.videoList[3].videoAuthor}}&nbsp;播放:<b>{{this.videoList[3].videoviewnum}}</b>评论:<b>{{this.videoList[3].commentnum}}</b></p>
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(3)">{{this.videoList[3].videoAuthor}}&nbsp;播放:<b>{{this.videoList[3].videoviewnum}}</b>评论:<b>{{this.videoList[3].commentnum}}</b></p>
                   </router-link>
 
                 </div>
@@ -393,8 +393,8 @@
                     </router-link>
                     </span>
 
-                  <router-link to="User_center" @click="click_center(this.videoList[4].videoAuthorId)">
-                    <p class="title">{{this.videoList[4].videoAuthor}}&nbsp;播放:<b>{{this.videoList[4].videoviewnum}}</b>评论:<b>{{this.videoList[4].commentnum}}</b></p>
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(4)">{{this.videoList[4].videoAuthor}}&nbsp;播放:<b>{{this.videoList[4].videoviewnum}}</b>评论:<b>{{this.videoList[4].commentnum}}</b></p>
                   </router-link>
 
                 </div>
@@ -421,8 +421,8 @@
                     </router-link>
                     </span>
 
-                  <router-link to="User_center" @click="click_center(this.videoList[5].videoAuthorId)">
-                    <p class="title">{{this.videoList[5].videoAuthor}}&nbsp;播放:<b>{{this.videoList[5].videoviewnum}}</b>评论:<b>{{this.videoList[5].commentnum}}</b></p>
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(5)">{{this.videoList[5].videoAuthor}}&nbsp;播放:<b>{{this.videoList[5].videoviewnum}}</b>评论:<b>{{this.videoList[5].commentnum}}</b></p>
                   </router-link>
 
                 </div>
@@ -1924,12 +1924,12 @@ export default {
     for(i=0;i<58;i++)
     {
       this.videoList.push({
-        videoAuthorId: '1',
+        videoAuthorId: '5',
         videoAuthor: '未知',
         videoId: '',
         videoUrl: '',
         videoCoverUrl: '',
-        videoName: '视频连接中',
+        videoName: '视频连接中a',
         videolike: '',
         videofavourite: '',
         videoviewnum:0,
@@ -1954,7 +1954,7 @@ export default {
               this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
               this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime,
               this.videoList[i].videoTags = res.data.videoList[i].VideoTags,
-                  this.videoList[i].commentnum = res.data.videoList[i].CommentNum
+              this.videoList[i].commentnum = res.data.videoList[i].CommentNum
           }
         },
     );
@@ -2134,10 +2134,12 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(args));
     },
     click_center(id){
-      sessionStorage.setItem('center_id', JSON.stringify(id));
+      alert(this.videoList[id].videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     click_centerself(){
-      this.$store.state.center_id = this.userid;
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
       alert('退出登录！');

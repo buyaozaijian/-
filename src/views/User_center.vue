@@ -68,23 +68,23 @@
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'" @click="click_centerself">
+        <router-link :to="'Saving_box'">
           <i class="fa fa-file-video-o" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   收藏夹
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'" @click="click_centerself">
+        <router-link :to="'Friend_list'">
           <i class="fa fa-heart" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   关注
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'" @click="click_centerself">
+        <router-link :to="'User_center'">
           <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   个人中心
                 </span>
         </router-link></el-menu-item>
@@ -123,7 +123,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="'/'">
+            <router-link :to="'/'" >
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -131,25 +131,25 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'" @click="click_centerself">
+            <router-link :to="'Saving_box'" >
               <i class="fa fa-file-video-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'" @click="click_centerself">
+            <router-link :to="'Friend_list'" >
               <i class="fa fa-heart" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
-          <li style="display: inline">
-            <router-link :to="'User_center'" @click="click_centerself">
+          <li style="display: inline" >
+            <router-link :to="'User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   个人中心&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
@@ -204,123 +204,14 @@
               </i></el-button>
           </router-link>
         </div>
-        <div style=" position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
-              v-if="this.isLogin===0"
               plain
               @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;">
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
             &ensp;站内通知
           </el-button>
-          <el-button
-              v-else
-              @click="notice1"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
-            &ensp;站内通知
-          </el-button>
-          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
-          <el-drawer
-              title="站内通知"
-              :visible.sync="drawer"
-              :direction="direction"
-              append-to-body="true"
-              >
-            <!-- :before-close="handleClose-->
-            <!--<el-divider></el-divider>
-            <div  style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;mmm关注了你注了你注了你注了&ensp;</el-badge></div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;2022-02-06 16:00</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>-->
-            <!--<div v-for="notice in notificationList" :key="notice.notice_id">
-            </div>-->
-            <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
-              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：&ensp;</el-badge></div>
-                <br/>
-                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-            </div>
-            <div v-for="notice in readnotificationList" :key="notice.notice_video">
-            <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
-              <br/>
-              <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            </div>
-          </el-drawer>
-
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -362,11 +253,10 @@
     <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
     <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
     <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">{{this.userdata[0].LikeNum}}</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">{{this.userdata[0].FollowNum}}</div>
-    <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
-    <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
-    <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
+    <div class="点赞数" style="position:absolute;left:115px;top:220px;color: black;font-size: 20px">{{this.userdata[0].LikeNum}}</div>
+    <div class="关注数" style="position:absolute;left:215px;top:220px;color: black;font-size: 20px">{{this.userdata[0].FollowNum}}</div>
+    <div class="点赞" style="position:absolute;left:100px;top:260px;color: black;font-size: 20px">点赞</div>
+    <div class="关注" style="position:absolute;left:200px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
     <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
     <div style="position:absolute;left:20px;top:370px;">
@@ -383,11 +273,11 @@
       <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
                text-color="black"
                active-text-color="#eee"
-               >
-        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'">关注列表</router-link></el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'">收藏夹</router-link></el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Contribution'">投稿</router-link></el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'User_center'">个人信息</router-link></el-menu-item>
+      >
+        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'"><span @click="click_centernow">关注列表</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'"><span @click="click_centernow">收藏夹</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Contribution'"><span @click="click_centernow">投稿</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1" v-if="this.userid==this.centerId"><router-link :to="'User_center'"><span @click="click_centernow">个人信息</span></router-link></el-menu-item>
       </el-menu>
     </div>
     <div style="width: 1000px; height: 50px; position: relative; top: 80px">在此处上传头像</div>
@@ -530,7 +420,7 @@ export default {
           FavorNum:0,
           LikeNum:0,
           FollowNum:0,
-          UserIntroduction:'wu'
+          UserIntroduction:''
         }
       ],
     }
@@ -728,8 +618,17 @@ export default {
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
+    click_center(id){
+      alert(this.videoList[id].videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
+    },
     click_centerself(){
-      this.$store.state.center_id = this.userid;
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
+    },
+    click_centernow(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.centerId));
     },
     logout(){
       alert('退出登录！');
