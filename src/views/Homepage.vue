@@ -80,7 +80,7 @@
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item  @click="if_login('/Contribution')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -91,27 +91,25 @@
           <input type="text" class="search">
           <input type="button" name=""  class="btn" style="z-index:1" >
         </form>-->
-        <div class="nav-search-box">
-          <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-            <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
-              <input
-                  class="search-input"
-                  ref="search1"
-                  type="text"
-                  placeholder="      谁说站在光里的才算英雄 "
-                  style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
-              />
-              <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                   <img
-                      src="../img/sousuo1.png"
-                      alt=""
-                      style="width: 34px;height: 34px;padding: 0px 7px;"
-                  />
-                </button></router-link>
-              </div>
-            </form>
-          </div>
+        <div class="nav-search" style="margin: 0;border: 0;padding: 0;width: 480px">
+          <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+            <input
+                class="search-input"
+                ref="search"
+                type="text"
+                placeholder="      谁说站在光里的才算英雄 "
+                style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
+            />
+            <div class="nav-search-btn">
+              <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
+                <img
+                    src="../img/sousuoxia.png"
+                    alt=""
+                    style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
+                />
+              </button></router-link>
+            </div>
+          </form>
         </div>
       </div>
     </el-menu>
@@ -145,7 +143,7 @@
                   关注&nbsp;&nbsp;&nbsp;
               </span>
           </li>
-          <li  @click="if_login('/user_center')" style="display: inline;cursor: pointer">
+          <li  @click="if_login('/Contribution')" style="display: inline;cursor: pointer">
               <i class="fa fa-user-o" style="color: white"></i>
               <span style="color: white" >
                   个人中心
@@ -161,14 +159,14 @@
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
+                    style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
-                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
                     <img
-                        src="../img/sousuo1.png"
+                        src="../img/sousuoxia.png"
                         alt=""
-                        style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
+                        style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
                     />
                   </button></router-link>
                 </div>
@@ -2277,15 +2275,14 @@ html {
 }
 .nav-search .nav-search-btn {
   position: absolute;
-  top: 0;
+  top: -2px;
   right: 0;
   margin: 0;
   padding: 0;
-  width: 48px;
-  height: 35px;
+  width: 40px;
+  height: 32px;
   border: none;
-  border-radius: 2px;
-  background: #e7e7e7;
+  border-radius: 8px;
   line-height: 35px;
 }
 a {

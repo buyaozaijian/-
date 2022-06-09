@@ -29,7 +29,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -46,12 +46,10 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link  :to="'CreationCenter'">
-          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
-            <i class="el-icon-upload el-icon--right" style="margin: 0">
-              创作中心
-            </i></el-button>
-        </router-link>
+        <el-button  @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+          <i class="el-icon-upload el-icon--right" style="margin: 0">
+            创作中心
+          </i></el-button>
       </div>
       <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
@@ -74,13 +72,13 @@
                   收藏夹
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/friend_list" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item  @click="if_login('/friend_list')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/user_center" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -91,27 +89,25 @@
           <input type="text" class="search">
           <input type="button" name=""  class="btn" style="z-index:1" >
         </form>-->
-        <div class="nav-search-box">
-          <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-            <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
-              <input
-                  class="search-input"
-                  ref="search1"
-                  type="text"
-                  placeholder="      谁说站在光里的才算英雄 "
-                  style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
-              />
-              <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                  <img
-                      src="../img/sousuo1.png"
-                      alt=""
-                      style="width: 34px;height: 34px;padding: 0px 7px;"
-                  />
-                </button></router-link>
-              </div>
-            </form>
-          </div>
+        <div class="nav-search" style="margin: 0;border: 0;padding: 0;width: 480px">
+          <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+            <input
+                class="search-input"
+                ref="search"
+                type="text"
+                placeholder="      谁说站在光里的才算英雄 "
+                style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
+            />
+            <div class="nav-search-btn">
+              <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
+                <img
+                    src="../img/sousuoxia.png"
+                    alt=""
+                    style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
+                />
+              </button></router-link>
+            </div>
+          </form>
         </div>
       </div>
     </el-menu>
@@ -434,6 +430,15 @@ export default {
       );
   },
   methods:{
+    if_login(dir){
+      if(this.isLogin===0){
+        this.$router.push('/try_login');
+      }
+      else{
+        this.click_centerself();
+        this.$router.push(dir);
+      }
+    },
     auditvideo_com() {
       this.$axios({
             method: "post",
@@ -748,15 +753,14 @@ export default {
 }
 .nav-search .nav-search-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: -20px;
   margin: 0;
   padding: 0;
-  width: 48px;
-  height: 35px;
+  width: 40px;
+  height: 32px;
   border: none;
-  border-radius: 2px;
-  background: #e7e7e7;
+  border-radius: 8px;
   line-height: 35px;
 }
 
