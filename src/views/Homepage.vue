@@ -54,13 +54,14 @@
             </i></el-button>
       </div>
       <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
-        <i class="fa fa-paper-plane-o" style="color: gray"></i>
+        <!--<i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
             style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
           站内通知
-        </el-button>
+        </el-button>-->
+        <img style="width: 200px; position: relative; top: -10px;" alt="" src="../../src/img/logo.png">
       </div>
       <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
@@ -80,7 +81,7 @@
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item  @click="if_login('/Contribution')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -91,27 +92,25 @@
           <input type="text" class="search">
           <input type="button" name=""  class="btn" style="z-index:1" >
         </form>-->
-        <div class="nav-search-box">
-          <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-            <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
-              <input
-                  class="search-input"
-                  ref="search1"
-                  type="text"
-                  placeholder="      谁说站在光里的才算英雄 "
-                  style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
-              />
-              <div class="nav-search-btn">
-                 <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                   <img
-                      src="../img/sousuo1.png"
-                      alt=""
-                      style="width: 34px;height: 34px;padding: 0px 7px;"
-                  />
-                </button></router-link>
-              </div>
-            </form>
-          </div>
+        <div class="nav-search" style="margin: 0;border: 0;padding: 0;width: 480px">
+          <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+            <input
+                class="search-input"
+                ref="search"
+                type="text"
+                placeholder="      谁说站在光里的才算英雄 "
+                style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
+            />
+            <div class="nav-search-btn">
+              <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
+                <img
+                    src="../img/sousuoxia.png"
+                    alt=""
+                    style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
+                />
+              </button></router-link>
+            </div>
+          </form>
         </div>
       </div>
     </el-menu>
@@ -145,7 +144,7 @@
                   关注&nbsp;&nbsp;&nbsp;
               </span>
           </li>
-          <li  @click="if_login('/user_center')" style="display: inline;cursor: pointer">
+          <li  @click="if_login('/Contribution')" style="display: inline;cursor: pointer">
               <i class="fa fa-user-o" style="color: white"></i>
               <span style="color: white" >
                   个人中心
@@ -161,14 +160,14 @@
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
+                    style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
                 />
                 <div class="nav-search-btn">
-                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
                     <img
-                        src="../img/sousuo1.png"
+                        src="../img/sousuoxia.png"
                         alt=""
-                        style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
+                        style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
                     />
                   </button></router-link>
                 </div>
@@ -210,13 +209,7 @@
               </i></el-button>
         </div>
         <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <i class="fa fa-paper-plane-o" style="color: white"></i>
-          <el-button
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: white;font-size: 15px;padding: 0">
-            &ensp;站内通知
-          </el-button>
+          <img style="width: 200px; position: relative; top: -18px" alt="" src="../../src/img/logo.png">
         </div>
        <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -230,24 +223,32 @@
   </header>
   <div class="zouma">
     <div>
-      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 7px;
-           width: 550px; height: 380px" >
-        <el-carousel-item style="height: 380px">
+
+      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 15px;
+           width: 550px; height: 390px" >
+        <el-carousel-item style="height: 390px">
+
           <router-link to="videoPage" @click="click1" id="6">
             <img :src="this.videoList[6].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 380px">
+
+        <el-carousel-item style="height: 390px">
+
           <router-link to="videoPage" @click="click1" id="7">
             <img :src="this.videoList[7].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 380px">
+
+        <el-carousel-item style="height: 390px">
+
           <router-link to="videoPage" @click="click1" id="8">
             <img :src="this.videoList[8].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 380px">
+
+        <el-carousel-item style="height: 390px">
+
           <router-link to="videoPage" @click="click1" id="9">
             <img :src="this.videoList[9].videoCoverUrl" width="100%" height="100%">
           </router-link>
@@ -2074,8 +2075,6 @@ export default {
       } else {
         this.isLogin = 0;
       }
-
-
   },
 
   methods:{
@@ -2276,15 +2275,14 @@ html {
 }
 .nav-search .nav-search-btn {
   position: absolute;
-  top: 0;
+  top: -2px;
   right: 0;
   margin: 0;
   padding: 0;
-  width: 48px;
-  height: 35px;
+  width: 40px;
+  height: 32px;
   border: none;
-  border-radius: 2px;
-  background: #e7e7e7;
+  border-radius: 8px;
   line-height: 35px;
 }
 a {

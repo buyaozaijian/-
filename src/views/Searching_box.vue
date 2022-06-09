@@ -28,7 +28,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -51,13 +51,7 @@
             </i></el-button>
       </div>
       <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
-        <i class="fa fa-paper-plane-o" style="color: gray"></i>
-        <el-button
-            plain
-            @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
-          站内通知
-        </el-button>
+        <img style="width: 200px; position: relative; top: -8px;" alt="" src="../../src/img/logo.png">
       </div>
       <el-menu-item index="/" style="width: 100px; font-size: 15px;cursor: pointer"><a>
         <i class="fa fa-bank" style="color: gray"></i>
@@ -77,7 +71,7 @@
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px;cursor: pointer"><a>
+      <el-menu-item  @click="if_login('/Contribution')" style="width: 100px; font-size: 15px;cursor: pointer"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -88,27 +82,25 @@
           <input type="text" class="search">
           <input type="button" name=""  class="btn" style="z-index:1" >
         </form>-->
-        <div class="nav-search-box">
-          <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-            <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
-              <input
-                  class="search-input"
-                  ref="search1"
-                  type="text"
-                  placeholder="      谁说站在光里的才算英雄 "
-                  style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
-              />
-              <div class="nav-search-btn">
-                  <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                  <img
-                      src="../img/sousuo1.png"
-                      alt=""
-                      style="width: 34px;height: 34px;padding: 0px 7px;"
-                  />
-                  </button></router-link>
-              </div>
-            </form>
-          </div>
+        <div class="nav-search" style="margin: 0;border: 0;padding: 0;width: 480px">
+          <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+            <input
+                class="search-input"
+                ref="search"
+                type="text"
+                placeholder="      谁说站在光里的才算英雄 "
+                style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
+            />
+            <div class="nav-search-btn">
+              <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
+                <img
+                    src="../img/sousuoxia.png"
+                    alt=""
+                    style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
+                />
+              </button></router-link>
+            </div>
+          </form>
         </div>
       </div>
     </el-menu>
@@ -118,7 +110,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="'/'">
+            <router-link :to="'/'" >
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -127,40 +119,40 @@
           </li>
           <li @click="if_login('/saving_box')" style="display: inline;cursor: pointer">
               <i class="fa fa-file-video-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
           </li>
           <li @click="if_login('/friend_list')" style="display: inline;cursor: pointer">
               <i class="fa fa-heart" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
           </li>
-          <li @click="if_login('/user_center')" style="display: inline;cursor: pointer">
+          <li @click="if_login('/Contribution')" style="display: inline;cursor: pointer">
               <i class="fa fa-user-o" style="color: black"></i>
-              <span style="color: black">
-                  个人中心
+              <span style="color: black" @click="click_centerself">
+                  个人中心&nbsp;&nbsp;&nbsp;
                 </span>
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-              <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+              <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px"
+                    style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px;background-color: whitesmoke"
                 />
                 <div class="nav-search-btn">
                    <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                     <img
-                        src="../img/sousuo1.png"
+                        src="../img/sousuoxia.png"
                         alt=""
-                        style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
+                        style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: whitesmoke;"
                     />
                   </button></router-link>
                 </div>
@@ -168,10 +160,10 @@
             </div>
           </div>
         </div>
-        <div v-if="this.isLogin == 1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
+        <div v-if="this.isLogin==1" style="position: absolute;left:1000px; top:-5px;z-index: 9999; display: inline-block">
           <el-popover
               placement="top-start"
-              :title= this.username
+              :title="this.username"
               width="300"
               trigger="hover"
               left="">
@@ -179,21 +171,11 @@
               <div>
                 id:{{this.userid}}
               </div>
-              <div>
-                <el-button type="danger" @click="logout">退出登录</el-button>
-              </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
               <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
             </router-link>
           </el-popover>
-        </div>
-        <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-          <button style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-            <router-link to="/try_login"><span style="color: #0b95f1">
-                登录
-              </span></router-link>
-          </button>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
             <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
@@ -202,21 +184,32 @@
               </i></el-button>
         </div>
         <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <i class="fa fa-paper-plane-o" style="color: black"></i>
-          <el-button
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
-            &ensp;站内通知
-          </el-button>
+          <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
         </div>
-        <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
-           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
-               <router-link to="/try_login"><span style="color: #0b95f1">
-                 登录
-               </span></router-link>
-           </button>
-         </div>-->
+        <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
+          <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <span style="color: #0b95f1">
+                登录
+              </span>
+          </button>
+          <el-dialog title="登录" :visible.sync="dialogFormVisible" style="z-index: 9999">
+            <el-form :model="form">
+              <el-form-item label="用户名" :label-width="formLabelWidth">
+                <el-input v-model="form.name" autocomplete="off"></el-input>
+              </el-form-item>
+              <div>
+                <br>
+              </div>
+              <el-form-item label="密码" :label-width="formLabelWidth">
+                <el-input v-model="form.code" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+              <el-button @click="dialogFormVisible = false">取 消</el-button>
+              <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+            </div>
+          </el-dialog>
+        </div>
       </div>
     </div>
   </header>
@@ -235,9 +228,11 @@
           <div class="up-cover">
             <div style="float: left" class="txt">
                 <p class="name" @click="click1(index)">{{video.videoName}}</p>
+              <router-link to="Contribution">
                 <span class="title" @click="click_center(index)">
                   <b>{{video.videoauthor}}</b>
                 </span>
+              </router-link>
                 <span class="title"  @click="click1(index)">
                   播放:<b>{{video.videoviewnum}}</b>
                   评论:<b>{{video.videocommentnum}}</b>
@@ -672,15 +667,14 @@ table {
 }
 .nav-search .nav-search-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: -1px;
+  right: -20px;
   margin: 0;
   padding: 0;
-  width: 48px;
-  height: 35px;
+  width: 40px;
+  height: 32px;
   border: none;
-  border-radius: 2px;
-  background: #e7e7e7;
+  border-radius: 8px;
   line-height: 35px;
 }
 .title{
