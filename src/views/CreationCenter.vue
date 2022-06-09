@@ -685,8 +685,12 @@ export default {
           });
     },
     upLoadImage(file) {
-      const formData = new FormData();
+      let formData = new FormData();
       formData.append('image', file.file);
+      //Object.keys(file.file).forEach(item => {
+        //formData.append('image',file.file);
+      //});
+      console.log(file);
       this.$axios({
         method: 'post',
         url: this.uploadImgUrl,
@@ -734,6 +738,7 @@ export default {
     upLoadVideo(file) {
       const formData = new FormData();
       formData.append('video', file.file);
+      //console.log(file);
       const instance = this.$axios.create({
         withCredentials: true,
       })
