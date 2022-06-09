@@ -815,6 +815,8 @@ export default {
             alert(res.data.msg);
           }
       )
+      window.location.reload();
+
     },
     auditvideo_notpass(index) {
       alert(this.videoauditList[index].videoid);
@@ -830,6 +832,7 @@ export default {
             alert(res.data.msg);
           }
       )
+      window.location.reload();
     },
     auditvideo_pass(index) {
       alert(this.videoauditList[index].videoid);
@@ -845,6 +848,7 @@ export default {
             alert(res.data.msg);
           }
       )
+      window.location.reload();
     },
   },
   mounted() {
