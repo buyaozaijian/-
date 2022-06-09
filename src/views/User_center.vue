@@ -70,21 +70,21 @@
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'Saving_box'">
           <i class="fa fa-file-video-o" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   收藏夹
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Friend_list'">
           <i class="fa fa-heart" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   关注
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'User_center'">
           <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   个人中心
                 </span>
         </router-link></el-menu-item>
@@ -123,7 +123,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="'/'">
+            <router-link :to="'/'" >
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -131,25 +131,25 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'">
+            <router-link :to="'Saving_box'" >
               <i class="fa fa-file-video-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'">
+            <router-link :to="'Friend_list'" >
               <i class="fa fa-heart" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
-          <li style="display: inline">
+          <li style="display: inline" >
             <router-link :to="'User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   个人中心&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
@@ -204,123 +204,14 @@
               </i></el-button>
           </router-link>
         </div>
-        <div style=" position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
-              v-if="this.isLogin===0"
               plain
               @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;">
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
             &ensp;站内通知
           </el-button>
-          <el-button
-              v-else
-              @click="notice1"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
-            &ensp;站内通知
-          </el-button>
-          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
-          <el-drawer
-              title="站内通知"
-              :visible.sync="drawer"
-              :direction="direction"
-              append-to-body="true"
-              >
-            <!-- :before-close="handleClose-->
-            <!--<el-divider></el-divider>
-            <div  style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;mmm关注了你注了你注了你注了&ensp;</el-badge></div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;2022-02-06 16:00</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>-->
-            <!--<div v-for="notice in notificationList" :key="notice.notice_id">
-            </div>-->
-            <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
-              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：&ensp;</el-badge></div>
-                <br/>
-                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-            </div>
-            <div v-for="notice in readnotificationList" :key="notice.notice_video">
-            <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
-              <br/>
-              <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>
-            </div>
-          </el-drawer>
-
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -352,35 +243,43 @@
   <div class = "user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
+        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userdata[0].UserHead">
       </a>
     </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
-    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
+    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.userdata[0].UserName}}</div>
+    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FansNum}}</div>
+    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">{{this.userdata[0].VideoNum}}</div>
+    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FavorNum}}</div>
     <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
     <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
     <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="评论数" style="position:absolute;left:60px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
-    <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
-    <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
+    <div class="点赞数" style="position:absolute;left:115px;top:220px;color: black;font-size: 20px">{{this.userdata[0].LikeNum}}</div>
+    <div class="关注数" style="position:absolute;left:215px;top:220px;color: black;font-size: 20px">{{this.userdata[0].FollowNum}}</div>
+    <div class="点赞" style="position:absolute;left:100px;top:260px;color: black;font-size: 20px">点赞</div>
+    <div class="关注" style="position:absolute;left:200px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下</div>
-    <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
-               text-color="black"
-               active-text-color="black" >
-        <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
-        <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
-      </el-menu>
+    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
+    <div style="position:absolute;left:80px;top:370px;">
+      <div>
+        <el-button  v-if="this.iffollow===0&&this.if_same===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button  v-if="this.iffollow===1&&this.if_same===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
+        <!--<el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>-->
+      </div>
     </div>
   </div>
   <div class="收藏夹">
-    <div style="width: 1000px; height: 50px; position: relative; top: 20px">在此处上传头像</div>
+    <div style="position:absolute;left:55px;top:0px; margin: 0 auto">
+      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
+               text-color="black"
+               active-text-color="#eee"
+      >
+        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'"><span @click="click_centernow">关注列表</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'"><span @click="click_centernow">收藏夹</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Contribution'"><span @click="click_centernow">投稿</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1" v-if="this.userid==this.centerId"><router-link :to="'User_center'"><span @click="click_centernow">个人信息</span></router-link></el-menu-item>
+      </el-menu>
+    </div>
+    <div style="width: 1000px; height: 50px; position: relative; top: 80px">在此处上传头像</div>
     <el-upload
         list-type="picture-card"
         action='video/uploadphoto'
@@ -390,13 +289,13 @@
         :file-list="change.head"
         :limit="1"
         :value="this.userhead"
-        style="width: 200px;display: block; clear: both; margin: 0 auto">
+        style="width: 200px;display: block; clear: both; margin: 0 auto; position: relative; top: 60px">
       <i class="el-icon-plus"></i>
     </el-upload>
     <!--<el-dialog :visible.sync="dialogVisible">
       <img width="100%" :src="dialogImageUrl" alt="">
     </el-dialog>-->
-    <div style="width: 1000px; height: 50px; position: relative; top: 10px; font-size: 15px">图片只能为jpg/png格式</div>
+    <div style="width: 1000px; height: 50px; position: relative; top: 70px; font-size: 15px">图片只能为jpg/png格式</div>
     <!--<div style="width: 1000px; height: 60px">
       <span style="width: 1000px; height: 50px; margin-right: 20px">个性签名:</span>
       <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入个性签名内容"></el-input>
@@ -415,7 +314,7 @@
       <span style="width: 1000px; height: 50px; margin-right: 20px">密码:</span>
       <el-input style="width: 500px; margin: 0 auto" v-model="input" placeholder="请输入新密码"></el-input>
     </div>-->
-    <div style="width: 800px; margin: 0 auto;">
+    <div style="width: 800px; margin: 0 auto; position: relative; top: 60px">
       <el-form ref="form" :model="change" label-width="80px">
        <el-form-item label="个性签名" style="margin-bottom: 20px; display: inline-block">
          <el-input v-model="change.sign" style="width: 500px;" :placeholder="this.oldsign" :value="this.oldsign"></el-input>
@@ -460,10 +359,10 @@ export default {
       readnotificationList: [],
       unreadnotificationList: [],
 
-      oldname: '',
-      oldsign: '',
-      oldmail: '',
-      oldpassword: '',
+      oldname: '1',
+      oldsign: '2',
+      oldmail: '3',
+      oldpassword: '12345667',
 
 
       change: {
@@ -510,9 +409,28 @@ export default {
       formLabelWidth: '120px',
       imgList: [],
       url: '',
+      Authorization: '',
+      Identity: '',
+      centerId: 0,
+      iffollow: 0,
+      userdata:[
+        {
+          FansNum:0,
+          VideoNum:0,
+          FavorNum:0,
+          LikeNum:0,
+          FollowNum:0,
+          UserIntroduction:'wu',
+          UserHead: '',
+          UserName: '',
+        }
+      ],
+      videoAuthorFollow:0,
+      if_same:0,
     }
   },
   created(){
+    this.centerId = JSON.parse(sessionStorage.getItem('center_id'));
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -521,35 +439,88 @@ export default {
       this.username = userInfo.user.username;
       this.isLogin = 1;
       this.userid = userInfo.user.userid;
+      this.Authorization = userInfo.user.Authorization;
+      this.Identity = userInfo.user.Identity;
     } else {
       this.isLogin = 0;
     }
-    this.$axios.get('user/detail/').then(
+    this.$axios.get('user/detail/'+this.centerId).then(
+        res =>{
+            this.userdata[0].FansNum=res.data.FansNum;
+            this.videoAuthorFollow = this.userdata[0].FansNum;
+            this.userdata[0].VideoNum=res.data.VideoNum;
+            this.userdata[0].FavorNum=res.data.FavorNum;
+            this.userdata[0].LikeNum=res.data.LikeNum;
+            this.userdata[0].FollowNum=res.data.FollowNum;
+            this.userdata[0].UserIntroduction=res.data.user.UserIntroduction;
+            this.userdata[0].UserName=res.data.user.UserName;
+            this.userdata[0].UserHead=res.data.user.UserProfilePhotoUrl;
+            this.iffollow=res.data.fol;
+        },
+    );
+    this.$axios.get('user/detail/' + this.userid).then(
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
-          this.unread_notification_num=res.data.unread_notificationUnreadNum;
+          this.unread_notification_num=res.data.notificationUnreadNum;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
     );
-    this.$axios.get('user/' + this.userid).then(
+    if(this.userid === this.centerId){
+      this.if_same = 1;
+    }
+    /*
+    this.$axios.get('user/' + this.userid).then(// 登录用户的信息
         res =>{
           this.oldpassword=res.data.user.UserPassword;
           this.oldmail=res.data.user.UserEmail;
           this.oldsign=res.data.user.UserIntroduction;
           this.oldname=res.data.user.UserName;
+          this.change.name=this.oldname;
+          this.change.password=this.oldpassword;
+          this.change.sign=this.oldsign;
+          this.change.mail=this.oldmail;
+          this.url=this.userhead;
         },
-    );
+    );*/
   },
   methods:{
+    follow(){
+      if(this.isLogin===1) {
+        if(this.iffollow === 0) {
+          alert('关注该用户');
+          this.iffollow = 1;
+          this.videoAuthorFollow += 1;
+        }
+        else{
+          alert('取消关注');
+          this.videoAuthorFollow -= 1;
+          this.iffollow = 0;
+        }
+        this.$axios.get('user/follow/' + this.centerId).then(
+        );
+      }
+      else{
+        this.$message.success("请先登录");
+        this.$router.push('/try_login');
+      }
+    },
     notice1(){
       var i=0;
       this.drawer = true;
       this.$axios.get('note/all').then(
           res => {
+            var i = 0;
             this.notification_num=res.data.notificationReadNum;
-            this.unread_notification_num=res.data.unread_notificationUnreadNum;
+            this.unread_notification_num=res.data.notificationUnreadNum;
+            this.unreadnotificationList.length=0;
+            this.readnotificationList.length=0;
             for(i=0;i<this.notification_num;i++){
               this.readnotificationList.push(
                   {
@@ -575,16 +546,12 @@ export default {
           },
       );
       this.unread_notification_num=0;
-      this.$axios(
+      /*this.$axios(
           {
-            method: 'post',
-            url: 'note/setStauts',
-            data: qs.stringify(
-                {
-                }
-            )
+            method: 'get',
+            url: 'note/setStatus',
           }
-      )
+      )*/
     },
     /*handleClose(done) {
       this.$confirm('确认关闭？')
@@ -616,6 +583,16 @@ export default {
             switch (res.data.status_code) {
               case 1:
                 console.log("上传成功");
+                this.$store.dispatch('clearUserInfo');
+                this.$store.dispatch('saveUserInfo', {
+                  user: {
+                    userid: this.userid,
+                    username: this.change.name,
+                    Authorization: this.Authorization,
+                    UserProfilePhotoUrl: this.url,
+                    UserIdentity: this.Identity,
+                  }
+                })
                 this.$router.push({
                   path: './'
                 })
@@ -678,6 +655,18 @@ export default {
     click_search1(){
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
+    },
+    click_center(id){
+      alert(this.videoList[id].videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
+    },
+    click_centerself(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
+    },
+    click_centernow(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.centerId));
     },
     logout(){
       alert('退出登录！');

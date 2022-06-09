@@ -31,7 +31,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -76,13 +76,13 @@
                   收藏夹
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/friend_list" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/friend_list" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/user_center" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item index="/user_center" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -142,17 +142,19 @@
                 </span>
           </li>
           <li style="display: inline">
-            <router-link :to="'/Friend_list'">
+            <router-link :to="'/Friend_list'" >
               <i class="fa fa-heart" style="color: white"></i>
-              <span style="color: white">
+              <span style="color: white" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'/User_center'">
+
+            <router-link :to="'/User_center'" >
               <i class="fa fa-user-o" style="color: white"></i>
-              <span style="color: white">
+              <span style="color: white" @click="click_centerself">
+
                   个人中心
                 </span>
             </router-link>
@@ -198,7 +200,7 @@
               </div>
             </div>
             <router-link :to="'User_center'" slot="reference">
-              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+              <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
             </router-link>
           </el-popover>
         </div>
@@ -278,13 +280,15 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="0" class="name" @click="click1">{{this.videoList[0].videoName}}</p></router-link></a>
                     <span v-for="tags in videoList[0].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[0].videoAuthor}}</p>
+                  <router-link to="User_center" >
+                    <p class="title" @click="click_center(0)">{{this.videoList[0].videoAuthor}}&nbsp;播放:<b>{{this.videoList[0].videoviewnum}}</b>评论:<b>{{this.videoList[0].commentnum}}</b></p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -302,13 +306,15 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="1" class="name" @click="click1">{{this.videoList[1].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[1].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box">
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[1].videoAuthor}}</p>
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(1)">{{this.videoList[1].videoAuthor}}&nbsp;播放:<b>{{this.videoList[1].videoviewnum}}</b>评论:<b>{{this.videoList[1].commentnum}}</b></p>
+                  </router-link>
                 </div>
               </div>
             </div>
@@ -326,13 +332,15 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="2" class="name" @click="click1">{{this.videoList[2].videoName}}</p></router-link></a>
                 <span v-for="tags in videoList[2].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box">
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                <p class="title">{{this.videoList[2].videoAuthor}}</p>
+                <router-link to="User_center">
+                  <p class="title" @click="click_center(2)">{{this.videoList[2].videoAuthor}}&nbsp;播放:<b>{{this.videoList[2].videoviewnum}}</b>评论:<b>{{this.videoList[2].commentnum}}</b></p>
+                </router-link>
               </div>
             </div>
           </div>
@@ -352,13 +360,17 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="3" class="name" @click="click1">{{this.videoList[3].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[3].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[3].videoAuthor}}</p>
+
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(3)">{{this.videoList[3].videoAuthor}}&nbsp;播放:<b>{{this.videoList[3].videoviewnum}}</b>评论:<b>{{this.videoList[3].commentnum}}</b></p>
+                  </router-link>
+
                 </div>
               </div>
             </div>
@@ -376,13 +388,17 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="4" class="name" @click="click1">{{this.videoList[4].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[4].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[4].videoAuthor}}</p>
+
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(4)">{{this.videoList[4].videoAuthor}}&nbsp;播放:<b>{{this.videoList[4].videoviewnum}}</b>评论:<b>{{this.videoList[4].commentnum}}</b></p>
+                  </router-link>
+
                 </div>
               </div>
             </div>
@@ -400,13 +416,17 @@
                   <a target="blank">
                     <router-link to="/videoPage"><p id="5" class="name" @click="click1">{{this.videoList[5].videoName}}</p></router-link></a>
                   <span v-for="tags in videoList[5].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                  <p class="title">{{this.videoList[5].videoAuthor}}</p>
+
+                  <router-link to="User_center">
+                    <p class="title" @click="click_center(5)">{{this.videoList[5].videoAuthor}}&nbsp;播放:<b>{{this.videoList[5].videoviewnum}}</b>评论:<b>{{this.videoList[5].commentnum}}</b></p>
+                  </router-link>
+
                 </div>
               </div>
             </div>
@@ -440,13 +460,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="10" class="name" @click="click1">{{this.videoList[10].videoName}}</p></router-link></a>
                   <div v-for="tags in videoList[10].videoTags" :key="tags">
-                      <router-link to="Searching_box" @click="click_search2(tags)">
-                        <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                   </div>
-                <p class="title">{{this.videoList[10].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[10].videoAuthorId)">
+                  <p class="title">{{this.videoList[10].videoAuthor}}&nbsp;播放:<b>{{this.videoList[10].videoviewnum}}</b>评论:<b>{{this.videoList[10].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -464,13 +488,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="11" class="name" @click="click1">{{this.videoList[11].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[11].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[11].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[11].videoAuthorId)">
+                  <p class="title">{{this.videoList[11].videoAuthor}}&nbsp;播放:<b>{{this.videoList[11].videoviewnum}}</b>评论:<b>{{this.videoList[11].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -488,13 +516,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="12" class="name" @click="click1">{{this.videoList[12].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[12].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[12].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[12].videoAuthorId)">
+                  <p class="title">{{this.videoList[12].videoAuthor}}&nbsp;播放:<b>{{this.videoList[12].videoviewnum}}</b>评论:<b>{{this.videoList[12].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -512,13 +544,16 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="13" class="name" @click="click1">{{this.videoList[13].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[13].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[13].videoAuthor}}</p>
+        <router-link to="User_center" @click="click_center(this.videoList[13].videoAuthorId)">
+                  <p class="title">{{this.videoList[13].videoAuthor}}&nbsp;播放:<b>{{this.videoList[13].videoviewnum}}</b>评论:<b>{{this.videoList[13].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -538,13 +573,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="14" class="name" @click="click1">{{this.videoList[14].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[14].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[14].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[14].videoAuthorId)">
+                  <p class="title">{{this.videoList[14].videoAuthor}}&nbsp;播放:<b>{{this.videoList[14].videoviewnum}}</b>评论:<b>{{this.videoList[14].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -562,13 +601,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="15" class="name" @click="click1">{{this.videoList[15].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[15].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[15].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[15].videoAuthorId)">
+                  <p class="title">{{this.videoList[15].videoAuthor}}&nbsp;播放:<b>{{this.videoList[15].videoviewnum}}</b>评论:<b>{{this.videoList[15].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -586,13 +629,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="16" class="name" @click="click1">{{this.videoList[16].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[16].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[16].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[16].videoAuthorId)">
+                  <p class="title">{{this.videoList[16].videoAuthor}}&nbsp;播放:<b>{{this.videoList[16].videoviewnum}}</b>评论:<b>{{this.videoList[16].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -610,13 +657,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="17" class="name" @click="click1">{{this.videoList[17].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[17].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[17].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[17].videoAuthorId)">
+                  <p class="title">{{this.videoList[17].videoAuthor}}&nbsp;播放:<b>{{this.videoList[17].videoviewnum}}</b>评论:<b>{{this.videoList[17].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -649,13 +700,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="18" class="name" @click="click1">{{this.videoList[18].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[18].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[18].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[18].videoAuthorId)">
+                  <p class="title">{{this.videoList[18].videoAuthor}}&nbsp;播放:<b>{{this.videoList[18].videoviewnum}}</b>评论:<b>{{this.videoList[18].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -673,13 +728,16 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="19" class="name" @click="click1">{{this.videoList[19].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[19].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[19].videoAuthor}}</p>
+       <router-link to="User_center" @click="click_center(this.videoList[19].videoAuthorId)">
+                  <p class="title">{{this.videoList[19].videoAuthor}}&nbsp;播放:<b>{{this.videoList[19].videoviewnum}}</b>评论:<b>{{this.videoList[19].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -697,13 +755,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="20" class="name" @click="click1">{{this.videoList[20].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[20].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[20].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[20].videoAuthorId)">
+                  <p class="title">{{this.videoList[20].videoAuthor}}&nbsp;播放:<b>{{this.videoList[20].videoviewnum}}</b>评论:<b>{{this.videoList[20].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -721,13 +783,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="21" class="name" @click="click1">{{this.videoList[21].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[21].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[21].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[21].videoAuthorId)">
+                  <p class="title">{{this.videoList[21].videoAuthor}}&nbsp;播放:<b>{{this.videoList[21].videoviewnum}}</b>评论:<b>{{this.videoList[21].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -747,13 +813,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="22" class="name" @click="click1">{{this.videoList[22].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[22].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[22].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[22].videoAuthorId)">
+                  <p class="title">{{this.videoList[22].videoAuthor}}&nbsp;播放:<b>{{this.videoList[22].videoviewnum}}</b>评论:<b>{{this.videoList[22].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -771,13 +841,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="23" class="name" @click="click1">{{this.videoList[23].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[23].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[23].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[23].videoAuthorId)">
+                  <p class="title">{{this.videoList[23].videoAuthor}}&nbsp;播放:<b>{{this.videoList[23].videoviewnum}}</b>评论:<b>{{this.videoList[23].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -795,13 +869,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="24" class="name" @click="click1">{{this.videoList[24].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[24].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[24].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[24].videoAuthorId)">
+                  <p class="title">{{this.videoList[24].videoAuthor}}&nbsp;播放:<b>{{this.videoList[24].videoviewnum}}</b>评论:<b>{{this.videoList[24].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -819,13 +897,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="25" class="name" @click="click1">{{this.videoList[25].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[25].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[25].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[25].videoAuthorId)">
+                  <p class="title">{{this.videoList[25].videoAuthor}}&nbsp;播放:<b>{{this.videoList[25].videoviewnum}}</b>评论:<b>{{this.videoList[25].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -858,13 +940,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="26" class="name" @click="click1">{{this.videoList[26].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[26].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[26].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[26].videoAuthorId)">
+                  <p class="title">{{this.videoList[26].videoAuthor}}&nbsp;播放:<b>{{this.videoList[26].videoviewnum}}</b>评论:<b>{{this.videoList[26].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -882,13 +968,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="27" class="name" @click="click1">{{this.videoList[27].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[27].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[27].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[27].videoAuthorId)">
+                  <p class="title">{{this.videoList[27].videoAuthor}}&nbsp;播放:<b>{{this.videoList[27].videoviewnum}}</b>评论:<b>{{this.videoList[27].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -906,13 +996,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="28" class="name" @click="click1">{{this.videoList[28].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[28].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[28].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[28].videoAuthorId)">
+                  <p class="title">{{this.videoList[28].videoAuthor}}&nbsp;播放:<b>{{this.videoList[28].videoviewnum}}</b>评论:<b>{{this.videoList[28].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -930,13 +1024,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="29" class="name" @click="click1">{{this.videoList[29].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[29].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[29].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[29].videoAuthorId)">
+                  <p class="title">{{this.videoList[29].videoAuthor}}&nbsp;播放:<b>{{this.videoList[29].videoviewnum}}</b>评论:<b>{{this.videoList[29].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -956,13 +1054,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="30" class="name" @click="click1">{{this.videoList[30].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[30].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[30].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[30].videoAuthorId)">
+                  <p class="title">{{this.videoList[30].videoAuthor}}&nbsp;播放:<b>{{this.videoList[30].videoviewnum}}</b>评论:<b>{{this.videoList[30].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -980,13 +1082,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="31" class="name" @click="click1">{{this.videoList[31].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[31].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[31].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[31].videoAuthorId)">
+                  <p class="title">{{this.videoList[31].videoAuthor}}&nbsp;播放:<b>{{this.videoList[31].videoviewnum}}</b>评论:<b>{{this.videoList[31].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1004,13 +1110,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="32" class="name" @click="click1">{{this.videoList[32].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[32].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[32].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[32].videoAuthorId)">
+                  <p class="title">{{this.videoList[32].videoAuthor}}&nbsp;播放:<b>{{this.videoList[32].videoviewnum}}</b>评论:<b>{{this.videoList[32].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1028,13 +1138,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="33" class="name" @click="click1">{{this.videoList[33].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[33].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[33].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[33].videoAuthorId)">
+                  <p class="title">{{this.videoList[33].videoAuthor}}&nbsp;播放:<b>{{this.videoList[33].videoviewnum}}</b>评论:<b>{{this.videoList[33].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1067,13 +1181,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="34" class="name" @click="click1">{{this.videoList[34].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[34].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[34].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[34].videoAuthorId)">
+                  <p class="title">{{this.videoList[34].videoAuthor}}&nbsp;播放:<b>{{this.videoList[34].videoviewnum}}</b>评论:<b>{{this.videoList[34].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1091,13 +1209,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="35" class="name" @click="click1">{{this.videoList[35].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[35].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[35].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[35].videoAuthorId)">
+                  <p class="title">{{this.videoList[35].videoAuthor}}&nbsp;播放:<b>{{this.videoList[35].videoviewnum}}</b>评论:<b>{{this.videoList[35].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1115,13 +1237,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="36" class="name" @click="click1">{{this.videoList[36].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[36].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[36].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[36].videoAuthorId)">
+                  <p class="title">{{this.videoList[36].videoAuthor}}&nbsp;播放:<b>{{this.videoList[36].videoviewnum}}</b>评论:<b>{{this.videoList[36].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1139,13 +1265,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="37" class="name" @click="click1">{{this.videoList[37].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[37].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)"  href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[37].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[37].videoAuthorId)">
+                  <p class="title">{{this.videoList[37].videoAuthor}}&nbsp;播放:<b>{{this.videoList[37].videoviewnum}}</b>评论:<b>{{this.videoList[37].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1165,13 +1295,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="38" class="name" @click="click1">{{this.videoList[38].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[38].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[38].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[38].videoAuthorId)">
+                  <p class="title">{{this.videoList[38].videoAuthor}}&nbsp;播放:<b>{{this.videoList[38].videoviewnum}}</b>评论:<b>{{this.videoList[38].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1189,13 +1323,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="39" class="name" @click="click1">{{this.videoList[39].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[39].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[39].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[39].videoAuthorId)">
+                  <p class="title">{{this.videoList[39].videoAuthor}}&nbsp;播放:<b>{{this.videoList[39].videoviewnum}}</b>评论:<b>{{this.videoList[39].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1213,13 +1351,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="40" class="name" @click="click1">{{this.videoList[40].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[40].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[40].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[40].videoAuthorId)">
+                  <p class="title">{{this.videoList[40].videoAuthor}}&nbsp;播放:<b>{{this.videoList[40].videoviewnum}}</b>评论:<b>{{this.videoList[40].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1237,13 +1379,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="41" class="name" @click="click1">{{this.videoList[41].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[41].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[41].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[41].videoAuthorId)">
+                  <p class="title">{{this.videoList[41].videoAuthor}}&nbsp;播放:<b>{{this.videoList[41].videoviewnum}}</b>评论:<b>{{this.videoList[41].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1276,13 +1422,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="42" class="name" @click="click1">{{this.videoList[42].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[42].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[42].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[42].videoAuthorId)">
+                  <p class="title">{{this.videoList[42].videoAuthor}}&nbsp;播放:<b>{{this.videoList[42].videoviewnum}}</b>评论:<b>{{this.videoList[42].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1300,13 +1450,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="43" class="name" @click="click1">{{this.videoList[43].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[43].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[43].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[43].videoAuthorId)">
+                  <p class="title">{{this.videoList[43].videoAuthor}}&nbsp;播放:<b>{{this.videoList[43].videoviewnum}}</b>评论:<b>{{this.videoList[43].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1324,13 +1478,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="44" class="name" @click="click1">{{this.videoList[44].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[44].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[44].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[44].videoAuthorId)">
+                  <p class="title">{{this.videoList[44].videoAuthor}}&nbsp;播放:<b>{{this.videoList[44].videoviewnum}}</b>评论:<b>{{this.videoList[44].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1348,13 +1506,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="45" class="name" @click="click1">{{this.videoList[45].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[45].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[45].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[45].videoAuthorId)">
+                  <p class="title">{{this.videoList[45].videoAuthor}}&nbsp;播放:<b>{{this.videoList[45].videoviewnum}}</b>评论:<b>{{this.videoList[45].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1374,13 +1536,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="46" class="name" @click="click1">{{this.videoList[46].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[46].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[46].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[46].videoAuthorId)">
+                  <p class="title">{{this.videoList[46].videoAuthor}}&nbsp;播放:<b>{{this.videoList[46].videoviewnum}}</b>评论:<b>{{this.videoList[46].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1398,13 +1564,16 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="47" class="name" @click="click1">{{this.videoList[47].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[47].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[47].videoAuthor}}</p>
+       <router-link to="User_center" @click="click_center(this.videoList[47].videoAuthorId)">
+                  <p class="title">{{this.videoList[47].videoAuthor}}&nbsp;播放:<b>{{this.videoList[47].videoviewnum}}</b>评论:<b>{{this.videoList[47].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1422,13 +1591,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="48" class="name" @click="click1">{{this.videoList[48].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[48].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[48].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[48].videoAuthorId)">
+                  <p class="title">{{this.videoList[48].videoAuthor}}&nbsp;播放:<b>{{this.videoList[48].videoviewnum}}</b>评论:<b>{{this.videoList[48].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1446,13 +1619,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="49" class="name" @click="click1">{{this.videoList[49].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[49].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[49].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[49].videoAuthorId)">
+                  <p class="title">{{this.videoList[49].videoAuthor}}&nbsp;播放:<b>{{this.videoList[49].videoviewnum}}</b>评论:<b>{{this.videoList[49].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1485,13 +1662,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="50" class="name" @click="click1">{{this.videoList[50].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[50].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[50].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[50].videoAuthorId)">
+                  <p class="title">{{this.videoList[50].videoAuthor}}&nbsp;播放:<b>{{this.videoList[50].videoviewnum}}</b>评论:<b>{{this.videoList[50].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1509,13 +1690,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="51" class="name" @click="click1">{{this.videoList[51].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[51].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[51].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[51].videoAuthorId)">
+                  <p class="title">{{this.videoList[51].videoAuthor}}&nbsp;播放:<b>{{this.videoList[51].videoviewnum}}</b>评论:<b>{{this.videoList[51].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1533,13 +1718,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="52" class="name" @click="click1">{{this.videoList[52].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[52].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box" >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[52].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[52].videoAuthorId)">
+                  <p class="title">{{this.videoList[52].videoAuthor}}&nbsp;播放:<b>{{this.videoList[52].videoviewnum}}</b>评论:<b>{{this.videoList[52].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1557,13 +1746,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="53" class="name" @click="click1">{{this.videoList[53].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[53].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[53].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[53].videoAuthorId)">
+                  <p class="title">{{this.videoList[53].videoAuthor}}&nbsp;播放:<b>{{this.videoList[53].videoviewnum}}</b>评论:<b>{{this.videoList[53].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1583,13 +1776,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="54" class="name" @click="click1">{{this.videoList[54].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[54].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[54].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[54].videoAuthorId)">
+                  <p class="title">{{this.videoList[54].videoAuthor}}&nbsp;播放:<b>{{this.videoList[54].videoviewnum}}</b>评论:<b>{{this.videoList[54].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1607,13 +1804,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="55" class="name" @click="click1">{{this.videoList[55].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[55].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[55].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[55].videoAuthorId)">
+                  <p class="title">{{this.videoList[55].videoAuthor}}&nbsp;播放:<b>{{this.videoList[55].videoviewnum}}</b>评论:<b>{{this.videoList[55].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1631,13 +1832,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="56" class="name" @click="click1">{{this.videoList[56].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[56].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[56].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[56].videoAuthorId)">
+                  <p class="title">{{this.videoList[56].videoAuthor}}&nbsp;播放:<b>{{this.videoList[56].videoviewnum}}</b>评论:<b>{{this.videoList[56].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1655,13 +1860,17 @@
                 <a target="blank">
                   <router-link to="/videoPage"><p id="57" class="name" @click="click1">{{this.videoList[57].videoName}}</p></router-link></a>
                 <div v-for="tags in videoList[57].videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box"  >
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
                 </div>
-                <p class="title">{{this.videoList[57].videoAuthor}}</p>
+
+                <router-link to="User_center" @click="click_center(this.videoList[57].videoAuthorId)">
+                  <p class="title">{{this.videoList[57].videoAuthor}}&nbsp;播放:<b>{{this.videoList[57].videoviewnum}}</b>评论:<b>{{this.videoList[57].commentnum}}</b></p>
+                </router-link>
+
               </div>
             </div>
           </div>
@@ -1717,18 +1926,19 @@ export default {
     for(i=0;i<58;i++)
     {
       this.videoList.push({
-        videoAuthorId: '',
+        videoAuthorId: '5',
         videoAuthor: '未知',
         videoId: '',
         videoUrl: '',
         videoCoverUrl: '',
-        videoName: '视频连接中',
+        videoName: '视频连接中a',
         videolike: '',
         videofavourite: '',
         videoviewnum:0,
         videouploadtime:'',
         videoTags:[
         ],
+        commentnum:0,
       });
     }
     this.$axios.get('/index/main').then(
@@ -1745,7 +1955,8 @@ export default {
               this.videoList[i].videofavourite= res.data.videoList[i].VideoFavourite,
               this.videoList[i].videoviewnum= res.data.videoList[i].VideoViewCounts,
               this.videoList[i].videouploadtime= res.data.videoList[i].VideoUploadTime,
-              this.videoList[i].videoTags = res.data.videoList[i].VideoTags
+              this.videoList[i].videoTags = res.data.videoList[i].VideoTags,
+              this.videoList[i].commentnum = res.data.videoList[i].CommentNum
           }
         },
     );
@@ -1762,8 +1973,9 @@ export default {
             this.videoList[i].videolike= res.data.videoList[i-10].VideoLike,
             this.videoList[i].videofavourite= res.data.videoList[i-10].VideoFavourite,
             this.videoList[i].videoviewnum= res.data.videoList[i-10].VideoViewCounts,
-            this.videoList[i].videouploadtime= res.data.videoList[i-10].VideoUploadTime
-            this.videoList[i].videoTags = res.data.videoList[i-10].VideoTags
+            this.videoList[i].videouploadtime= res.data.videoList[i-10].VideoUploadTime,
+            this.videoList[i].videoTags = res.data.videoList[i-10].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-10].CommentNum
           }
         },
     );
@@ -1780,8 +1992,9 @@ export default {
                 this.videoList[i].videolike= res.data.videoList[i-18].VideoLike,
                 this.videoList[i].videofavourite= res.data.videoList[i-18].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-18].VideoViewCounts,
-                this.videoList[i].videouploadtime= res.data.videoList[i-18].VideoUploadTime
-                this.videoList[i].videoTags = res.data.videoList[i-18].VideoTags
+                this.videoList[i].videouploadtime= res.data.videoList[i-18].VideoUploadTime,
+                this.videoList[i].videoTags = res.data.videoList[i-18].VideoTags,
+                    this.videoList[i].commentnum = res.data.videoList[i-18].CommentNum
           }
         },
     );
@@ -1799,7 +2012,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-26].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-26].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-26].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-26].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-26].VideoTags,
+                    this.videoList[i].commentnum = res.data.videoList[i-26].CommentNum
           }
         },
     );
@@ -1817,7 +2031,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-34].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-34].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-34].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-34].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-34].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-34].CommentNum
           }
         },
     );
@@ -1835,7 +2050,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-42].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-42].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-42].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-42].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-42].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-42].CommentNum
           }
         },
     );
@@ -1853,7 +2069,8 @@ export default {
                 this.videoList[i].videofavourite= res.data.videoList[i-50].VideoFavourite,
                 this.videoList[i].videoviewnum= res.data.videoList[i-50].VideoViewCounts,
                 this.videoList[i].videouploadtime= res.data.videoList[i-50].VideoUploadTime,
-                this.videoList[i].videoTags = res.data.videoList[i-50].VideoTags
+                this.videoList[i].videoTags = res.data.videoList[i-50].VideoTags,
+                this.videoList[i].commentnum = res.data.videoList[i-50].CommentNum
           }
         },
     );
@@ -1863,7 +2080,7 @@ export default {
         this.userhead = userInfo.user.UserProfilePhotoUrl;
         this.username = userInfo.user.username;
         this.isLogin = 1;
-        this.userid = userInfo.user.userid
+        this.userid = userInfo.user.userid;
       } else {
         this.isLogin = 0;
       }
@@ -1876,6 +2093,7 @@ export default {
       }
       else{
         this.$router.push(dir);
+        this.click_centerself();
       }
     },
     into1(){
@@ -1909,15 +2127,21 @@ export default {
       this.$router.push('/part_show');
     },
     click_search(){
-      alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
     click_search1(){
-      alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_search2(args){
       sessionStorage.setItem('message', JSON.stringify(args));
+    },
+    click_center(id){
+      //alert(this.videoList[id].videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
+    },
+    click_centerself(){
+      //alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
       alert('退出登录！');
@@ -1928,7 +2152,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: '请您先充钱再观看视频\n没钱还想白嫖？',
+        message: this.userid,
         offset: 100
       });
     },

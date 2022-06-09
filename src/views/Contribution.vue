@@ -27,7 +27,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -282,37 +282,33 @@
     </div>
     <div style="position: relative;top: 100px;left: 25px;">
       <div style="width: 240px;display: inline-block;float: left" v-for="(video,index) in videoList" :key="video.videoid">
-            <img
+        <img
             class="picture"
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
-            />
-            <div class="up">
-              <div class="up-cover">
-                <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'" @click="click1(index)">
-                    <p class="name">{{video.videoName}}</p>
-                  </router-link>
-                  <router-link to="User_center">
-                    <span class="title"  @click="click_center(index)">
+        />
+        <div class="up">
+          <div class="up-cover">
+            <div style="float: left" class="txt">
+              <router-link :to="'/videoPage'" @click="click1(index)">
+                <p class="name">{{video.videoName}}</p>
+                <span class="title">
                       {{video.videoauthor}}
                       <span style="float: right">
-                      <el-dropdown @command="handleCommand">
-                    <span class="el-dropdown-link">
-                    <i class="fa fa-navicon"></i>
+                  <el-dropdown @command="handleCommand">
+                  <span class="el-dropdown-link">
+                  <i class="fa fa-navicon"></i>
+                  </span>
+                  </el-dropdown>
+                </span>
                     </span>
-                    <el-dropdown-menu slot="dropdown">
-                      <el-dropdown-item :id="video.comid">取消收藏</el-dropdown-item>
-                    </el-dropdown-menu>
-                    </el-dropdown>
-                    </span>
-                    </span>
-                  </router-link>
-                </div>
-              </div>
+              </router-link>
             </div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
   </body>
@@ -355,20 +351,8 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      videoList:[
-        {
-          videoCoverUrl:'',
-          videoauthor: 'sa',
-          comid:0,
-          videoUrl:'',
-          videoName:'asd',
-          videoId:1,
-          videolike:1,
-          videofavourite:2,
-          videoAuthorId:5,
-        }
-      ],
-      videonum:1,
+      videoList:[],
+      videonum:0,
       centerId: 0,
       userdata:[
         {
@@ -403,23 +387,20 @@ export default {
     this.$axios.get('user/detail/'+this.centerId).then(
         res =>{
           this.userdata[0].FansNum=res.data.FansNum;
-              this.userdata[0].VideoNum=res.data.VideoNum;
-              this.videoAuthorFollow = this.userdata[0].FansNum;
-              this.userdata[0].FavorNum=res.data.FavorNum;
-              this.userdata[0].LikeNum=res.data.LikeNum;
-              this.userdata[0].FollowNum=res.data.FollowNum;
-              this.userdata[0].UserIntroduction=res.data.UserIntroduction;
-              this.userdata[0].UserName=res.data.user.UserName;
-            this.userdata[0].UserHead=res.data.user.UserProfilePhotoUrl;
-            this.iffollow=res.data.fol;
+          this.videoAuthorFollow = this.userdata[0].FansNum;
+          this.userdata[0].VideoNum=res.data.VideoNum;
+          this.userdata[0].FavorNum=res.data.FavorNum;
+          this.userdata[0].LikeNum=res.data.LikeNum;
+          this.userdata[0].FollowNum=res.data.FollowNum;
+          this.userdata[0].UserIntroduction=res.data.user.UserIntroduction;
+          this.userdata[0].UserName=res.data.user.UserName;
+          this.userdata[0].UserHead=res.data.user.UserProfilePhotoUrl;
+          this.iffollow=res.data.fol;
         },
     );
-    if(this.userid === this.centerId){
-      this.if_same = 1;
-    }
-    this.$axios.get('user/favorVideo').then(
+    this.$axios.get('index/videoAll/'+this.userid).then(
         res =>{
-          this.videonum=res.data.friendnum;
+          this.videonum=res.data.videoNum;
           for(i=0;i<this.videonum;i++){
             this.videoList.push({
                   videoCoverUrl:res.data.videoList[i].VideoCoverUrl,
@@ -436,6 +417,9 @@ export default {
           }
         },
     );
+    if(this.userid === this.centerId){
+      this.if_same = 1;
+    }
   },
   methods:{
     follow(){
@@ -521,7 +505,7 @@ export default {
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
-      sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));

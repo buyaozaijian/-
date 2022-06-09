@@ -299,7 +299,7 @@ export default {
       videoList:[
       ],
       videonum:0,
-      message:'',
+      message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
   created(){
@@ -380,7 +380,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: '快点冲钱',
+        message: JSON.parse(sessionStorage.getItem('message')),
         offset: 100
       });
     },

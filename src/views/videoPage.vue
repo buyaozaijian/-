@@ -3,9 +3,10 @@
   <head>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   </head>
-  <div  style="position: fixed;z-index: 9999;width: 100%;">
+  <div style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -45,51 +46,51 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'CreationCenter'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+        <router-link  :to="'CreationCenter'">
+          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block;">
+      <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
-          &ensp;站内通知
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+          站内通知
         </el-button>
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px">
-        <router-link :to="'/'">
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
         <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'">
+      </a></el-menu-item>
+      <el-menu-item @click="if_login('/saving_box')"  style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'">
+      </a></el-menu-item>
+      <el-menu-item index="/friend_list" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray">
+      </a></el-menu-item>
+      <el-menu-item index="/user_center" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
+        <i class="fa fa-user-o" style="color: gray"></i>
+        <span style="color: gray">
                   个人中心
                 </span>
-        </router-link></el-menu-item>
+      </a></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
+        <!--<form action="" class="parent">
+          <input type="text" class="search">
+          <input type="button" name=""  class="btn" style="z-index:1" >
+        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -101,7 +102,7 @@
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -129,7 +130,7 @@
   <div style="position: absolute; left: 1015px;top: 110px">
     <span style="margin-right: 20px;">
         <router-link :to="'User_center'" slot="reference">
-          <img :src="this.video_userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
+          <img :src="this.video_userhead" @click="click_center" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
     </span>
     <div style="display: inline-block">
@@ -140,8 +141,8 @@
          {{this.video_userintroduction}}
       </div>
       <div style="margin-top: 10px;float: left;width: 230px">
-        <el-button v-if="this.videoAuthorStatus===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
-        <el-button v-if="this.videoAuthorStatus===1" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus===0&&this.ifthisuser===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
       </div>
     </div>
     <div style="text-align: left;margin-top: 50px;margin-bottom: 30px;font-family: 微软雅黑">
@@ -203,7 +204,7 @@
         {{comments}}
       </span>
     </div>
-    <div class="comment-tijiao">
+    <div v-if="this.isLogin===1" class="comment-tijiao">
       <span style="margin-right: 20px; float: left" >
         <a href="https://www.bilibili.com">
           <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%">
@@ -220,7 +221,7 @@
       </span>
       <el-button style="width: 70px;height: 50px" type="primary" @click="submit_comment"  plain >发布</el-button>
     </div>
-    <div v-for="comment in comment_list" :key="comment.comment_id">
+    <div v-for="(comment,index) in comment_list" :key="comment.comment_id">
       <div class="comment">
         <el-divider></el-divider>
         <img class="small-head" :src = "comment.comment_head_url">
@@ -228,8 +229,7 @@
         <div>评论时间:{{comment.comment_time}}</div>
         <div>{{comment.comment_in}}</div>
         <div>&nbsp;</div>
-        <div v-if="comment.comment_if_me===1" style="cursor: pointer"><i class="el-icon-delete"></i></div>
-        <div v-if="comment.comment_if_me===0" style="cursor: pointer"><i class="el-icon-phone"></i></div>
+        <div v-if="comment.comment_if_me===1" style="cursor: pointer" @click="delete_comment(comment.comment_id,index)"><i class="el-icon-delete"></i></div>
       </div>
     </div>
   </div>
@@ -249,7 +249,7 @@ export default {
       userhead:'',
       isLogin:0,
       userid:0,
-      username: 'yyz',
+      username: '',
       userHead: '',
       password: '',
       //title: this.$store.state.videoname,
@@ -270,11 +270,11 @@ export default {
           comment_in: 'cnm' ,
           comment_id: 0 ,
           comment_time: '2022-6-8',
-          comment_if_me: 0,
+          comment_if_me: 1,
         },
         {
           comment_head_url: 'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
-          comment_name:  'yyt',
+          comment_name:  'yyz',
           comment_in: 'cnmb' ,
           comment_id: 1 ,
           comment_time: '2022-6-8',
@@ -283,7 +283,7 @@ export default {
       ],
       video_num: 5,
       video_list: [
-        /*{
+         /*{
           video_name: 'dududu',
           video_photo:  'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
           video_viewnums: 100,
@@ -310,7 +310,7 @@ export default {
           video_id_use: 1,
           videoviewnum:  3000,
           videouploadtime:  3500
-        }*/
+          },*/
       ],
       comment_num: 0,
       commentid: 0,
@@ -329,6 +329,8 @@ export default {
       videoviewcounts: 0,
       videouploadtime: 0,
       videodescription:'',
+      videoAuthorId:3,
+      ifthisuser:0,
     }
   },
   created() {
@@ -354,6 +356,7 @@ export default {
           this.videoviewcounts = res.data.VideoViewCounts;
           this.videouploadtime = res.data.VideoUploadDate;
           this.videodescription = res.data.VideoDescription;
+          this.videoAuthorId = res.data.VideoAuthor;
         }
     );
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
@@ -381,9 +384,12 @@ export default {
             }
           },
       );
-      this.$axios.get('user/'+this.aid).then(
+      this.$axios.get('user/detail/'+this.aid).then(
           res => {
                this.video_username = res.data.user.UserName;
+               if(this.video_username === this.username){
+                 this.ifthisuser = 1;
+               }
                this.video_userid = res.data.user.id;
                this.video_userhead = res.data.user.UserProfilePhotoUrl;
                this.video_userintroduction = res.data.user.UserIntroduction;
@@ -421,6 +427,13 @@ export default {
       );
   },
   methods:{
+
+    delete_comment(id,index){
+      this.$axios.get('comment/delete/'+id).then(
+      )
+      alert('删除评论');
+      this.comment_list.splice(index,1);
+    },
     jumplogin(){
       this.$message.success("请先登录！");
       this.$router.push('/try_login');
@@ -433,8 +446,13 @@ export default {
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
-    click2(){
-      alert('cnmb');
+    click_center(){
+      alert(this.videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoAuthorId));
+    },
+    click_centerself(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     click1(index){
       this.$store.state.videourl = this.video_list[index].video_url;

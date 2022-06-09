@@ -4,6 +4,7 @@ import user from "./user";
 Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
+    center_id:'',
     videourl:'',
     videoname:'',
     videoindex:0,

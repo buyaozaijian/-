@@ -71,21 +71,21 @@
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'Saving_box'">
           <i class="fa fa-file-video-o" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   收藏夹
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
         <router-link :to="'Friend_list'">
           <i class="fa fa-heart" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   关注
                 </span>
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'User_center'">
           <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray">
+          <span style="color: gray" @click="click_centerself">
                   个人中心
                 </span>
         </router-link></el-menu-item>
@@ -134,7 +134,7 @@
           </li>
           <li style="display: inline">
             <router-link :to="'/User_center'">
-              <i class="fa fa-user-o" style="color:black"></i>
+              <i class="fa fa-user-o" style="color:black" @click="click_centerself"></i>
               <span style="color: black">
                   个人中心&nbsp;&nbsp;&nbsp;
                 </span>
@@ -142,7 +142,7 @@
           </li>
           <li style="display: inline">
             <router-link :to="'/Saving_box'">
-              <i class="fa fa-file-video-o" style="color: black"></i>
+              <i class="fa fa-file-video-o" style="color: black" @click="click_centerself"></i>
               <span style="color: black">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
@@ -150,7 +150,7 @@
           </li>
           <li style="display: inline">
             <router-link :to="'/Friend_list'">
-              <i class="fa fa-heart" style="color: black"></i>
+              <i class="fa fa-heart" style="color: black" @click="click_centerself"></i>
               <span style="color: black">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
@@ -260,16 +260,16 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <router-link :to="'/videoPage'" @click="click1(index)">
-                <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              <router-link :to="'/videoPage'">
+                <img @click="click1(index)" style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <router-link :to="'/videoPage'" @click="click1(index)">
-                  <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                <router-link :to="'/videoPage'" >
+                  <div @click="click1(index)" style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
                 <div v-for="tags in video.videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link to="Searching_box">
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
                     </a>
                   </router-link>
@@ -333,7 +333,7 @@
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
                 class="upload-demo"
-                darg
+                drag
                 :action=uploadVideoUrl
                 :http-request="upLoadVideo"
                 :before-upload="beforeVideoUpload"
@@ -358,19 +358,18 @@
               <div style="display: block;height: 1px;width: 100%;width: 1000px;margin-bottom: 10px" >
                 <el-divider ></el-divider>
               </div>
-              <router-link :to="'/videoPage'" @click="click1(index)">
-                <img style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+              <router-link :to="'/videoPage'">
+                <img @click="click1(index)" style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-                <router-link :to="'/videoPage'" @click="click1(index)">
-                  <div style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                <router-link :to="'/videoPage'">
+                  <div @click="click1(index)" style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
                 <div v-for="tags in video.videoTags" :key="tags">
-                  <router-link to="Searching_box" @click="click_search2(tags)">
-                    <a href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                  <router-link :to="'/videoPage'">
+                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                       {{tags}}
-                    </a>
-                  </router-link>
+                    </a></router-link>
                 </div>
                 <span style="margin-right: 20px">
                   <i class="el-icon-video-play" style="font-size: 20px;margin-right: 5px"></i>{{video.videoViewcount}}
@@ -546,6 +545,14 @@ export default {
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
+    click_center(id){
+      alert(this.videoList[id].videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
+    },
+    click_centerself(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
+    },
     logout(){
       alert('退出登录！');
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
@@ -558,7 +565,7 @@ export default {
     open() {
       this.$notify({
         title: '站内通知',
-        message: '请您先充钱再观看视频\n没钱还想白嫖？',
+        message: JSON.parse(sessionStorage.getItem('message')),
         offset: 100
       });
     },
@@ -594,9 +601,12 @@ export default {
         duration: 0
       });
     },
+
     click_search2(args){
-      sessionStorage.setItem('message', JSON.stringify(args));
+      this.$refs.search.value = args;
+      sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
+
     destroyed() {
       window.removeEventListener('scroll', this.handleScroll)
     },
@@ -815,7 +825,7 @@ export default {
     auditvideo_notpass(index) {
       this.$axios({
             method: "post",
-            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            url: "video/changeStatus/" + this.videoauditList[index].videoid,
             data: qs.stringify({
               status: 0
             })
