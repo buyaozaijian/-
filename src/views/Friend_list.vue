@@ -414,7 +414,6 @@ export default {
         },
     );
 
-    this.isLogin=1;
 
   },
   methods:{
