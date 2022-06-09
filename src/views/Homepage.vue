@@ -224,7 +224,7 @@
   <div class="zouma">
     <div>
 
-      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 15px;
+      <el-carousel indicator-position="outside" style=" display: inline-block; left: -385px; border-radius: 4px;top: 15px;
            width: 550px; height: 390px" >
         <el-carousel-item style="height: 390px">
 

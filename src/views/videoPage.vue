@@ -338,6 +338,7 @@ export default {
     }
   },
   created() {
+    window.scrollTo(0, 0);
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
     if (userInfo) {
@@ -398,7 +399,7 @@ export default {
                this.video_userhead = res.data.user.UserProfilePhotoUrl;
                this.video_userintroduction = res.data.user.UserIntroduction;
                this.videoAuthorStatus = res.data.fol;
-               this.videoAuthorFollow = res.data.follow;
+               this.videoAuthorFollow = res.data.FansNum;
           },
       );
       this.$axios.get('index/videoAll/'+this.aid).then(//获取作者视频列表

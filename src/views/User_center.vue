@@ -190,8 +190,131 @@
             </i></el-button>
 
         </div>
-        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
+        <div style=" position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
+          <i class="fa fa-paper-plane-o" style="color: black"></i>
+          <el-button
+              v-if="this.isLogin===0"
+              plain
+              @click="open"
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;">
+            &ensp;站内通知
+          </el-button>
+          <el-button
+              v-else
+              @click="notice1"
+              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
+            &ensp;站内通知
+          </el-button>
+          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
+          <el-drawer
+              title="站内通知"
+              :visible.sync="drawer"
+              :direction="direction"
+              append-to-body="true"
+          >
+            <!-- :before-close="handleClose-->
+            <!--<el-divider></el-divider>
+            <div  style=" width: 400px; margin: 0 auto">
+              <br/>
+              <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;mmm关注了你注了你注了你注了&ensp;</el-badge></div>
+              <br/>
+              <br/>
+              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;2022-02-06 16:00</span>
+              <br/><br/>
+              <el-divider></el-divider>
+            </div>-->
+            <!--<div v-for="notice in notificationList" :key="notice.notice_id">
+            </div>-->
+            <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
+              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你&ensp;</el-badge></div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：&ensp;</el-badge></div>
+                <br/>
+                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核&ensp;</el-badge></div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核&ensp;</el-badge></div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+            </div>
+            <div v-for="notice in readnotificationList" :key="notice.notice_video">
+              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
+                <br/>
+                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+              <div v-else-if="notice.notice_class===5" style=" width: 400px; margin: 0 auto">
+                <br/>
+                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”被删除了</div>
+                <br/>
+                <br/>
+                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
+                <br/><br/>
+                <el-divider></el-divider>
+              </div>
+            </div>
+          </el-drawer>
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -309,8 +432,12 @@
           </el-form-item>
 
           <el-form-item label="密码" style="margin-bottom: 20px; display: inline-block">
-            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword" :value="this.oldpassword"></el-input>
+            <el-input v-model="change.password" style="width: 500px" :placeholder="this.oldpassword" :value="this.oldpassword"  show-password></el-input>
           </el-form-item>
+
+        <el-form-item label="确认密码" style="margin-bottom: 20px; display: inline-block">
+          <el-input v-model="change.password2" style="width: 500px" :placeholder="this.oldpassword" :value="this.oldpassword"  show-password></el-input>
+        </el-form-item>
         </el-form>
       <el-button @click="submit_all" type="primary" style="display: inline-block; height: 40px; width: 60px; margin-left: 10px">提交</el-button>
     </div>
@@ -351,6 +478,7 @@ export default {
         sign: '',
         mail: '',
         password: '',
+        password2: '',
       },
 
       uploadImgUrl:'',
@@ -448,6 +576,7 @@ export default {
           this.unread_notification_num=res.data.notificationUnreadNum;
           this.change.name=this.oldname;
           this.change.password=this.oldpassword;
+          this.change.password2=this.oldpassword;
           this.change.sign=this.oldsign;
           this.change.mail=this.oldmail;
           this.url=this.userhead;

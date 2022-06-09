@@ -270,12 +270,13 @@
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
+            @click="click1(index)"
         />
         <div class="up">
           <div class="up-cover">
             <div style="float: left" class="txt">
-              <router-link :to="'/videoPage'" @click="click1(index)">
-                <p class="name">{{video.videoName}}</p>
+              <router-link :to="'/videoPage'" >
+                <p class="name" @click="click1(index)">{{video.videoName}}</p>
                 <span class="title">
                       {{video.videoauthor}}
                       <span style="float: right">

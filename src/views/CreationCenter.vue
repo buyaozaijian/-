@@ -425,39 +425,11 @@ export default {
         value: '1',
         label: '游戏'
       },
-      video_num:1,
+      video_num: 0,
       videocontrolList:[
-        {
-          videoCoverUrl:'../img/fengmian1.webp',
-          videoName:'asd',
-          videolike:1,
-          videoViewcount:1,
-          videofavourite:1,
-          videoid:1,
-          videoAuthor:'asd',
-          videoAuthorId:1,
-          videoTags:[
-              "asd",
-              "asd"
-          ]
-        }
       ],
-      audit_num:1,
+      audit_num: 0,
       videoauditList:[
-        {
-          videoCoverUrl:'../img/fengmian1.webp',
-          videoName:'asd',
-          videolike:1,
-          videoViewcount:1,
-          videofavourite:1,
-          videoid:1,
-          videoAuthor:'asd',
-          videoAuthorId:1,
-          videoTags:[
-            "asd",
-            "asd"
-          ]
-        }
       ],
     }
   },
@@ -474,7 +446,13 @@ export default {
       this.isLogin = 0;
     }
     var i = 0;
-    this.$axios.get("index/AuthorVideo/"+this.userid).then(
+    var tempPath;
+    if (this.identity==="admin") {
+      tempPath = "video/AllVideo";
+    } else {
+      tempPath = "index/AuthorVideo/"+this.userid;
+    }
+    this.$axios.get(tempPath).then(
       res => {
         this.video_num = res.data.videoNum;
         for(i=0;i<this.video_num;i++){
@@ -559,7 +537,7 @@ export default {
     click_control(index){
       this.$store.state.videourl = this.videocontrolList[index].videoUrl;
       this.$store.state.videoname = this.videocontrolList[index].videoName;
-      this.$store.state.videoid = this.videocontrolList[index].videoId;
+      this.$store.state.videoid = this.videocontrolList[index].videoid;
       this.$store.state.videolike=this.videocontrolList[index].videolike;
       this.$store.state.videofavourite=this.videocontrolList[index].videofavourite;
       this.$store.state.videoauthor=this.videocontrolList[index].videoAuthor;
@@ -747,7 +725,6 @@ export default {
               case 1:
                 var url_video = res.data.url_video;
                 var key_video = res.data.key_video;
-                window.alert(url_video);
                 this.willAddQuestion.videoList.push({
                   url: url_video,
                   key: key_video
@@ -758,7 +735,6 @@ export default {
                 // this.$message.error("上传文件格式错误！");
                 break;
               default:
-                alert(res.data.status_code);
                 this.$message.error("操作失败！");
                 break;
             }
@@ -804,7 +780,7 @@ export default {
       this.resetWillAdd();
     },
     cancel_pre: function () {
-      this.$confirm('已编辑的题目信息将不会保存,确认关闭？', '提示', {
+      this.$confirm('已编辑的信息将不会保存,确认关闭？', '提示', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
         type: 'warning'
@@ -818,7 +794,7 @@ export default {
       this.$message.success("删除成功");
       this.$axios.get("video/delete/"+this.videocontrolList[index].videoid).then(
           res=> {
-            alert(res.data.msg);
+            console.log(res.data.msg);
           }
       )
       window.location.reload();

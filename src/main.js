@@ -13,7 +13,7 @@ Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 Vue.use(ElementUI);
 
-axios.defaults.baseURL = 'http://43.138.56.245:8000/api';
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api';
 
 // add token into headers
 
