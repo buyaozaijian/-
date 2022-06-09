@@ -4,7 +4,8 @@
   <body>
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -27,7 +28,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -44,7 +45,7 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-          <el-button @click="if_login('CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+          <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
@@ -52,10 +53,9 @@
       <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block">
         <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px">
-        <router-link :to="'/'">
-          <i class="fa fa-bank" style="color: gray"></i>
-          <span style="color: gray;">
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><router-link to="'Homepage'">
+        <i class="fa fa-bank" style="color: gray"></i>
+        <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
         </router-link></el-menu-item>
@@ -73,7 +73,7 @@
                   关注
                 </span>
          </el-menu-item>
-      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px">
+      <el-menu-item  @click="if_login('/Contribution')" style="width: 100px; font-size: 15px">
 
           <i class="fa fa-user-o" style="color: gray"></i>
           <span style="color: gray" @click="click_centerself">
@@ -85,27 +85,25 @@
           <input type="text" class="search">
           <input type="button" name=""  class="btn" style="z-index:1" >
         </form>-->
-        <div class="nav-search-box">
-          <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-            <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
-              <input
-                  class="search-input"
-                  ref="search1"
-                  type="text"
-                  placeholder="      谁说站在光里的才算英雄 "
-                  style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
-              />
-              <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                  <img
-                      src="../img/sousuo1.png"
-                      alt=""
-                      style="width: 34px;height: 34px;padding: 0px 7px;"
-                  />
-                </button></router-link>
-              </div>
-            </form>
-          </div>
+        <div class="nav-search" style="margin: 0;border: 0;padding: 0;width: 480px">
+          <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+            <input
+                class="search-input"
+                ref="search"
+                type="text"
+                placeholder="      谁说站在光里的才算英雄 "
+                style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
+            />
+            <div class="nav-search-btn">
+              <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
+                <img
+                    src="../img/sousuoxia.png"
+                    alt=""
+                    style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
+                />
+              </button></router-link>
+            </div>
+          </form>
         </div>
       </div>
     </el-menu>
@@ -138,8 +136,7 @@
                 </span>
 
           </li>
-          <li @click="if_login('/user_center')" style="display: inline;cursor: pointer" >
-
+          <li @click="if_login('/Contribution')" style="display: inline;cursor: pointer" >
               <i class="fa fa-user-o" style="color: black"></i>
               <span style="color: black" @click="click_centerself">
                   个人中心&nbsp;&nbsp;&nbsp;
@@ -150,20 +147,20 @@
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-              <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+              <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px;background: whitesmoke"
+                    style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px;background-color: whitesmoke"
                 />
                 <div class="nav-search-btn">
-                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
                     <img
-                        src="../img/sousuo1.png"
+                        src="../img/sousuoxia.png"
                         alt=""
-                        style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
+                        style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: whitesmoke;"
                     />
                   </button></router-link>
                 </div>
@@ -761,15 +758,14 @@ table {
 }
 .nav-search .nav-search-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0px;
+  right: -20px;
   margin: 0;
   padding: 0;
-  width: 48px;
-  height: 35px;
+  width: 40px;
+  height: 32px;
   border: none;
-  border-radius: 2px;
-  background: #e7e7e7;
+  border-radius: 8px;
   line-height: 35px;
 }
 .title{
