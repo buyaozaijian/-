@@ -637,17 +637,6 @@ export default {
             this.unread_notification_num=res.data.notificationUnreadNum;
             this.unreadnotificationList.length=0;
             this.readnotificationList.length=0;
-            for(i=0;i<this.notification_num;i++){
-              this.readnotificationList.push(
-                  {
-                    notice_class: res.data.notificationReadList[i].NoteClass,
-                    notice_name: res.data.notificationReadList[i].NoteSenderName,
-                    notice_content: res.data.notificationReadList[i].NoteContent,
-                    notice_video: res.data.notificationReadList[i].NoteVideoName,
-                    notice_time: res.data.notificationReadList[i].NoteDate,
-                  }
-              )
-            }
             for(i=0;i<this.unread_notification_num;i++){
               this.unreadnotificationList.push(
                   {
@@ -656,6 +645,17 @@ export default {
                     notice_content: res.data.notificationList[i].NoteContent,
                     notice_video: res.data.notificationList[i].NoteVideoName,
                     notice_time: res.data.notificationList[i].NoteDate,
+                  }
+              )
+            }
+            for(i=0;i<this.notification_num;i++){
+              this.readnotificationList.push(
+                  {
+                    notice_class: res.data.notificationReadList[i].NoteClass,
+                    notice_name: res.data.notificationReadList[i].NoteSenderName,
+                    notice_content: res.data.notificationReadList[i].NoteContent,
+                    notice_video: res.data.notificationReadList[i].NoteVideoName,
+                    notice_time: res.data.notificationReadList[i].NoteDate,
                   }
               )
             }
