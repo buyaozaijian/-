@@ -318,7 +318,7 @@
             <el-upload
                 list-type="picture-card"
                 :action=uploadImgUrl
-                multiple
+                 multiple
                 :http-request="upLoadImage"
                 :before-upload="beforeImageUpload"
                 :file-list="willAddQuestion.imgList"
@@ -1338,4 +1338,9 @@ table {
   line-height: 35px;
 }
 
+</style>
+<style>
+.el-upload input{
+  display: none !important;;
+}
 </style>
