@@ -662,12 +662,12 @@ export default {
           },
       );
       this.unread_notification_num=0;
-      /*this.$axios(
+      this.$axios(
           {
             method: 'get',
             url: 'note/setStatus',
           }
-      )*/
+      )
     },
     /*handleClose(done) {
       this.$confirm('确认关闭？')
