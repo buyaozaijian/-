@@ -434,12 +434,12 @@ export default {
     follow(){
       if(this.isLogin===1) {
         if(this.iffollow === 0) {
-          alert('关注该用户');
+          this.$message.success("关注该用户");
           this.iffollow = 1;
           this.videoAuthorFollow += 1;
         }
         else{
-          alert('取消关注');
+          this.$message.success("取消关注");
           this.videoAuthorFollow -= 1;
           this.iffollow = 0;
         }
@@ -458,7 +458,6 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(id){
-      alert(this.videoList[id].videoAuthorId);
       sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     click_centernow(){
@@ -468,7 +467,7 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("已退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );
@@ -547,7 +546,7 @@ export default {
           .then(res => {              /* res 是 response 的缩写 */
             switch (res.data.status_code) {
               case 200:
-                window.alert("登录成功！");
+                this.$message.success("登录成功！");
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                 this.$store.dispatch('saveUserInfo', {
                   user: {
@@ -558,10 +557,10 @@ export default {
                 });
                 break;
               case 401:
-                window.alert("用户名不存在！");
+                this.$message.error("用户不存在");
                 break;
               case 402:
-                window.alert("密码错误！");
+                this.$message.error("密码错误");
                 break;
             }
           })

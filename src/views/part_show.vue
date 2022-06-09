@@ -361,7 +361,6 @@ export default {
       }
     },
     click_center(id){
-      alert(this.videoList[id].videoAuthorId);
       sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     click_centernow(){
@@ -377,7 +376,7 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );

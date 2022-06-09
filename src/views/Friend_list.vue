@@ -409,12 +409,12 @@ export default {
     follow(){
       if(this.isLogin===1) {
         if(this.iffollow === 0) {
-          alert('关注该用户');
+          this.$message.success("关注该用户");
           this.iffollow = 1;
           this.videoAuthorFollow += 1;
         }
         else{
-          alert('取消关注');
+          this.$message.success("取消关注");
           this.videoAuthorFollow -= 1;
           this.iffollow = 0;
         }
@@ -422,7 +422,7 @@ export default {
         );
       }
       else{
-        this.$message.success("请先登录");
+        this.$message.error("请先登录");
         this.$router.push('/try_login');
       }
     },
@@ -433,7 +433,6 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(id){
-      alert(this.friendlist[id].friend_id);
       sessionStorage.setItem('center_id', JSON.stringify(this.friendlist[id].friend_id));
     },
     click_centerself(){
@@ -443,7 +442,7 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.centerId));
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );

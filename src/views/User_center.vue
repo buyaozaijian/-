@@ -4,7 +4,8 @@
   <body>
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -27,7 +28,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -44,42 +45,37 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-          <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
-            <i class="el-icon-upload el-icon--right" style="margin: 0">
-              创作中心
-            </i></el-button>
+        <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+          <i class="el-icon-upload el-icon--right" style="margin: 0">
+            创作中心
+          </i></el-button>
       </div>
       <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block">
-        <i class="fa fa-paper-plane-o" style="color: gray"></i>
-        <el-button
-            plain
-            @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
-          &ensp;站内通知
-        </el-button>
+        <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
       </div>
-      <el-menu-item   style="width: 100px; font-size: 15px">
-        <router-link :to="'/'">
-          <i class="fa fa-bank" style="color: gray"></i>
-          <span style="color: gray;">
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><router-link to="'Homepage'">
+        <i class="fa fa-bank" style="color: gray"></i>
+        <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-        </router-link></el-menu-item>
-      <el-menu-item @click="if_login('saving_box')"  style="width: 100px; font-size: 15px">
-          <i class="fa fa-file-video-o" style="color: gray"></i>
-          <span style="color: gray" @click="click_centerself">
+      </router-link></el-menu-item>
+      <el-menu-item  @click="if_login('/saving_box')" style="width: 100px; font-size: 15px">
+
+        <i class="fa fa-file-video-o" style="color: gray"></i>
+        <span style="color: gray" @click="click_centerself">
                   收藏夹
                 </span>
-         </el-menu-item>
-      <el-menu-item  @click="if_login('friend_list')" style="width: 100px; font-size: 15px">
-          <i class="fa fa-heart" style="color: gray"></i>
-          <span style="color: gray" @click="click_centerself">
+      </el-menu-item>
+      <el-menu-item  @click="if_login('/friend_list')" style="width: 100px; font-size: 15px">
+
+        <i class="fa fa-heart" style="color: gray"></i>
+        <span style="color: gray" @click="click_centerself">
                   关注
                 </span>
-         </el-menu-item>
-      <el-menu-item  @click="if_login('user_center')" style="width: 100px; font-size: 15px">
-          <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray" @click="click_centerself">
+      </el-menu-item>
+      <el-menu-item  @click="if_login('/Contribution')" style="width: 100px; font-size: 15px">
+        <i class="fa fa-user-o" style="color: gray"></i>
+        <span style="color: gray" @click="click_centerself">
                   个人中心
                 </span>
       </el-menu-item>
@@ -88,27 +84,25 @@
           <input type="text" class="search">
           <input type="button" name=""  class="btn" style="z-index:1" >
         </form>-->
-        <div class="nav-search-box">
-          <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-            <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
-              <input
-                  class="search-input"
-                  ref="search1"
-                  type="text"
-                  placeholder="      谁说站在光里的才算英雄 "
-                  style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
-              />
-              <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
-                  <img
-                      src="../img/sousuo1.png"
-                      alt=""
-                      style="width: 34px;height: 34px;padding: 0px 7px;"
-                  />
-                </button></router-link>
-              </div>
-            </form>
-          </div>
+        <div class="nav-search" style="margin: 0;border: 0;padding: 0;width: 480px">
+          <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+            <input
+                class="search-input"
+                ref="search"
+                type="text"
+                placeholder="      谁说站在光里的才算英雄 "
+                style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px"
+            />
+            <div class="nav-search-btn">
+              <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
+                <img
+                    src="../img/sousuoxia.png"
+                    alt=""
+                    style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: white;"
+                />
+              </button></router-link>
+            </div>
+          </form>
         </div>
       </div>
     </el-menu>
@@ -119,27 +113,30 @@
         <ul style="list-style-type:none; ">
           <li style="display: inline">
             <router-link :to="'/'" >
-              <i class="fa fa-bank" style="color: black;cursor: pointer"></i>
+              <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
-          <li @click="if_login('saving_box')" style="display: inline;cursor: pointer">
-              <i class="fa fa-file-video-o" style="color: black"></i>
-              <span style="color: black" @click="click_centerself">
+          <li @click="if_login('/saving_box')" style="display: inline;cursor: pointer">
+
+            <i class="fa fa-file-video-o" style="color: black"></i>
+            <span style="color: black" @click="click_centerself">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
+
           </li>
-          <li @click="if_login('friend_list')" style="display: inline;cursor: pointer">
-              <i class="fa fa-heart" style="color: black"></i>
-              <span style="color: black" @click="click_centerself">
+          <li @click="if_login('/friend_list')" style="display: inline;cursor: pointer">
+
+            <i class="fa fa-heart" style="color: black"></i>
+            <span style="color: black" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
           </li>
-          <li @click="if_login('user_center')" style="display: inline;cursor: pointer" >
-              <i class="fa fa-user-o" style="color: black"></i>
-              <span style="color: black" @click="click_centerself">
+          <li @click="if_login('/Contribution')" style="display: inline;cursor: pointer" >
+            <i class="fa fa-user-o" style="color: black"></i>
+            <span style="color: black" @click="click_centerself">
                   个人中心&nbsp;&nbsp;&nbsp;
                 </span>
           </li>
@@ -147,20 +144,20 @@
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
           <div class="nav-search-box">
             <div class="nav-search" style="margin: 0;border: 0;padding: 0">
-              <form id="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
+              <form name="nav-searchform1" style="width: 100%;margin: 0;border: 0;padding: 0">
                 <input
                     class="search-input"
                     ref="search"
                     type="text"
                     placeholder="      谁说站在光里的才算英雄 "
-                    style="width: 100%;margin: 0;border: 0;padding: 0;outline: none;border-radius: 16px;background: whitesmoke"
+                    style="width: 100%;margin: 0;border: 0;padding-left: 20px;outline: none;border-radius: 16px;background-color: whitesmoke"
                 />
                 <div class="nav-search-btn">
-                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                  <router-link to="/searching_box"><button @click="click_search" style="margin: 0;padding: 0;border: none;outline: none;height: 0">
                     <img
-                        src="../img/sousuo1.png"
+                        src="../img/sousuoxia.png"
                         alt=""
-                        style="width: 30px;height: 27px;padding: 0px 7px;border-radius: 8px"
+                        style="width: 30px;height: 27px;padding: 0;border-radius: 8px;background-color: whitesmoke;"
                     />
                   </button></router-link>
                 </div>
@@ -186,136 +183,15 @@
           </el-popover>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-            <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
-              <i class="el-icon-upload el-icon--right" style="margin: 0">
-                创作中心
-              </i></el-button>
+
+          <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <i class="el-icon-upload el-icon--right" style="margin: 0">
+              创作中心
+            </i></el-button>
+
         </div>
-        <!--<div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <i class="fa fa-paper-plane-o" style="color: black"></i>
-          <el-button
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
-            &ensp;站内通知
-          </el-button>
-        </div>-->
-        <div style=" position: absolute; left: 1230px; top: -3px;z-index: 9999; display: inline-block;">
-          <i class="fa fa-paper-plane-o" style="color: black"></i>
-          <el-button
-              v-if="this.isLogin===0"
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;">
-            &ensp;站内通知
-          </el-button>
-          <el-button
-              v-else
-              @click="notice1"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px">
-            &ensp;站内通知
-          </el-button>
-          <el-badge v-if="unread_notification_num!==0" class="mark" :value="this.unread_notification_num" />
-          <el-drawer
-              title="站内通知"
-              :visible.sync="drawer"
-              :direction="direction"
-              append-to-body="true"
-          >
-            <!-- :before-close="handleClose-->
-            <!--<el-divider></el-divider>
-            <div  style=" width: 400px; margin: 0 auto">
-              <br/>
-              <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;mmm关注了你注了你注了你注了&ensp;</el-badge></div>
-              <br/>
-              <br/>
-              <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;2022-02-06 16:00</span>
-              <br/><br/>
-              <el-divider></el-divider>
-            </div>-->
-            <!--<div v-for="notice in notificationList" :key="notice.notice_id">
-            </div>-->
-            <div v-for="notice in unreadnotificationList" :key="notice.notice_video">
-              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：&ensp;</el-badge></div>
-                <br/>
-                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px"><el-badge value="new" class="item">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核&ensp;</el-badge></div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-            </div>
-            <div v-for="notice in readnotificationList" :key="notice.notice_video">
-              <div v-if="notice.notice_class===1" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}关注了你</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===2" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_name}}在你的视频“{{notice.notice_video}}”发布了评论：</div>
-                <br/>
-                <div style="position: relative; top: 10px; font-size: 15px">&ensp;&ensp;&ensp;&ensp;{{notice.notice_content}}</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===3" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”通过了审核</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-              <div v-else-if="notice.notice_class===4" style=" width: 400px; margin: 0 auto">
-                <br/>
-                <div style="position: relative; top: 10px">&ensp;&ensp;&ensp;&ensp;你的视频“{{notice.notice_video}}”未通过审核</div>
-                <br/>
-                <br/>
-                <span style="font-size: 15px; color: gray">&ensp;&ensp;&ensp;&ensp;{{notice.notice_time}}</span>
-                <br/><br/>
-                <el-divider></el-divider>
-              </div>
-            </div>
-          </el-drawer>
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
+          <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -608,12 +484,12 @@ export default {
     follow(){
       if(this.isLogin===1) {
         if(this.iffollow === 0) {
-          alert('关注该用户');
+          this.$message.success("关注该用户");
           this.iffollow = 1;
           this.videoAuthorFollow += 1;
         }
         else{
-          alert('取消关注');
+          this.$message.success("取消关注");
           this.videoAuthorFollow -= 1;
           this.iffollow = 0;
         }
@@ -621,7 +497,7 @@ export default {
         );
       }
       else{
-        this.$message.success("请先登录");
+        this.$message.error("请先登录");
         this.$router.push('/try_login');
       }
     },
@@ -675,10 +551,6 @@ export default {
           });
     },*/
     submit_all(){
-      alert(this.change.name);
-      alert(this.change.sign);
-      alert(this.change.mail);
-      alert(this.change.password);
       this.$axios({
         method: 'post',
         url:'user/changeUser',
@@ -694,7 +566,7 @@ export default {
             console.log(res)
             switch (res.data.status_code) {
               case 1:
-                console.log("上传成功");
+                this.$message.success("上传成功");
                 this.$store.dispatch('clearUserInfo');
                 this.$store.dispatch('saveUserInfo', {
                   user: {
@@ -710,7 +582,7 @@ export default {
                 })
                 break;
               case 2:
-                alert('上传失败')
+                this.$message.error("上传失败");
                 break;
             }
           })
@@ -734,7 +606,7 @@ export default {
                 break;
               case 1:
                 this.url = res.data.url_img;
-                alert("封面上传成功");
+                this.$message.success("封面上传成功");
                 console.log(this.willAddQuestion.imgList);
                 break;
               case 2:

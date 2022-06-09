@@ -2127,10 +2127,16 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
-      alert('退出登录！');
+      this.tanchuang_tuichu();
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );
+    },
+    tanchuang_tuichu() {
+      this.$message({
+        message: '已退出登录',
+        type: 'success'
+      });
     },
     open() {
       this.$notify({
