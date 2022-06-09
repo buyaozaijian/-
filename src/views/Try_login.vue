@@ -1,6 +1,9 @@
 <template>
+  <div id="div_1">
   <div id="login" class="login">
-    <img class="bgbox" id="bgbox" alt="" src="../../src/img/星空.jpg">
+    <!--<div id="div_0">-->
+    <!--<img class="bgbox" id="bgbox" alt="" src="../../src/img/星空.jpg">-->
+    <img class="bgbox" id="bgbox" alt="" src="../../src/img/星空4.jpg">
     <div class="wrap">
       <br/>
       <h1 style="position: relative; top: -20px;">登 录</h1>
@@ -25,6 +28,7 @@
       <div class="suffix">
         <p @click="toRegister">注册帐号</p>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -100,9 +104,25 @@ export default {
 </script>
 
 <style scoped>
+#div_0{
+  width: 100%;
+  height: 100%;
+  border: 1px #1A4BAF;
+  background-image: url("../../src/img/星空.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+#div_1{
+  width: 100%;
+  height: 718px;
+  background-color: white;
+  background: rgba(255, 255, 255, 0.7);
+
+}
+
 #login {
   font-family: 'Noto Serif SC', serif;
-  margin-top: 60px;
+
 }
 #login >>> .el-input__inner {
   font-family: 'Noto Serif SC', serif;
@@ -133,6 +153,7 @@ export default {
   position: relative;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.85);
+  top: 160px;
   border-radius: 20px;
 }
 #login .btn_login {

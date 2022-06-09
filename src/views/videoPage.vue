@@ -46,10 +46,10 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <el-button  @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
-          <i class="el-icon-upload el-icon--right" style="margin: 0">
-            创作中心
-          </i></el-button>
+          <el-button @click="if_login('CreationCenter')"  type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <i class="el-icon-upload el-icon--right" style="margin: 0">
+              创作中心
+            </i></el-button>
       </div>
       <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
@@ -78,7 +78,7 @@
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item @click="if_login('/Contribution')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -435,8 +435,8 @@ export default {
         this.$router.push('/try_login');
       }
       else{
-        this.click_centerself();
         this.$router.push(dir);
+        this.click_centerself();
       }
     },
     auditvideo_com() {
@@ -452,6 +452,7 @@ export default {
             alert(res.data.msg);
           }
       )
+
     },
     delete_comment(id,index){
       this.$axios.get('comment/delete/'+id).then(
@@ -464,11 +465,9 @@ export default {
       this.$router.push('/try_login');
     },
     click_search(){
-      alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
     click_search1(){
-      alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(){
@@ -476,7 +475,6 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.videoAuthorId));
     },
     click_centerself(){
-      alert(1);
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     click1(index){

@@ -208,13 +208,7 @@
               </i></el-button>
         </div>
         <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <i class="fa fa-paper-plane-o" style="color: white"></i>
-          <el-button
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: white;font-size: 15px;padding: 0">
-            &ensp;站内通知
-          </el-button>
+          <img style="width: 200px; position: relative; top: -18px" alt="" src="../../src/img/logo.png">
         </div>
        <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -228,24 +222,24 @@
   </header>
   <div class="zouma">
     <div>
-      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 0px;
-           width: 550px; height: 400px" >
-        <el-carousel-item style="height: 400px">
+      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 15px;
+           width: 550px; height: 390px" >
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="6">
             <img :src="this.videoList[6].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="7">
             <img :src="this.videoList[7].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="8">
             <img :src="this.videoList[8].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="9">
             <img :src="this.videoList[9].videoCoverUrl" width="100%" height="100%">
           </router-link>
@@ -2072,9 +2066,7 @@ export default {
       } else {
         this.isLogin = 0;
       }
-
-      this.isLogin=1;
-
+    
   },
 
   methods:{
@@ -2083,8 +2075,8 @@ export default {
         this.$router.push('/try_login');
       }
       else{
-        this.click_centerself();
         this.$router.push(dir);
+        this.click_centerself();
       }
     },
     into1(){
