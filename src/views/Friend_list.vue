@@ -62,27 +62,38 @@
       </div>
       <el-menu-item index="1" style="width: 100px; font-size: 15px">
         <router-link :to="'/'">
-        <i class="fa fa-bank" style="color: gray"></i>
-        <span style="color: gray;">
+          <i class="fa fa-bank" style="color: gray"></i>
+          <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </router-link></el-menu-item>
+        </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'" @click="click_centerself">
-        <i class="fa fa-file-video-o" style="color: gray"></i>
-        <span style="color: gray">
+        <router-link :to="'Saving_box'">
+          <i class="fa fa-file-video-o" style="color: gray"></i>
+          <span style="color: gray" @click="click_centerself">
                   收藏夹
                 </span>
-      </router-link></el-menu-item>
+        </router-link></el-menu-item>
       <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'" @click="click_centerself">
-        <i class="fa fa-heart" style="color: gray"></i>
-        <span style="color: gray">
+        <router-link :to="'Friend_list'">
+          <i class="fa fa-heart" style="color: gray"></i>
+          <span style="color: gray" @click="click_centerself">
                   关注
                 </span>
-      </router-link></el-menu-item>
+        </router-link></el-menu-item>
+      <el-menu-item index="2" style="width: 100px; font-size: 15px">
+        <router-link :to="'User_center'">
+          <i class="fa fa-user-o" style="color: gray"></i>
+          <span style="color: gray" @click="click_centerself">
+                  个人中心
+                </span>
+        </router-link></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
-        <div class="nav-search-box" >
+        <!--<form action="" class="parent">
+          <input type="text" class="search">
+          <input type="button" name=""  class="btn" style="z-index:1" >
+        </form>-->
+        <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
               <input
@@ -112,7 +123,7 @@
       <div style="position: absolute; left:100px; top:10px; border:#000 1px;border-bottom: 1px solid rgba(20,81,154,0); z-index: 1">
         <ul style="list-style-type:none; ">
           <li style="display: inline">
-            <router-link :to="'/'">
+            <router-link :to="'/'" >
               <i class="fa fa-bank" style="color: black"></i>
               <span style="color: black;">
                   首页&nbsp;&nbsp;&nbsp;
@@ -120,25 +131,25 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Saving_box'" @click="click_centerself">
+            <router-link :to="'Saving_box'" >
               <i class="fa fa-file-video-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'Friend_list'" @click="click_centerself">
+            <router-link :to="'Friend_list'" >
               <i class="fa fa-heart" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   关注&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
           </li>
-          <li style="display: inline">
-            <router-link :to="'User_center'" @click="click_centerself">
+          <li style="display: inline" >
+            <router-link :to="'User_center'">
               <i class="fa fa-user-o" style="color: black"></i>
-              <span style="color: black">
+              <span style="color: black" @click="click_centerself">
                   个人中心&nbsp;&nbsp;&nbsp;
                 </span>
             </router-link>
@@ -193,7 +204,7 @@
               </i></el-button>
           </router-link>
         </div>
-        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;;width: 100px">
+        <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
               plain
@@ -232,31 +243,28 @@
   <div class = "user_main">
     <div style="position: absolute;left:50px;top:50px">
       <a>
-        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userhead">
+        <img class="big-head"  style="  height: 70px;width: 70px;border-radius: 50%;" :src="this.userdata[0].UserHead">
       </a>
     </div>
-    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.username}}</div>
-    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">0</div>
-    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">0</div>
+    <div class="username" style="position:absolute; left:140px;top:70px;color: black;font-size: 20px">{{this.userdata[0].UserName}}</div>
+    <div class="fun_num" style="position:absolute;left:60px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FansNum}}</div>
+    <div class="up_num" style="position:absolute;left:160px;top:140px;color: black;font-size: 20px">{{this.userdata[0].VideoNum}}</div>
+    <div class="save_num" style="position:absolute;left:260px;top:140px;color: black;font-size: 20px">{{this.userdata[0].FavorNum}}</div>
     <div class="fun" style="position:absolute;left:45px;top:180px;color: black;font-size: 20px">粉丝</div>
     <div class="up" style="position:absolute;left:145px;top:185px;color: black;font-size: 20px">投稿</div>
     <div class="save" style="position:absolute;left:245px;top:180px;color: black;font-size: 20px">收藏</div>
-    <div class="评论数" style="position:absolute;left:60px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="点赞数" style="position:absolute;left:160px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="关注数" style="position:absolute;left:260px;top:220px;color: black;font-size: 20px">0</div>
-    <div class="评论" style="position:absolute;left:45px;top:260px;color: black;font-size: 20px">评论</div>
-    <div class="点赞" style="position:absolute;left:145px;top:260px;color: black;font-size: 20px">点赞</div>
-    <div class="关注" style="position:absolute;left:245px;top:260px;color: black;font-size: 20px">关注</div>
+    <div class="点赞数" style="position:absolute;left:115px;top:220px;color: black;font-size: 20px">{{this.userdata[0].LikeNum}}</div>
+    <div class="关注数" style="position:absolute;left:215px;top:220px;color: black;font-size: 20px">{{this.userdata[0].FollowNum}}</div>
+    <div class="点赞" style="position:absolute;left:100px;top:260px;color: black;font-size: 20px">点赞</div>
+    <div class="关注" style="position:absolute;left:200px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">这个人很懒，什么也没有留下</div>
-    <div style="position:absolute;left:20px;top:370px;">
-      <el-menu :default-active="this.$router.path" router class="el-menu-demo" mode="horizontal" @select="handleSelect"  background-color="whitesmoke"
-               text-color="black"
-               active-text-color="black" >
-        <el-menu-item index="/friend_list" style="width: 140px;height:60px;color: #0b95f1">关注列表</el-menu-item>
-        <el-menu-item index="/saving_box" style="width: 140px;height:60px;color: #0b95f1">收藏夹</el-menu-item>
-      </el-menu>
+    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
+    <div style="position:absolute;left:80px;top:370px;">
+      <div>
+        <el-button  v-if="this.iffollow===0&&this.if_same===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
+        <el-button  v-if="this.iffollow===1&&this.if_same===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
+        <!--<el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>-->
+      </div>
     </div>
   </div>
   <div class="收藏夹" >
@@ -265,18 +273,19 @@
                text-color="black"
                active-text-color="#eee"
       >
-        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'">关注列表</router-link></el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'">收藏夹</router-link></el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Contribution'">投稿</router-link></el-menu-item>
-        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'User_center'">个人信息</router-link></el-menu-item>
+        <el-menu-item  index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Friend_list'"><span @click="click_centernow">关注列表</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Saving_box'"><span @click="click_centernow">收藏夹</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1"><router-link :to="'Contribution'"><span @click="click_centernow">投稿</span></router-link></el-menu-item>
+        <el-menu-item index="" style="width: 135px;height:60px;color: #0b95f1" v-if="this.userid===this.centerId"><router-link :to="'User_center'"><span @click="click_centernow">个人信息</span></router-link></el-menu-item>
       </el-menu>
     </div>
-      <div style="font-size: 20px; position: relative;top: 80px;left: 80px">全部关注</div>
       <div style="position: relative;top:80px">
         <ul style="list-style: none;">
-          <li style="height: 75px;margin-top: 15px;" v-for="friend in friendlist" :key="friend.friend_id">
+          <li style="height: 75px;margin-top: 15px;" v-for="(friend,index) in friendlist" :key="friend.friend_id">
             <el-divider></el-divider>
-            <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url">
+            <router-link to="User_center">
+              <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url" @click="click_center(index)">
+            </router-link>
             <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
               <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
               <div style="font-size: 10px;color: gray">
@@ -328,13 +337,36 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      friendnum: 0,
+      friendnum: 1,
       friendlist: [
+        {
+          friend_head_url: '',
+          friend_name: 'asd',
+          friend_sign: 'asd',
+          friend_id: 7,
+        }
       ],
+      centerId: 0,
+      userdata:[
+        {
+          FansNum:0,
+          VideoNum:0,
+          FavorNum:0,
+          LikeNum:0,
+          FollowNum:0,
+          UserIntroduction:'',
+          UserHead: '',
+          UserName: '',
+        }
+      ],
+      iffollow: 0,
+      videoAuthorFollow:0,
+      if_same:0,
     }
   },
   created(){
     const userInfo = user.getters.getUser(user.state());
+    this.centerId = JSON.parse(sessionStorage.getItem('center_id'));
     console.log(userInfo);
     if (userInfo) {
       this.userhead = userInfo.user.UserProfilePhotoUrl;
@@ -345,6 +377,23 @@ export default {
       this.isLogin = 0;
     }
     var i=0;
+    this.$axios.get('user/detail/'+this.centerId).then(
+        res =>{
+          this.userdata[0].FansNum=res.data.FansNum;
+          this.userdata[0].VideoNum=res.data.VideoNum;
+          this.videoAuthorFollow = this.userdata[0].FansNum;
+          this.userdata[0].FavorNum=res.data.FavorNum;
+          this.userdata[0].LikeNum=res.data.LikeNum;
+          this.userdata[0].FollowNum=res.data.FollowNum;
+          this.userdata[0].UserIntroduction=res.data.UserIntroduction;
+          this.userdata[0].UserName=res.data.user.UserName;
+          this.userdata[0].UserHead=res.data.user.UserProfilePhotoUrl;
+          this.iffollow=res.data.fol;
+        },
+    );
+    if(this.userid === this.centerId){
+      this.if_same = 1;
+    }
     this.$axios.get('user/allFollow').then(
         res =>{
           this.friendnum=res.data.friendnum;
@@ -362,6 +411,26 @@ export default {
 
   },
   methods:{
+    follow(){
+      if(this.isLogin===1) {
+        if(this.iffollow === 0) {
+          alert('关注该用户');
+          this.iffollow = 1;
+          this.videoAuthorFollow += 1;
+        }
+        else{
+          alert('取消关注');
+          this.videoAuthorFollow -= 1;
+          this.iffollow = 0;
+        }
+        this.$axios.get('user/follow/' + this.centerId).then(
+        );
+      }
+      else{
+        this.$message.success("请先登录");
+        this.$router.push('/try_login');
+      }
+    },
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
@@ -370,8 +439,17 @@ export default {
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
+    click_center(id){
+      alert(this.friendlist[id].friend_id);
+      sessionStorage.setItem('center_id', JSON.stringify(this.friendlist[id].friend_id));
+    },
     click_centerself(){
-      this.$store.state.center_id = this.userid;
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
+    },
+    click_centernow(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.centerId));
     },
     logout(){
       alert('退出登录！');

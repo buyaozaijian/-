@@ -3,9 +3,10 @@
   <head>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   </head>
-  <div  style="position: fixed;z-index: 9999;width: 100%;">
+  <div style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
-        :default-active="activeIndex2"
+        :default-active="this.$router.path"
+        router
         class="el-menu-demo"
         mode="horizontal"
         @select="handleSelect"
@@ -45,51 +46,51 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link :to="'CreationCenter'">
-          <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+        <router-link  :to="'CreationCenter'">
+          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
         </router-link>
       </div>
-      <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block;">
+      <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
         <el-button
             plain
             @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px;padding: 0">
-          &ensp;站内通知
+            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
+          站内通知
         </el-button>
       </div>
-      <el-menu-item index="1" style="width: 100px; font-size: 15px">
-        <router-link :to="'/'">
+      <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
         <span style="color: gray;">
                   首页&nbsp;&nbsp;&nbsp;
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="2" style="width: 100px; font-size: 15px">
-        <router-link :to="'Saving_box'">
+      </a></el-menu-item>
+      <el-menu-item @click="if_login('/saving_box')"  style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-file-video-o" style="color: gray"></i>
         <span style="color: gray">
                   收藏夹
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'Friend_list'">
+      </a></el-menu-item>
+      <el-menu-item index="/friend_list" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
-      </router-link></el-menu-item>
-      <el-menu-item index="3" style="width: 100px; font-size: 15px">
-        <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color: gray"></i>
-          <span style="color: gray">
+      </a></el-menu-item>
+      <el-menu-item index="/user_center" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
+        <i class="fa fa-user-o" style="color: gray"></i>
+        <span style="color: gray">
                   个人中心
                 </span>
-        </router-link></el-menu-item>
+      </a></el-menu-item>
       <div style="position:absolute; left:450px; top:15px; border:#000 1px;border: 1px solid rgba(20,81,154,0);">
+        <!--<form action="" class="parent">
+          <input type="text" class="search">
+          <input type="button" name=""  class="btn" style="z-index:1" >
+        </form>-->
         <div class="nav-search-box">
           <div class="nav-search" style="margin: 0;border: 0;padding: 0">
             <form id="nav-searchform" style="width: 100%;margin: 0;border: 0;padding: 0">
@@ -101,7 +102,7 @@
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1" style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                   <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -129,7 +130,7 @@
   <div style="position: absolute; left: 1015px;top: 110px">
     <span style="margin-right: 20px;">
         <router-link :to="'User_center'" slot="reference">
-          <img :src="this.video_userhead" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
+          <img :src="this.video_userhead" @click="click_center" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
     </span>
     <div style="display: inline-block">
@@ -328,6 +329,7 @@ export default {
       videoviewcounts: 0,
       videouploadtime: 0,
       videodescription:'',
+      videoAuthorId:3,
       ifthisuser:0,
     }
   },
@@ -354,6 +356,7 @@ export default {
           this.videoviewcounts = res.data.VideoViewCounts;
           this.videouploadtime = res.data.VideoUploadDate;
           this.videodescription = res.data.VideoDescription;
+          this.videoAuthorId = res.data.VideoAuthor;
         }
     );
       this.$axios.get('comment/commentDetail/'+ this.vid).then(
@@ -443,8 +446,13 @@ export default {
       alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
-    click2(){
-      alert('cnmb');
+    click_center(){
+      alert(this.videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoAuthorId));
+    },
+    click_centerself(){
+      alert(1);
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     click1(index){
       this.$store.state.videourl = this.video_list[index].video_url;
