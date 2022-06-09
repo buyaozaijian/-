@@ -310,7 +310,7 @@
       </el-form-item>
       <el-form-item label="视频">
         <el-upload
-            class="upload-demo"
+            class="upload-video"
             :action=uploadVideoUrl
             :http-request="upLoadVideo"
             :before-upload="beforeVideoUpload"

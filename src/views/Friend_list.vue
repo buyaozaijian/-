@@ -394,7 +394,7 @@ export default {
     if(this.userid === this.centerId){
       this.if_same = 1;
     }
-    this.$axios.get('user/allFollow').then(
+    this.$axios.get('user/allFollow/' + this.centerId).then(
         res =>{
           this.friendnum=res.data.friendnum;
           for(i=0;i<this.friendnum;i++){

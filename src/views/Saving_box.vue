@@ -291,8 +291,8 @@
             <div class="up">
               <div class="up-cover">
                 <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'" @click="click1(index)">
-                    <p class="name">{{video.videoName}}</p>
+                  <router-link :to="'/videoPage'">
+                    <p class="name"  @click="click1(index)">{{video.videoName}}</p>
                   </router-link>
                   <router-link to="User_center">
                     <span class="title"  @click="click_center(index)">
@@ -417,7 +417,7 @@ export default {
     if(this.userid === this.centerId){
       this.if_same = 1;
     }
-    this.$axios.get('user/favorVideo').then(
+    this.$axios.get('user/favorVideo/' + this.centerId).then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){
