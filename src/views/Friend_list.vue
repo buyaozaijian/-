@@ -290,11 +290,12 @@
             <div style="display: inline-block;text-align: left; margin-left: 50px;float: left; width: 780px">
               <div style="position: relative; font-size: 22px; color: rgb(251, 114, 153);height: 40px">
                 {{friend.friend_name}}
+                <el-button style="float: right;position: relative;top: 0px;right: 50px;width: 70px;height: 30px;background: #e5e9ef;border: 0" type="info" plain>已关注</el-button>
+
               </div>
               <div style="font-size: 13px;color: gray">
                 {{friend.friend_sign}}
               </div>
-              <el-button style="float: right;position: relative;top: -40px;right: 50px;width: 70px;height: 30px;background: #e5e9ef;border: 0" type="info" plain>已关注</el-button>
             </div>
           </div>
 
