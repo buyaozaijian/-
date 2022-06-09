@@ -343,13 +343,13 @@ export default {
       },
       formLabelWidth: '120px',
       friendnum: 1,
-      friendlist: [
+      friendlist: [/*
         {
           friend_head_url: '',
           friend_name: 'asd',
           friend_sign: 'asd',
           friend_id: 7,
-        }
+        }*/
       ],
       centerId: 0,
       userdata:[

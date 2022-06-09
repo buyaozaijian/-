@@ -355,7 +355,7 @@ export default {
         code: ''
       },
       formLabelWidth: '120px',
-      videoList:[
+      videoList:[/*
         {
           videoCoverUrl:'',
           videoauthor: 'sa',
@@ -366,7 +366,7 @@ export default {
           videolike:1,
           videofavourite:2,
           videoAuthorId:5,
-        }
+        }*/
       ],
       videonum:1,
       centerId: 0,
