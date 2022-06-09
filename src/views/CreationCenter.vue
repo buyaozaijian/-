@@ -332,7 +332,8 @@
           </el-form-item>
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
-                list-type="picture-card"
+                class="upload-demo"
+                drag
                 :action=uploadVideoUrl
                 multiple
                 :http-request="upLoadVideo"
@@ -341,15 +342,12 @@
                 :limit="1">
               <i class="el-icon-plus"></i>
             </el-upload>
-            <el-dialog :visible.sync="dialogVisible">
-              <img width="100%" :src="dialogImageUrl" alt="">
-            </el-dialog>
             <div style="font-size: 10px">图片只能为jpg/png格式</div>
           </el-form-item>
-          <!--<el-form-item>
+          <el-form-item>
             <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
             <el-button style="width: 80px;height: 40px" @click="cancel_pre">取消</el-button>
-          </el-form-item>-->
+          </el-form-item>
         </el-form>
       </div>
     </el-tab-pane>
@@ -687,9 +685,9 @@ export default {
           });
     },
     upLoadImage(file) {
-      console.log(file);
       const formData = new FormData();
       formData.append('image', file.file);
+      console.log(formData.get('image'));
       this.$axios({
         method: 'post',
         url: this.uploadImgUrl,
@@ -735,9 +733,9 @@ export default {
       return (isJPG || isPNG) && isLt5M;
     },
     upLoadVideo(file) {
-      console.log(file);
       const formData = new FormData();
       formData.append('video', file.file);
+      console.log(formData.get('video'));
       const instance = this.$axios.create({
         withCredentials: true,
       })
