@@ -677,7 +677,6 @@ export default {
           .catch(_ => {
           });
     },*/
-
     submit_all(){
       alert(this.change.name);
       alert(this.change.sign);

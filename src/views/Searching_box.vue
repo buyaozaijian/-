@@ -239,16 +239,19 @@
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
+            @click="click1(index)"
         />
         <div class="up">
           <div class="up-cover">
-            <div style="float: left" class="txt" @click="click1(index)">
-                <p class="name">{{video.videoName}}</p>
-                <span class="title">
+            <div style="float: left" class="txt">
+                <p class="name" @click="click1(index)">{{video.videoName}}</p>
+                <span class="title" @click="click_center(index)">
                   <b>{{video.videoauthor}}</b>
-                      播放:<b>{{video.videoviewnum}}</b>
-                      评论:<b>{{video.videocommentnum}}</b>
-                    </span>
+                </span>
+                <span class="title"  @click="click1(index)">
+                  播放:<b>{{video.videoviewnum}}</b>
+                  评论:<b>{{video.videocommentnum}}</b>
+                </span>
             </div>
           </div>
         </div>
@@ -297,8 +300,11 @@ export default {
       },
       formLabelWidth: '120px',
       videoList:[
+        {
+          videoAuthorId:1,
+        }
       ],
-      videonum:0,
+      videonum:1,
       message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
@@ -360,6 +366,10 @@ export default {
     }
   },
   methods:{
+    click_center(id){
+      //alert(this.videoList[id].videoAuthorId);
+      sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
+    },
     click_search(){
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
       window.location.reload();
