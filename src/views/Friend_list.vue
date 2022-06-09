@@ -283,7 +283,7 @@
         <ul style="list-style: none;">
           <li style="height: 75px;margin-top: 15px;" v-for="(friend,index) in friendlist" :key="friend.friend_id">
             <el-divider></el-divider>
-            <router-link to="User_center">
+            <router-link to="Contribution">
               <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url" @click="click_center(index)">
             </router-link>
             <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
