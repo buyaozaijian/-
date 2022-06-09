@@ -102,7 +102,7 @@
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                 <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                    <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -224,24 +224,24 @@
   </header>
   <div class="zouma">
     <div>
-      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 0px;
-           width: 550px; height: 400px" >
-        <el-carousel-item style="height: 400px">
+      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 15px;
+           width: 550px; height: 390px" >
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="6">
             <img :src="this.videoList[6].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="7">
             <img :src="this.videoList[7].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="8">
             <img :src="this.videoList[8].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="9">
             <img :src="this.videoList[9].videoCoverUrl" width="100%" height="100%">
           </router-link>
@@ -2068,9 +2068,7 @@ export default {
       } else {
         this.isLogin = 0;
       }
-
-    /*this.isLogin = 1;*/
-
+    
   },
 
   methods:{
@@ -2079,8 +2077,8 @@ export default {
         this.$router.push('/try_login');
       }
       else{
-        this.click_centerself();
         this.$router.push(dir);
+        this.click_centerself();
       }
     },
     into1(){
