@@ -121,7 +121,7 @@
     <p style="color:#9195a3;font-size: 15px">{{this.videoviewcounts}}播放 · 总评论数{{this.comment_num}}  {{this.videouploadtime}}</p>
   </div>
   <div style="position: absolute; left: 1015px;top: 110px">
-    <span style="margin-right: 20px;">
+    <span style="margin-right: 20px;position: absolute;left:10px">
         <router-link :to="'Contribution'" slot="reference">
           <img :src="this.video_userhead" @click="click_center" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
@@ -138,10 +138,11 @@
         <el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
       </div>
     </div>
-    <div style="text-align: left;margin-top: 50px;margin-bottom: 30px;font-family: 微软雅黑">
+    <div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div><div>&nbsp;</div>
+    <div style=" font-family: 微软雅黑;">
         他的视频还有
     </div>
-    <div>
+    <div style="position: absolute;top:150px;">
         <div v-for="(videos,index) in this.video_list" :key="videos.video_id_use" style="margin-bottom:55px;width: 370px;height: 40px">
           <img :src="videos.video_photo" style="width: 150px;height: 80px; float: left;border-radius: 8px;margin-right: 10px">
           <div>
@@ -319,10 +320,10 @@ export default {
       videourl:JSON.parse(sessionStorage.getItem('videourl')),
       vid: JSON.parse(sessionStorage.getItem('videoid')),
       aid: JSON.parse(sessionStorage.getItem('videoauthorid')),
-      video_username: '',
+      video_username: 'cnm',
       video_userid:0,
-      video_userhead:'',
-      video_userintroduction:'',
+      video_userhead:'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
+      video_userintroduction:'cnmlgb',
       videoAuthorStatus: 0,
       videoAuthorFollow: 0,
       videoLikeNum: 0,
