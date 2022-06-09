@@ -538,11 +538,9 @@ export default {
   },
   methods: {
     click_search(){
-      alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
     click_search1(){
-      alert(this.$refs.search1.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(id){
@@ -550,7 +548,6 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     click_centerself(){
-      alert(1);
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){

@@ -102,7 +102,7 @@
                   style="width: 100%;margin: 0;border: 0;padding: 0;outline: none"
               />
               <div class="nav-search-btn">
-                <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
+                 <router-link to="/searching_box"><button @click="click_search1"  style="margin: 0;padding: 0;border: none;outline: none;top: 5px">
                    <img
                       src="../img/sousuo1.png"
                       alt=""
@@ -2074,6 +2074,7 @@ export default {
       } else {
         this.isLogin = 0;
       }
+
   },
 
   methods:{
@@ -2082,8 +2083,8 @@ export default {
         this.$router.push('/try_login');
       }
       else{
-        this.click_centerself();
         this.$router.push(dir);
+        this.click_centerself();
       }
     },
     into1(){
