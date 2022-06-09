@@ -1,7 +1,8 @@
 
 <template>
+  <div id="div_1">
   <div id="register" class="register">
-    <img class="bgbox" id="bgbox" alt="" src="../../src/img/星空.jpg">
+    <img class="bgbox" id="bgbox" alt="" src="../../src/img/星空4.jpg">
     <div class="wrap">
       <h1 style="position: relative; top: 10px;">注 册</h1>
       <el-form :model="form" ref="form" class="form" style="position: relative; top: 15px;">
@@ -33,6 +34,7 @@
         </div>
       </el-form>
     </div>
+  </div>
   </div>
 </template>
 
@@ -75,9 +77,16 @@ export default {
 </script>
 
 <style scoped>
+
+#div_1{
+  width: 100%;
+  height: 718px;
+  background-color: white;
+  background: rgba(255, 255, 255, 0.7);
+
+}
 #register {
   font-family: 'Noto Serif SC', serif;
-  margin-top: 60px;
 }
 #register >>> .el-input__inner {
   font-family: 'Noto Serif SC', serif;
@@ -95,6 +104,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.85);;
   border-radius: 15px;
   color: #303133;
+  top: 160px;
   border: 2px solid #ebeef5;
   box-shadow: 2px 2px 12px 2px rgb(0 0 0 / 10%);
   transition: .3s;

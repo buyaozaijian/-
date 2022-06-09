@@ -210,13 +210,7 @@
               </i></el-button>
         </div>
         <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <i class="fa fa-paper-plane-o" style="color: white"></i>
-          <el-button
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: white;font-size: 15px;padding: 0">
-            &ensp;站内通知
-          </el-button>
+          <img style="width: 200px; position: relative; top: -18px" alt="" src="../../src/img/logo.png">
         </div>
        <!-- <div v-else  style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
@@ -2075,7 +2069,7 @@ export default {
         this.isLogin = 0;
       }
 
-    this.isLogin = 1;
+    /*this.isLogin = 1;*/
 
   },
 
