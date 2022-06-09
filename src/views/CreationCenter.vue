@@ -261,11 +261,11 @@
                 <el-divider ></el-divider>
               </div>
               <router-link :to="'/videoPage'">
-                <img @click="click1(index)" style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+                <img @click="click_control(index)" style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
                 <router-link :to="'/videoPage'" >
-                  <div @click="click1(index)" style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                  <div @click="click_control(index)" style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
                 <div v-for="tags in video.videoTags" :key="tags">
                   <router-link to="Searching_box">
@@ -332,7 +332,7 @@
           </el-form-item>
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
-                class="upload-demo"
+                class=""
                 drag
                 :action=uploadVideoUrl
                 multiple
@@ -340,9 +340,9 @@
                 :before-upload="beforeVideoUpload"
                 :file-list="willAddQuestion.videoList"
                 :limit="1">
-              <i class="el-icon-plus"></i>
+              <i class="el-icon-upload"></i>
+              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
             </el-upload>
-            <div style="font-size: 10px">图片只能为jpg/png格式</div>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
@@ -359,11 +359,11 @@
                 <el-divider ></el-divider>
               </div>
               <router-link :to="'/videoPage'">
-                <img @click="click1(index)" style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
+                <img @click="click_audit(index)" style=" position: relative; height: 120px;width: 180px; border-radius: 4%;float: left" :src="video.videoCoverUrl">
               </router-link>
               <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
                 <router-link :to="'/videoPage'">
-                  <div @click="click1(index)" style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
+                  <div @click="click_audit(index)" style="position: relative; font-size: 20px;color: #505050;height: 80px">{{video.videoName}}</div>
                 </router-link>
                 <div v-for="tags in video.videoTags" :key="tags">
                   <router-link :to="'/videoPage'">
@@ -380,8 +380,8 @@
                 <span style="margin-right: 20px">
                   <i class="el-icon-star-off" style="font-size: 20px;margin-right: 5px"></i>{{video.videofavourite}}
                 </span>
-                <el-button :id="video.comid_pass" @click="auditvideo_pass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
-                <el-button :id="video.comid_notpass" @click="auditvideo_notpass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
+                <el-button @click="auditvideo_pass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray;margin-left: 20px" plain>通过</el-button>
+                <el-button @click="auditvideo_notpass(index)" style="float: right;position: relative;top: -50px;width: 100px;height: 30px;border-color: darkgray" plain>不通过</el-button>
               </div>
             </li>
           </ul>
@@ -569,18 +569,34 @@ export default {
         offset: 100
       });
     },
-    click1(index){
-      this.$store.state.videourl = this.videoList[index].videoUrl;
-      this.$store.state.videoname = this.videoList[index].videoName;
-      this.$store.state.videoid = this.videoList[index].videoId;
-      this.$store.state.videolike=this.videoList[index].videolike;
-      this.$store.state.videofavourite=this.videoList[index].videofavourite;
-      this.$store.state.videoauthor=this.videoList[index].videoAuthor;
-      this.$store.state.videoauthorid=this.videoList[index].videoAuthorId,
+    click_control(index){
+      this.$store.state.videourl = this.videocontrolList[index].videoUrl;
+      this.$store.state.videoname = this.videocontrolList[index].videoName;
+      this.$store.state.videoid = this.videocontrolList[index].videoId;
+      this.$store.state.videolike=this.videocontrolList[index].videolike;
+      this.$store.state.videofavourite=this.videocontrolList[index].videofavourite;
+      this.$store.state.videoauthor=this.videocontrolList[index].videoAuthor;
+      this.$store.state.videoauthorid=this.videocontrolList[index].videoAuthorId,
           //this.$store.state.videoname = 'cnm';
           //this.$store.state.videoid = 1;
           //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
       sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
+      sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
+      sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
+      sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
+    },
+    click_audit(index){
+      this.$store.state.videourl = this.videoauditList[index].videoUrl;
+      this.$store.state.videoname = this.videoauditList[index].videoName;
+      this.$store.state.videoid = this.videoauditList[index].videoId;
+      this.$store.state.videolike=this.videoauditList[index].videolike;
+      this.$store.state.videofavourite=this.videoauditList[index].videofavourite;
+      this.$store.state.videoauthor=this.videoauditList[index].videoAuthor;
+      this.$store.state.videoauthorid=this.videoauditList[index].videoAuthorId,
+          //this.$store.state.videoname = 'cnm';
+          //this.$store.state.videoid = 1;
+          //this.$store.state.videourl = 'https://video-1310787519.cos.ap-beijing.myqcloud.com/test_video/76c8b338-48aa-40f7-81f9-fb0ec1e6b649.mp4';
+          sessionStorage.setItem('videoname', JSON.stringify(this.$store.state.videoname));
       sessionStorage.setItem('videoid', JSON.stringify(this.$store.state.videoid));
       sessionStorage.setItem('videourl', JSON.stringify(this.$store.state.videourl));
       sessionStorage.setItem('videoauthorid', JSON.stringify(this.$store.state.videoauthorid));
@@ -735,11 +751,7 @@ export default {
     upLoadVideo(file) {
       const formData = new FormData();
       formData.append('video', file.file);
-      console.log(formData.get('video'));
-      const instance = this.$axios.create({
-        withCredentials: true,
-      })
-      instance({
+      this.$axios({
         method: 'post',
         url: this.uploadVideoUrl,
         data: formData,
@@ -761,6 +773,7 @@ export default {
                 // this.$message.error("上传文件格式错误！");
                 break;
               default:
+                alert(res.data.status_code);
                 this.$message.error("操作失败！");
                 break;
             }
@@ -825,6 +838,7 @@ export default {
       )
     },
     auditvideo_notpass(index) {
+      alert(this.videoauditList[index].videoid);
       this.$axios({
             method: "post",
             url: "video/changeStatus/" + this.videoauditList[index].videoid,
@@ -839,9 +853,10 @@ export default {
       )
     },
     auditvideo_pass(index) {
+      alert(this.videoauditList[index].videoid);
       this.$axios({
             method: "post",
-            url: "video/changeStatus/" + this.videocontrolList[index].videoid,
+            url: "video/changeStatus/" + this.videoauditList[index].videoid,
             data: qs.stringify({
               status: 1
             })
