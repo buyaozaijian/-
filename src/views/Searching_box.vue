@@ -235,9 +235,11 @@
           <div class="up-cover">
             <div style="float: left" class="txt">
                 <p class="name" @click="click1(index)">{{video.videoName}}</p>
+              <router-link to="Contribution">
                 <span class="title" @click="click_center(index)">
                   <b>{{video.videoauthor}}</b>
                 </span>
+              </router-link>
                 <span class="title"  @click="click1(index)">
                   播放:<b>{{video.videoviewnum}}</b>
                   评论:<b>{{video.videocommentnum}}</b>

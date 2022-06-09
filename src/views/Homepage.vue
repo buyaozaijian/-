@@ -230,24 +230,24 @@
   </header>
   <div class="zouma">
     <div>
-      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 0px;
-           width: 550px; height: 400px" >
-        <el-carousel-item style="height: 400px">
+      <el-carousel indicator-position="outside" style=" display: inline-block; left: -370px; border-radius: 4px;top: 15px;
+           width: 550px; height: 390px" >
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="6">
             <img :src="this.videoList[6].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="7">
             <img :src="this.videoList[7].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="8">
             <img :src="this.videoList[8].videoCoverUrl" width="100%" height="100%">
           </router-link>
         </el-carousel-item>
-        <el-carousel-item style="height: 400px">
+        <el-carousel-item style="height: 390px">
           <router-link to="videoPage" @click="click1" id="9">
             <img :src="this.videoList[9].videoCoverUrl" width="100%" height="100%">
           </router-link>

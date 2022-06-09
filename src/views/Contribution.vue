@@ -398,7 +398,7 @@ export default {
           this.iffollow=res.data.fol;
         },
     );
-    this.$axios.get('index/videoAll/'+this.userid).then(
+    this.$axios.get('index/videoAll/'+this.centerId).then(
         res =>{
           this.videonum=res.data.videoNum;
           for(i=0;i<this.videonum;i++){
