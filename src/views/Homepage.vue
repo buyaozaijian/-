@@ -1829,7 +1829,6 @@
                     </a>
                   </router-link>
                 </div>
-
                 <router-link to="Contribution" @click="click_center(this.videoList[56].videoAuthorId)">
                   <p class="title">{{this.videoList[56].videoAuthor}}&nbsp;播放:<b>{{this.videoList[56].videoviewnum}}</b>评论:<b>{{this.videoList[56].commentnum}}</b></p>
                 </router-link>

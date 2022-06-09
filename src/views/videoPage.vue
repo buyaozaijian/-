@@ -127,13 +127,13 @@
         </router-link>
     </span>
     <div style="display: inline-block">
-      <div style="text-align: left;color: #fb7299;width: 250px">
+      <div style="position: absolute;text-align: left;color: #fb7299;width: 250px;left:70px;top:8px;">
         {{this.video_username}}
       </div>
-      <div style="text-align: left;font-size: 13px;width: 250px">
+      <div style="position: absolute;text-align: left;font-size: 13px;width: 250px;left:70px;top:28px;">
          {{this.video_userintroduction}}
       </div>
-      <div style="margin-top: 10px;float: left;width: 230px">
+      <div style="position: absolute;margin-top: 10px;float: left;width: 230px;left:70px;top:48px;">
         <el-button v-if="this.videoAuthorStatus===0&&this.ifthisuser===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
         <el-button v-if="this.videoAuthorStatus===1&&this.ifthisuser===0" @click="follow" style="float: left;width: 170px;height: 35px" type="info">已关注：{{this.videoAuthorFollow}}</el-button>
       </div>
@@ -145,7 +145,7 @@
         <div v-for="(videos,index) in this.video_list" :key="videos.video_id_use" style="margin-bottom:55px;width: 370px;height: 40px">
           <img :src="videos.video_photo" style="width: 150px;height: 80px; float: left;border-radius: 8px;margin-right: 10px">
           <div>
-           <div :id="videos.video_id_use" @click="click1(index)" style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
+            <div :id="videos.video_id_use" @click="click1(index)" style="font-size: 15px;text-align: left;font-family: '微软雅黑 Light';font-weight: 600;height: 40px">
               {{videos.video_name}}
             </div>
             <div style="float: left;margin-top: 5px;font-size: 13px;color: gray;width: 140px;text-align: left">
@@ -333,6 +333,7 @@ export default {
       videodescription:'',
       videoAuthorId:3,
       ifthisuser:0,
+
     }
   },
   created() {
@@ -427,7 +428,6 @@ export default {
           }
         }
       );
-      this.isLogin=1;
   },
   methods:{
     if_login(dir){

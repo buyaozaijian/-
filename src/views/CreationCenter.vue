@@ -519,6 +519,15 @@ export default {
     window.scrollTo(0, 0);
   },
   methods: {
+    if_login(dir){
+      if(this.isLogin===0){
+        this.$router.push('/try_login');
+      }
+      else{
+        this.$router.push(dir);
+        this.click_centerself();
+      }
+    },
     click_search(){
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
     },
