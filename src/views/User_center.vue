@@ -200,7 +200,7 @@
             &ensp;站内通知
           </el-button>
         </div>-->
-        <div style=" position: absolute; left: 1190px; top: -3px;z-index: 9999; display: inline-block;">
+        <div style=" position: absolute; left: 1230px; top: -3px;z-index: 9999; display: inline-block;">
           <i class="fa fa-paper-plane-o" style="color: black"></i>
           <el-button
               v-if="this.isLogin===0"
@@ -463,10 +463,10 @@ export default {
       readnotificationList: [],
       unreadnotificationList: [],
 
-      oldname: '1',
-      oldsign: '2',
-      oldmail: '3',
-      oldpassword: '12345667',
+      oldname: '',
+      oldsign: '',
+      oldmail: '',
+      oldpassword: '',
 
 
       change: {
@@ -673,7 +673,6 @@ export default {
           .catch(_ => {
           });
     },*/
-
     submit_all(){
       alert(this.change.name);
       alert(this.change.sign);

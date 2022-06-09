@@ -127,7 +127,7 @@
   </div>
   <div style="position: absolute; left: 1015px;top: 110px">
     <span style="margin-right: 20px;">
-        <router-link :to="'User_center'" slot="reference">
+        <router-link :to="'Contribution'" slot="reference">
           <img :src="this.video_userhead" @click="click_center" style="width: 50px;height: 50px;border-radius: 50%;border-color: white;border-width: 1px">
         </router-link>
     </span>
@@ -187,6 +187,7 @@
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
         {{this.videoFavorNum}}
       </div>
+      <el-button type="danger" style="float: right;" @click="auditvideo_com">投诉</el-button>
     </div>
     <div class="introduction">
       <el-divider></el-divider>
@@ -439,6 +440,21 @@ export default {
         this.$router.push(dir);
         this.click_centerself();
       }
+    },
+    auditvideo_com() {
+      this.$axios({
+            method: "post",
+            url: "video/changeStatus/" + this.vid,
+            data: qs.stringify({
+              status: 2
+            })
+          }
+      ).then(
+          res => {
+            alert(res.data.msg);
+          }
+      )
+
     },
     delete_comment(id,index){
       this.$axios.get('comment/delete/'+id).then(

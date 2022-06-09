@@ -229,16 +229,19 @@
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
+            @click="click1(index)"
         />
         <div class="up">
           <div class="up-cover">
-            <div style="float: left" class="txt" @click="click1(index)">
-                <p class="name">{{video.videoName}}</p>
-                <span class="title">
+            <div style="float: left" class="txt">
+                <p class="name" @click="click1(index)">{{video.videoName}}</p>
+                <span class="title" @click="click_center(index)">
                   <b>{{video.videoauthor}}</b>
-                      播放:<b>{{video.videoviewnum}}</b>
-                      评论:<b>{{video.videocommentnum}}</b>
-                    </span>
+                </span>
+                <span class="title"  @click="click1(index)">
+                  播放:<b>{{video.videoviewnum}}</b>
+                  评论:<b>{{video.videocommentnum}}</b>
+                </span>
             </div>
           </div>
         </div>
@@ -287,8 +290,11 @@ export default {
       },
       formLabelWidth: '120px',
       videoList:[
+        {
+          videoAuthorId:1,
+        }
       ],
-      videonum:0,
+      videonum:1,
       message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
@@ -350,11 +356,11 @@ export default {
     }
   },
   methods:{
-    if_login(dir){
-      if(this.isLogin===0){
+
+    if_login(dir) {
+      if (this.isLogin === 0) {
         this.$router.push('/try_login');
-      }
-      else{
+      } else {
         this.$router.push(dir);
         this.click_centerself();
       }
