@@ -2075,7 +2075,7 @@ export default {
         this.isLogin = 0;
       }
 
-      this.isLogin=1;
+      this.isLogin=0;
 
   },
 
