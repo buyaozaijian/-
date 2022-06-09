@@ -108,6 +108,9 @@
       </div>
     </el-menu>
   </div>
+  <div id="div_0">
+  <div id="div_1">
+
   <body style="width: 1150px;margin: 0 auto;">
   <div class="title" >
     <br><br>
@@ -166,17 +169,17 @@
     <div class="operation">
       <el-divider></el-divider>
       <div style="float: left; width: 100px">
-        <button v-if="this.isLogin===0" @click="jumplogin" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
-        <button v-else-if="this.iflike===0" @click="like" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
-        <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
+        <button v-if="this.isLogin===0" @click="jumplogin" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: rgba(0,0,0,0); color: gray; font-size: 30px;"></button>
+        <button v-else-if="this.iflike===0" @click="like" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: rgba(0,0,0,0); color: gray; font-size: 30px;"></button>
+        <button v-else @click="likecancall" class="fa fa-thumbs-up" style="margin: 0; border: 0; outline: none; background: rgba(0,0,0,0); color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -33px">
         {{this.videoLikeNum}}
       </div>
       <div style="float: left; width: 100px">
-        <button v-if="this.isLogin===0" @click="jumplogin" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
-        <button v-else-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: white; color: gray; font-size: 30px;"></button>
-        <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: white; color: hotpink; font-size: 30px;"></button>
+        <button v-if="this.isLogin===0" @click="jumplogin" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: rgba(0,0,0,0); color: gray; font-size: 30px;"></button>
+        <button v-else-if="ifcollection===0" @click="collect" class="el-icon-star-off" style="margin: 0; border: 0; outline: none; background: rgba(0,0,0,0); color: gray; font-size: 30px;"></button>
+        <button v-else  @click="collectcall" class="el-icon-star-on" style="margin: 0; border: 0; outline: none; background: rgba(0,0,0,0); color: hotpink; font-size: 30px;"></button>
       </div>
       <div style="float: left; width: 50px; height: 40px; font-size: 15px; position: relative; top: 5px; left: -35px">
         {{this.videoFavorNum}}
@@ -232,6 +235,8 @@
     </div>
   </div>
   </body>
+  </div>
+  </div>
   </html>
 </template>
 
@@ -424,6 +429,7 @@ export default {
           }
         }
       );
+      this.isLogin=1;
   },
   methods:{
     if_login(dir){
@@ -628,6 +634,21 @@ export default {
 </script>
 
 <style scoped>
+#div_0{
+  width: 100%;
+  height: 100%;
+  border: 1px #1A4BAF;
+  background-image: url("../../src/img/星空4.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+}
+#div_1{
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  background: rgba(255, 255, 255, 0.7);
+  background-attachment: fixed;
+}
 .video{
   height: 450px;
   width: 800px;
