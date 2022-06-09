@@ -127,7 +127,7 @@
         </router-link>
     </span>
     <div style="display: inline-block">
-      <div style="text-align: left;color: #fb7299;width: 250px">
+      <div style="text-align: left;color: #fb7299;width: 250px;height: 30px">
         {{this.video_username}}
       </div>
       <div style="text-align: left;font-size: 13px;width: 250px">
@@ -457,7 +457,7 @@ export default {
     delete_comment(id,index){
       this.$axios.get('comment/delete/'+id).then(
       )
-      alert('删除评论');
+      this.$message.success("删除评论");
       this.comment_list.splice(index,1);
     },
     jumplogin(){

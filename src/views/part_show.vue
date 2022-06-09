@@ -1,6 +1,7 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <body style="max-width:1560px;margin: 0 auto;">
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
@@ -227,24 +228,22 @@
             :src="video.videoCoverUrl"
             alt=""
             style="border-radius: 6px"
+            @click="click1(index)"
         />
         <div class="up">
           <div class="up-cover">
             <div style="float: left" class="txt">
-              <router-link :to="'/videoPage'" @click="click1(index)">
-                <p class="name">{{video.videoName}}</p>
-                <div v-for="tags in video.videoTags" :key="tags">
-                  <router-link to="Searching_box"  >
-                    <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
-                      {{tags}}
-                    </a>
-                  </router-link>
-                </div>
-                <span class="title">
-                  <b>{{video.videoauthor}}</b>
-                      播放:<b>{{video.videoviewnum}}</b>
-                      评论:<b>{{video.videocommentnum}}</b>
+              <a target="blank">
+                <router-link to="/videoPage"><p id="0" class="name" @click="click1(index)">{{video.videoName}}</p></router-link></a>
+              <span v-for="tags in video.videoTags" :key="tags">
+                      <router-link to="Searching_box" >
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
                     </span>
+              <router-link to="Contribution" >
+                <p class="title" @click="click_center(0)">{{video.videoauthor}}&nbsp;播放:<b>{{video.videoviewnum}}</b>评论:<b>{{video.videocommentnum}}</b></p>
               </router-link>
             </div>
           </div>
