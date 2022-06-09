@@ -417,7 +417,7 @@ export default {
     if(this.userid === this.centerId){
       this.if_same = 1;
     }
-    this.$axios.get('user/favorVideo').then(
+    this.$axios.get('user/favorVideo/' + this.centerId).then(
         res =>{
           this.videonum=res.data.friendnum;
           for(i=0;i<this.videonum;i++){
