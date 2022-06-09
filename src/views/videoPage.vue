@@ -461,7 +461,7 @@ export default {
       this.comment_list.splice(index,1);
     },
     jumplogin(){
-      this.$message.success("请先登录！");
+      this.$message.error("请先登录！");
       this.$router.push('/try_login');
     },
     click_search(){
@@ -471,7 +471,6 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(){
-      alert(this.videoAuthorId);
       sessionStorage.setItem('center_id', JSON.stringify(this.videoAuthorId));
     },
     click_centerself(){
@@ -496,12 +495,12 @@ export default {
     follow(){
       if(this.isLogin===1) {
         if(this.videoAuthorStatus === 0) {
-          alert('关注该用户');
+          this.$message.success("关注用户");
           this.videoAuthorStatus = 1;
           this.videoAuthorFollow += 1;
         }
         else{
-          alert('取消关注');
+          this.$message.success("取消关注");
           this.videoAuthorFollow -= 1;
           this.videoAuthorStatus = 0;
         }
@@ -509,12 +508,12 @@ export default {
         );
       }
       else{
-        this.$message.success("请先登录");
+        this.$message.error("请先登录");
         this.$router.push('/try_login');
       }
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("已退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );
@@ -607,13 +606,13 @@ export default {
             console.log(res)
             switch (res.data.status_code) {
               case 1:
-                console.log("发送成功");
+                this.$message.success("发送成功");
                 this.$router.push({
                   path: './'
                 })
                 break;
               case 2:
-                alert('发送失败')
+                this.$message.error("请求失败");
                 break;
             }
           })

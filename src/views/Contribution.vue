@@ -279,11 +279,6 @@
                 <span class="title">
                       {{video.videoauthor}}
                       <span style="float: right">
-                  <el-dropdown @command="handleCommand">
-                  <span class="el-dropdown-link">
-                  <i class="fa fa-navicon"></i>
-                  </span>
-                  </el-dropdown>
                 </span>
                     </span>
               </router-link>
@@ -418,12 +413,12 @@ export default {
     follow(){
       if(this.isLogin===1) {
         if(this.iffollow === 0) {
-          alert('关注该用户');
+          this.$message.success("关注用户");
           this.iffollow = 1;
           this.videoAuthorFollow += 1;
         }
         else{
-          alert('取消关注');
+          this.$message.success("取消关注");
           this.videoAuthorFollow -= 1;
           this.iffollow = 0;
         }
@@ -431,7 +426,7 @@ export default {
         );
       }
       else{
-        this.$message.success("请先登录");
+        this.$message.error("请先登录");
         this.$router.push('/try_login');
       }
     },
@@ -442,7 +437,6 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(id){
-      alert(this.videoList[id].videoAuthorId);
       sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     click_centernow(){
@@ -452,7 +446,7 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("已退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );
@@ -555,7 +549,7 @@ export default {
     },
     handleSelect(key, keyPath) {
       console.log(key, keyPath);
-    }
+    },
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)

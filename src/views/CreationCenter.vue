@@ -526,14 +526,13 @@ export default {
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search1.value));
     },
     click_center(id){
-      alert(this.videoList[id].videoAuthorId);
       sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     click_centerself(){
       sessionStorage.setItem('center_id', JSON.stringify(this.userid));
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("已退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );
@@ -617,7 +616,7 @@ export default {
           .then(res => {              /* res 是 response 的缩写 */
             switch (res.data.status_code) {
               case 200:
-                window.alert("登录成功！");
+                this.$message.success("已退出登录");
                 /* 将后端返回的 user 信息使用 vuex 存储起来 */
                 this.$store.dispatch('saveUserInfo', {
                   user: res.data.data
@@ -664,13 +663,13 @@ export default {
             console.log(res)
             switch (res.data.status_code) {
               case 1:
-                console.log("上传成功");
+                this.$message.success("上传成功");
                 this.$router.push({
                   path: './'
                 })
                 break;
               case 2:
-                alert('上传失败')
+                this.$message.error("上传失败");
                 break;
             }
           })
@@ -691,7 +690,7 @@ export default {
           .then(res => {
             switch (res.data.status_code) {
               case 0:
-                window.alert("error");
+                this.$message.error("上传失败");
                 break;
               case 1:
                 var url_img = res.data.url_img;
@@ -700,9 +699,8 @@ export default {
                   url: url_img,
                   key: key_img
                 });
-                alert("封面上传成功");
+                this.$message.success("上传成功");
                 console.log(this.willAddQuestion.imgList);
-                alert(this.willAddQuestion.imgList[0].url);
                 break;
               case 2:
                 // this.$message.error("上传文件格式错误！");
@@ -746,7 +744,7 @@ export default {
                   url: url_video,
                   key: key_video
                 });
-                window.alert("视频上传成功");
+                this.$message.success("上传成功");
                 console.log(this.willAddQuestion.videoList);
                 break;
               case 2:
@@ -810,7 +808,7 @@ export default {
     },
 
     deletevideo(index) {
-      alert(this.videocontrolList[index].videoid);
+      this.$message.success("删除成功");
       this.$axios.get("video/delete/"+this.videocontrolList[index].videoid).then(
           res=> {
             alert(res.data.msg);
@@ -820,7 +818,7 @@ export default {
 
     },
     auditvideo_notpass(index) {
-      alert(this.videoauditList[index].videoid);
+      this.$message.success("审核不通过");
       this.$axios({
             method: "post",
             url: "video/changeStatus/" + this.videoauditList[index].videoid,
@@ -830,13 +828,13 @@ export default {
           }
       ).then(
           res => {
-            alert(res.data.msg);
+            this.$message.success(res.data.msg);
           }
       )
       window.location.reload();
     },
     auditvideo_pass(index) {
-      alert(this.videoauditList[index].videoid);
+      this.$message.success("审核通过");
       this.$axios({
             method: "post",
             url: "video/changeStatus/" + this.videoauditList[index].videoid,
@@ -846,7 +844,7 @@ export default {
           }
       ).then(
           res => {
-            alert(res.data.msg);
+            this.$message.success(res.data.msg);
           }
       )
       window.location.reload();

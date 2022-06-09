@@ -384,7 +384,7 @@ export default {
       sessionStorage.setItem('center_id', JSON.stringify(this.videoList[id].videoAuthorId));
     },
     logout(){
-      alert('退出登录！');
+      this.$message.success("退出登录");
       sessionStorage.setItem('ISLOGIN', JSON.stringify(false));
       window.location.reload();
       this.$store.dispatch('clearUserInfo' );
