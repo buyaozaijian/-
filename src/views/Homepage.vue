@@ -48,12 +48,10 @@
         </a>
       </div>
       <div style="position: absolute;left:1180px; top:15px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-        <router-link  :to="'CreationCenter'">
-          <el-button   type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+          <el-button  @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
             <i class="el-icon-upload el-icon--right" style="margin: 0">
               创作中心
             </i></el-button>
-        </router-link>
       </div>
       <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
         <i class="fa fa-paper-plane-o" style="color: gray"></i>
@@ -76,13 +74,13 @@
                   收藏夹
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/friend_list" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item  @click="if_login('/friend_list')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-heart" style="color: gray"></i>
         <span style="color: gray">
                   关注
                 </span>
       </a></el-menu-item>
-      <el-menu-item index="/user_center" @click="click_centerself" style="width: 100px; font-size: 15px"><a>
+      <el-menu-item  @click="if_login('/user_center')" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-user-o" style="color: gray"></i>
         <span style="color: gray">
                   个人中心
@@ -141,23 +139,17 @@
                   收藏夹&nbsp;&nbsp;&nbsp;
                 </span>
           </li>
-          <li style="display: inline">
-            <router-link :to="'/Friend_list'" >
+          <li style="display: inline;cursor: pointer" @click="if_login('/friend_list')" >
               <i class="fa fa-heart" style="color: white"></i>
-              <span style="color: white" @click="click_centerself">
+              <span style="color: white">
                   关注&nbsp;&nbsp;&nbsp;
-                </span>
-            </router-link>
+              </span>
           </li>
-          <li style="display: inline">
-
-            <router-link :to="'/User_center'" >
+          <li  @click="if_login('/user_center')" style="display: inline;cursor: pointer">
               <i class="fa fa-user-o" style="color: white"></i>
-              <span style="color: white" @click="click_centerself">
-
+              <span style="color: white" >
                   个人中心
                 </span>
-            </router-link>
           </li>
         </ul>
         <div style="position:absolute; left:400px; top:-5px; border:#000 1px;">
@@ -212,12 +204,10 @@
           </button>
         </div>
         <div style="position: absolute;left:1080px; top:-3px;z-index: 9999; display: inline-block;margin: 0;border: 0;outline: none">
-          <router-link :to="'CreationCenter'">
-            <el-button type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
+            <el-button @click="if_login('/CreationCenter')" type="primary" style="background: #fb7299;margin: 0;border: 0;outline: none;width: 110px;height: 35px;border-radius: 10px">
               <i class="el-icon-upload el-icon--right" style="margin: 0">
                 创作中心
               </i></el-button>
-          </router-link>
         </div>
         <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
           <i class="fa fa-paper-plane-o" style="color: white"></i>
@@ -2092,8 +2082,8 @@ export default {
         this.$router.push('/try_login');
       }
       else{
-        this.$router.push(dir);
         this.click_centerself();
+        this.$router.push(dir);
       }
     },
     into1(){

@@ -291,8 +291,8 @@
             <div class="up">
               <div class="up-cover">
                 <div style="float: left" class="txt">
-                  <router-link :to="'/videoPage'" @click="click1(index)">
-                    <p class="name">{{video.videoName}}</p>
+                  <router-link :to="'/videoPage'">
+                    <p class="name"  @click="click1(index)">{{video.videoName}}</p>
                   </router-link>
                   <router-link to="User_center">
                     <span class="title"  @click="click_center(index)">
