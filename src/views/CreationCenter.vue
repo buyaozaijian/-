@@ -332,7 +332,7 @@
           </el-form-item>
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
-                list-type="picture-card"
+                drag
                 :action=uploadVideoUrl
                 multiple
                 :http-request="upLoadVideo"
@@ -346,10 +346,10 @@
             </el-dialog>
             <div style="font-size: 10px">图片只能为jpg/png格式</div>
           </el-form-item>
-          <!--<el-form-item>
+          <el-form-item>
             <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
             <el-button style="width: 80px;height: 40px" @click="cancel_pre">取消</el-button>
-          </el-form-item>-->
+          </el-form-item>
         </el-form>
       </div>
     </el-tab-pane>
@@ -735,13 +735,9 @@ export default {
       return (isJPG || isPNG) && isLt5M;
     },
     upLoadVideo(file) {
-      console.log(file);
       const formData = new FormData();
       formData.append('video', file.file);
-      const instance = this.$axios.create({
-        withCredentials: true,
-      })
-      instance({
+      this.$axios({
         method: 'post',
         url: this.uploadVideoUrl,
         data: formData,
@@ -763,6 +759,7 @@ export default {
                 // this.$message.error("上传文件格式错误！");
                 break;
               default:
+                alert(res.data.status_code);
                 this.$message.error("操作失败！");
                 break;
             }
