@@ -81,7 +81,7 @@ export default {
 
 #div_1{
   width: 100%;
-  height: 718px;
+  height: 749px;
   background-color: white;
   background: rgba(255, 255, 255, 0.7);
 

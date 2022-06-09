@@ -355,6 +355,7 @@ export default {
     }
   },
   created(){
+    window.scrollTo(0, 0);
     var i=0;
     this.centerId = JSON.parse(sessionStorage.getItem('center_id'));
     const userInfo = user.getters.getUser(user.state());

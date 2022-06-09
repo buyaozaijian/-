@@ -300,6 +300,7 @@ export default {
     }
   },
   created(){
+    window.scrollTo(0, 0);
     var i=0;
     //搜索请求
     this.part = JSON.parse(sessionStorage.getItem('part'));

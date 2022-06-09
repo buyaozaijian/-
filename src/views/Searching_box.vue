@@ -349,6 +349,7 @@ export default {
     } else {
       this.isLogin = 0;
     }
+    window.scrollTo(0, 0);
   },
   methods:{
 

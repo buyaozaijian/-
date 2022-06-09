@@ -534,6 +534,7 @@ export default {
     }
   },
   created(){
+    window.scrollTo(0, 0);
     this.centerId = JSON.parse(sessionStorage.getItem('center_id'));
     const userInfo = user.getters.getUser(user.state());
     console.log(userInfo);
@@ -1264,15 +1265,14 @@ table {
 }
 .nav-search .nav-search-btn {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 0px;
+  right: -20px;
   margin: 0;
   padding: 0;
-  width: 48px;
-  height: 35px;
+  width: 40px;
+  height: 32px;
   border: none;
-  border-radius: 2px;
-  background: #e7e7e7;
+  border-radius: 8px;
   line-height: 35px;
 }
 
