@@ -640,11 +640,11 @@ export default {
             for(i=0;i<this.unread_notification_num;i++){
               this.unreadnotificationList.push(
                   {
-                    notice_class: res.data.notificationList[i].NoteClass,
-                    notice_name: res.data.notificationList[i].NoteSenderName,
-                    notice_content: res.data.notificationList[i].NoteContent,
-                    notice_video: res.data.notificationList[i].NoteVideoName,
-                    notice_time: res.data.notificationList[i].NoteDate,
+                    notice_class: res.data.notificationUnreadList[i].NoteClass,
+                    notice_name: res.data.notificationUnreadList[i].NoteSenderName,
+                    notice_content: res.data.notificationUnreadList[i].NoteContent,
+                    notice_video: res.data.notificationUnreadList[i].NoteVideoName,
+                    notice_time: res.data.notificationUnreadList[i].NoteDate,
                   }
               )
             }
