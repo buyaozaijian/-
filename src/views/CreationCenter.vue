@@ -332,22 +332,24 @@
           </el-form-item>
           <el-form-item label="视频" style="margin-bottom: 10px">
             <el-upload
-                class="upload-demo"
-                drag
+                list-type="picture-card"
                 :action=uploadVideoUrl
+                multiple
                 :http-request="upLoadVideo"
                 :before-upload="beforeVideoUpload"
                 :file-list="willAddQuestion.videoList"
                 :limit="1">
-              <i class="el-icon-upload"></i>
-              <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-              <div class="el-upload__tip" slot="tip">只能上传视频文件，且大小不超过10mb</div>
+              <i class="el-icon-plus"></i>
             </el-upload>
+            <el-dialog :visible.sync="dialogVisible">
+              <img width="100%" :src="dialogImageUrl" alt="">
+            </el-dialog>
+            <div style="font-size: 10px">图片只能为jpg/png格式</div>
           </el-form-item>
-          <el-form-item>
+          <!--<el-form-item>
             <el-button type="primary" @click="submit" style="width: 80px;height: 40px">立即上传</el-button>
             <el-button style="width: 80px;height: 40px" @click="cancel_pre">取消</el-button>
-          </el-form-item>
+          </el-form-item>-->
         </el-form>
       </div>
     </el-tab-pane>
@@ -685,6 +687,7 @@ export default {
           });
     },
     upLoadImage(file) {
+      console.log(file);
       const formData = new FormData();
       formData.append('image', file.file);
       this.$axios({
@@ -732,6 +735,7 @@ export default {
       return (isJPG || isPNG) && isLt5M;
     },
     upLoadVideo(file) {
+      console.log(file);
       const formData = new FormData();
       formData.append('video', file.file);
       const instance = this.$axios.create({
