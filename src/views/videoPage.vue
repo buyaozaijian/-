@@ -458,7 +458,7 @@ export default {
     delete_comment(id,index){
       this.$axios.get('comment/delete/'+id).then(
       )
-      alert('删除评论');
+      this.$message.success("删除评论");
       this.comment_list.splice(index,1);
     },
     jumplogin(){

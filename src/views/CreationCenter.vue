@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <body>
-  <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
+  <div v-if="this.needFixed == true" style="position: fixed;z-index: 9998;width: 100%;">
     <el-menu
         :default-active="this.$router.path"
         router
@@ -672,10 +672,10 @@ export default {
             console.log(res)
             switch (res.data.status_code) {
               case 1:
-                this.$message.success("上传成功");
                 this.$router.push({
                   path: './'
                 })
+                this.$message.success("上传成功");
                 break;
               case 2:
                 this.$message.error("上传失败");
@@ -708,7 +708,6 @@ export default {
                   url: url_img,
                   key: key_img
                 });
-                this.$message.success("上传成功");
                 console.log(this.willAddQuestion.imgList);
                 break;
               case 2:
@@ -753,7 +752,6 @@ export default {
                   url: url_video,
                   key: key_video
                 });
-                this.$message.success("上传成功");
                 console.log(this.willAddQuestion.videoList);
                 break;
               case 2:

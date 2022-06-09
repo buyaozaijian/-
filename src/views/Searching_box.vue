@@ -1,6 +1,7 @@
 <template>
   <html>
   <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <body style="max-width:1560px;margin: 0 auto;">
   <div v-if="this.needFixed == true" style="position: fixed;z-index: 9999;width: 100%;">
     <el-menu
@@ -227,23 +228,18 @@
         <div class="up">
           <div class="up-cover">
             <div style="float: left" class="txt">
-                <p class="name" @click="click1(index)">{{video.videoName}}</p>
-              <router-link to="Contribution">
-                <span class="title" @click="click_center(index)">
-                  <b>{{video.videoauthor}}</b>
-                </span>
-              </router-link>
-              <span v-for="tags in  video.videoTags" :key="tags">
-                      <router-link to="Searching_box">
+              <a target="blank">
+                <router-link to="/videoPage"><p id="0" class="name" @click="click1(index)">{{video.videoName}}</p></router-link></a>
+              <span v-for="tags in video.videoTags" :key="tags">
+                      <router-link to="Searching_box" >
                         <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
                           {{tags}}
                         </a>
                     </router-link>
                     </span>
-                <span class="title"  @click="click1(index)">
-                  播放:<b>{{video.videoviewnum}}</b>
-                  评论:<b>{{video.videocommentnum}}</b>
-                </span>
+              <router-link to="Contribution" >
+                <p class="title" @click="click_center(0)">{{video.videoauthor}}&nbsp;播放:<b>{{video.videoviewnum}}</b>评论:<b>{{video.videocommentnum}}</b></p>
+              </router-link>
             </div>
           </div>
         </div>
@@ -292,11 +288,8 @@ export default {
       },
       formLabelWidth: '120px',
       videoList:[
-        {
-          videoAuthorId:1,
-        }
       ],
-      videonum:1,
+      videonum:0,
       message:JSON.parse(sessionStorage.getItem('message')),
     }
   },
@@ -703,7 +696,7 @@ table {
   line-height: 20px;
   text-align: left;
   margin-top: 5px;
-  height: 45px;
+  height: 25px;
   width: 220px;
   font-size: 14px;
   color: black;

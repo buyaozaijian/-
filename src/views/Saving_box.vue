@@ -241,7 +241,7 @@
     <div class="点赞" style="position:absolute;left:100px;top:260px;color: black;font-size: 20px">点赞</div>
     <div class="关注" style="position:absolute;left:200px;top:260px;color: black;font-size: 20px">关注</div>
     <div class="sign" style="position:absolute;left:125px;top:300px;color: black;font-size: 20px">个性签名</div>
-    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px">{{this.userdata[0].UserIntroduction}}</div>
+    <div class="sign_body" style="position:absolute;left:70px;top:340px;color: black;font-size: 15px; text-align: center">{{this.userdata[0].UserIntroduction}}</div>
     <div style="position:absolute;left:80px;top:370px;">
       <div>
         <el-button  v-if="this.iffollow===0&&this.if_same===0" @click="follow" style="background: #00AEEC;float: left;width: 170px;height: 35px" type="primary">关注：{{this.videoAuthorFollow}}</el-button>
