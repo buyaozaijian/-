@@ -516,6 +516,7 @@ export default {
           }
         },
     )
+    window.scrollTo(0, 0);
   },
   methods: {
     click_search(){
