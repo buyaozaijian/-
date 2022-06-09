@@ -294,7 +294,7 @@ export default {
       formLabelWidth: '120px',
       videoList:[
       ],
-      videonum:8,
+      videonum:0,
       part:JSON.parse(sessionStorage.getItem('part')),
     }
   },
