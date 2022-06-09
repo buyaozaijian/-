@@ -224,13 +224,18 @@
     <div v-for="(comment,index) in comment_list" :key="comment.comment_id">
       <div class="comment">
         <el-divider></el-divider>
-        <img class="small-head" :src = "comment.comment_head_url">
-        <div style="display: inline-block; color:black"><b>{{comment.comment_name}}</b></div>
-        <div>评论时间:{{comment.comment_time}}</div>
-        <div>{{comment.comment_in}}</div>
-        <div>&nbsp;</div>
-        <div v-if="comment.comment_if_me===1" style="cursor: pointer" @click="delete_comment(comment.comment_id,index)"><i class="el-icon-delete"></i></div>
-      </div>
+        <div style="float: left; width: 60px">
+          <img class="small-head" :src = "comment.comment_head_url">
+          <div v-if="comment.comment_if_me===1" style="cursor: pointer; position: relative; top: 50px" @click="delete_comment(comment.comment_id,index)"><i class="el-icon-delete"></i></div>
+        </div>
+        <div style="float: left; display: inline-block;">
+          <div style="height: 50px; position: relative; top: 10px"><b>{{comment.comment_name}}</b></div>
+          <div style="font-size: 20px">{{comment.comment_in}}</div>
+          <br/>
+          <div style="font-size: 15px; color: gray">评论时间:&ensp;{{comment.comment_time}}</div>
+
+        </div>
+        </div>
     </div>
   </div>
   </body>
@@ -263,7 +268,8 @@ export default {
       concerns: 100,
       ifconcerns: 0,
       videotime: '',
-      comment_list: [/*
+      comment_list: [
+          /*
         {
           comment_head_url: 'https://profilephoto-1310787519.cos.ap-beijing.myqcloud.com/test_img/%E9%BB%98%E8%AE%A4%E5%A4%B4%E5%83%8F%E4%B8%8D%E8%A6%81%E5%88%A0%E9%99%A4%EF%BC%81%EF%BC%81%EF%BC%81.jpg',
           comment_name:  'yyz',
