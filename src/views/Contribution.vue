@@ -50,14 +50,8 @@
               创作中心
             </i></el-button>
       </div>
-      <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
-        <i class="fa fa-paper-plane-o" style="color: gray"></i>
-        <el-button
-            plain
-            @click="open"
-            style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: gray;font-size: 15px">
-          站内通知
-        </el-button>
+      <div style="position: absolute; left: 1330px; top: 22px;z-index: 9999; display: inline-block">
+        <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
       </div>
       <el-menu-item index="/" style="width: 100px; font-size: 15px"><router-link to="'Homepage'">
         <i class="fa fa-bank" style="color: gray"></i>
@@ -200,13 +194,7 @@
 
         </div>
         <div style="position: absolute; left: 1210px; top: 7px;z-index: 9999; display: inline-block;width: 100px">
-          <i class="fa fa-paper-plane-o" style="color: black"></i>
-          <el-button
-              plain
-              @click="open"
-              style="background:rgba(0,0,0,0%);border: 1px solid rgba(20,81,154,0);color: black;font-size: 15px;padding: 0">
-            &ensp;站内通知
-          </el-button>
+          <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
         </div>
         <div v-if="islogin==false" style="position: absolute; left: 1000px; top: -3px;z-index: 9999; display: inline-block;">
           <button  @click="dialogFormVisible = true" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
