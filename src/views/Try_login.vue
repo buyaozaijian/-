@@ -2,7 +2,8 @@
   <div id="login" class="login">
     <img class="bgbox" id="bgbox" alt="" src="../../src/img/星空.jpg">
     <div class="wrap">
-      <h1>登 录</h1>
+      <br/>
+      <h1 style="position: relative; top: -20px;">登 录</h1>
       <el-form :model="form" ref="form" class="form">
         <el-form-item prop="username">
           <el-input placeholder="用户名或邮箱" type="username" v-model="form.username" autocomplete="off"></el-input>
