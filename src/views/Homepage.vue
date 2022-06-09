@@ -2069,7 +2069,6 @@ export default {
       } else {
         this.isLogin = 0;
       }
-this.isLogin=1;
   },
 
   methods:{

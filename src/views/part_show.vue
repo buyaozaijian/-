@@ -53,7 +53,7 @@
 
       </div>
       <div style="position: absolute; left: 1330px; top: 13px;z-index: 9999; display: inline-block">
-        <img style="width: 200px; position: relative; top: -17px;" alt="" src="../../src/img/logo.png">
+        <img style="width: 200px; position: relative; top: -6px;" alt="" src="../../src/img/logo.png">
       </div>
       <el-menu-item index="/" style="width: 100px; font-size: 15px"><a>
         <i class="fa fa-bank" style="color: gray"></i>
