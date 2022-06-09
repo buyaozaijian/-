@@ -31,7 +31,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -150,8 +150,8 @@
             </router-link>
           </li>
           <li style="display: inline">
-            <router-link :to="'/User_center'" @click="click_centerself">
-              <i class="fa fa-user-o" style="color: white"></i>
+            <router-link :to="'/User_center'">
+              <i @click="click_centerself" class="fa fa-user-o" style="color: white"></i>
               <span style="color: white">
                   个人中心
                 </span>

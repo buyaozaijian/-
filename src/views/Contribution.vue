@@ -27,7 +27,7 @@
             </div>
           </div>
           <router-link :to="'User_center'" slot="reference">
-            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px">
+            <img :src="this.userhead" style="width: 40px;height: 40px;border-radius: 50%;border-color: white;border-width: 1px" @click="click_centerself">
           </router-link>
         </el-popover>
       </div>
@@ -83,7 +83,7 @@
         </router-link></el-menu-item>
       <el-menu-item index="2" style="width: 100px; font-size: 15px">
         <router-link :to="'User_center'">
-          <i class="fa fa-user-o" style="color: gray"></i>
+          <i class="fa fa-user-o" style="color: gray" @click="click_centerself"></i>
           <span style="color: gray">
                   个人中心
                 </span>
@@ -391,6 +391,9 @@ export default {
     );
   },
   methods:{
+    click_centerself(){
+      sessionStorage.setItem('center_id', JSON.stringify(this.userid));
+    },
     click_search(){
       alert(this.$refs.search.value);
       sessionStorage.setItem('message', JSON.stringify(this.$refs.search.value));
