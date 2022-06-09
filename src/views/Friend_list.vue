@@ -281,19 +281,20 @@
     </div>
       <div style="position: relative;top:80px">
         <ul style="list-style: none;">
-          <li style="height: 75px;margin-top: 15px;" v-for="(friend,index) in friendlist" :key="friend.friend_id">
-            <el-divider></el-divider>
-            <router-link to="Contribution">
+          <div style="height: 80px;margin-top: 15px;" v-for="(friend,index) in friendlist" :key="friend.friend_id">
+            <div style="float: left; width: 100px; position: relative; left: 60px; height: 80px">
+            <router-link to="User_center">
               <img style="margin-top: 5px; position: relative; height: 60px;width: 60px;border-radius: 50%;float: left" :src="friend.friend_head_url" @click="click_center(index)">
             </router-link>
-            <div style="display: inline-block;text-align: left;margin-left: 30px;float: left;width: 780px">
-              <div style="position: relative; font-size: 20px;color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
-              <div style="font-size: 10px;color: gray">
+            </div>
+            <div style="display: inline-block;text-align: left; margin-left: 50px;float: left; width: 780px">
+              <div style="position: relative; font-size: 22px; color: rgb(251, 114, 153);height: 40px">{{friend.friend_name}}</div>
+              <div style="font-size: 13px;color: gray">
                 {{friend.friend_sign}}
               </div>
-              <el-button style="float: right;position: relative;top: -50px;width: 70px;height: 30px;background: #e5e9ef;;border: 0" type="info" plain>已关注</el-button>
+              <el-button style="float: right;position: relative;top: -40px;right: 50px;width: 70px;height: 30px;background: #e5e9ef;border: 0" type="info" plain>已关注</el-button>
             </div>
-          </li>
+          </div>
         </ul>
       </div>
     </div>
@@ -408,6 +409,8 @@ export default {
           }
         },
     );
+
+    this.isLogin=1;
 
   },
   methods:{
