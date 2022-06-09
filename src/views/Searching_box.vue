@@ -233,6 +233,13 @@
                   <b>{{video.videoauthor}}</b>
                 </span>
               </router-link>
+              <span v-for="tags in  video.videoTags" :key="tags">
+                      <router-link to="Searching_box">
+                        <a @click="click_search2(tags)" href="#" class="badge badge-secondary" style="float: left;margin-bottom: 5px;color: white;margin-right: 5px">
+                          {{tags}}
+                        </a>
+                    </router-link>
+                    </span>
                 <span class="title"  @click="click1(index)">
                   播放:<b>{{video.videoviewnum}}</b>
                   评论:<b>{{video.videocommentnum}}</b>
@@ -334,6 +341,7 @@ export default {
                   videoAuthorId:res.data.videoList[i].VideoAuthor,
                   videocommentnum: res.data.videoList[i].CommentNum,
                   videoviewnum: res.data.videoList[i].VideoViewCounts,
+                  videoTags: res.data.videoList[i].VideoTags,
                 }
             )
           }
@@ -443,6 +451,10 @@ export default {
     },
     destroyed () {
       window.removeEventListener('scroll', this.handleScroll)
+    },
+
+    click_search2(args){
+      sessionStorage.setItem('message', JSON.stringify(args));
     },
     click_login(){
       this.$axios({
